@@ -4,7 +4,7 @@
         <div class="login-register" style="background:#4F5467">
             <div class="login-box card">
                 <div class="card-body">
-                    <form method="post" id="form-login" action="{{route('login')}}" novalidate>
+                    <form method="post" id="form-login" action="{{route('login')}}" class="needs-validation" novalidate>
                         @csrf 
                         <div class="form-group ">
                             <h3 class="box-title m-b-20">Sign In</h3>

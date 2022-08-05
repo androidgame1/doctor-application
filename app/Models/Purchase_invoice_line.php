@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Purchase_invoice_line extends Model
 {
     use HasFactory;
     /**
@@ -15,8 +15,16 @@ class Product extends Model
      */
     protected $fillable = [
         'administrator_id',
-        'name',
-        'amount',
-        'description'
+        'purchase_invoice_id',
+        'designation',
+        'description',
+        'quantity',
+        'unit_price',
+        'reduction',
+        'reduction_amount',
+        'ht_amount',
+        'tva',
+        'tva_amount',
+        'ttc_amount',
     ];
 }

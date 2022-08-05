@@ -23,9 +23,17 @@
                                 <i class="fa fa-th-large"></i>
                                 <span class="hide-menu">Products</span></a>
                             </li>
+                            <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_administrator) {{route('administrator.purchase_invoices')}} @else javascript:void(0) @endif" aria-expanded="false">
+                                <i class="fa fa-file"></i>
+                                <span class="hide-menu">Purchase invoices</span></a>
+                            </li>
                             <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_administrator) {{route('administrator.users','secretary')}} @else javascript:void(0) @endif" aria-expanded="false">
                                 <i class="fa fa-users"></i>
                                 <span class="hide-menu">Secretaries</span></a>
+                            </li>
+                            <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_administrator) {{route('administrator.patients')}} @else javascript:void(0) @endif" aria-expanded="false">
+                                <i class="fa fa-users"></i>
+                                <span class="hide-menu">Patients</span></a>
                             </li>
                         @endif
                         @if(auth()->user()->is_secretary)

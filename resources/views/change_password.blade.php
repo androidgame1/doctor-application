@@ -28,9 +28,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form method="post" id="form-password-update"
-                    action="@if(auth()->user()->is_superadministrator){{route('superadministrator.password.update')}}@elseif(auth()->user()->is_administrator){{route('administrator.password.update')}}@elseif(auth()->user()->is_secretary){{route('secretary.password.update')}} @else javascript:void(0) @endif"
-                    novalidate>
+                <form method="post" id="form-password-update" action="@if(auth()->user()->is_superadministrator){{route('superadministrator.password.update')}}@elseif(auth()->user()->is_administrator){{route('administrator.password.update')}}@elseif(auth()->user()->is_secretary){{route('secretary.password.update')}} @else javascript:void(0) @endif" class="needs-validation" novalidate>
                     @method('put')
                     @csrf
                     <div class="row">

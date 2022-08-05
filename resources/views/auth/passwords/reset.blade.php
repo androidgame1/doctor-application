@@ -3,7 +3,7 @@
         <div class="login-register" style="background:#4F5467">
             <div class="login-box card">
                 <div class="card-body">
-                <form method="post" class="form-horizontal" id="form-reset" action="{{route('reset.password.post')}}" novalidate>
+                <form method="post" class="form-horizontal" id="form-reset" action="{{route('reset.password.post')}}" class="needs-validation" novalidate>
                         @method('post') 
                         @csrf  
                         <input type="hidden" name="token" value={{$token}}>      

@@ -28,7 +28,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form method="post" id="form-create-new-user" action="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.store',$role)}}@elseif(auth()->user()->is_administrator){{route('administrator.user.store',$role)}} @else javascript:void(0) @endif" enctype="multipart/form-data" novalidate>
+                <form method="post" id="form-create-new-user" action="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.store',$role)}}@elseif(auth()->user()->is_administrator){{route('administrator.user.store',$role)}} @else javascript:void(0) @endif" enctype="multipart/form-data" class="needs-validation" class="needs-validation" novalidate>
                     @method('post')
                     @csrf
                     <input type="hidden" name="role" value="{{$role}}">

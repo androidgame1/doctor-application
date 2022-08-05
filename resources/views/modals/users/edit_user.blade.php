@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <form method="post" id="form-edit-old-user"
                     action=""
-                    enctype="multipart/form-data" novalidate>
+                    enctype="multipart/form-data" class="needs-validation" novalidate>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="div-edit-old-user-modal">Edit @if($role=="administrator") administrator @elseif($role == "secretary") secretary @elseif($role == "deliveryman") delivery man @else error @endif</h4>

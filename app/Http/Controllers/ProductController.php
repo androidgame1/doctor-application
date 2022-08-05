@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -15,7 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('id','desc')->get();
+        $user = Auth::user();
+        $products = Product::orderBy('id','desc')->where('administrator_id',$user->id)->get();
         return view('products.products',compact('products'));
     }
 
@@ -37,7 +39,9 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        $user = Auth::user();
         $data = [
+            'administrator_id'=>$user->id,
             'name'=>$request->name,
             'amount'=>$request->amount,
             'description'=>$request->description,
@@ -58,8 +62,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+        $user = Auth::user();
         $data=["icon"=>"warning","product"=>array()];
-        $product = Product::findOrFail($id);
+        $product = Product::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $data=["icon"=>"success","product"=>$product];
         return response()->json($data);
     }
@@ -72,8 +77,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $user = Auth::user();
         $data=["icon"=>"warning","product"=>array()];
-        $product = Product::findOrFail($id);
+        $product = Product::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $data=["icon"=>"success","product"=>$product];
         return response()->json($data);
     }
@@ -87,7 +93,8 @@ class ProductController extends Controller
      */
     public function update(ProductRequest $request, $id)
     {
-        $product = Product::findOrFail($id);
+        $user = Auth::user();
+        $product = Product::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $data = [
             'name'=>$request->name,
             'amount'=>$request->amount,
@@ -109,7 +116,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
+        $user = Auth::user();
+        $product = Product::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         if($product->delete()){
             toastr()->success('The product has deleted by success !');
         }else{

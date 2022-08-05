@@ -28,7 +28,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form method="post" id="form-edit-patient" action="@if(auth()->user()->is_secretary){{route('secretary.patient.update',$patient->id)}} @else javascript:void(0) @endif" enctype="multipart/form-data" novalidate>
+                <form method="post" id="form-edit-patient" action="@if(auth()->user()->is_secretary){{route('secretary.patient.update',$patient->id)}} @else javascript:void(0) @endif" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @method('put')
                     @csrf
                     <div class="row">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\PatientRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PatientController extends Controller
 {
@@ -15,7 +16,16 @@ class PatientController extends Controller
      */
     public function index()
     {
-        $patients = Patient::orderBy('id','desc')->get();
+        $user = Auth::user();
+        $administrator_id = "";
+        if($user->is_administrator){
+            $administrator_id=$user->id;
+        }else if($user->is_secretary){
+            $administrator_id=$user->administrator_id;
+        }else{
+            return view('error');
+        }
+        $patients = Patient::orderBy('id','desc')->where('administrator_id',$administrator_id)->get();
         return view('patients.patients',compact('patients'));
     }
 
@@ -37,7 +47,18 @@ class PatientController extends Controller
      */
     public function store(PatientRequest $request)
     {
+        $user = Auth::user();
+        $administrator_id = "";
+        if($user->is_administrator){
+            $administrator_id=$user->id;
+        }else if($user->is_secretary){
+            $administrator_id=$user->administrator_id;
+        }else{
+            return view('error');
+        }
         $data = [
+            'administrator_id'=>$administrator_id,
+            'secretariat_id'=>$user->id,
             'cin'=>$request->cin,
             'fullname'=>$request->fullname,
             'email'=>$request->email,
@@ -61,7 +82,16 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        $patient = Patient::findOrFail($id);
+        $user = Auth::user();
+        $administrator_id = "";
+        if($user->is_administrator){
+            $administrator_id=$user->id;
+        }else if($user->is_secretary){
+            $administrator_id=$user->administrator_id;
+        }else{
+            return view('error');
+        }
+        $patient = Patient::where(['administrator_id'=>$administrator_id,'id'=>$id])->firstOrFail();
         return view('patients.show_patient',compact('patient'));
     }
 
@@ -73,7 +103,16 @@ class PatientController extends Controller
      */
     public function edit($id)
     {
-        $patient = Patient::findOrFail($id);
+        $user = Auth::user();
+        $administrator_id = "";
+        if($user->is_administrator){
+            $administrator_id=$user->id;
+        }else if($user->is_secretary){
+            $administrator_id=$user->administrator_id;
+        }else{
+            return view('error');
+        }
+        $patient = Patient::where(['administrator_id'=>$administrator_id,'id'=>$id])->firstOrFail();
         return view('patients.edit_patient',compact('patient'));
     }
 
@@ -86,7 +125,16 @@ class PatientController extends Controller
      */
     public function update(PatientRequest $request, $id)
     {
-        $patient = Patient::findOrFail($id);
+        $user = Auth::user();
+        $administrator_id = "";
+        if($user->is_administrator){
+            $administrator_id=$user->id;
+        }else if($user->is_secretary){
+            $administrator_id=$user->administrator_id;
+        }else{
+            return view('error');
+        }
+        $patient = Patient::where(['administrator_id'=>$administrator_id,'id'=>$id])->firstOrFail();
         $data = [
             'cin'=>$request->cin,
             'fullname'=>$request->fullname,
@@ -111,7 +159,16 @@ class PatientController extends Controller
      */
     public function destroy($id)
     {
-        $patient = Patient::findOrFail($id);
+        $user = Auth::user();
+        $administrator_id = "";
+        if($user->is_administrator){
+            $administrator_id=$user->id;
+        }else if($user->is_secretary){
+            $administrator_id=$user->administrator_id;
+        }else{
+            return view('error');
+        }
+        $patient = Patient::where(['administrator_id'=>$administrator_id,'id'=>$id])->firstOrFail();
         if($patient->delete()){
             toastr()->success('The patient has deleted by success !');
         }else{

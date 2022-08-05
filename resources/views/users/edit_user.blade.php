@@ -28,7 +28,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form method="post" id="form-edit-user" action="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.update',['role'=>$role,'id'=>$user->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.update',['role'=>$role,'id'=>$user->id])}} @else javascript:void(0) @endif" enctype="multipart/form-data" novalidate>
+                <form method="post" id="form-edit-user" action="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.update',['role'=>$role,'id'=>$user->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.update',['role'=>$role,'id'=>$user->id])}} @else javascript:void(0) @endif" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @method('put')
                     @csrf
                     <input type="hidden" name="role" value="{{$role}}">

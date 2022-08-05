@@ -28,7 +28,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form method="post" id="form-edit-supplier" action="@if(auth()->user()->is_administrator){{route('administrator.supplier.update',$supplier->id)}} @else javascript:void(0) @endif" enctype="multipart/form-data" novalidate>
+                <form method="post" id="form-edit-supplier" action="@if(auth()->user()->is_administrator){{route('administrator.supplier.update',$supplier->id)}} @else javascript:void(0) @endif" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @method('put')
                     @csrf
                     <div class="row">

@@ -17,14 +17,15 @@ class UserController extends Controller
      */
     public function index($role)
     {
+        $user = Auth::user();
         $rolevalue="";
-        if(Auth::user()->is_superadministrator){
+        if($user->is_superadministrator){
             if($role == "administrator"){
                 $rolevalue=1;
             }else{
                 return view('error');
             }
-        }else if(Auth::user()->is_administrator){
+        }else if($user->is_administrator){
             if($role == "secretary"){
                 $rolevalue=2;
             }else{
@@ -33,7 +34,7 @@ class UserController extends Controller
         }else{
             return view('error');
         }
-        $users = User::where('role',$rolevalue)->get();
+        $users = User::where(['administrator_id'=>$user->id,'role'=>$rolevalue])->get();
         return view('users.users',compact('users','role'));
     }
 
@@ -44,14 +45,15 @@ class UserController extends Controller
      */
     public function create($role)
     {
+        $user = Auth::user();
         $rolevalue="";
-        if(Auth::user()->is_superadministrator){
+        if($user->is_superadministrator){
             if($role == "administrator"){
                 $rolevalue=1;
             }else{
                 return view('error');
             }
-        }else if(Auth::user()->is_administrator){
+        }else if($user->is_administrator){
             if($role == "secretary"){
                 $rolevalue=2;
             }else{
@@ -71,15 +73,16 @@ class UserController extends Controller
      */
     public function store(UserRequest $request,$role)
     {
+        $user = Auth::user();
         $userRole = "";
-        if(Auth::user()->is_superadministrator){
+        if($user->is_superadministrator){
             if($role == 'administrator'){
                 $request->role = 1;
                 $userRole = "administrator";
             }else{
                 return view('error');
             }
-        }else if(Auth::user()->is_administrator){
+        }else if($user->is_administrator){
             if($role == 'secretary'){
                 $request->role = 2;
                 $userRole = "secretary";
@@ -90,6 +93,7 @@ class UserController extends Controller
             return view('error');
         }
         $data = [
+            'administrator_id'=>$user->id,
             'cin'=>$request->cin,
             'fullname'=>$request->fullname,
             'email'=>$request->email,
@@ -105,9 +109,9 @@ class UserController extends Controller
         }else{
             toastr()->warning('The '.$userRole.' has not inserted by success !');
         }
-        if(Auth::user()->is_superadministrator){
+        if($user->is_superadministrator){
             return redirect()->route('superadministrator.users',$role);
-        }else if(Auth::user()->is_administrator){
+        }else if($user->is_administrator){
             return redirect()->route('administrator.users',$role);
         }else{
             return view('error');
@@ -123,15 +127,15 @@ class UserController extends Controller
      */
     public function show($role,$id)
     {
+        $user = Auth::user();
         $rolevalue="";
-        // $result=['icon'=>'warning','user'=>array()];
-        if(Auth::user()->is_superadministrator){
+        if($user->is_superadministrator){
             if($role == 'administrator'){
                 $rolevalue=1;
             }else{
                 return view('error');
             }
-        }else if(Auth::user()->is_administrator){
+        }else if($user->is_administrator){
             if($role == 'secretary'){
                 $rolevalue=2;
             }else{
@@ -140,10 +144,9 @@ class UserController extends Controller
         }else{
             return view('error');
         }
-        $user = User::where('role',$rolevalue)->where('id',$id)->firstOrFail();
+        $user = User::where(['administrator_id'=>$user->id,'role'=>$rolevalue,'id'=>$id])->firstOrFail();
         $user->status = $user->status;
         $user->editstatus = $user->editstatus;
-        // $result=['icon'=>'success','user'=>$user];
         return view('users.show_user',compact('user','role'));
     }
 
@@ -155,14 +158,15 @@ class UserController extends Controller
      */
     public function edit($role,$id)
     {
+        $user = Auth::user();
         $rolevalue="";
-        if(Auth::user()->is_superadministrator){
+        if($user->is_superadministrator){
             if($role == 'administrator'){
                 $rolevalue=1;
             }else{
                 return response()->json($result);
             }
-        }else if(Auth::user()->is_administrator){
+        }else if($user->is_administrator){
             if($role == 'secretary'){
                 $rolevalue=2;
             }else{
@@ -171,7 +175,7 @@ class UserController extends Controller
         }else{
             return view('error');
         }
-        $user = User::where('role',$rolevalue)->where('id',$id)->firstOrFail();
+        $user = User::where(['administrator_id'=>$user->id,'role'=>$rolevalue,'id'=>$id])->firstOrFail();
         return view('users.edit_user',compact('user','role'));
     }
     
@@ -184,16 +188,17 @@ class UserController extends Controller
      */
     public function update(UserRequest $request,$role, $id)
     {
+        $user = Auth::user();
         $userRole="";
         $rolevalue="";
-        if(Auth::user()->is_superadministrator){
+        if($user->is_superadministrator){
             if($role == 'administrator'){
                 $rolevalue=1;
                 $userRole="administrator";
             }else{
                 return view('error');
             }
-        }else if(Auth::user()->is_administrator){
+        }else if($user->is_administrator){
             if($role == 'secretary'){
                 $rolevalue=2;
                 $userRole="secretary";
@@ -203,7 +208,7 @@ class UserController extends Controller
         }else{
             return view('error');
         }
-        $user = User::where('role',$rolevalue)->where('id',$id)->firstOrFail();
+        $user = User::where(['administrator_id'=>$user->id,'role'=>$rolevalue,'id'=>$id])->firstOrFail();
         $data = [
             'cin'=>$request->cin,
             'fullname'=>$request->fullname,
@@ -231,16 +236,17 @@ class UserController extends Controller
      */
     public function destroy($role,$id)
     {
+        $user = Auth::user();
         $rolevalue="";
         $userRole="";
-        if(Auth::user()->is_superadministrator){
+        if($user->is_superadministrator){
             if($role == 'administrator'){
                 $rolevalue=1;
                 $userRole ="administrator";
             }else{
                 return view('error');
             }
-        }else if(Auth::user()->is_administrator){
+        }else if($user->is_administrator){
             if($role == 'secretary'){
                 $rolevalue=2;
                 $userRole ="secretary";
@@ -250,7 +256,7 @@ class UserController extends Controller
         }else{
             return view('error');
         }
-        $user = User::where('role',$rolevalue)->where('id',$id)->firstOrFail();
+        $user = User::where(['administrator_id'=>$user->id,'role'=>$rolevalue,'id'=>$id])->firstOrFail();
         if($user->delete()){
             toastr()->success('The '.$userRole.' has deleted by success !');
         }else{
@@ -267,18 +273,19 @@ class UserController extends Controller
      */
     public function updateStatus($role, $id)
     {
+        $user = Auth::user();
         $rolevalue="";
         $userRole ="";
         $isvalidate ='';
         $result=['icon'=>'warning','user'=>array()];
-        if(Auth::user()->is_superadministrator){
+        if($user->is_superadministrator){
             if($role == 'administrator'){
                 $rolevalue=1;
                 $userRole ="administrator";
             }else{
                 return view('error');
             }
-        }else if(Auth::user()->is_administrator){
+        }else if($user->is_administrator){
             if($role == 'secretary'){
                 $rolevalue=2;
                 $userRole ="secretary";
@@ -288,7 +295,7 @@ class UserController extends Controller
         }else{
             return view('error');
         }
-        $user = User::where('role',$rolevalue)->where('id',$id)->firstOrFail();
+        $user = User::where(['administrator_id'=>$user->id,'role'=>$rolevalue,'id'=>$id])->firstOrFail();
         if($user->isvalidate == '0'){
             $isvalidate='1';
         }else if($user->isvalidate == '1'){
@@ -317,7 +324,8 @@ class UserController extends Controller
      */
     public function editPassword()
     {
-        if(Auth::user()->is_superadministrator || Auth::user()->is_administrator || Auth::user()->is_secretary){
+        $user = Auth::user();
+        if($user->is_superadministrator || $user->is_administrator || $user->is_secretary){
             return view('change_password');
         }else{
             return view('error');
@@ -332,8 +340,8 @@ class UserController extends Controller
      */
     public function updatePassword(UserRequest $request)
     {
-        if(Auth::user()->is_superadministrator || Auth::user()->is_administrator || Auth::user()->is_secretary){
-            $user = Auth::user();
+        $user = Auth::user();
+        if($user->is_superadministrator || $user->is_administrator || $user->is_secretary){
             if(Hash::check($request->old_password, $user->password)){
                 if($user->update(['password'=>Hash::make($request->new_password)])){
                     toastr()->success('The password has updated by success.');
@@ -356,7 +364,8 @@ class UserController extends Controller
      */
     public function editProfile()
     {
-        if(Auth::user()->is_superadministrator || Auth::user()->is_administrator || Auth::user()->is_secretary){
+        $user = Auth::user();
+        if($user->is_superadministrator || $user->is_administrator || $user->is_secretary){
             return view('profile');
         }else{
             return view('error');
@@ -370,24 +379,24 @@ class UserController extends Controller
      */
     public function updateProfile(UserRequest $request)
     {
-        if(Auth::user()->is_superadministrator || Auth::user()->is_administrator|| Auth::user()->is_secretary){
-            $user = Auth::user();
+        $user = Auth::user();
+        if($user->is_superadministrator || $user->is_administrator|| $user->is_secretary){
             if($request->hasfile("image")){
                 $file = $request->file('image');
                 $extention = $file->getClientOriginalExtension();
-                if(Auth::user()->is_superadministrator){
-                    $filename = "uploads/superadministrator/profile/files_superadministrator_".Auth::user()->id."/".time().'.'.$extention;
-                    $file->move("uploads/superadministrator/profile/files_superadministrator_".Auth::user()->id,$filename);
+                if($user->is_superadministrator){
+                    $filename = "uploads/superadministrator/profile/files_superadministrator_".$user->id."/".time().'.'.$extention;
+                    $file->move("uploads/superadministrator/profile/files_superadministrator_".$user->id,$filename);
                     $request->image = $filename;
                 
-                }else if(Auth::user()->is_administrator){
-                    $filename = "uploads/administrator/profile/files_administrator_".Auth::user()->id."/".time().'.'.$extention;
-                    $file->move("uploads/administrator/profile/files_administrator_".Auth::user()->id,$filename);
+                }else if($user->is_administrator){
+                    $filename = "uploads/administrator/profile/files_administrator_".$user->id."/".time().'.'.$extention;
+                    $file->move("uploads/administrator/profile/files_administrator_".$user->id,$filename);
                     $request->image = $filename;
                 
-                }else if(Auth::user()->is_secretary){
-                    $filename = "uploads/secretary/profile/files_secretary_".Auth::user()->id."/".time().'.'.$extention;
-                    $file->move("uploads/secretary/profile/files_secretary_".Auth::user()->id,$filename);
+                }else if($user->is_secretary){
+                    $filename = "uploads/secretary/profile/files_secretary_".$user->id."/".time().'.'.$extention;
+                    $file->move("uploads/secretary/profile/files_secretary_".$user->id,$filename);
                     $request->image = $filename;
                 
                 }else{
@@ -396,7 +405,7 @@ class UserController extends Controller
                 }
             }else{
                 if($request->image_path){
-                    $request->image = Auth::user()->image;
+                    $request->image = $user->image;
                 }else{
                     $request->image = null;
                 }

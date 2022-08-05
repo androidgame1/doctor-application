@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <form method="post" id="form-create-new-product"
                     action="@if(auth()->user()->is_administrator){{route('administrator.product.store')}} @else javascript:void(0) @endif"
-                    enctype="multipart/form-data" novalidate>
+                    enctype="multipart/form-data" class="needs-validation" novalidate>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="div-create-new-product-modal">New product</h4>

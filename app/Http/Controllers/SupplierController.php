@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Requests\SupplierRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SupplierController extends Controller
 {
@@ -15,7 +16,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = Supplier::orderBy('id','desc')->get();
+        $user = Auth::user();
+        $suppliers = Supplier::orderBy('id','desc')->where('administrator_id',$user->id)->get();
         return view('suppliers.suppliers',compact('suppliers'));
     }
 
@@ -37,7 +39,9 @@ class SupplierController extends Controller
      */
     public function store(SupplierRequest $request)
     {
+        $user = Auth::user();
         $data = [
+            'administrator_id'=>$user->id,
             'cin'=>$request->cin,
             'fullname'=>$request->fullname,
             'email'=>$request->email,
@@ -61,7 +65,8 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        $supplier = Supplier::findOrFail($id);
+        $user = Auth::user();
+        $supplier = Supplier::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         return view('suppliers.show_supplier',compact('supplier'));
     }
 
@@ -73,7 +78,8 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        $supplier = Supplier::findOrFail($id);
+        $user = Auth::user();
+        $supplier = Supplier::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         return view('suppliers.edit_supplier',compact('supplier'));
     }
 
@@ -86,7 +92,8 @@ class SupplierController extends Controller
      */
     public function update(SupplierRequest $request, $id)
     {
-        $supplier = Supplier::findOrFail($id);
+        $user = Auth::user();
+        $supplier = Supplier::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $data = [
             'cin'=>$request->cin,
             'fullname'=>$request->fullname,
@@ -111,7 +118,8 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $supplier = Supplier::findOrFail($id);
+        $user = Auth::user();
+        $supplier = Supplier::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         if($supplier->delete()){
             toastr()->success('The supplier has deleted by success !');
         }else{

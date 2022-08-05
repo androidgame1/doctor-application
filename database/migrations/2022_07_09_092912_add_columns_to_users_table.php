@@ -14,6 +14,7 @@ class AddColumnsToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
+            $table->bigInteger('administrator_id')->nullable();
             $table->string('cin')->after('name')->nullable();
             $table->string('fullname')->after('cin')->nullable();
             $table->string('address')->after('email')->nullable();

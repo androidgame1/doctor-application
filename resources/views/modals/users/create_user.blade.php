@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <form method="post" id="form-create-new-user"
                     action="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.store',$role)}}@elseif(auth()->user()->is_administrator){{route('administrator.user.store',$role)}} @else javascript:void(0) @endif"
-                    enctype="multipart/form-data" novalidate>
+                    enctype="multipart/form-data" class="needs-validation" novalidate>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="div-create-new-user-modal">New @if($role=="administrator") administrator @elseif($role == "secretary") secretary @elseif($role == "deliveryman") delivery man @else error @endif</h4>

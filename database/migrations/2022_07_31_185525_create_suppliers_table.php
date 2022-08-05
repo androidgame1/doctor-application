@@ -15,6 +15,7 @@ class CreateSuppliersTable extends Migration
     {
         Schema::create('suppliers', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('administrator_id')->nullable();
             $table->string('cin')->nullable();
             $table->string('fullname')->nullable();
             $table->string('email')->nullable();

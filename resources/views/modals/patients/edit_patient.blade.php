@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <form method="post" id="form-edit-old-patient"
                     action=""
-                    enctype="multipart/form-data" novalidate>
+                    enctype="multipart/form-data" class="needs-validation" novalidate>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="div-edit-old-patient-modal">Edit  patient</h4>

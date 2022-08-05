@@ -3,7 +3,7 @@
         <div class="login-register" style="background:#4F5467">
             <div class="login-box card">
                 <div class="card-body">
-                <form method="post" class="form-horizontal" id="from-email" action="{{route('forget.password.post')}}" novalidate>   
+                <form method="post" class="form-horizontal" id="from-email" action="{{route('forget.password.post')}}" class="needs-validation" novalidate>   
                 @csrf
                         <div class="form-group ">
                                 <h3>Recover Password</h3>
