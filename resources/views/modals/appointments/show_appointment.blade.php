@@ -1,0 +1,41 @@
+<!-- /.modal -->
+<div class="modal fade" id="div-show-old-appointment" tabindex="-1" role="dialog" aria-labelledby="div-show-old-appointment-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="div-show-old-appointment-modal">Show appointment</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <table id="table-show-old-appointment" class="table browser m-t-30 no-border">
+                <tbody>
+                    <tr>
+                        <td><b>Patient</b></td>
+                        <td class="text-right"><span class="text-primary" name="patient"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Start date</b></td>
+                        <td class="text-right"><span class="text-gray" name="start_date"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>End date</b></td>
+                        <td class="text-right"><span class="text-gray" name="end_date"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>Status</b></td>
+                        <td class="text-right" name="status"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Remark</b></td>
+                        <td class="text-right"><span class="text-gray" name="remark"></span></td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.modal -->

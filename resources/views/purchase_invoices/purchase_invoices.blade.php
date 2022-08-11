@@ -92,5 +92,5 @@
 @include('javascript.helper')
 @include('javascript.datatable')
 @include('javascript.destroy')
-@include('javascript.cancel')
+
 @endsection

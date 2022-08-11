@@ -27,7 +27,7 @@ class Purchase_invoice extends Model
     ];
 
     function administrator(){
-        return $this->hasOne(\App\Models\User::class,'administrator_id');
+        return $this->belongsTo(\App\Models\User::class,'administrator_id');
     }
 
     function supplier(){

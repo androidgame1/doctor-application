@@ -50,6 +50,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    function administrator(){
+        return $this->belongsTo(\App\Models\User::class,'administrator_id');
+    }
 
     public function getIsSuperadministratorAttribute(){
         return $this->role == 0;

@@ -135,7 +135,7 @@ $(function () {
     var data = [{
         label: "Series 0"
         , data: 10
-        , color: "#4f5467"
+        , color: "#5400a1"
     , }, {
         label: "Series 1"
         , data: 1
@@ -379,7 +379,7 @@ $(function () {
                 color: '#bdbdbd'
             }
         }
-        , colors: ["#4F5467", "#009efb", "#26c6da"]
+        , colors: ["#5400a1", "#009efb", "#26c6da"]
         , tooltip: true, //activate tooltip
         tooltipOpts: {
             content: "%s : %y.0"

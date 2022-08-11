@@ -44,5 +44,27 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     //routes patient controller
     Route::get('/patients',[App\Http\Controllers\PatientController::class,'index'])->name('administrator.patients');
     Route::get('/patient/{id}/show',[App\Http\Controllers\PatientController::class,'show'])->name('administrator.patient.show');
+    Route::get('/patient/create',[App\Http\Controllers\PatientController::class,'create'])->name('administrator.patient.create');
+    Route::post('/patient/store',[App\Http\Controllers\PatientController::class,'store'])->name('administrator.patient.store');
+    Route::get('/patient/{id}/edit',[App\Http\Controllers\PatientController::class,'edit'])->name('administrator.patient.edit');
+    Route::put('/patient/{id}/update',[App\Http\Controllers\PatientController::class,'update'])->name('administrator.patient.update');
+    Route::delete('/patient/{id}/destroy',[App\Http\Controllers\PatientController::class,'destroy'])->name('administrator.patient.destroy');
+    //routes appointment controller
+    Route::get('/appointments/{from}',[App\Http\Controllers\AppointmentController::class,'index'])->name('administrator.appointments');
+    Route::get('/calendar',[App\Http\Controllers\AppointmentController::class,'calendar'])->name('administrator.calendar');
+    Route::get('/appointment/{id}/show',[App\Http\Controllers\AppointmentController::class,'show'])->name('administrator.appointment.show');
+    Route::get('/appointment/create',[App\Http\Controllers\AppointmentController::class,'create'])->name('administrator.appointment.create');
+    Route::post('/appointment/store',[App\Http\Controllers\AppointmentController::class,'store'])->name('administrator.appointment.store');
+    Route::get('/appointment/{id}/edit',[App\Http\Controllers\AppointmentController::class,'edit'])->name('administrator.appointment.edit');
+    Route::put('/appointment/{id}/update',[App\Http\Controllers\AppointmentController::class,'update'])->name('administrator.appointment.update');
+    Route::delete('/appointment/{id}/destroy',[App\Http\Controllers\AppointmentController::class,'destroy'])->name('administrator.appointment.destroy');
+    Route::any('/appointment/{id}/drop-or-resize',[App\Http\Controllers\AppointmentController::class,'dropOrResize'])->name('administrator.appointment.drop_or_resize');
+    //routes status controller
+    Route::get('/status',[App\Http\Controllers\StatusController::class,'index'])->name('administrator.status');
+    Route::get('/status/{id}/show',[App\Http\Controllers\StatusController::class,'show'])->name('administrator.status.show');
+    Route::post('/status/store',[App\Http\Controllers\StatusController::class,'store'])->name('administrator.status.store');
+    Route::get('/status/{id}/edit',[App\Http\Controllers\StatusController::class,'edit'])->name('administrator.status.edit');
+    Route::put('/status/{id}/update',[App\Http\Controllers\StatusController::class,'update'])->name('administrator.status.update');
+    Route::delete('/status/{id}/destroy',[App\Http\Controllers\StatusController::class,'destroy'])->name('administrator.status.destroy');
 });
 

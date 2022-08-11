@@ -1,3 +1,4 @@
+<script>
 //
 $(document).ready(function () {
     !function ($) {
@@ -129,8 +130,8 @@ $(document).ready(function () {
             $this.$calendarObj = $this.$calendar.fullCalendar({
                 lang: 'fr',
                 slotDuration: '00:15:00', /* If we want to split day time each 15minutes */
-                minTime: "08:00:00",
-                maxTime: "20:00:00",
+                minTime: "09:00:00",
+                maxTime: "19:00:00",
                 defaultView: 'agendaWeek',
                 locale: 'fr',
                 defaultDate: moment(),
@@ -141,14 +142,57 @@ $(document).ready(function () {
                     center: 'title',
                     right: 'month,agendaWeek,agendaDay'
                 }, buttonText: {
-                    today: 'Aujourd\'hui',
-                    month: 'Mois',
-                    week: 'Semaine',
-                    day: 'Jour',
-                    list: 'Liste',
+                    // today: 'Aujourd\'hui',
+                    // month: 'Mois',
+                    // week: 'Semaine',
+                    // day: 'Jour',
+                    // list: 'Liste',
                 }, allDayText: 'Jours',
+				
 
-                events: '../controller/appointment/appointment_findall_controller.php',
+
+                events: function(start, end, timezone, callback) {
+					let url = ""
+					@if(auth()->user()->is_administrator)
+						url = "{{route('administrator.appointments','calendar')}}";
+					@elseif(auth()->user()->is_secretary)
+						url = "{{route('secretary.appointments','calendar')}}";
+					@endif
+					$.ajax({
+						url: url,
+						data: {},
+						success: function(data) {
+							let appointments = data.appointments
+							let events = [];
+                            appointments.forEach(appointment => {
+                                let data_url_edit = ""
+                                let data_url_update = ""
+                                let data_url_drop_or_resize = ""
+                                @if(auth()->user()->is_administrator)
+                                    data_url_edit = "{{route('administrator.appointment.edit','id')}}".replace('id',appointment.id);
+                                    data_url_update = "{{route('administrator.appointment.update','id')}}".replace('id',appointment.id);
+                                    data_url_drop_or_resize = "{{route('administrator.appointment.drop_or_resize','id')}}".replace('id',appointment.id);
+                                @elseif(auth()->user()->is_secretary)
+                                    data_url_edit = "{{route('secretary.appointment.edit','id')}}".replace('id',appointment.id);
+                                    data_url_update = "{{route('secretary.appointment.update','id')}}".replace('id',appointment.id);
+                                    data_url_drop_or_resize = "{{route('secretary.appointment.drop_or_resize','id')}}".replace('id',appointment.id);
+                                @endif
+                                events.push({
+                                    id: appointment.id,
+									title: appointment.patient.fullname,
+                                    remark: appointment.remark,
+                                    color: appointment.status.color,
+									start: appointment.start_date,
+                                    end: appointment.end_date,
+                                    data_url_edit:data_url_edit,
+                                    data_url_update:data_url_update,
+                                    data_url_drop_or_resize:data_url_drop_or_resize
+								});
+                            });
+							callback(events);
+						}
+					});
+				},
 
                 editable: true,
                 droppable: true, // this allows things to be dropped onto the calendar !!!
@@ -158,26 +202,87 @@ $(document).ready(function () {
                     $this.onDrop($(this), date);
                 },
                 select: function (start, end, allDay) {
-                    
+					$("input[name='start_date']").val(moment(start).format('YYYY-MM-DD HH:mm:ss'))
+					$("input[name='end_date']").val(moment(end).format('YYYY-MM-DD HH:mm:ss'))
+                    $("#div-create-new-appointment.modal").modal()
                 },
                 eventClick: function (event) {
-                    
-
-
-                }, eventDrop: function (event)
-                {
-                   
+                    let id = event.id
+                    let data_url_edit = event.data_url_edit
+                    let data_url_update = event.data_url_update
+                    $.ajax({
+                        method:'get',
+                        url:data_url_edit,
+                        data:{},
+                        success:function(data){
+                            let icon = data.icon
+                            let appointment = data.appointment
+                            if(icon == 'success'){
+                                $("select[name='patient_id']").val(appointment.patient_id)
+                                $("select[name='status_id']").val(appointment.status_id)
+                                $("input[name='start_date']").val(appointment.start_date)
+                                $("input[name='end_date']").val(appointment.end_date)
+                                $("textarea[name='remark']").val(appointment.remark)
+                                $("#form-edit-old-appointment").attr('action',data_url_update)
+                                $("#div-edit-old-appointment").modal()
+                            }else{
+                                console.log("There is a problem in appointment edition !")
+                            }
+                        }
+                    })
+                }, eventDrop: function (event){
+                    let id = event.id
+                    let start_date = moment(event.start).format('YYYY-MM-DD HH:mm:ss')
+                    let end_date = moment(event.end).format('YYYY-MM-DD HH:mm:ss')
+                    let data_url_drop_or_resize = event.data_url_drop_or_resize
+                    let data_url_edit = event.data_url_edit
+                    let _method = "post"
+                    let _token = $("meta[name='csrf-token']").attr('content')
+                    $.ajax({
+                        type:'post',
+                        url:data_url_drop_or_resize,
+                        data:{_token:_token,_method:_method,start_date:start_date,end_date:end_date},
+                        success:function(data){
+                            let icon = data.icon
+                            let message = data.message
+                            if(icon == "success" || icon == "warning" || icon == "error"){
+                                console.log(message)
+                            }else {
+                                console.log("The is a problem")
+                            }
+                        }
+                    })
                 },
                 eventResize: function (event)
                 {
-                   
+                    let id = event.id
+                    let start_date = moment(event.start).format('YYYY-MM-DD HH:mm:ss')
+                    let end_date = moment(event.end).format('YYYY-MM-DD HH:mm:ss')
+                    let data_url_drop_or_resize = event.data_url_drop_or_resize
+                    let data_url_edit = event.data_url_edit
+                    let _method = "post"
+                    let _token = $("meta[name='csrf-token']").attr('content')
+                    $.ajax({
+                        type:'post',
+                        url:data_url_drop_or_resize,
+                        data:{_token:_token,_method:_method,start_date:start_date,end_date:end_date},
+                        success:function(data){
+                            let icon = data.icon
+                            let message = data.message
+                            if(icon == "success" || icon == "warning" || icon == "error"){
+                                console.log(message)
+                            }else {
+                                console.log("The is a problem")
+                            }
+                        }
+                    })
                 },
-                eventMouseover: function (event)
+                eventMouseover: function (event,position)
                 {
-                    
+                    let x = position.pageX
+                    let y = position.pageY
                 },
                 eventMouseout: function (event) {
-                    
 
                 },
             });
@@ -202,3 +307,4 @@ $(document).ready(function () {
                 $.CalendarApp.init()
             }(window.jQuery);
 })
+</script>

@@ -15,9 +15,7 @@
                 </li>
                 <li class="breadcrumb-item active">Patients</li>
             </ol>
-            @if(auth()->user()->id_secretariat)
-                <a href="@if(auth()->user()->is_secretary){{route('secretary.patient.create')}}@else javascript:void(0) @endif" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> New patient</a>
-            @endif
+            <a href="@if(auth()->user()->is_administrator){{route('administrator.patient.create')}}@elseif(auth()->user()->is_secretary){{route('secretary.patient.create')}}@else javascript:void(0) @endif" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> New patient</a>
         </div>
     </div>
 </div>
@@ -55,7 +53,7 @@
                                     @foreach($patients as $value)
                                         <tr>
                                             <td class="d-none">{{$value->id}}</td>
-                                            <td><a href="javascript:void(0)" class="btn-show-patient" data-toggle="modal" data-target="#div-show-old-patient" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.patient.show',$value->id)}}@elseif(auth()->user()->is_secretariat){{route('secretariat.patient.show',$value->id)}}@else javascript:void(0) @endif">{{$value->cin}}</a></td>
+                                            <td><a href="javascript:void(0)" class="btn-show-patient" data-toggle="modal" data-target="#div-show-old-patient" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.patient.show',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.patient.show',$value->id)}}@else javascript:void(0) @endif">{{$value->cin}}</a></td>
                                             <td>{{$value->fullname}}</td>
                                             <td>{{$value->email}}</td>
                                             <td>{{$value->address}}</td>
@@ -64,10 +62,8 @@
                                             <td>{{\Carbon\Carbon::parse($value->created_at)}}</td>
                                             <td>
                                                 <a href="@if(auth()->user()->is_administrator){{route('administrator.patient.show',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.patient.show',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" data-original-title="show"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
-                                                @if(auth()->user()->is_secretary)
-                                                    <a href="@if(auth()->user()->is_secretary){{route('secretary.patient.edit',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
-                                                    <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal" data-target="#div-destroy-old-item" data-url-destroy="@if(auth()->user()->is_secretary){{route('secretary.patient.destroy',$value->id)}}@else javascript:void(0) @endif" data-title="patient" data-message="You want to delete this patient." data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger icon-datatable"></i> </a>
-                                                @endif
+                                                <a href="@if(auth()->user()->is_administrator){{route('administrator.patient.edit',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.patient.edit',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
+                                                <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal" data-target="#div-destroy-old-item" data-url-destroy="@if(auth()->user()->is_administrator){{route('administrator.patient.destroy',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.patient.destroy',$value->id)}}@else javascript:void(0) @endif" data-title="patient" data-message="You want to delete this patient." data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger icon-datatable"></i> </a>
                                             </td>
                                         </tr>
                                     @endforeach

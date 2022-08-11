@@ -35,11 +35,32 @@
                                 <i class="fa fa-users"></i>
                                 <span class="hide-menu">Patients</span></a>
                             </li>
+                            <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_administrator) {{route('administrator.calendar')}} @else javascript:void(0) @endif" aria-expanded="false">
+                                <i class="fa fa-calendar"></i>
+                                <span class="hide-menu">Calendar</span></a>
+                            </li>
+                            <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_administrator) {{route('administrator.appointments','appointments')}} @else javascript:void(0) @endif" aria-expanded="false">
+                                <i class="fa fa-calendar-o"></i>
+                                <span class="hide-menu">Appointments</span></a>
+                            </li>
+                            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">Parameters</span></a>
+                                <ul aria-expanded="false" class="collapse">
+                                    <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.status')}} @else javascript:void(0) @endif">status</a></li>
+                                </ul>
+                            </li>
                         @endif
                         @if(auth()->user()->is_secretary)
                             <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_secretary) {{route('secretary.patients')}} @else javascript:void(0) @endif" aria-expanded="false">
                                 <i class="fa fa-users"></i>
                                 <span class="hide-menu">Patients</span></a>
+                            </li>
+                            <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_secretary) {{route('secretary.calendar')}} @else javascript:void(0) @endif" aria-expanded="false">
+                                <i class="fa fa-calendar"></i>
+                                <span class="hide-menu">Calendar</span></a>
+                            </li>
+                            <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_secretary) {{route('secretary.appointments','appointments')}} @else javascript:void(0) @endif" aria-expanded="false">
+                                <i class="fa fa-calendar-o"></i>
+                                <span class="hide-menu">Appointments</span></a>
                             </li>
                         @endif
                         

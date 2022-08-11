@@ -17,6 +17,8 @@
     <link href="{{asset('dist/css/style.min.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="{{asset('assets/css/mystyle.css')}}" rel="stylesheet">
+    <!-- Calendar CSS -->
+    <link href="{{asset('assets/node_modules/calendar/dist/fullcalendar.css')}}" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -95,6 +97,10 @@
     <!--Custom JavaScript -->
     <script src="{{asset('dist/js/custom.min.js')}}"></script>
     <script src="{{asset('dist/js/pages/validation.js')}}"></script>
+    <!-- Calendar JavaScript -->
+    <script src="{{asset('assets/node_modules/calendar/jquery-ui.min.js')}}"></script>
+    <script src="{{asset('assets/node_modules/moment/moment.js')}}"></script>
+    <script src="{{asset('assets/node_modules/calendar/dist/fullcalendar.min.js')}}"></script>
     @include('javascript.validation')
     @yield('javascript')
 </body>

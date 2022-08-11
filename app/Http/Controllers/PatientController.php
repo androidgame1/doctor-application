@@ -58,7 +58,7 @@ class PatientController extends Controller
         }
         $data = [
             'administrator_id'=>$administrator_id,
-            'secretariat_id'=>$user->id,
+            'secretary_id'=>$user->id,
             'cin'=>$request->cin,
             'fullname'=>$request->fullname,
             'email'=>$request->email,

@@ -22,4 +22,8 @@ class Supplier extends Model
         'phone',
         'city'
     ];
+    
+    function administrator(){
+        return $this->belongsTo(\App\Models\User::class,'administrator_id');
+    }
 }

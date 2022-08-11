@@ -16,12 +16,14 @@ Route::group(['prefix'=>'secretary','middleware'=>['prevent.back.history','is.se
     Route::put('/patient/{id}/update',[App\Http\Controllers\PatientController::class,'update'])->name('secretary.patient.update');
     Route::delete('/patient/{id}/destroy',[App\Http\Controllers\PatientController::class,'destroy'])->name('secretary.patient.destroy');
     //routes patient controller
-    Route::get('/appointments',[App\Http\Controllers\AppointmentController::class,'index'])->name('secretary.appintements');
-    Route::get('/appointment/{id}/show',[App\Http\Controllers\AppointmentController::class,'show'])->name('secretary.appintement.show');
-    Route::get('/appointment/create',[App\Http\Controllers\AppointmentController::class,'create'])->name('secretary.appintement.create');
-    Route::post('/appointment/store',[App\Http\Controllers\AppointmentController::class,'store'])->name('secretary.appintement.store');
-    Route::get('/appointment/{id}/edit',[App\Http\Controllers\AppointmentController::class,'edit'])->name('secretary.appintement.edit');
-    Route::put('/appointment/{id}/update',[App\Http\Controllers\AppointmentController::class,'update'])->name('secretary.appintement.update');
-    Route::delete('/appointment/{id}/destroy',[App\Http\Controllers\AppointmentController::class,'destroy'])->name('secretary.appintement.destroy');
+    Route::get('/appointments/{from}',[App\Http\Controllers\AppointmentController::class,'index'])->name('secretary.appointments');
+    Route::get('/calendar',[App\Http\Controllers\AppointmentController::class,'calendar'])->name('secretary.calendar');
+    Route::get('/appointment/{id}/show',[App\Http\Controllers\AppointmentController::class,'show'])->name('secretary.appointment.show');
+    Route::get('/appointment/create',[App\Http\Controllers\AppointmentController::class,'create'])->name('secretary.appointment.create');
+    Route::post('/appointment/store',[App\Http\Controllers\AppointmentController::class,'store'])->name('secretary.appointment.store');
+    Route::get('/appointment/{id}/edit',[App\Http\Controllers\AppointmentController::class,'edit'])->name('secretary.appointment.edit');
+    Route::put('/appointment/{id}/update',[App\Http\Controllers\AppointmentController::class,'update'])->name('secretary.appointment.update');
+    Route::delete('/appointment/{id}/destroy',[App\Http\Controllers\AppointmentController::class,'destroy'])->name('secretary.appointment.destroy');
+    Route::any('/appointment/{id}/drop-or-resize',[App\Http\Controllers\AppointmentController::class,'dropOrResize'])->name('secretary.appointment.drop_or_resize');
 });
 

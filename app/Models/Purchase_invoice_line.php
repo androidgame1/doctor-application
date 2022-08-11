@@ -27,4 +27,12 @@ class Purchase_invoice_line extends Model
         'tva_amount',
         'ttc_amount',
     ];
+    
+    function administrator(){
+        return $this->belongsTo(\App\Models\User::class,'administrator_id');
+    }
+    
+    function purchase_invoice(){
+        return $this->belongsTo(\App\Models\User::class,'purchase_invoice_id');
+    }
 }

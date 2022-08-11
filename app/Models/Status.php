@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Status extends Model
 {
     use HasFactory;
     /**
@@ -16,11 +16,14 @@ class Product extends Model
     protected $fillable = [
         'administrator_id',
         'name',
-        'amount',
-        'description'
+        'color',
     ];
     
     function administrator(){
         return $this->belongsTo(\App\Models\User::class,'administrator_id');
+    }
+
+    function appointments(){
+        return $this->hasMany(\App\Models\Appointment::class,'status_id');
     }
 }

@@ -14,7 +14,7 @@ class PatientRequest extends FormRequest
     public function authorize()
     {
         $validate = false;
-        if($this->routeIs('secretary.patient.store') || $this->routeIs('secretary.patient.update')){
+        if($this->routeIs('secretary.patient.store') || $this->routeIs('secretary.patient.update') || $this->routeIs('administrator.patient.store') || $this->routeIs('administrator.patient.update')){
             $validate = true;
         }
         return $validate;
@@ -28,7 +28,7 @@ class PatientRequest extends FormRequest
     public function rules()
     {
         if($this->isMethod('post')){
-            if($this->routeIs('secretary.patient.store')){
+            if($this->routeIs('secretary.patient.store') || $this->routeIs('administrator.patient.store')){
                 $rules = [
                     'cin' => 'required|unique:patients',
                     'fullname' => 'required',
@@ -40,7 +40,7 @@ class PatientRequest extends FormRequest
                 return $rules;
             }
         }else if($this->isMethod('put')){
-            if($this->routeIs('secretary.patient.update')){
+            if($this->routeIs('secretary.patient.update') || $this->routeIs('administrator.patient.update')){
                 $rules = [
                     'cin' => 'required|unique:patients,cin,'.$this->id,
                     'fullname' => 'required',

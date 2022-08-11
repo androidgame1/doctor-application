@@ -24,14 +24,14 @@
                             <div class="form-group">
                                 <label class="label-group">Amount<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('amount')?'form-control-danger':''}}"
-                                    type="amount" min="1" placeholder="Amount" name="amount" required>
+                                    type="number" min="1" placeholder="Amount" name="amount" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">Description<span class="text-danger"> * </span></label>
                                 <textarea rows="4" class="form-control {{$errors->has('description')?'form-control-danger':''}}"
-                                    type="description" placeholder="Description" name="description" required></textarea>
+                             placeholder="Description" name="description" required></textarea>
                             </div>
                         </div>
                     </div>

@@ -24,4 +24,12 @@ class Patient extends Model
         'phone',
         'city'
     ];
+    
+    function administrator(){
+        return $this->belongsTo(\App\Models\User::class,'administrator_id');
+    }
+    
+    function secretary(){
+        return $this->belongsTo(\App\Models\User::class,'secretary_id');
+    }
 }

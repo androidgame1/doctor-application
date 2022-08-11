@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAppointmentsTable extends Migration
+class CreateStatusesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateAppointmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('statuses', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('administrator_id')->nullable();
-            $table->bigInteger('secretary_id')->nullable();
-            $table->bigInteger('patient_id')->nullable();
-            $table->bigInteger('status_id')->default(0);
-            $table->datetime('start_date')->nullable();
-            $table->datetime('end_date')->nullable();
-            $table->text('remark')->nullable();
+            $table->string('name');
+            $table->string('color');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ class CreateAppointmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('statuses');
     }
 }
