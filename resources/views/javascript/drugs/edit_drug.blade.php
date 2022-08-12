@@ -2,6 +2,7 @@
         $(document).on("click",".btn-edit-drug",function(){
             $("#form-edit-old-drug").find('input[name="trade_name"]').val("")
             $("#form-edit-old-drug").find('input[name="generic_name"]').val("")
+            $("#form-edit-old-drug").find('textarea[name="description"]').val("")
             let self = $(this)
             let data_url_edit = self.attr('data-url-edit')
             let data_url_update = self.attr('data-url-update')
@@ -16,6 +17,7 @@
                     if(icon == 'success'){
                         $("#form-edit-old-drug").find('input[name="trade_name"]').val(result.trade_name)
                         $("#form-edit-old-drug").find('input[name="generic_name"]').val(result.generic_name)
+                        $("#form-edit-old-drug").find('textarea[name="description"]').val(result.description)
                         $("#form-edit-old-drug").attr('action',data_url_update)
                     }else{
                         console.log('There is no drug')

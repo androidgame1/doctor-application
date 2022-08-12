@@ -1,37 +1,30 @@
 <!-- /.modal -->
-<div class="modal fade" id="div-edit-old-drug" tabindex="-1" role="dialog" aria-labelledby="div-edit-old-drug-modal">
+<div class="modal fade" id="div-edit-old-test" tabindex="-1" role="dialog" aria-labelledby="div-edit-old-test-modal">
     <div class="modal-dialog" role="document">
-        <form method="post" id="form-edit-old-drug"
+        <form method="post" id="form-edit-old-test"
                     action=""
                     enctype="multipart/form-data" class="needs-validation" novalidate>
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="div-edit-old-drug-modal">Edit drug</h4>
+                <h4 class="modal-title" id="div-edit-old-test-modal">Edit test</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                     @method('put')
                     @csrf
                     <div class="row">
-                        <div class="col-md-6 col-12">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label class="label-group">Trade name<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('trade_name')?'form-control-danger':''}}"
-                                    type="text" placeholder="Trade name" name="trade_name" required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-group">
-                                <label class="label-group">Generic name<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('trade_name')?'form-control-danger':''}}"
-                                    type="text" placeholder="Generic name" name="generic_name" required>
+                                <label class="label-group">Name<span class="text-danger"> * </span></label>
+                                <input class="form-control {{$errors->has('name')?'form-control-danger':''}}"
+                                    type="text" placeholder="Name" name="name" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">Description<span class="text-danger d-none"> * </span></label>
                                 <textarea rows="4" class="form-control {{$errors->has('description')?'form-control-danger':''}}"
-                             placeholder="Description" name="description" ></textarea>
+                             placeholder="Description" name="description"></textarea>
                             </div>
                         </div>
                     </div>

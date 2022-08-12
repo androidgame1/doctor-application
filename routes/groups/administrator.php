@@ -73,5 +73,12 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/drug/{id}/edit',[App\Http\Controllers\DrugController::class,'edit'])->name('administrator.drug.edit');
     Route::put('/drug/{id}/update',[App\Http\Controllers\DrugController::class,'update'])->name('administrator.drug.update');
     Route::delete('/drug/{id}/destroy',[App\Http\Controllers\DrugController::class,'destroy'])->name('administrator.drug.destroy');
+    //routes drug controller
+    Route::get('/tests',[App\Http\Controllers\TestController::class,'index'])->name('administrator.tests');
+    Route::get('/test/{id}/show',[App\Http\Controllers\TestController::class,'show'])->name('administrator.test.show');
+    Route::post('/test/store',[App\Http\Controllers\TestController::class,'store'])->name('administrator.test.store');
+    Route::get('/test/{id}/edit',[App\Http\Controllers\TestController::class,'edit'])->name('administrator.test.edit');
+    Route::put('/test/{id}/update',[App\Http\Controllers\TestController::class,'update'])->name('administrator.test.update');
+    Route::delete('/test/{id}/destroy',[App\Http\Controllers\TestController::class,'destroy'])->name('administrator.test.destroy');
 });
 

@@ -13,7 +13,7 @@
                     @method('put')
                     @csrf
                     <div class="row">
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Patient<span class="text-danger"> * </span></label>
                                 <select name="patient_id" id="patient_id" class="form-control {{$errors->has('patient_id')?'form-control-danger':''}}" required>
@@ -24,7 +24,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Status<span class="text-danger"> * </span></label>
                                 <select name="status_id" id="status_id" class="form-control {{$errors->has('status_id')?'form-control-danger':''}}" required>

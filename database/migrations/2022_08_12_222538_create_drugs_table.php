@@ -15,10 +15,10 @@ class CreateDrugsTable extends Migration
     {
         Schema::create('drugs', function (Blueprint $table) {
             $table->id();
-            $table->string('administrator_id')->nullable();
+            $table->bigInteger('administrator_id')->nullable();
             $table->string('trade_name')->nullable();
             $table->string('generic_name')->nullable();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

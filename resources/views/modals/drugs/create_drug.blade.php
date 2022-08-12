@@ -13,18 +13,25 @@
                     @method('post')
                     @csrf
                     <div class="row">
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Trade name<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('trade_name')?'form-control-danger':''}}"
                                     type="text" placeholder="Trade name" name="trade_name" required>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Generic name<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('trade_name')?'form-control-danger':''}}"
                                     type="text" placeholder="Generic name" name="generic_name" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="label-group">Description<span class="text-danger d-none"> * </span></label>
+                                <textarea rows="4" class="form-control {{$errors->has('description')?'form-control-danger':''}}"
+                             placeholder="Description" name="description"></textarea>
                             </div>
                         </div>
                     </div>

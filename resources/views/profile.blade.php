@@ -32,12 +32,12 @@
                     @method('put')
                     @csrf
                     <div class="row">
-                        <div class="col-md-12 cl-12">
+                        <div class="col-md-12 col-12">
                             <div class="form-group ">
                                 @include('messages.messages')
                             </div>
                         </div>
-                        <div class="col-md-12 cl-12">
+                        <div class="col-md-12 col-12">
                             <div class="form-group">
                                 <div class="div-img-user">
                                     <img src="{{asset(auth()->user()->image)}}"
@@ -51,7 +51,7 @@
                                 <input type="hidden" name="image_path" class="img-path-profile" value="{{auth()->user()->image}}">
                                 </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Fullname<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('fullname')?'form-control-danger':''}}"
@@ -59,7 +59,7 @@
                                     value="{{auth()->user()->fullname}}" required>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Email<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('email')?'form-control-danger':''}}"
@@ -67,7 +67,7 @@
                                     required>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Address<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('address')?'form-control-danger':''}}"
@@ -75,7 +75,7 @@
                                     required>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Phone<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('phone')?'form-control-danger':''}}"
@@ -83,7 +83,7 @@
                                     required>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">City<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('city')?'form-control-danger':''}}"
@@ -91,7 +91,7 @@
                                     required>
                             </div>
                         </div>
-                        <div class="col-md-12 cl-12">
+                        <div class="col-md-12 col-12">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-info"><i class="fa fa-edit"></i> Modify</button>
                             </div>

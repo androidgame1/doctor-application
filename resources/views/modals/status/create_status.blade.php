@@ -13,14 +13,14 @@
                     @method('post')
                     @csrf
                     <div class="row">
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Name<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('name')?'form-control-danger':''}}"
                                     type="text" placeholder="Name" name="name" required>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Color<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('color')?'form-control-danger':''}}"

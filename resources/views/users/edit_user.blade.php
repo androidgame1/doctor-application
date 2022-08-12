@@ -36,63 +36,63 @@
                         <div class="col-md-12">
                             @include('messages.messages')
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">CIN<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('cin')?'form-control-danger':''}}"
                                     type="text" placeholder="CIN" name="cin" value="{{$user->cin}}" required>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Fullname<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('fullname')?'form-control-danger':''}}"
                                     type="text" placeholder="Fullname" name="fullname" value="{{$user->fullname}}" required>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Email<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('email')?'form-control-danger':''}}"
                                     type="email" placeholder="Email" name="email" value="{{$user->email}}" required>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Address<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('address')?'form-control-danger':''}}"
                                     type="text" placeholder="Address" name="address" value="{{$user->address}}" required>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Phone<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('phone')?'form-control-danger':''}}"
                                     type="text" placeholder="Phone" name="phone" value="{{$user->phone}}" required>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">City<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('city')?'form-control-danger':''}}"
                                     type="text" placeholder="City" name="city" value="{{$user->city}}" required>
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Password<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('password')?'form-control-danger':''}}"
                                     type="password" placeholder="Password" name="password">
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">Confirm password<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('confirm_password')?'form-control-danger':''}}"
                                     type="password" placeholder="Confirm password" name="confirm_password">
                             </div>
                         </div>
-                        <div class="col-md-6 cl-12">
+                        <div class="col-md-6 col-12">
                             <div class="form-group">
                             <button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> Modifier</button>
                             </div>

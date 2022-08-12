@@ -45,7 +45,8 @@
                             </li>
                             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">Parameters</span></a>
                                 <ul aria-expanded="false" class="collapse">
-                                <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.drugs')}} @else javascript:void(0) @endif">Drugs</a></li>
+                                    <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.drugs')}} @else javascript:void(0) @endif">Drugs</a></li>
+                                    <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.tests')}} @else javascript:void(0) @endif">Tests</a></li>
                                     <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.status')}} @else javascript:void(0) @endif">status</a></li>
                                 </ul>
                             </li>
