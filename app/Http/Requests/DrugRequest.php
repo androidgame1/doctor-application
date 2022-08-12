@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StatusRequest extends FormRequest
+class DrugRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class StatusRequest extends FormRequest
     public function authorize()
     {
         $validate = false;
-        if($this->routeIs('administrator.status.store') || $this->routeIs('administrator.status.update')){
+        if($this->routeIs('administrator.drug.store') || $this->routeIs('administrator.drug.update')){
             $validate = true;
         }
         return $validate;
@@ -29,10 +29,10 @@ class StatusRequest extends FormRequest
     {
         $rules=[];
         if($this->isMethod('post') || $this->isMethod('put')){
-            if($this->routeIs('administrator.status.store') || $this->routeIs('administrator.status.update')){
+            if($this->routeIs('administrator.drug.store') || $this->routeIs('administrator.drug.update')){
                 $rules = [
-                    'name' => 'required',
-                    'color' => 'required',
+                    'trade_name' => 'required',
+                    'generic_name' => 'required',
                 ];
             }
         }
@@ -45,8 +45,8 @@ class StatusRequest extends FormRequest
      */
     public function messages(){
         $messages = [
-            'name.required'=>'The name is required !',
-            'color.required'=>'The color is required !',
+            'trade_name.required'=>'The trade name is required !',
+            'generic_name.required'=>'The generic name is required !',
         ];
         return $messages;
     }

@@ -66,5 +66,12 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/status/{id}/edit',[App\Http\Controllers\StatusController::class,'edit'])->name('administrator.status.edit');
     Route::put('/status/{id}/update',[App\Http\Controllers\StatusController::class,'update'])->name('administrator.status.update');
     Route::delete('/status/{id}/destroy',[App\Http\Controllers\StatusController::class,'destroy'])->name('administrator.status.destroy');
+    //routes drug controller
+    Route::get('/drugs',[App\Http\Controllers\DrugController::class,'index'])->name('administrator.drugs');
+    Route::get('/drug/{id}/show',[App\Http\Controllers\DrugController::class,'show'])->name('administrator.drug.show');
+    Route::post('/drug/store',[App\Http\Controllers\DrugController::class,'store'])->name('administrator.drug.store');
+    Route::get('/drug/{id}/edit',[App\Http\Controllers\DrugController::class,'edit'])->name('administrator.drug.edit');
+    Route::put('/drug/{id}/update',[App\Http\Controllers\DrugController::class,'update'])->name('administrator.drug.update');
+    Route::delete('/drug/{id}/destroy',[App\Http\Controllers\DrugController::class,'destroy'])->name('administrator.drug.destroy');
 });
 
