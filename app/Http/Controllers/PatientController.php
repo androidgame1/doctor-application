@@ -64,7 +64,12 @@ class PatientController extends Controller
             'email'=>$request->email,
             'address'=>$request->address,
             'phone'=>$request->phone,
-            'city'=>$request->city
+            'city'=>$request->city,
+            'birthday'=>\Carbon\Carbon::parse($request->birthdate)->format('Y-m-d'),
+            'gender'=>$request->gender,
+            'blood_group'=>$request->blood_group,
+            'weight'=>$request->weight,
+            'height'=>$request->height,
         ];
         if(Patient::create($data)){
             toastr()->success('The patient has inserted by success !');
@@ -141,7 +146,12 @@ class PatientController extends Controller
             'email'=>$request->email,
             'address'=>$request->address,
             'phone'=>$request->phone,
-            'city'=>$request->city
+            'city'=>$request->city,
+            'birthday'=>\Carbon\Carbon::parse($request->birthdate)->format('Y-m-d'),
+            'gender'=>$request->gender,
+            'blood_group'=>$request->blood_group,
+            'weight'=>$request->weight,
+            'height'=>$request->height,
         ];
         if($patient->update($data)){
             toastr()->success('The patient has updated by success !');

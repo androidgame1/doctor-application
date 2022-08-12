@@ -22,7 +22,12 @@ class Patient extends Model
         'email',
         'address',
         'phone',
-        'city'
+        'city',
+        'birthdate',
+        'gender',
+        'blood_group',
+        'weight',
+        'height',
     ];
     
     function administrator(){
@@ -31,5 +36,15 @@ class Patient extends Model
     
     function secretary(){
         return $this->belongsTo(\App\Models\User::class,'secretary_id');
+    }
+
+    function getGenderNameAttribute(){
+        if($this->gender == '0'){
+            return 'Male';
+        }else if($this->gender == '1'){
+            return 'Female';
+        }else{
+            return 'Error';
+        }
     }
 }

@@ -23,7 +23,13 @@ class CreatePatientsTable extends Migration
             $table->string('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('city')->nullable();
+            $table->date('birthday')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('blood_group')->nullable();
+            $table->integer('weight')->default(0);
+            $table->integer('height')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

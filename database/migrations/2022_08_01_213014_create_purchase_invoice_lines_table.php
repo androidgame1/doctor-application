@@ -28,6 +28,7 @@ class CreatePurchaseInvoiceLinesTable extends Migration
             $table->decimal('tva_amount')->default(0);
             $table->decimal('ttc_amount')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

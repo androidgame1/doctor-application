@@ -26,6 +26,7 @@ class CreatePurchaseInvoicesTable extends Migration
             $table->decimal('ttc_total_amount')->default(0);
             $table->integer('status')->default(0);            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

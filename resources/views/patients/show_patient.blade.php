@@ -28,7 +28,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <table id="table-show-old-patient" class="table browser m-t-30 no-border">
+                <table id="table-show-old-patient" class="table browser no-border">
                     <tbody>
                         <tr>
                             <td><b></b>CIN</td>
@@ -53,6 +53,26 @@
                         <tr>
                             <td><b>City</b></td>
                             <td class="text-right"><span class="text-gray" name="city">{{$patient->city}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Birthday</b></td>
+                            <td class="text-right"><span class="text-gray" name="city">{{\Carbon\Carbon::parse($patient->birthday)->format('Y-m-d')}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Gender</b></td>
+                            <td class="text-right"><span class="text-gray" name="city">{{$patient->gender_value}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Blood group</b></td>
+                            <td class="text-right"><span class="text-gray" name="city">{{$patient->blood_group}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Weight</b></td>
+                            <td class="text-right"><span class="text-gray" name="city">{{$patient->weight}}</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Height</b></td>
+                            <td class="text-right"><span class="text-gray" name="city">{{$patient->height}}</span></td>
                         </tr>
                     </tbody>
                 </table>

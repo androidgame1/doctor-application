@@ -33,9 +33,11 @@ class PatientRequest extends FormRequest
                     'cin' => 'required|unique:patients',
                     'fullname' => 'required',
                     'email' => 'required|email|unique:patients',
-                    'address' => 'required',
                     'phone' => 'required',
-                    'city' => 'required',
+                    'birthday' => 'required|date',
+                    'gender' => 'required',
+                    'weight' => 'numeric',
+                    'height' => 'numeric',
                 ];
                 return $rules;
             }
@@ -45,9 +47,11 @@ class PatientRequest extends FormRequest
                     'cin' => 'required|unique:patients,cin,'.$this->id,
                     'fullname' => 'required',
                     'email' => 'required|email|unique:patients,email,'.$this->id,
-                    'address' => 'required',
                     'phone' => 'required',
-                    'city' => 'required',
+                    'birthday' => 'required|date',
+                    'gender' => 'required',
+                    'weight' => 'numeric',
+                    'height' => 'numeric',
                 ];
                 return $rules;
             }
@@ -70,6 +74,16 @@ class PatientRequest extends FormRequest
             'address.required' => 'The address is required !',
             'phone.required' => 'The phone is required !',
             'city.required' => 'The city is required !',
+            'birthday.required' => 'The birthday is required !',
+            'birthday.date' => 'The birthday is not date !',
+            'gender.required' => 'The gender is required !',
+            'blood_group.required' => 'The blood_group is required !',
+            'weight.required' => 'The weight is required !',
+            'weight.numeric' => 'The weight must be numeric !',
+            'weight.gt' => 'The weight must be greater than 0 !',
+            'height.required' => 'The height is required !',
+            'height.numeric' => 'The height must be numeric !',
+            'height.gt' => 'The height must be greater than 0 !',
         ];
         return $messages;
     }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 @extends('layouts.out')
 @section('content')
-        <div class="login-register" style="background:#5400a1">
+        <div class="login-register" style="background:#4F5467">
             <div class="login-box card">
                 <div class="card-body">
                     <form method="post" id="form-login" action="{{route('login')}}" class="needs-validation" novalidate>

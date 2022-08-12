@@ -23,6 +23,7 @@ class CreateAppointmentsTable extends Migration
             $table->datetime('end_date')->nullable();
             $table->text('remark')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

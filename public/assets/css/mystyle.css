@@ -1,12 +1,12 @@
 .login-register{
-    background: #5400a1;
+    background: #4F5467;
 }
 .div-img-user{
     width: 150px;
     height: 150px;
     margin: auto;
     border: 4px solid white;
-    outline: 4px solid #5400a1;
+    outline: 4px solid #4F5467;
     border-radius: 100%;
     position: relative;
 }
@@ -17,12 +17,12 @@
 }
 .btn-upload-file{
     font-size: 15px;
-    background: #5400a1;
+    background: #4F5467;
     color: white;
     padding: 10px;
     border-radius: 100%;
     border: 4px solid white;
-    outline: 4px solid #5400a1;
+    outline: 4px solid #4F5467;
     position: absolute;
     bottom: -6px;
     right: -5px;
@@ -39,7 +39,7 @@
     padding: 10px;
     border-radius: 100%;
     border: 4px solid white;
-    outline: 4px solid #5400a1;
+    outline: 4px solid #4F5467;
     position: absolute;
     bottom: 106px;
     right: 107px;
@@ -60,18 +60,18 @@
     border-color: #8d97ad8c!important;
 }
 .fc th.fc-fri, .fc th.fc-mon, .fc th.fc-sat, .fc th.fc-sun, .fc th.fc-thu, .fc th.fc-tue, .fc th.fc-wed{
-    background: #5400a1 !important;
+    background: #4F5467 !important;
     color:white !important;
 }
 .fc-unthemed .fc-today {
-    background: #5400a11c!important;
+    background: #4F54671c!important;
 }
 .fc-axis.fc-time.fc-widget-content,.fc-axis.fc-widget-content{
-    background: #5400a1;
+    background: #4F5467;
     color: white;
 }
 .fc-month-button.fc-button.fc-state-default.fc-corner-left,.fc-agendaWeek-button.fc-button.fc-state-default,.fc-agendaDay-button.fc-button.fc-state-default.fc-corner-right,.fc-next-button.fc-button.fc-state-default.fc-corner-right.fc-icon.fc-icon-left-single-arrow,.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right,.fc-next-button.fc-button.fc-state-default.fc-corner-right,.fc-prev-button.fc-button.fc-state-default.fc-corner-left{
-    background: #5400a1;
+    background: #4F5467;
     border: none;
     color: white !important;
     outline: none;

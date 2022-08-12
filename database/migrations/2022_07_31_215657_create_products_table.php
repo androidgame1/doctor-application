@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->decimal('amount')->default(0);
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

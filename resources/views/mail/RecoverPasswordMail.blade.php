@@ -19,7 +19,7 @@
             right:0px;
             top:0px;
             bottom:0px;
-            background:#5400a1;
+            background:#4F5467;
         }
         .section-mail{
             position:fixed;
@@ -46,12 +46,12 @@
         }
         .link-mail{
             text-decoration:none !important;
-            color:#5400a1 !important;
+            color:#4F5467 !important;
             transition:0.5s;
         }
         .link-mail:hover{
             text-decoration:none !important;
-            color:#5400a18a !important;
+            color:#4F54678a !important;
         }
         .text-center{
             text-align:center !important;
@@ -85,7 +85,7 @@
         }
         .btn-reset-password{
             padding: 20px 50px;
-            background: #5400a1;
+            background: #4F5467;
             border-radius: 20px;
             color: white !important;
             text-decoration: none !important;
@@ -94,7 +94,7 @@
             width: fit-content;
         }
         .btn-reset-password:hover{
-            background: #5400a1b5;
+            background: #4F5467b5;
         }
     </style>
 </head>

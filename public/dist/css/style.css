@@ -30,7 +30,7 @@ File: scss
 @import url(../../../assets/icons/material-design-iconic-font/css/materialdesignicons.min.css);
 @import url(https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700);
 .skin-default .topbar {
-  background: #5400a1; }
+  background: #4F5467; }
   .skin-default .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
     display: none; }
   .skin-default .topbar .top-navbar .navbar-header .navbar-brand .light-logo {
@@ -1528,7 +1528,7 @@ pre {
   border-color: #32383e; }
 
 .table .thead-light th {
-  color: #5400a1;
+  color: #4F5467;
   background-color: #e9ecef;
   border-color: #dee2e6; }
 
@@ -1601,7 +1601,7 @@ pre {
   padding: 0.375rem 0.75rem;
   font-size: 0.875rem;
   line-height: 1.5;
-  color: #5400a1;
+  color: #4F5467;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #e9ecef;
@@ -1611,7 +1611,7 @@ pre {
     background-color: transparent;
     border: 0; }
   .form-control:focus {
-    color: #5400a1;
+    color: #4F5467;
     background-color: #fff;
     border-color: rgba(0, 0, 0, 0.1);
     outline: 0;
@@ -1627,7 +1627,7 @@ select.form-control:not([size]):not([multiple]) {
   height: calc(2.0625rem + 2px); }
 
 select.form-control:focus::-ms-value {
-  color: #5400a1;
+  color: #4F5467;
   background-color: #fff; }
 
 .form-control-file,
@@ -2823,7 +2823,7 @@ tbody.collapse.show {
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #5400a1;
+  color: #4F5467;
   text-align: center;
   white-space: nowrap;
   background-color: #f8f9fa;
@@ -2942,7 +2942,7 @@ tbody.collapse.show {
   height: calc(2.0625rem + 2px);
   padding: 0.375rem 1.75rem 0.375rem 0.75rem;
   line-height: 1.5;
-  color: #5400a1;
+  color: #4F5467;
   vertical-align: middle;
   background: #fff str-replace(url(""), "%23") no-repeat right 0.75rem center;
   background-size: 8px 10px;
@@ -2954,7 +2954,7 @@ tbody.collapse.show {
     outline: 0;
     box-shadow: transparent; }
     .custom-select:focus::-ms-value {
-      color: #5400a1;
+      color: #4F5467;
       background-color: #fff; }
   .custom-select[multiple], .custom-select[size]:not([size="1"]) {
     height: auto;
@@ -3009,7 +3009,7 @@ tbody.collapse.show {
   height: calc(2.0625rem + 2px);
   padding: 0.375rem 0.75rem;
   line-height: 1.5;
-  color: #5400a1;
+  color: #4F5467;
   background-color: #fff;
   border: 1px solid #e9ecef;
   border-radius: 0.25rem; }
@@ -3023,7 +3023,7 @@ tbody.collapse.show {
     height: calc(calc(2.0625rem + 2px) - 1px * 2);
     padding: 0.375rem 0.75rem;
     line-height: 1.5;
-    color: #5400a1;
+    color: #4F5467;
     content: "Browse";
     background-color: #f8f9fa;
     border-left: 1px solid #e9ecef;
@@ -3060,7 +3060,7 @@ tbody.collapse.show {
       border-color: transparent; }
   .nav-tabs .nav-link.active,
   .nav-tabs .nav-item.show .nav-link {
-    color: #5400a1;
+    color: #4F5467;
     background-color: #fff;
     border-color: #dee2e6 #dee2e6 #fff; }
   .nav-tabs .dropdown-menu {
@@ -3922,10 +3922,10 @@ tbody.collapse.show {
 
 .list-group-item-action {
   width: 100%;
-  color: #5400a1;
+  color: #4F5467;
   text-align: inherit; }
   .list-group-item-action:hover, .list-group-item-action:focus {
-    color: #5400a1;
+    color: #4F5467;
     text-decoration: none;
     background-color: #f8f9fa; }
   .list-group-item-action:active {
@@ -9994,7 +9994,7 @@ sidebar navigation
       font-size: 16px;
       display: inline-block;
       vertical-align: middle;
-      color: #5400a1; }
+      color: #4F5467; }
     .sidebar-nav > ul > li > a .badge {
       float: right; }
   .sidebar-nav > ul > li {
