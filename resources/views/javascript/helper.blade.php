@@ -47,14 +47,14 @@
         let tva_amount_value = (parseFloat((parseFloat(ht_amount_value) * parseInt(tva.val()) / 100)) >= 0 ? parseFloat((parseFloat(ht_amount_value) * parseInt(tva.val()) / 100)) : 0)
         let ttc_amount_value = (parseFloat(parseFloat(ht_amount_value) + parseFloat(tva_amount_value)) >=0 ? parseFloat(parseFloat(ht_amount_value) + parseFloat(tva_amount_value)) : 0)
 
-        quantity.val(quantity_value)
-        unit_price.val(unit_price_value)
+        quantity.val(parseFloat(quantity_value).toFixed(2))
+        unit_price.val(parseFloat(unit_price_value).toFixed(2))
         tva.val(tva_value)
-        tva_amount.val(tva_amount_value)
+        tva_amount.val(parseFloat(tva_amount_value).toFixed(2))
         reduction.val(reduction_value)
-        reduction_amount.val(reduction_amount_value)
-        ht_amount.val(ht_amount_value)
-        ttc_amount.val(ttc_amount_value)
+        reduction_amount.val(parseFloat(reduction_amount_value).toFixed(2))
+        ht_amount.val(parseFloat(ht_amount_value).toFixed(2))
+        ttc_amount.val(parseFloat(ttc_amount_value).toFixed(2))
         
     }
     function calculateTotal(){
@@ -85,23 +85,21 @@
             ht_amount_value_to_calculate = (parseFloat(parseFloat(subtotal_amount_value_to_calculate) - parseFloat(reduction_amount_value_to_calculate)) >=0 ? parseFloat(parseFloat(subtotal_amount_value_to_calculate) - parseFloat(reduction_amount_value_to_calculate)) : 0)
             tva_amount_value_to_calculate = (parseFloat((parseFloat(ht_amount_value_to_calculate) * parseInt($('.line:eq('+i+')').find('.tva').val()) / 100)) >= 0 ? parseFloat((parseFloat(ht_amount_value_to_calculate) * parseInt($('.line:eq('+i+')').find('.tva').val()) / 100)) : 0)
             ttc_amount_value_to_calculate = (parseFloat(parseFloat(ht_amount_value_to_calculate) + parseFloat(tva_amount_value_to_calculate)) >=0 ? parseFloat(parseFloat(ht_amount_value_to_calculate) + parseFloat(tva_amount_value_to_calculate)) : 0)
-            console.log(unit_price_value_to_calculate)
             reduction_amount_total += parseFloat(reduction_amount_value_to_calculate)
             tva_amount_total += parseFloat(tva_amount_value_to_calculate)
             ht_amount_total += parseFloat(ht_amount_value_to_calculate)
             ttc_amount_total += parseFloat(ttc_amount_value_to_calculate)
-
             
         }
    
-        $(".reduction-amount-span").text(reduction_amount_total)
-        $(".tva-amount-span").text(tva_amount_total)
-        $(".ht-amount-span").text(ht_amount_total)
-        $(".ttc-amount-span").text(ttc_amount_total)
+        $(".reduction-amount-span").text(parseFloat(reduction_amount_total).toFixed(2))
+        $(".tva-amount-span").text(parseFloat(tva_amount_total).toFixed(2))
+        $(".ht-amount-span").text(parseFloat(ht_amount_total).toFixed(2))
+        $(".ttc-amount-span").text(parseFloat(ttc_amount_total).toFixed(2))
         
-        $(".reduction_total_amount").val(reduction_amount_total)
-        $(".tva_total_amount").val(tva_amount_total)
-        $(".ht_total_amount").val(ht_amount_total)
-        $(".ttc_total_amount").val(ttc_amount_total)
+        $(".reduction_total_amount").val(parseFloat(reduction_amount_total).toFixed(2))
+        $(".tva_total_amount").val(parseFloat(tva_amount_total).toFixed(2))
+        $(".ht_total_amount").val(parseFloat(ht_amount_total).toFixed(2))
+        $(".ttc_total_amount").val(parseFloat(ttc_amount_total).toFixed(2))
     }
 </script>

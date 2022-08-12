@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
-                        href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">Home</a>
+                        href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">Products</li>
             </ol>
@@ -55,7 +55,7 @@
                                             <td>
                                                 <a href="javascript:void(0)" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.product.show',$value->id)}}@else javascript:void(0) @endif" class="btn-show-product" data-toggle="modal" data-target="#div-show-old-product" data-toggle="tooltip" data-original-title="show"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
                                                 <a href="javascript:void(0)" data-url-edit="@if(auth()->user()->is_administrator){{route('administrator.product.edit',$value->id)}}@else javascript:void(0) @endif" class="btn-edit-product" data-url-update="@if(auth()->user()->is_administrator){{route('administrator.product.update',$value->id)}}@else javascript:void(0) @endif" data-toggle="modal" data-target="#div-edit-old-product" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
-                                                <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal" data-target="#div-destroy-old-item" data-url-destroy="@if(auth()->user()->is_administrator){{route('administrator.product.destroy',$value->id)}}@else javascript:void(0) @endif" data-title="supplier" data-message="You want to delete this supplier." data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger icon-datatable"></i> </a>
+                                                <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal" data-target="#div-destroy-old-item" data-url-destroy="@if(auth()->user()->is_administrator){{route('administrator.product.destroy',$value->id)}}@else javascript:void(0) @endif" data-title="product" data-message="You want to delete this product." data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger icon-datatable"></i> </a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
-                        href="@if(auth()->user()->is_superadministrator){{route('superadministrator.home')}}@elseif(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">Home</a>
+                        href="@if(auth()->user()->is_superadministrator){{route('superadministrator.home')}}@elseif(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">Edit {{$role}}</li>
             </ol>
@@ -80,14 +80,14 @@
                         </div>
                         <div class="col-md-6 cl-12">
                             <div class="form-group">
-                                <label class="label-group">Password<span class="text-danger"> * </span></label>
+                                <label class="label-group">Password<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('password')?'form-control-danger':''}}"
                                     type="password" placeholder="Password" name="password">
                             </div>
                         </div>
                         <div class="col-md-6 cl-12">
                             <div class="form-group">
-                                <label class="label-group">Confirm password<span class="text-danger"> * </span></label>
+                                <label class="label-group">Confirm password<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('confirm_password')?'form-control-danger':''}}"
                                     type="password" placeholder="Confirm password" name="confirm_password">
                             </div>

@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
-                        href="@if(auth()->user()->is_administrator){{route('administrator.patients')}}@elseif(auth()->user()->is_secretary){{route('secretary.patients')}}@else javascript:void(0) @endif">Home</a>
+                        href="@if(auth()->user()->is_administrator){{route('administrator.patients')}}@elseif(auth()->user()->is_secretary){{route('secretary.patients')}}@else javascript:void(0) @endif">Dashboard</a>
                 </li>
                 <li class="breadcrumb-item active">Patient</li>
             </ol>

@@ -49,16 +49,19 @@ class PatientController extends Controller
     {
         $user = Auth::user();
         $administrator_id = "";
+        $secretary_id = "";
         if($user->is_administrator){
             $administrator_id=$user->id;
+            $secretary_id =null;
         }else if($user->is_secretary){
             $administrator_id=$user->administrator_id;
+            $secretary_id = $user->id;
         }else{
             return view('error');
         }
         $data = [
             'administrator_id'=>$administrator_id,
-            'secretary_id'=>$user->id,
+            'secretary_id'=>$secretary_id,
             'cin'=>$request->cin,
             'fullname'=>$request->fullname,
             'email'=>$request->email,
@@ -76,7 +79,14 @@ class PatientController extends Controller
         }else{
             toastr()->warning('The patient has not inserted by success !');
         }
-        return redirect()->route('secretary.patients');
+        if($user->is_administrator){
+            return redirect()->route('administrator.patients');
+        }else if($user->is_secretary){
+            return redirect()->route('secretary.patients');
+        }else{
+            return view('error');
+        }
+        
     }
 
     /**
