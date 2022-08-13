@@ -4,14 +4,14 @@
             <table class="table" id="table-lines">
                 <thead>
                     <tr>
-                        <th>Designation</th>
-                        <th>Quantity</th>
-                        <th>Unit price</th>
-                        <th>TVA</th>
-                        <th>Reduction</th>
-                        <th>HT amount</th>
-                        <th>TTC amount</th>
-                        <th>Action</th>
+                        <th>{{__('messages.designation')}}</th>
+                        <th>{{__('messages.quantity')}}</th>
+                        <th>{{__('messages.unit_price')}}</th>
+                        <th>{{__('messages.tva')}}</th>
+                        <th>{{__('messages.reduction')}}</th>
+                        <th>{{__('messages.ht_amount')}}</th>
+                        <th>{{__('messages.ttc_amount')}}</th>
+                        <th>{{__('messages.action')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,13 +27,13 @@
                         @foreach($lines as $line)
                         <tr class="line">
                             <td>
-                                <input placeholder="Designation" value="{{$line->designation}}" type="text" list="datalist-products[]" name="designation[]" class="form-control calculate-row {{$errors->has('designation')?'form-control-danger':''}} designation mb-3" required>
+                                <input placeholder="{{__('messages.designation')}}" value="{{$line->designation}}" type="text" list="datalist-products[]" name="designation[]" class="form-control calculate-row {{$errors->has('designation')?'form-control-danger':''}} designation mb-3" required>
                                 <datalist id="datalist-products[]" class="datalist-products">
                                     @foreach($products as $value)
                                         <option value="{{$value->name}}" data-id="{{$value->id}}" data-name="{{$value->name}}" data-amount="{{$value->amount}}" data-description="{{$value->description}}">{{$value->name}}</option>
                                     @endforeach
                                 </datalist>
-                                <textarea placeholder="description" name="description[]"  class="form-control calculate-row {{$errors->has('description')?'form-control-danger':''}} description" rows="4" >{{$line->description}}</textarea>
+                                <textarea placeholder="{{__('messages.description')}}" name="description[]"  class="form-control calculate-row {{$errors->has('description')?'form-control-danger':''}} description" rows="4" >{{$line->description}}</textarea>
                             </td>
                             <td>
                                 <input placeholder="0" min="1" value="{{$line->quantity}}" type="number" name="quantity[]" class="form-control calculate-row {{$errors->has('quantity')?'form-control-danger':''}} quantity" required>
@@ -70,7 +70,7 @@
     </div>
     <div class="col-md-12">
         <div class="form-group text-right">
-            <button type="button" class="btn btn-success btn-add-row"><i class="fa fa-plus"></i> Add</button>
+            <button type="button" class="btn btn-success btn-add-row"><i class="fa fa-plus"></i> {{__('messages.add')}}</button>
         </div>
     </div>
     <div class="col-md-12">
@@ -82,10 +82,10 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        <th width="15%">TVA</th>
-                        <th width="15%">Reduction</th>
-                        <th width="15%">HT</th>
-                        <th width="15%">TTC</th>
+                        <th width="15%">{{__('messages.tva')}}</th>
+                        <th width="15%">{{__('messages.reduction')}}</th>
+                        <th width="15%">{{__('messages.ht_amount')}}</th>
+                        <th width="15%">{{__('messages.ttc_amount')}}</th>
                     </tr>
                 </thead>
                 <tbody>

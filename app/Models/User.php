@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Lang;
 
 class User extends Authenticatable
 {
@@ -73,41 +74,37 @@ class User extends Authenticatable
     
     public function getRolesingularnameAttribute(){
         if($this->role == 0){
-            return 'Super administrator';
+            return Lang::get('messages.super_administrator');
         }else if($this->role == 1){
-            return 'Administrator';
+            return Lang::get('messages.administrator');
         }else if($this->role == 2){
-            return 'Secretary';
-        }else if($this->role == 3){
-            return 'Delivery man';
+            return Lang::get('messages.secretary');
         }else{
-            return "Error";
+            return Lang::get('messages.error');
         }
     }
     
     public function getRolepluralnameAttribute(){
         if($this->role == 0){
-            return 'Super administrators';
+            return Lang::get('messages.super_administrators');
         }else if($this->role == 1){
-            return 'Administrators';
+            return Lang::get('messages.administrators');
         }else if($this->role == 2){
-            return 'Secretaries';
-        }else if($this->role == 3){
-            return 'Delivery men';
+            return Lang::get('messages.secretaries');
         }else{
-            return "Error";
+            return Lang::get('messages.error');
         }
     }
 
     public function getStatusAttribute(){
         if($this->isvalidate == '0'){
-            return '<span class="badge badge-warning badge-pill">No validated</span>';
+            return '<span class="badge badge-warning badge-pill">'.Lang::get("messages.no_validated").'</span>';
         }else if($this->isvalidate == '1'){
-            return '<span class="badge badge-danger badge-pill">No activated</span>';
+            return '<span class="badge badge-danger badge-pill">'.Lang::get("messages.no_activated").'</span>';
         }else if($this->isvalidate == '2'){
-            return '<span class="badge badge-success badge-pill">Actvated</span>';
+            return '<span class="badge badge-success badge-pill">'.Lang::get("messages.activated").'</span>';
         }else{
-            return 'Error';
+            return Lang::get("messages.error");
         }
     }
     public function getEditstatusAttribute(){
@@ -115,16 +112,16 @@ class User extends Authenticatable
         $id = $this->id;
         if($role == '1' || $role == '2' || $role == '3'){
             if($this->isvalidate == '0'){
-                return array('class'=>'btn-warning','value'=>'Validate');
+                return array('class'=>'btn-warning','value'=>Lang::get("messages.validate"));
             }else if($this->isvalidate == '1'){
-                return array('class'=>'btn-success','value'=>'Activate');
+                return array('class'=>'btn-success','value'=>Lang::get("messages.activate"));
             }else if($this->isvalidate == '2'){
-                return array('class'=>'btn-danger','value'=>'Deactivate');
+                return array('class'=>'btn-danger','value'=>Lang::get("messages.deactivate"));
             }else{
-                return 'Error';
+                return Lang::get("messages.error");
             }
         }else{
-            $role = 'error';
+             return Lang::get("messages.error");   
         }
     }
 }

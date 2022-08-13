@@ -5,15 +5,15 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Edit patient</h4>
+        <h4 class="text-themecolor">{{__('messages.edit')}} {{__('messages.patient')}}</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
-                        href="@if(auth()->user()->is_secretary){{route('secretary.patients')}}@else javascript:void(0) @endif">Dashboard</a>
+                        href="@if(auth()->user()->is_secretary){{route('secretary.patients')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
-                <li class="breadcrumb-item active">Edit patient</li>
+                <li class="breadcrumb-item active">{{__('messages.edit')}} {{__('messages.patient')}}</li>
             </ol>
         </div>
     </div>
@@ -37,58 +37,58 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">CIN<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.cin')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('cin')?'form-control-danger':''}}"
-                                    type="text" placeholder="CIN" name="cin" value="{{$patient->cin}}" required>
+                                    type="text" placeholder="{{__('messages.cin')}}" name="cin" value="{{$patient->cin}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Fullname<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.fullname')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('fullname')?'form-control-danger':''}}"
-                                    type="text" placeholder="Fullname" name="fullname" value="{{$patient->fullname}}" required>
+                                    type="text" placeholder="{{__('messages.fullname')}}" name="fullname" value="{{$patient->fullname}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Email<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.email')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('email')?'form-control-danger':''}}"
-                                    type="email" placeholder="Email" name="email"  value="{{$patient->email}}" required>
+                                    type="email" placeholder="{{__('messages.email')}}" name="email"  value="{{$patient->email}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Address<span class="text-danger d-none"> * </span></label>
+                                <label class="label-group">{{__('messages.address')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('address')?'form-control-danger':''}}"
-                                    type="text" placeholder="Address" name="address" value="{{$patient->address}}">
+                                    type="text" placeholder="{{__('messages.address')}}" name="address" value="{{$patient->address}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Phone<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.phone')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('phone')?'form-control-danger':''}}"
-                                    type="text" placeholder="Phone" name="phone" value="{{$patient->phone}}" required>
+                                    type="text" placeholder="{{__('messages.phone')}}" name="phone" value="{{$patient->phone}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">City<span class="text-danger d-none"> * </span></label>
+                                <label class="label-group">{{__('messages.city')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('city')?'form-control-danger':''}}"
-                                    type="text" placeholder="city" name="city" value="{{$patient->city}}" >
+                                    type="text" placeholder="{{__('messages.city')}}" name="city" value="{{$patient->city}}" >
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Birthday<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.birthday')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('birthday')?'form-control-danger':''}}"
                                     type="date" placeholder="yyyy-mm-dd" name="birthday" value="{{\Carbon\Carbon::parse($patient->birthday)->format('Y-m-d')}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Gender<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.gender')}}<span class="text-danger"> * </span></label>
                                 <select class="form-control {{$errors->has('gender')?'form-control-danger':''}}" name="gender" required>
-                                    <option value="">Select</option>
+                                    <option value="">{{__('messages.select')}}</option>
                                     <option value="0" {{$patient->gender == '0' ? 'selected' : ''}}>Male</option>
                                     <option value="1" {{$patient->gender == '1' ? 'selected' : ''}}>Female</option>
                                 </select>
@@ -96,9 +96,9 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Blood group<span class="text-danger d-none"> * </span></label>
+                                <label class="label-group">{{__('messages.blood_group')}}<span class="text-danger d-none"> * </span></label>
                                 <select class="form-control {{$errors->has('blood_group')?'form-control-danger':''}}" name="blood_group" >
-                                    <option value="">Select</option>
+                                    <option value="">{{__('messages.select')}}</option>
                                     <option value="A+" {{$patient->blood_group == 'A+' ? 'selected' : ''}}>A+</option>
                                     <option value="A-" {{$patient->blood_group == 'A-' ? 'selected' : ''}}>A-</option>
                                     <option value="B+" {{$patient->blood_group == 'B+' ? 'selected' : ''}}>B+</option>
@@ -112,21 +112,21 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Weight<span class="text-danger d-none"> * </span></label>
+                                <label class="label-group">{{__('messages.weight')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('weight')?'form-control-danger':''}}"
-                                    type="number" min="0" value="0" placeholder="Weight" name="weight" value="{{$patient->weight}}">
+                                    type="number" min="0" value="0" placeholder="{{__('messages.weight')}}" name="weight" value="{{$patient->weight}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Height<span class="text-danger d-none"> * </span></label>
+                                <label class="label-group">{{__('messages.height')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('height')?'form-control-danger':''}}"
-                                    type="number" min="0" value="0" placeholder="Height" name="height" value="{{$patient->height}}">
+                                    type="number" min="0" value="0" placeholder="{{__('messages.height')}}" name="height" value="{{$patient->height}}">
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> Modifier</button>
+                                <button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> {{__('messages.modify')}}</button>
                             </div>
                         </div>
                     </div>

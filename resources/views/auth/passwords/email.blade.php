@@ -6,23 +6,23 @@
                 <form method="post" class="form-horizontal" id="from-email" action="{{route('forget.password.post')}}" class="needs-validation" novalidate>   
                 @csrf
                         <div class="form-group ">
-                                <h3>Recover Password</h3>
+                                <h3>{{__('messages.recover_password')}}</h3>
                                 
                         </div>
                         <div class="form-group ">
                             @include('messages.messages')
                         </div>
                          <div class="form-group ">
-                            <p class="text-muted">Enter your Email and instructions will be sent to you! </p>
+                            <p class="text-muted">{{__('messages.enter_your_email_and_instructions_will_be_sent_to_you')}}</p>
                            </div> 
                         <div class="form-group ">
-                            <label class="label-group">Email<span class="text-danger"> * </span></label>
+                            <label class="label-group">{{__('messages.email')}}<span class="text-danger"> * </span></label>
                             <div class="col-xs-12">
-                                <input class="form-control {{$errors->has('email')?'form-control-danger':''}}" type="email" placeholder="Email" name="email" required> </div>
+                                <input class="form-control {{$errors->has('email')?'form-control-danger':''}}" type="email" placeholder="{{__('messages.email')}}" name="email" required> </div>
                         </div>
                         <div class="form-group text-center m-t-20">
                             <div class="col-xs-12">
-                                <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">Reset</button>
+                                <button class="btn btn-primary btn-lg btn-block text-uppercase waves-effect waves-light" type="submit">{{__('messages.reset')}}</button>
                             </div>
                         </div>
                     </form>

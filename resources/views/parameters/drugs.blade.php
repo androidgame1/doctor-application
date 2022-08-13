@@ -5,17 +5,17 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Drugs</h4>
+        <h4 class="text-themecolor">{{__('messages.drugs')}}</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
-                        href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">Dashboard</a>
+                        href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
-                <li class="breadcrumb-item active">Drugs</li>
+                <li class="breadcrumb-item active">{{__('messages.drugs')}}</li>
             </ol>
-            <a href="javascript:void(0)" class="btn btn-info d-none d-lg-block m-l-15"  data-toggle="modal" data-target="#div-create-new-drug"><i class="fa fa-plus-circle"></i> New drug</a>
+            <a href="javascript:void(0)" class="btn btn-info d-none d-lg-block m-l-15"  data-toggle="modal" data-target="#div-create-new-drug"><i class="fa fa-plus-circle"></i> {{__('messages.new')}} {{__('messages.drug')}}</a>
         </div>
     </div>
 </div>
@@ -39,10 +39,10 @@
                                 <thead>
                                     <tr>
                                         <th class="d-none">#</th>
-                                        <th>trade name</th>
-                                        <th>Generic name</th>
-                                        <th>Date creation</th>
-                                        <th>Action</th>
+                                        <th>{{__('messages.trade_name')}}</th>
+                                        <th>{{__('messages.generic_name')}}</th>
+                                        <th>{{__('messages.date_creation')}}</th>
+                                        <th>{{__('messages.action')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,9 +53,9 @@
                                             <td>{{$value->generic_name}}</td>
                                             <td>{{\Carbon\Carbon::parse($value->created_at)}}</td>
                                             <td>
-                                                <a href="javascript:void(0)" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.drug.show',$value->id)}}@else javascript:void(0) @endif" class="btn-show-drug" data-toggle="modal" data-target="#div-show-old-drug" data-toggle="tooltip" data-original-title="show"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
-                                                <a href="javascript:void(0)" data-url-edit="@if(auth()->user()->is_administrator){{route('administrator.drug.edit',$value->id)}}@else javascript:void(0) @endif" class="btn-edit-drug" data-url-update="@if(auth()->user()->is_administrator){{route('administrator.drug.update',$value->id)}}@else javascript:void(0) @endif" data-toggle="modal" data-target="#div-edit-old-drug" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
-                                                <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal" data-target="#div-destroy-old-item" data-url-destroy="@if(auth()->user()->is_administrator){{route('administrator.drug.destroy',$value->id)}}@else javascript:void(0) @endif" data-title="drug" data-message="You want to delete this drug." data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger icon-datatable"></i> </a>
+                                                <a href="javascript:void(0)" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.drug.show',$value->id)}}@else javascript:void(0) @endif" class="btn-show-drug" data-toggle="modal" data-target="#div-show-old-drug" data-toggle="tooltip" data-original-title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
+                                                <a href="javascript:void(0)" data-url-edit="@if(auth()->user()->is_administrator){{route('administrator.drug.edit',$value->id)}}@else javascript:void(0) @endif" class="btn-edit-drug" data-url-update="@if(auth()->user()->is_administrator){{route('administrator.drug.update',$value->id)}}@else javascript:void(0) @endif" data-toggle="modal" data-target="#div-edit-old-drug" data-toggle="tooltip" data-original-title="{{__('messages.edit')}}"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
+                                                <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal" data-target="#div-destroy-old-item" data-url-destroy="@if(auth()->user()->is_administrator){{route('administrator.drug.destroy',$value->id)}}@else javascript:void(0) @endif" data-title="{{__('messages.drug')}}" data-message="{{__('messages.do_you_want_to_delete_this')}} {{__('messages.drug')}} ?" data-toggle="tooltip" data-original-title="{{__('messages.destroy')}}"> <i class="fa fa-close text-danger icon-datatable"></i> </a>
                                             </td>
                                         </tr>
                                     @endforeach

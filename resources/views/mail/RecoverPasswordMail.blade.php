@@ -107,9 +107,9 @@
             @include('mail.HeaderMail')
             <hr>
             <div class="main-mail">
-                <div><p class="text-center text-success">You are receiving this email because we have received a password reset request for your account</p></div>
-                <div><p class="text-center text-gray">This password reset link will expire in 60 minutes. If you did not request a password reset, no further action is required, Regards</p></div>
-                <div><a style="color:white" href="{{route('reset.password.get',['token'=>$data['token'],'email'=>$data['email']])}}" target="_blank" class="btn-reset-password">Reset password</a></div>
+                <div><p class="text-center text-success">{{__('messages.you_are_receiving_this_email_because_we_have_received_a_password_reset_request_for_your_account')}}</p></div>
+                <div><p class="text-center text-gray">{{__('messages.this_password_reset_link_will_expire_in_60_minutes_If_you_did_not_request_a_password_reset_no_further_action_is_required_Regards')}}</p></div>
+                <div><a style="color:white" href="{{route('reset.password.get',['token'=>$data['token'],'email'=>$data['email']])}}" target="_blank" class="btn-reset-password">{{__('messages.reset_password')}}</a></div>
             </div>
             <hr>
             @include('mail.FooterMail')

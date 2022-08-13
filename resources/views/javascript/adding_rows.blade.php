@@ -12,13 +12,13 @@ $(document).on('click','.btn-add-row',function(){
     $("#table-lines tbody").append(
         `<tr class="line">`+
             `<td>`+
-                `<input placeholder="Designation" type="text" list="datalist-products[]" name="designation[]" class="form-control calculate-row {{$errors->has('designation')?'form-control-danger':''}} designation mb-3" required>`+
+                `<input placeholder="{{__('messages.designation')}}" type="text" list="datalist-products[]" name="designation[]" class="form-control calculate-row {{$errors->has('designation')?'form-control-danger':''}} designation mb-3" required>`+
                 `<datalist id="datalist-products[]" class="datalist-products">`+
                     `@foreach($products as $value)`+
                         `<option value="{{$value->name}}" data-id="{{$value->id}}" data-name="{{$value->name}}" data-amount="{{$value->amount}}" data-description="{{$value->description}}">{{$value->name}}</option>`+
                     `@endforeach`+
                 `</datalist>`+
-                `<textarea placeholder="description" name="description[]"  class="form-control calculate-row {{$errors->has('description')?'form-control-danger':''}} description" rows="4"></textarea>`+
+                `<textarea placeholder="{{__('messages.description')}}" name="description[]"  class="form-control calculate-row {{$errors->has('description')?'form-control-danger':''}} description" rows="4"></textarea>`+
             `</td>`+
             `<td>`+
                 `<input placeholder="0" min="1" value="1" type="number" name="quantity[]" class="form-control calculate-row {{$errors->has('quantity')?'form-control-danger':''}} quantity" required>`+

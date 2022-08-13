@@ -5,15 +5,15 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Profile</h4>
+        <h4 class="text-themecolor">{{__('messages.profile')}}</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
-                        href="@if(auth()->user()->is_superadministrator){{route('superadministrator.home')}}@elseif(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">Dashboard</a>
+                        href="@if(auth()->user()->is_superadministrator){{route('superadministrator.home')}}@elseif(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">{{__('messages.dushboard')}}</a>
                 </li>
-                <li class="breadcrumb-item active">Profile</li>
+                <li class="breadcrumb-item active">{{__('messages.profile')}}</li>
             </ol>
         </div>
     </div>
@@ -53,47 +53,47 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Fullname<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.fullname')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('fullname')?'form-control-danger':''}}"
-                                    type="text" placeholder="Fullname" name="fullname"
+                                    type="text" placeholder="{{__('messages.fullname')}}" name="fullname"
                                     value="{{auth()->user()->fullname}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Email<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.email')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('email')?'form-control-danger':''}}"
-                                    type="email" placeholder="Email" name="email" value="{{auth()->user()->email}}"
+                                    type="email" placeholder="{{__('messages.email')}}" name="email" value="{{auth()->user()->email}}"
                                     required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Address<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.address')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('address')?'form-control-danger':''}}"
-                                    type="text" placeholder="Address" name="address" value="{{auth()->user()->address}}"
+                                    type="text" placeholder="{{__('messages.address')}}" name="address" value="{{auth()->user()->address}}"
                                     required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Phone<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.phone')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('phone')?'form-control-danger':''}}"
-                                    type="text" placeholder="Phone" name="phone" value="{{auth()->user()->phone}}"
+                                    type="text" placeholder="{{__('messages.phone')}}" name="phone" value="{{auth()->user()->phone}}"
                                     required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">City<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.city')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('city')?'form-control-danger':''}}"
-                                    type="text" placeholder="city" name="city" value="{{auth()->user()->city}}"
+                                    type="text" placeholder="{{__('messages.city')}}" name="city" value="{{auth()->user()->city}}"
                                     required>
                             </div>
                         </div>
                         <div class="col-md-12 col-12">
                             <div class="form-group">
-                                <button type="submit" class="btn btn-info"><i class="fa fa-edit"></i> Modify</button>
+                                <button type="submit" class="btn btn-info"><i class="fa fa-edit"></i> {{__('messages.modify')}}</button>
                             </div>
                         </div>
                     </div>

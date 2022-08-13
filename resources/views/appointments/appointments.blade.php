@@ -5,17 +5,17 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Appointments</h4>
+        <h4 class="text-themecolor">{{__('messages.appointments')}}</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
-                        href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">Dashboard</a>
+                        href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
-                <li class="breadcrumb-item active">Appointments</li>
+                <li class="breadcrumb-item active">{{__('messages.appointments')}}</li>
             </ol>
-            <a href="javascript:void(0)" class="btn btn-info d-none d-lg-block m-l-15"  data-toggle="modal" data-target="#div-create-new-appointment"><i class="fa fa-plus-circle"></i> New appointment</a>
+            <a href="javascript:void(0)" class="btn btn-info d-none d-lg-block m-l-15"  data-toggle="modal" data-target="#div-create-new-appointment"><i class="fa fa-plus-circle"></i> {{__('messages.new')}} {{__('messages.appointment')}}</a>
         </div>
     </div>
 </div>
@@ -39,12 +39,12 @@
                                 <thead>
                                     <tr>
                                         <th class="d-none">#</th>
-                                        <th>Patient</th>
-                                        <th>Start date</th>
-                                        <th>End date</th>
-                                        <th>status</th>
-                                        <th>Date creation</th>
-                                        <th>Action</th>
+                                        <th>{{__('messages.patient')}}</th>
+                                        <th>{{__('messages.start_date')}}</th>
+                                        <th>{{__('messages.end_date')}}</th>
+                                        <th>{{__('messages.status')}}</th>
+                                        <th>{{__('messages.date_creation')}}</th>
+                                        <th>{{__('messages.action')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,10 +57,10 @@
                                             <td>{!!$value->status_state!!}</td>
                                             <td>{{\Carbon\Carbon::parse($value->created_at)->format('Y-m-d h:i:s')}}</td>
                                             <td>
-                                                <a href="javascript:void(0)" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.appointment.show',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.appointment.show',$value->id)}}@else javascript:void(0) @endif" class="btn-show-appointment" data-toggle="modal" data-target="#div-show-old-appointment" data-toggle="tooltip" data-original-title="show"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
-                                                <a href="javascript:void(0)" data-url-edit="@if(auth()->user()->is_administrator){{route('administrator.appointment.edit',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.appointment.edit',$value->id)}}@else javascript:void(0) @endif" class="btn-edit-appointment" data-url-update="@if(auth()->user()->is_administrator){{route('administrator.appointment.update',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.appointment.update',$value->id)}}@else javascript:void(0) @endif" data-toggle="modal" data-target="#div-edit-old-appointment" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
+                                                <a href="javascript:void(0)" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.appointment.show',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.appointment.show',$value->id)}}@else javascript:void(0) @endif" class="btn-show-appointment" data-toggle="modal" data-target="#div-show-old-appointment" data-toggle="tooltip" data-original-title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
+                                                <a href="javascript:void(0)" data-url-edit="@if(auth()->user()->is_administrator){{route('administrator.appointment.edit',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.appointment.edit',$value->id)}}@else javascript:void(0) @endif" class="btn-edit-appointment" data-url-update="@if(auth()->user()->is_administrator){{route('administrator.appointment.update',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.appointment.update',$value->id)}}@else javascript:void(0) @endif" data-toggle="modal" data-target="#div-edit-old-appointment" data-toggle="tooltip" data-original-title="{{__('messages.edit')}}"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
                                                 @if($value->status == '0')
-                                                    <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal" data-target="#div-destroy-old-item" data-url-destroy="@if(auth()->user()->is_administrator){{route('administrator.appointment.destroy',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.appointment.destroy',$value->id)}}@else javascript:void(0) @endif" data-title="appointment" data-message="You want to delete this appointment." data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger icon-datatable"></i> </a>
+                                                    <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal" data-target="#div-destroy-old-item" data-url-destroy="@if(auth()->user()->is_administrator){{route('administrator.appointment.destroy',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.appointment.destroy',$value->id)}}@else javascript:void(0) @endif" data-title="{{__('messages.appointment')}}" data-message="{{__('messages.do_you_want_to_delete_this')}} {{__('messages.appointment')}} ?" data-toggle="tooltip" data-original-title="{{__('messages.destroy')}}"> <i class="fa fa-close text-danger icon-datatable"></i> </a>
                                                 @endif
                                             </td>
                                         </tr>

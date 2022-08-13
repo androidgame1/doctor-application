@@ -5,17 +5,17 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Tests</h4>
+        <h4 class="text-themecolor">{{__('messages.tests')}}</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
-                        href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">Dashboard</a>
+                        href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
-                <li class="breadcrumb-item active">Tests</li>
+                <li class="breadcrumb-item active">{{__('messages.tests')}}</li>
             </ol>
-            <a href="javascript:void(0)" class="btn btn-info d-none d-lg-block m-l-15"  data-toggle="modal" data-target="#div-create-new-test"><i class="fa fa-plus-circle"></i> New test</a>
+            <a href="javascript:void(0)" class="btn btn-info d-none d-lg-block m-l-15"  data-toggle="modal" data-target="#div-create-new-test"><i class="fa fa-plus-circle"></i> {{__('messages.new')}} {{__('messages.test')}}</a>
         </div>
     </div>
 </div>
@@ -39,9 +39,9 @@
                                 <thead>
                                     <tr>
                                         <th class="d-none">#</th>
-                                        <th>Name</th>
-                                        <th>Date creation</th>
-                                        <th>Action</th>
+                                        <th>{{__('messages.name')}}</th>
+                                        <th>{{__('messages.date_creation')}}</th>
+                                        <th>{{__('messages.action')}}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,9 +51,9 @@
                                             <td>{{$value->name}}</td>
                                             <td>{{\Carbon\Carbon::parse($value->created_at)}}</td>
                                             <td>
-                                                <a href="javascript:void(0)" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.test.show',$value->id)}}@else javascript:void(0) @endif" class="btn-show-test" data-toggle="modal" data-target="#div-show-old-test" data-toggle="tooltip" data-original-title="show"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
-                                                <a href="javascript:void(0)" data-url-edit="@if(auth()->user()->is_administrator){{route('administrator.test.edit',$value->id)}}@else javascript:void(0) @endif" class="btn-edit-test" data-url-update="@if(auth()->user()->is_administrator){{route('administrator.test.update',$value->id)}}@else javascript:void(0) @endif" data-toggle="modal" data-target="#div-edit-old-test" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
-                                                <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal" data-target="#div-destroy-old-item" data-url-destroy="@if(auth()->user()->is_administrator){{route('administrator.test.destroy',$value->id)}}@else javascript:void(0) @endif" data-title="test" data-message="You want to delete this test." data-toggle="tooltip" data-original-title="Close"> <i class="fa fa-close text-danger icon-datatable"></i> </a>
+                                                <a href="javascript:void(0)" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.test.show',$value->id)}}@else javascript:void(0) @endif" class="btn-show-test" data-toggle="modal" data-target="#div-show-old-test" data-toggle="tooltip" data-original-title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
+                                                <a href="javascript:void(0)" data-url-edit="@if(auth()->user()->is_administrator){{route('administrator.test.edit',$value->id)}}@else javascript:void(0) @endif" class="btn-edit-test" data-url-update="@if(auth()->user()->is_administrator){{route('administrator.test.update',$value->id)}}@else javascript:void(0) @endif" data-toggle="modal" data-target="#div-edit-old-test" data-toggle="tooltip" data-original-title="{{__('messages.edit')}}"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
+                                                <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal" data-target="#div-destroy-old-item" data-url-destroy="@if(auth()->user()->is_administrator){{route('administrator.test.destroy',$value->id)}}@else javascript:void(0) @endif" data-title="{{__('messages.test')}}" data-message="{{__('messages.do_you_want_to_delete_this')}} {{__('messages.test')}} ?" data-toggle="tooltip" data-original-title="{{__('messages.destroy')}}"> <i class="fa fa-close text-danger icon-datatable"></i> </a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -190,7 +190,11 @@ $(document).ready(function () {
 								});
                             });
 							callback(events);
-						}
+						},error: function(xhr, ajaxOptions, thrownError) {
+                            console.log(xhr)
+                            console.log(ajaxOptions)
+                            console.log(thrownError)
+                        }
 					});
 				},
 
@@ -228,6 +232,10 @@ $(document).ready(function () {
                             }else{
                                 console.log("There is a problem in appointment edition !")
                             }
+                        },error: function(xhr, ajaxOptions, thrownError) {
+                            console.log(xhr)
+                            console.log(ajaxOptions)
+                            console.log(thrownError)
                         }
                     })
                 }, eventDrop: function (event){
@@ -250,6 +258,10 @@ $(document).ready(function () {
                             }else {
                                 console.log("The is a problem")
                             }
+                        },error: function(xhr, ajaxOptions, thrownError) {
+                            console.log(xhr)
+                            console.log(ajaxOptions)
+                            console.log(thrownError)
                         }
                     })
                 },
@@ -274,6 +286,10 @@ $(document).ready(function () {
                             }else {
                                 console.log("The is a problem")
                             }
+                        },error: function(xhr, ajaxOptions, thrownError) {
+                            console.log(xhr)
+                            console.log(ajaxOptions)
+                            console.log(thrownError)
                         }
                     })
                 },

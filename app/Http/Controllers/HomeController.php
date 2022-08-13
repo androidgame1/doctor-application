@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
+use Session;
+use App;
 
 class HomeController extends Controller
 {
@@ -42,6 +44,15 @@ class HomeController extends Controller
         }else{
             return view('error');
         }
-        
+    }
+     /**
+     * Change language.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function changeLanguage($lang_code){
+        App::setLocale($lang_code);
+        Session::put('lang_code',$lang_code);
+        return redirect()->back();
     }
 }

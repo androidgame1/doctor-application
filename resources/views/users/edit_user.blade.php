@@ -5,15 +5,15 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">Edit @if($role=="administrator") administrator @elseif($role == "secretary") secretary @elseif($role == "deliveryman") delivery man @else error @endif</h4>
+        <h4 class="text-themecolor">Edit @if($role=="administrator") {{__('messages.administrator')}} @elseif($role == "secretary") {{__('messages.secretary')}} @endif</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
-                        href="@if(auth()->user()->is_superadministrator){{route('superadministrator.home')}}@elseif(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">Dashboard</a>
+                        href="@if(auth()->user()->is_superadministrator){{route('superadministrator.home')}}@elseif(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
-                <li class="breadcrumb-item active">Edit {{$role}}</li>
+                <li class="breadcrumb-item active">Edit @if($role=="administrator") {{__('messages.administrator')}} @elseif($role == "secretary") {{__('messages.secretary')}} @endif</li>
             </ol>
         </div>
     </div>
@@ -38,63 +38,63 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">CIN<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.cin')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('cin')?'form-control-danger':''}}"
-                                    type="text" placeholder="CIN" name="cin" value="{{$user->cin}}" required>
+                                    type="text" placeholder="{{__('messages.cin')}}" name="cin" value="{{$user->cin}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Fullname<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.fullname')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('fullname')?'form-control-danger':''}}"
-                                    type="text" placeholder="Fullname" name="fullname" value="{{$user->fullname}}" required>
+                                    type="text" placeholder="{{__('messages.fullname')}}" name="fullname" value="{{$user->fullname}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Email<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.email')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('email')?'form-control-danger':''}}"
-                                    type="email" placeholder="Email" name="email" value="{{$user->email}}" required>
+                                    type="email" placeholder="{{__('messages.email')}}" name="email" value="{{$user->email}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Address<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.address')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('address')?'form-control-danger':''}}"
-                                    type="text" placeholder="Address" name="address" value="{{$user->address}}" required>
+                                    type="text" placeholder="{{__('messages.address')}}" name="address" value="{{$user->address}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Phone<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.phone')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('phone')?'form-control-danger':''}}"
-                                    type="text" placeholder="Phone" name="phone" value="{{$user->phone}}" required>
+                                    type="text" placeholder="{{__('messages.phone')}}" name="phone" value="{{$user->phone}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">City<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.city')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('city')?'form-control-danger':''}}"
-                                    type="text" placeholder="City" name="city" value="{{$user->city}}" required>
+                                    type="text" placeholder="{{__('messages.city')}}" name="city" value="{{$user->city}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Password<span class="text-danger d-none"> * </span></label>
+                                <label class="label-group">{{__('messages.password')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('password')?'form-control-danger':''}}"
-                                    type="password" placeholder="Password" name="password">
+                                    type="password" placeholder="{{__('messages.password')}}" name="password">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">Confirm password<span class="text-danger d-none"> * </span></label>
+                                <label class="label-group">{{__('messages.confirm_password')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('confirm_password')?'form-control-danger':''}}"
-                                    type="password" placeholder="Confirm password" name="confirm_password">
+                                    type="password" placeholder="{{__('messages.confirm_password')}}" name="confirm_password">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                            <button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> Modifier</button>
+                            <button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> {{__('messages.modify')}}</button>
                             </div>
                         </div>
                     </div>

@@ -41,9 +41,9 @@
         <div class="error-box">
             <div class="error-body text-center">
                 <h1>404</h1>
-                <h3 class="text-uppercase">Page Not Found !</h3>
-                <p class="text-muted m-t-30 m-b-30">YOU SEEM TO BE TRYING TO FIND HIS WAY HOME</p>
-                <a href="{{route('login')}}" class="btn btn-info btn-rounded waves-effect waves-light m-b-40">Back to Dashboard</a> </div>
+                <h3 class="text-uppercase">{{__('messages.page_not_found')}}</h3>
+                <p class="text-muted m-t-30 m-b-30">{{__('messages.YOU_SEEM_TO_BE_TRYING_TO_FIND_HIS_WAY_HOME')}}</p>
+                <a href="{{route('login')}}" class="btn btn-info btn-rounded waves-effect waves-light m-b-40">{{__('messages.back_to_dashboard')}}</a> </div>
             
         </div>
     </section>

@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
-                        href="@if(auth()->user()->is_superadministrator){{route('superadministrator.home')}}@elseif(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">Dashboard</a>
+                        href="@if(auth()->user()->is_superadministrator){{route('superadministrator.home')}}@elseif(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
                 <li class="breadcrumb-item active">{{$user->rolesingularname}}</li>
             </ol>
@@ -32,31 +32,31 @@
                 <table id="table-show-old-user" class="table browser m-0 no-border">
                     <tbody>
                         <tr>
-                            <td><b></b>CIN</td>
+                            <td><b></b>{{__('messages.cin')}}</td>
                             <td class="text-right"><span class="text-primary" name="cin">{{$user->cin}}</span></td>
                         </tr>
                         <tr>
-                            <td><b>Fullname</b></td>
+                            <td><b>{{__('messages.fullname')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="fullname">{{$user->fullname}}</span></td>
                         </tr>
                         <tr>
-                            <td><b>Email</b></td>
+                            <td><b>{{__('messages.email')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="email">{{$user->email}}</span></td>
                         </tr>
                         <tr>
-                            <td><b>Address</b></td>
+                            <td><b>{{__('messages.address')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="address">{{$user->address}}</span></td>
                         </tr>
                         <tr>
-                            <td><b>Phone</b></td>
+                            <td><b>{{__('messages.phone')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="phone">{{$user->phone}}</span></td>
                         </tr>
                         <tr>
-                            <td><b>City</b></td>
+                            <td><b>{{__('messages.city')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="city">{{$user->city}}</span></td>
                         </tr>
                         <tr>
-                            <td><b>Status</b></td>
+                            <td><b>{{__('messages.status')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="status">{!!$user->status!!}</span></td>
                         </tr>
                         <tr>
