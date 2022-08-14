@@ -101,6 +101,16 @@
     <script src="{{asset('assets/node_modules/calendar/jquery-ui.min.js')}}"></script>
     <script src="{{asset('assets/node_modules/moment/moment.js')}}"></script>
     <script src="{{asset('assets/node_modules/calendar/dist/fullcalendar.min.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.1.2/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: '.note-editor',
+            height: 500,
+            // toolbar: false,
+            // menubar: false,
+            // statusbar: false,
+        });
+    </script>
     @include('javascript.validation')
     @yield('javascript')
 </body>

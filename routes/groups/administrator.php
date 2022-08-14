@@ -80,5 +80,20 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/test/{id}/edit',[App\Http\Controllers\TestController::class,'edit'])->name('administrator.test.edit');
     Route::put('/test/{id}/update',[App\Http\Controllers\TestController::class,'update'])->name('administrator.test.update');
     Route::delete('/test/{id}/destroy',[App\Http\Controllers\TestController::class,'destroy'])->name('administrator.test.destroy');
+     //routes type_drug controller
+     Route::get('/type_drugs',[App\Http\Controllers\TypeDrugController::class,'index'])->name('administrator.type_drugs');
+     Route::get('/type_drug/{id}/show',[App\Http\Controllers\TypeDrugController::class,'show'])->name('administrator.type_drug.show');
+     Route::post('/type_drug/store',[App\Http\Controllers\TypeDrugController::class,'store'])->name('administrator.type_drug.store');
+     Route::get('/type_drug/{id}/edit',[App\Http\Controllers\TypeDrugController::class,'edit'])->name('administrator.type_drug.edit');
+     Route::put('/type_drug/{id}/update',[App\Http\Controllers\TypeDrugController::class,'update'])->name('administrator.type_drug.update');
+     Route::delete('/type_drug/{id}/destroy',[App\Http\Controllers\TypeDrugController::class,'destroy'])->name('administrator.type_drug.destroy');
+    //routes drug controller
+    Route::get('/prescriptions',[App\Http\Controllers\PrescriptionController::class,'index'])->name('administrator.prescriptions');
+    Route::get('/prescription/{id}/show',[App\Http\Controllers\PrescriptionController::class,'show'])->name('administrator.prescription.show');
+    Route::get('/prescription/create',[App\Http\Controllers\PrescriptionController::class,'create'])->name('administrator.prescription.create');
+    Route::post('/prescription/store',[App\Http\Controllers\PrescriptionController::class,'store'])->name('administrator.prescription.store');
+    Route::get('/prescription/{id}/edit',[App\Http\Controllers\PrescriptionController::class,'edit'])->name('administrator.prescription.edit');
+    Route::put('/prescription/{id}/update',[App\Http\Controllers\PrescriptionController::class,'update'])->name('administrator.prescription.update');
+    Route::delete('/prescription/{id}/destroy',[App\Http\Controllers\PrescriptionController::class,'destroy'])->name('administrator.prescription.destroy');
 });
 

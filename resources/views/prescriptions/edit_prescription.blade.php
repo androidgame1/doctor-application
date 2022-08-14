@@ -5,7 +5,7 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">{{__('messages.edit')}} {{__('messages.purchase_invoice')}}</h4>
+        <h4 class="text-themecolor">{{__('messages.edit')}} {{__('messages.prescription')}} </h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
@@ -13,7 +13,7 @@
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
-                <li class="breadcrumb-item active">{{__('messages.edit')}} {{__('messages.purchase_invoice')}}</li>
+                <li class="breadcrumb-item active">{{__('messages.edit')}} {{__('messages.prescription')}}</li>
             </ol>
         </div>
     </div>
@@ -28,7 +28,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form method="post" id="form-edit-purchase-invoice" action="@if(auth()->user()->is_administrator){{route('administrator.purchase_invoice.update',$purchase_invoice->id)}} @else javascript:void(0) @endif" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <form method="post" id="form-edit-prescription" action="@if(auth()->user()->is_administrator){{route('administrator.prescription.update',$prescription->id)}} @else javascript:void(0) @endif" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @method('put')
                     @csrf
                     <div class="row">
@@ -37,41 +37,42 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">{{__('messages.suppliers')}}<span class="text-danger"> * </span></label>
-                                <select class="form-control {{$errors->has('supplier_id')?'form-control-danger':''}}"
-                                    type="text" name="supplier_id" required>
+                                <label class="label-group">{{__('messages.patient')}}<span class="text-danger"> * </span></label>
+                                <select class="form-control {{$errors->has('patient_id')?'form-control-danger':''}}"
+                                    type="text" name="patient_id" required>
                                     <option value="" selected>{{__('messages.select')}}</option>
-                                    @foreach($suppliers as $value)
-                                        <option value="{{$value->id}}" {{$value->id == $purchase_invoice->supplier_id ? 'selected' : ''}}>{{$value->fullname}}</option>
+                                    @foreach($patients as $value)
+                                        <option value="{{$value->id}}" {{$value->id == $prescription->patient_id ? 'selected' : ''}}>{{$value->fullname}}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">{{__('messages.series')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('series')?'form-control-danger':''}}"
-                                    type="text" placeholder="{{__('messages.series')}}" value="{{$purchase_invoice->series}}" name="series" readonly required>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-12">
-                            <div class="form-group">
                                 <label class="label-group">{{__('messages.date')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('date')?'form-control-danger':''}}"
-                                    type="date" placeholder="{{__('messages.date')}}" name="date" value="{{\Carbon\Carbon::parse($purchase_invoice->date)->format('Y-m-d')}}" required>
+                                    type="date" placeholder="{{__('messages.date')}}" name="date" value="{{\Carbon\Carbon::parse($prescription->date)->format('Y-m-d')}}" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="label-group">{{__('messages.drug')}}<span class="text-danger"> * </span></label><br>
+                                <a href="javascripti:void(0)" data-toggle="modal" data-target="#div-add-new-drug" class="btn btn-info"><i class="fa fa-plus"></i> {{__('messages.add')}} {{__('messages.drag')}}</a>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="label-group">{{__('messages.test')}}<span class="text-danger"> * </span></label><br>
+                                <a href="javascripti:void(0)" data-toggle="modal" data-target="#div-add-new-test" class="btn btn-warning"><i class="fa fa-plus"></i> {{__('messages.add')}} {{__('messages.test')}}</a>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="label-group">{{__('messages.remark')}}<span class="text-danger d-none"> * </span></label>
-                                <textarea rows="4" class="form-control {{$errors->has('remark')?'form-control-danger':''}}" placeholder="{{__('messages.remark')}}" name="remark">{{$purchase_invoice->remark}}</textarea>
+                                <label class="label-group">{{__('messages.note')}}<span class="text-danger"> * </span></label>
+                                <textarea name="note" class="form-control {{$errors->has('note')?'form-control-danger':''}} note-editor" id="note" required>{!!$prescription->note!!}</textarea>
                             </div>
                         </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                            @include('includes.adding_rows')
-                            </div>
-                        </div>
+              
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> {{__('messages.modify')}}</button>
@@ -83,8 +84,11 @@
         </div>
     </div>
 </div>
+@include('modals.drugs.add_drug')
+@include('modals.tests.add_test')
 @endsection
 @section('javascript')
     @include('javascript.helper')
-    @include('javascript.adding_rows')
+    @include('javascript.drugs.add_drug')
+    @include('javascript.tests.add_test')
 @endsection

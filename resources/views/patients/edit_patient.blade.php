@@ -11,7 +11,7 @@
         <div class="d-flex justify-content-end align-items-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
-                        href="@if(auth()->user()->is_secretary){{route('secretary.patients')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
+                        href="@if(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
                 <li class="breadcrumb-item active">{{__('messages.edit')}} {{__('messages.patient')}}</li>
             </ol>
