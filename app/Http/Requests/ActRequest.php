@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class ActRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,7 +14,7 @@ class ProductRequest extends FormRequest
     public function authorize()
     {
         $validate = false;
-        if($this->routeIs('administrator.product.store') || $this->routeIs('administrator.product.update')){
+        if($this->routeIs('administrator.act.store') || $this->routeIs('administrator.act.update')){
             $validate = true;
         }
         return $validate;
@@ -29,7 +29,7 @@ class ProductRequest extends FormRequest
     {
         $rules=[];
         if($this->isMethod('post') || $this->isMethod('put')){
-            if($this->routeIs('administrator.product.store') || $this->routeIs('administrator.product.update')){
+            if($this->routeIs('administrator.act.store') || $this->routeIs('administrator.act.update')){
                 $rules = [
                     'name' => 'required',
                     'amount' => 'required|gt:0',

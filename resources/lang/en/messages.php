@@ -34,8 +34,8 @@
         'status' => 'Status',
         'type_of_drug' => 'Type of drug',
         'types_of_drug' => 'Types of drug',
-        '' => '',
-        '' => '',
+        'act' => 'Act',
+        'acts' => 'Acts',
         '' => '',
         //End title
         //Start fields

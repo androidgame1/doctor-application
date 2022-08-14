@@ -1,12 +1,12 @@
 <!-- /.modal -->
-<div class="modal fade" id="div-edit-old-product" tabindex="-1" role="dialog" aria-labelledby="div-edit-old-product-modal">
+<div class="modal fade" id="div-edit-old-act" tabindex="-1" role="dialog" aria-labelledby="div-edit-old-act-modal">
     <div class="modal-dialog" role="document">
-        <form method="post" id="form-edit-old-product"
+        <form method="post" id="form-edit-old-act"
                     action=""
                     enctype="multipart/form-data" class="needs-validation" novalidate>
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="div-edit-old-product-modal">{{__('messages.edit')}} {{__('messages.product')}}</h4>
+                <h4 class="modal-title" id="div-edit-old-act-modal">{{__('messages.edit')}} {{__('messages.act')}}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">

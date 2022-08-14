@@ -43,6 +43,10 @@
                                 <i class="fa fa-calendar-o"></i>
                                 <span class="hide-menu">{{__('messages.appointments')}}</span></a>
                             </li>
+                            <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_administrator) {{route('administrator.acts')}} @else javascript:void(0) @endif" aria-expanded="false">
+                                <i class="fa fa-cubes"></i>
+                                <span class="hide-menu">{{__('messages.acts')}}</span></a>
+                            </li>
                             <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_administrator) {{route('administrator.prescriptions')}} @else javascript:void(0) @endif" aria-expanded="false">
                                 <i class="fa fa-file-o"></i>
                                 <span class="hide-menu">{{__('messages.prescription')}}</span></a>

@@ -29,9 +29,9 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label class="label-group">{{__('messages.description')}}<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.description')}}<span class="text-danger d-none"> * </span></label>
                                 <textarea rows="4" class="form-control {{$errors->has('description')?'form-control-danger':''}}"
-                             placeholder="Description" name="{{__('messages.description')}}" required></textarea>
+                             placeholder="{{__('messages.description')}}" name="description"></textarea>
                             </div>
                         </div>
                     </div>

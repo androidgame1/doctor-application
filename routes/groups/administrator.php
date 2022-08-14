@@ -31,6 +31,13 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/product/{id}/edit',[App\Http\Controllers\ProductController::class,'edit'])->name('administrator.product.edit');
     Route::put('/product/{id}/update',[App\Http\Controllers\ProductController::class,'update'])->name('administrator.product.update');
     Route::delete('/product/{id}/destroy',[App\Http\Controllers\ProductController::class,'destroy'])->name('administrator.product.destroy');
+    //routes product controller
+    Route::get('/acts',[App\Http\Controllers\ActController::class,'index'])->name('administrator.acts');
+    Route::get('/act/{id}/show',[App\Http\Controllers\ActController::class,'show'])->name('administrator.act.show');
+    Route::post('/act/store',[App\Http\Controllers\ActController::class,'store'])->name('administrator.act.store');
+    Route::get('/act/{id}/edit',[App\Http\Controllers\ActController::class,'edit'])->name('administrator.act.edit');
+    Route::put('/act/{id}/update',[App\Http\Controllers\ActController::class,'update'])->name('administrator.act.update');
+    Route::delete('/act/{id}/destroy',[App\Http\Controllers\ActController::class,'destroy'])->name('administrator.act.destroy');
     //routes purchase_invoices controller
     Route::get('/purchase_invoices',[App\Http\Controllers\PurchaseInvoiceController::class,'index'])->name('administrator.purchase_invoices');
     Route::get('/purchase_invoice/{id}/show',[App\Http\Controllers\PurchaseInvoiceController::class,'show'])->name('administrator.purchase_invoice.show');
