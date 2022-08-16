@@ -12,9 +12,9 @@ $(document).on('click','.btn-add-row',function(){
     $("#table-lines tbody").append(
         `<tr class="line">`+
             `<td>`+
-                `<input placeholder="{{__('messages.designation')}}" type="text" list="datalist-products[]" name="designation[]" class="form-control calculate-row {{$errors->has('designation')?'form-control-danger':''}} designation mb-3" required>`+
-                `<datalist id="datalist-products[]" class="datalist-products">`+
-                    `@foreach($products as $value)`+
+                `<input placeholder="{{__('messages.designation')}}" type="text" list="datalist-designations[]" name="designation[]" class="form-control calculate-row {{$errors->has('designation')?'form-control-danger':''}} designation mb-3" required>`+
+                `<datalist id="datalist-designations[]" class="datalist-designations">`+
+                    `@foreach($designations as $value)`+
                         `<option value="{{$value->name}}" data-id="{{$value->id}}" data-name="{{$value->name}}" data-amount="{{$value->amount}}" data-description="{{$value->description}}">{{$value->name}}</option>`+
                     `@endforeach`+
                 `</datalist>`+
@@ -26,10 +26,12 @@ $(document).on('click','.btn-add-row',function(){
             `<td>`+
                 `<input placeholder="0" min="1" value="0" type="number" name="unit_price[]" class="form-control calculate-row {{$errors->has('unit_price')?'form-control-danger':''}} unit_price" required>`+
             `</td>`+
-            `<td>`+
-                `<input placeholder="0" min="0" value="0" max="100" type="number" name="tva[]" class="form-control calculate-row {{$errors->has('tva')?'form-control-danger':''}} tva mb-3">`+
-                `<input placeholder="0" min="0" value="0" type="number" name="tva_amount[]" readonly class="form-control calculate-row {{$errors->has('tva_amount')?'form-control-danger':''}} tva_amount" required>`+
-            `</td>`+
+            @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate')
+                `<td>`+
+                    `<input placeholder="0" min="0" value="0" max="100" type="number" name="tva[]" class="form-control calculate-row {{$errors->has('tva')?'form-control-danger':''}} tva mb-3">`+
+                    `<input placeholder="0" min="0" value="0" type="number" name="tva_amount[]" readonly class="form-control calculate-row {{$errors->has('tva_amount')?'form-control-danger':''}} tva_amount" required>`+
+                `</td>`+
+            @endif
             `<td>`+
                 `<input placeholder="0" min="0" value="0" max="100" type="number" name="reduction[]" class="form-control calculate-row {{$errors->has('reduction')?'form-control-danger':''}} reduction mb-3" required>`+
                 `<input placeholder="0" min="0" value="0" type="number" name="reduction_amount[]" readonly class="form-control calculate-row {{$errors->has('reduction_amount')?'form-control-danger':''}} reduction_amount"  required>`+
@@ -37,9 +39,11 @@ $(document).on('click','.btn-add-row',function(){
             `<td>`+
                 `<input placeholder="0" min="1" value="0" type="number" name="ht_amount[]" class="form-control calculate-row {{$errors->has('ht_amount')?'form-control-danger':''}} ht_amount" readonly required>`+
             `</td>`+
-            `<td>`+
-                ` <input placeholder="0" min="1" value="0" type="number" name="ttc_amount[]" class="form-control calculate-row {{$errors->has('ttc_amount')?'form-control-danger':''}} ttc_amount" readonly required>`+
-            `</td>`+
+            @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate')
+                `<td>`+
+                    ` <input placeholder="0" min="1" value="0" type="number" name="ttc_amount[]" class="form-control calculate-row {{$errors->has('ttc_amount')?'form-control-danger':''}} ttc_amount" readonly required>`+
+                `</td>`+
+            @endif
             `<td>`+
                 ` <a href="javascript:void(0)" class="btn `+class_btn_delete+` btn-delete-row"><i class="fa fa-trash"></i></a>`+
             `</td>`+
@@ -50,8 +54,8 @@ $(document).on('click','.btn-add-row',function(){
 $(document).on('change keyup','.designation',function(){
     let value= $(this).val()
     let line = $(this).parents('.line')
-    for (let index = 0; index < line.find('.datalist-products').children('option').length; index++) {
-        let option = line.find('.datalist-products').children('option:eq('+index+')')
+    for (let index = 0; index < line.find('.datalist-designations').children('option').length; index++) {
+        let option = line.find('.datalist-designations').children('option:eq('+index+')')
         if(value.toLowerCase() == option.attr('data-name').toLowerCase()){
             line.find('.unit_price').val(option.attr('data-amount'))
             line.find('.description').val(option.attr('data-description'))

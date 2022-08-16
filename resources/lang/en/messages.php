@@ -36,7 +36,8 @@
         'types_of_drug' => 'Types of drug',
         'act' => 'Act',
         'acts' => 'Acts',
-        '' => '',
+        'activities' => 'Activities',
+        'activity' => 'Activity',
         //End title
         //Start fields
         'cin' => 'CIN',
@@ -133,6 +134,7 @@
         'enter_your_email_and_instructions_will_be_sent_to_you' => 'Enter your Email and instructions will be sent to you !',
         'enter_the_new_password' => 'Enter the new password !',
         'test_to_do' => 'Test to do',
+        'doctor_management' => 'Doctor management',
         //End sentences
         '' => '',
         '' => '',

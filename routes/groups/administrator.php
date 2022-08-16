@@ -48,6 +48,16 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/purchase_invoice/{id}/destroy',[App\Http\Controllers\PurchaseInvoiceController::class,'destroy'])->name('administrator.purchase_invoice.destroy');
     Route::get('/purchase_invoice/{id}/cancel',[App\Http\Controllers\PurchaseInvoiceController::class,'cancel'])->name('administrator.purchase_invoice.cancel');
     Route::get('/purchase_invoice/{id}/duplicate',[App\Http\Controllers\PurchaseInvoiceController::class,'duplicate'])->name('administrator.purchase_invoice.duplicate');
+    //routes purchase_invoices controller
+    Route::get('/activities',[App\Http\Controllers\ActivityController::class,'index'])->name('administrator.activities');
+    Route::get('/activity/{id}/show',[App\Http\Controllers\ActivityController::class,'show'])->name('administrator.activity.show');
+    Route::get('/activity/create',[App\Http\Controllers\ActivityController::class,'create'])->name('administrator.activity.create');
+    Route::post('/activity/store',[App\Http\Controllers\ActivityController::class,'store'])->name('administrator.activity.store');
+    Route::get('/activity/{id}/edit',[App\Http\Controllers\ActivityController::class,'edit'])->name('administrator.activity.edit');
+    Route::put('/activity/{id}/update',[App\Http\Controllers\ActivityController::class,'update'])->name('administrator.activity.update');
+    Route::delete('/activity/{id}/destroy',[App\Http\Controllers\ActivityController::class,'destroy'])->name('administrator.activity.destroy');
+    Route::get('/activity/{id}/cancel',[App\Http\Controllers\ActivityController::class,'cancel'])->name('administrator.activity.cancel');
+    Route::get('/activity/{id}/duplicate',[App\Http\Controllers\ActivityController::class,'duplicate'])->name('administrator.activity.duplicate');
     //routes patient controller
     Route::get('/patients',[App\Http\Controllers\PatientController::class,'index'])->name('administrator.patients');
     Route::get('/patient/{id}/show',[App\Http\Controllers\PatientController::class,'show'])->name('administrator.patient.show');

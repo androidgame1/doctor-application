@@ -36,8 +36,8 @@ class PurchaseInvoiceController extends Controller
         $user = Auth::user();
         $series = Helper::seriesPurchaseInvoice();
         $suppliers = Supplier::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        $products = Product::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view("purchase_invoices.create_purchase_invoice",compact('suppliers','products','series'));
+        $designations = Product::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        return view("purchase_invoices.create_purchase_invoice",compact('suppliers','designations','series'));
     }
 
     /**
@@ -115,8 +115,8 @@ class PurchaseInvoiceController extends Controller
         $user = Auth::user();
         $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $suppliers = Supplier::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        $products = Product::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('purchase_invoices.edit_purchase_invoice',compact('purchase_invoice','suppliers','products'));
+        $designations = Product::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        return view('purchase_invoices.edit_purchase_invoice',compact('purchase_invoice','suppliers','designations'));
     }
 
      /**
@@ -131,8 +131,8 @@ class PurchaseInvoiceController extends Controller
         $series = Helper::seriesPurchaseInvoice();
         $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $suppliers = Supplier::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        $products = Product::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('purchase_invoices.duplicate_purchase_invoice',compact('purchase_invoice','suppliers','products','series'));
+        $designations = Product::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        return view('purchase_invoices.duplicate_purchase_invoice',compact('purchase_invoice','suppliers','designations','series'));
     }
 
     /**
@@ -156,7 +156,7 @@ class PurchaseInvoiceController extends Controller
         ];
         if($purchase_invoice->update($data_purchase_invoice)){
             Purchase_invoice_line::where(['administrator_id'=>$user->id,'purchase_invoice_id'=>$purchase_invoice->id])->delete();
-            $purchase_invoice_lines=[];
+            $data_purchase_invoice_lines=[];
             $index=0;
             foreach ($request->designation as $value) {
                 $data_purchase_invoice_lines[]=[
@@ -173,6 +173,7 @@ class PurchaseInvoiceController extends Controller
                     'tva_amount'=>$request->tva_amount[$index],
                     'ttc_amount'=>$request->ttc_amount[$index],
                 ];
+                $index++;
             }
             if(Purchase_invoice_line::insert($data_purchase_invoice_lines)){
                 toastr()->success('The purchase invoice has updated by success !');

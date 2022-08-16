@@ -21,7 +21,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i> {{__('messages.delete')}}</button>
+                <button type="submit" class="btn btn-danger">{{__('messages.delete')}}</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{__('messages.close')}}</button>
             </div>
             </form>

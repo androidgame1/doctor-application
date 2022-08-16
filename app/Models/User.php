@@ -67,10 +67,6 @@ class User extends Authenticatable
     public function getIsSecretaryAttribute(){
         return $this->role == 2;
     }
-
-    public function getIsDeliverymanAttribute(){
-        return $this->role == 3;
-    }
     
     public function getRolesingularnameAttribute(){
         if($this->role == 0){
