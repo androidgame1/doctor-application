@@ -7,25 +7,27 @@
                         <th>{{__('messages.designation')}}</th>
                         <th>{{__('messages.quantity')}}</th>
                         <th>{{__('messages.unit_price')}}</th>
-                        @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate')
+                        @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.create' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate')
                             <th>{{__('messages.tva')}}</th>
                         @endif
                         <th>{{__('messages.reduction')}}</th>
                         <th>{{__('messages.ht_amount')}}</th>
-                        @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate')
+                        @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.create' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate')
                             <th>{{__('messages.ttc_amount')}}</th>
                         @endif
                         <th>{{__('messages.action')}}</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @if(Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.activity.edit' || Route::current()->getName() == 'administrator.activity.duplicate')
+                    @if(Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate' || Route::current()->getName() == 'administrator.activity.edit' || Route::current()->getName() == 'administrator.activity.duplicate')
                         @php
                          $lines = [];
                          $index = 0; 
                          @endphp
                         @if(Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate')
                             @php $lines = $purchase_invoice->purchase_invoice_lines; @endphp
+                        @elseif(Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate')
+                            @php $lines = $sale_invoice->sale_invoice_lines; @endphp
                         @elseif(Route::current()->getName() == 'administrator.activity.edit' || Route::current()->getName() == 'administrator.activity.duplicate')
                             @php $lines = $activity->activity_lines; @endphp
                         @endif
@@ -47,7 +49,7 @@
                             <td>
                                 <input placeholder="0" min="1" value="{{$line->unit_price}}" type="number" name="unit_price[]" class="form-control calculate-row {{$errors->has('unit_price')?'form-control-danger':''}} unit_price" required>
                             </td>
-                            @if(Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate')
+                            @if(Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate')
                                 <td>
                                     <input placeholder="0" min="0" value="{{$line->tva}}" max="100" type="number" name="tva[]" class="form-control calculate-row {{$errors->has('tva')?'form-control-danger':''}} tva mb-3">
                                     <input placeholder="0" min="0" value="{{$line->tva_amount}}" type="number" name="tva_amount[]" class="form-control calculate-row {{$errors->has('tva_amount')?'form-control-danger':''}} tva_amount" readonly required>
@@ -61,7 +63,7 @@
                             <td>
                                 <input placeholder="0" min="1" value="{{$line->ht_amount}}" type="number" name="ht_amount[]" class="form-control calculate-row {{$errors->has('ht_amount')?'form-control-danger':''}} ht_amount" readonly required>
                             </td>
-                            @if(Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate')
+                            @if(Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate')
                                 <td>
                                     <input placeholder="0" min="1" value="{{$line->ttc_amount}}" type="number" name="ttc_amount[]" class="form-control calculate-row {{$errors->has('ttc_amount')?'form-control-danger':''}} ttc_amount" readonly required>
                                 </td>
@@ -92,12 +94,12 @@
                         <th></th>
                         <th></th>
                         <th></th>
-                        @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate')
+                        @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.create' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate')
                             <th width="15%">{{__('messages.tva')}}</th>
                         @endif
                         <th width="15%">{{__('messages.reduction')}}</th>
                         <th width="15%">{{__('messages.ht_amount')}}</th>
-                        @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate')
+                        @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.create' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate')
                             <th width="15%">{{__('messages.ttc_amount')}}</th>
                         @endif
                     </tr>
@@ -109,7 +111,7 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate')
+                        @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.create' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate')
                             <td>
                                 <span class="tva-amount-span">0</span> <b>MAD</b>
                                 <input type="hidden" class="tva_total_amount" name="tva_total_amount" id="tva_total_amount">
@@ -123,7 +125,7 @@
                             <span class="ht-amount-span">0</span> <b>MAD</b>
                             <input type="hidden" class="ht_total_amount" name="ht_total_amount" id="ht_total_amount">
                         </td>
-                        @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate')
+                        @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.create' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate')
                             <td>
                                 <span class="ttc-amount-span">0</span> <b>MAD</b>
                                 <input type="hidden" class="ttc_total_amount" name="ttc_total_amount" id="ttc_total_amount">

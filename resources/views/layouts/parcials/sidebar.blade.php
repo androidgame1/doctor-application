@@ -51,6 +51,10 @@
                                 <i class="fa fa-file-text"></i>
                                 <span class="hide-menu">{{__('messages.activities')}}</span></a>
                             </li>
+                            <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_administrator) {{route('administrator.sale_invoices')}} @else javascript:void(0) @endif" aria-expanded="false">
+                                <i class="fa fa-file"></i>
+                                <span class="hide-menu">{{__('messages.sale_invoices')}}</span></a>
+                            </li>
                             <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_administrator) {{route('administrator.prescriptions')}} @else javascript:void(0) @endif" aria-expanded="false">
                                 <i class="fa fa-file-o"></i>
                                 <span class="hide-menu">{{__('messages.prescription')}}</span></a>

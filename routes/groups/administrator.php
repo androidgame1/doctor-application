@@ -48,6 +48,16 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/purchase_invoice/{id}/destroy',[App\Http\Controllers\PurchaseInvoiceController::class,'destroy'])->name('administrator.purchase_invoice.destroy');
     Route::get('/purchase_invoice/{id}/cancel',[App\Http\Controllers\PurchaseInvoiceController::class,'cancel'])->name('administrator.purchase_invoice.cancel');
     Route::get('/purchase_invoice/{id}/duplicate',[App\Http\Controllers\PurchaseInvoiceController::class,'duplicate'])->name('administrator.purchase_invoice.duplicate');
+    //routes sale_invoices controller
+    Route::get('/sale_invoices',[App\Http\Controllers\SaleInvoiceController::class,'index'])->name('administrator.sale_invoices');
+    Route::get('/sale_invoice/{id}/show',[App\Http\Controllers\SaleInvoiceController::class,'show'])->name('administrator.sale_invoice.show');
+    Route::get('/sale_invoice/create',[App\Http\Controllers\SaleInvoiceController::class,'create'])->name('administrator.sale_invoice.create');
+    Route::post('/sale_invoice/store',[App\Http\Controllers\SaleInvoiceController::class,'store'])->name('administrator.sale_invoice.store');
+    Route::get('/sale_invoice/{id}/edit',[App\Http\Controllers\SaleInvoiceController::class,'edit'])->name('administrator.sale_invoice.edit');
+    Route::put('/sale_invoice/{id}/update',[App\Http\Controllers\SaleInvoiceController::class,'update'])->name('administrator.sale_invoice.update');
+    Route::delete('/sale_invoice/{id}/destroy',[App\Http\Controllers\SaleInvoiceController::class,'destroy'])->name('administrator.sale_invoice.destroy');
+    Route::get('/sale_invoice/{id}/cancel',[App\Http\Controllers\SaleInvoiceController::class,'cancel'])->name('administrator.sale_invoice.cancel');
+    Route::get('/sale_invoice/{id}/duplicate',[App\Http\Controllers\SaleInvoiceController::class,'duplicate'])->name('administrator.sale_invoice.duplicate');
     //routes purchase_invoices controller
     Route::get('/activities',[App\Http\Controllers\ActivityController::class,'index'])->name('administrator.activities');
     Route::get('/activity/{id}/show',[App\Http\Controllers\ActivityController::class,'show'])->name('administrator.activity.show');

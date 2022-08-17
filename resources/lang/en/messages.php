@@ -38,6 +38,8 @@
         'acts' => 'Acts',
         'activities' => 'Activities',
         'activity' => 'Activity',
+        'sale_invoice' => 'Sale invoice',
+        'sale_invoices' => 'Sale invoices',
         //End title
         //Start fields
         'cin' => 'CIN',
