@@ -95,3 +95,30 @@
     display: block;
     border-radius: 5px;
 }
+.text-purple{
+    color:purple !important;
+}
+.bg-purple{
+    background-color:purple !important;
+}
+.border-purple{
+    border-color:purple !important;
+}
+.text-brown{
+    color:rgb(160, 91, 0) !important;
+}
+.bg-brown{
+    background-color:rgb(160, 91, 0) !important;
+}
+.border-brown{
+    border-color:rgb(160, 91, 0) !important;
+}
+.text-green{
+    color:rgb(8, 201, 191) !important;
+}
+.bg-green{
+    background-color:rgb(8, 201, 191) !important;
+}
+.border-green{
+    border-color:rgb(8, 201, 191) !important;
+}

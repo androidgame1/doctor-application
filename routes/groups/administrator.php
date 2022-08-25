@@ -58,6 +58,14 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/sale_invoice/{id}/destroy',[App\Http\Controllers\SaleInvoiceController::class,'destroy'])->name('administrator.sale_invoice.destroy');
     Route::get('/sale_invoice/{id}/cancel',[App\Http\Controllers\SaleInvoiceController::class,'cancel'])->name('administrator.sale_invoice.cancel');
     Route::get('/sale_invoice/{id}/duplicate',[App\Http\Controllers\SaleInvoiceController::class,'duplicate'])->name('administrator.sale_invoice.duplicate');
+    //routes sale_invoice_payment controller
+    Route::get('/sale_invoice_payments/{sale_invoice_id}',[App\Http\Controllers\SaleInvoicePaymentController::class,'index'])->name('administrator.sale_invoice_payments');
+    Route::get('/sale_invoice_payment/{id}/show',[App\Http\Controllers\SaleInvoicePaymentController::class,'show'])->name('administrator.sale_invoice_payment.show');
+    Route::get('/sale_invoice_payment/{sale_invoice_id}/create',[App\Http\Controllers\SaleInvoicePaymentController::class,'create'])->name('administrator.sale_invoice_payment.create');
+    Route::post('/sale_invoice_payment/store',[App\Http\Controllers\SaleInvoicePaymentController::class,'store'])->name('administrator.sale_invoice_payment.store');
+    Route::get('/sale_invoice_payment/{id}/edit',[App\Http\Controllers\SaleInvoicePaymentController::class,'edit'])->name('administrator.sale_invoice_payment.edit');
+    Route::put('/sale_invoice_payment/{id}/update',[App\Http\Controllers\SaleInvoicePaymentController::class,'update'])->name('administrator.sale_invoice_payment.update');
+    Route::delete('/sale_invoice_payment/{id}/destroy',[App\Http\Controllers\SaleInvoicePaymentController::class,'destroy'])->name('administrator.sale_invoice_payment.destroy');
     //routes purchase_invoices controller
     Route::get('/activities',[App\Http\Controllers\ActivityController::class,'index'])->name('administrator.activities');
     Route::get('/activity/{id}/show',[App\Http\Controllers\ActivityController::class,'show'])->name('administrator.activity.show');

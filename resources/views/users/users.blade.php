@@ -55,7 +55,7 @@
                                     @foreach($users as $value)
                                     <tr>
                                         <td class="d-none">{{$value->id}}</td>
-                                        <td><a href="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.show',['role'=>$role,'id'=>$value->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.show',['role'=>$role,'id'=>$value->id])}}@else javascript:void(0) @endif" data-original-title="{{__('messages.show')}}">{{$value->cin}}</a>
+                                        <td><a href="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.show',['role'=>$role,'id'=>$value->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.show',['role'=>$role,'id'=>$value->id])}}@else javascript:void(0) @endif" title="{{__('messages.show')}}">{{$value->cin}}</a>
                                         </td>
                                         <td>{{$value->fullname}}</td>
                                         <td>{{$value->email}}</td>
@@ -66,17 +66,17 @@
                                         <td>{{\Carbon\Carbon::parse($value->created_at)}}</td>
                                         <td>
                                             <a href="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.show',['role'=>$role,'id'=>$value->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.show',['role'=>$role,'id'=>$value->id])}}@else javascript:void(0) @endif"
-                                                data-toggle="tooltip" data-original-title="{{__('messages.show')}}"> <i
+                                                data-toggle="tooltip" title="{{__('messages.show')}}"> <i
                                                     class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
                                             <a href="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.edit',['role'=>$role,'id'=>$value->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.edit',['role'=>$role,'id'=>$value->id])}}@else javascript:void(0) @endif"
-                                             data-toggle="tooltip" data-original-title="{{__('messages.edit')}}"> <i
+                                             data-toggle="tooltip" title="{{__('messages.edit')}}"> <i
                                                     class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
                                             <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal"
                                                 data-target="#div-destroy-old-item"
                                                 data-url-destroy="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.destroy',['role'=>$role,'id'=>$value->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.destroy',['role'=>$role,'id'=>$value->id])}}@else javascript:void(0) @endif"
                                                 data-title = "@if($role == 'administrator') {{__('messages.administrator')}} @elseif($role == 'secretary') {{__('messages.secretary')}} @endif"
                                                 data-message="{{__('messages.do_you_want_to_delete_this')}} @if($role == 'administrator') {{__('messages.administrator')}} @elseif($role == 'secretary') {{__('messages.secretary')}} @endif ?"
-                                                data-toggle="tooltip" data-original-title="{{__('messages.destroy')}}"> <i
+                                                data-toggle="tooltip" title="{{__('messages.destroy')}}"> <i
                                                     class="fa fa-close text-danger icon-datatable"></i> </a>
                                         </td>
                                     </tr>

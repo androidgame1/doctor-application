@@ -19,6 +19,7 @@
     <link href="{{asset('assets/css/mystyle.css')}}" rel="stylesheet">
     <!-- Calendar CSS -->
     <link href="{{asset('assets/node_modules/calendar/dist/fullcalendar.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{asset('assets/node_modules/dropify/dist/css/dropify.min.css')}}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -102,6 +103,7 @@
     <script src="{{asset('assets/node_modules/moment/moment.js')}}"></script>
     <script src="{{asset('assets/node_modules/calendar/dist/fullcalendar.min.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.1.2/tinymce.min.js"></script>
+    <script src="{{asset('assets/node_modules/dropify/dist/js/dropify.min.js')}}"></script>
     <script>
         tinymce.init({
             selector: '.note-editor',
@@ -110,6 +112,7 @@
             // menubar: false,
             // statusbar: false,
         });
+        $(".dropify").dropify()
     </script>
     @include('javascript.validation')
     @yield('javascript')

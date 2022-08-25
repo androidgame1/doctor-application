@@ -406,7 +406,7 @@ p {
   margin-bottom: 1rem; }
 
 abbr[title],
-abbr[data-original-title] {
+abbr[title] {
   text-decoration: underline;
   text-decoration: underline dotted;
   cursor: help;

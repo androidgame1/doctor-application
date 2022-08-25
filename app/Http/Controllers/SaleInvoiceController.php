@@ -214,7 +214,7 @@ class SaleInvoiceController extends Controller
         $user = Auth::user();
         $sale_invoice = Sale_invoice::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $data_sale_invoice=[
-            'status'=>1
+            'status'=>3
         ];
         if($sale_invoice->update($data_sale_invoice)){
             toastr()->success('The sale invoice has canceled by success !');

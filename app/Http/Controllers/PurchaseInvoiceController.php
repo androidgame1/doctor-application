@@ -214,7 +214,7 @@ class PurchaseInvoiceController extends Controller
         $user = Auth::user();
         $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $data_purchase_invoice=[
-            'status'=>1
+            'status'=>3
         ];
         if($purchase_invoice->update($data_purchase_invoice)){
             toastr()->success('The purchase invoice has canceled by success !');

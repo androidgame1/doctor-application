@@ -4,6 +4,7 @@ namespace App\Http;
 
 use App\Models\Purchase_invoice;
 use App\Models\Sale_invoice;
+use App\Models\Sale_invoice_payment;
 use App\Models\Activity;
 use Illuminate\Support\Facades\Auth;
 
@@ -64,6 +65,29 @@ class Helper{
         }
         return $series; 
         
+    }
+
+    function remainingAmountSaleInvoicePayment($sale_invoice_id,$given_amount=0){
+        $user = Auth::user();
+        $sale_invoice = Sale_invoice::where(['administrator_id'=>$user->id,'id'=>$sale_invoice_id])->firstOrFail();
+        $sale_invoice_payment = Sale_invoice_payment::where(['administrator_id'=>$user->id,'sale_invoice_id'=>$sale_invoice_id])->get();
+        $remaining_amount = floatval($sale_invoice->ttc_total_amount) - floatval($sale_invoice_payment->sum('given_amount')) - floatval($given_amount);
+        return $remaining_amount;
+    }
+
+    function remainingAmountPlusEditedAmountSaleInvoicePayment($sale_invoice_id,$given_amount=0){
+        $user = Auth::user();
+        $sale_invoice = Sale_invoice::where(['administrator_id'=>$user->id,'id'=>$sale_invoice_id])->firstOrFail();
+        $sale_invoice_payment = Sale_invoice_payment::where(['administrator_id'=>$user->id,'sale_invoice_id'=>$sale_invoice_id])->get();
+        $remaining_amount = floatval($sale_invoice->ttc_total_amount) - floatval($sale_invoice_payment->sum('given_amount')) + floatval($given_amount);
+        return $remaining_amount;
+    }
+
+    function givenAmountSaleInvoicePayment($sale_invoice_id){
+        $user = Auth::user();
+        $sale_invoice_payment = Sale_invoice_payment::where(['administrator_id'=>$user->id,'sale_invoice_id'=>$sale_invoice_id])->get();
+        $given_amount = floatval($sale_invoice_payment->sum('given_amount'));
+        return $given_amount;
     }
 
 }
