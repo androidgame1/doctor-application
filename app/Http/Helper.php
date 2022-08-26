@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Models\Purchase_invoice;
+use App\Models\Purchase_invoice_payment;
 use App\Models\Sale_invoice;
 use App\Models\Sale_invoice_payment;
 use App\Models\Activity;
@@ -87,6 +88,29 @@ class Helper{
         $user = Auth::user();
         $sale_invoice_payment = Sale_invoice_payment::where(['administrator_id'=>$user->id,'sale_invoice_id'=>$sale_invoice_id])->get();
         $given_amount = floatval($sale_invoice_payment->sum('given_amount'));
+        return $given_amount;
+    }
+
+    function remainingAmountPurchaseInvoicePayment($purchase_invoice_id,$given_amount=0){
+        $user = Auth::user();
+        $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id,'id'=>$purchase_invoice_id])->firstOrFail();
+        $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id,'purchase_invoice_id'=>$purchase_invoice_id])->get();
+        $remaining_amount = floatval($purchase_invoice->ttc_total_amount) - floatval($purchase_invoice_payment->sum('given_amount')) - floatval($given_amount);
+        return $remaining_amount;
+    }
+
+    function remainingAmountPlusEditedAmountPurchaseInvoicePayment($purchase_invoice_id,$given_amount=0){
+        $user = Auth::user();
+        $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id,'id'=>$purchase_invoice_id])->firstOrFail();
+        $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id,'purchase_invoice_id'=>$purchase_invoice_id])->get();
+        $remaining_amount = floatval($purchase_invoice->ttc_total_amount) - floatval($purchase_invoice_payment->sum('given_amount')) + floatval($given_amount);
+        return $remaining_amount;
+    }
+
+    function givenAmountPurchaseInvoicePayment($purchase_invoice_id){
+        $user = Auth::user();
+        $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id,'purchase_invoice_id'=>$purchase_invoice_id])->get();
+        $given_amount = floatval($purchase_invoice_payment->sum('given_amount'));
         return $given_amount;
     }
 

@@ -55,6 +55,14 @@
                             <td class="text-right"><span class="text-gray" name="city">{{$purchase_invoice->ttc_total_amount}}</span> <b>MAD</b></td>
                         </tr>
                         <tr>
+                            <td><b>{{__('messages.paid_amount')}}</b></td>
+                            <td class="text-right"><span class="text-success font-bold" name="city">{{$purchase_invoice->paid_amount}} <b>MAD</b></span></td>
+                        </tr>
+                        <tr>
+                            <td><b>{{__('messages.remaining_amount')}}</b></td>
+                            <td class="text-right"><span class="text-danger font-bold" name="city">{{$purchase_invoice->remaining_amount}} <b>MAD</b></span></td>
+                        </tr>
+                        <tr>
                             <td><b>{{__('messages.date')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="city">{{\Carbon\Carbon::parse($purchase_invoice->date)->format('d/m/Y')}}</span></td>
                         </tr>
