@@ -84,9 +84,10 @@
         'way_of_payment' => 'Way of payment',
         'justification' => 'Justification',
         'given_amount' => 'Given amount',
-        'total_given_amount' => 'Total_given amount',
+        'paid_amount' => 'Paid amount',
+        'total_given_amount' => 'Total given amount',
         'remaining_amount' => 'Remaining amount',
-        'Total_remaining_amount' => 'Total_remaining amount',
+        'total_remaining_amount' => 'Total remaining amount',
         //End fields
         //Start buttons
         'create' => 'Create',
@@ -152,7 +153,7 @@
         'cash' => 'Cash',
         'credit_card' => 'Credit card',
         'debit_card' => 'Debit card',
-        '' => '',
+        'payment_completed' => 'Payment completed',
         '' => '',
         //End sentences
         '' => '',

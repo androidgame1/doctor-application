@@ -57,13 +57,13 @@
                                             <td class="d-none">{{$value->id}}</td>
                                             <td><a href="javascript:void(0)" class="btn-show-sale-invoice" data-toggle="modal" data-target="#div-show-old-patient" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.sale_invoice.show',$value->id)}}@else javascript:void(0) @endif"  title="{{__('messages.show')}}">{{$value->series}}</a></td>
                                             <td>{{$value->patient->fullname}}</td>
-                                            <td>{{\Carbon\Carbon::parse($value->date)->format('Y-m-d')}}</td>
+                                            <td>{{\Carbon\Carbon::parse($value->date)->format('d/m/Y')}}</td>
                                             <td>{{$value->reduction_total_amount}} <b>MAD</b></td>
                                             <td>{{$value->ht_total_amount}} <b>MAD</b></td>
                                             <td>{{$value->tva_total_amount}} <b>MAD</b></td>
                                             <td>{{$value->ttc_total_amount}} <b>MAD</b></td>
                                             <td>{!!$value->status_state!!}</td>
-                                            <td>{{\Carbon\Carbon::parse($value->created_at)}}</td>
+                                            <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                                             <td>
                                                 <a href="@if(auth()->user()->is_administrator){{route('administrator.sale_invoice.show',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
                                                 <a href="@if(auth()->user()->is_administrator){{route('administrator.sale_invoice.edit',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.edit')}}"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>

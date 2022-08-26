@@ -51,7 +51,7 @@
                                             <td class="d-none">{{$value->id}}</td>
                                             <td>{{$value->name}}</td>
                                             <td><span class="span-bar" style="background:{{$value->color}}"></span></td>
-                                            <td>{{\Carbon\Carbon::parse($value->created_at)}}</td>
+                                            <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                                             <td>
                                                 <a href="javascript:void(0)" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.status.show',$value->id)}}@else javascript:void(0) @endif" class="btn-show-status" data-toggle="modal" data-target="#div-show-old-status" data-toggle="tooltip" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
                                                 <a href="javascript:void(0)" data-url-edit="@if(auth()->user()->is_administrator){{route('administrator.status.edit',$value->id)}}@else javascript:void(0) @endif" class="btn-edit-status" data-url-update="@if(auth()->user()->is_administrator){{route('administrator.status.update',$value->id)}}@else javascript:void(0) @endif" data-toggle="modal" data-target="#div-edit-old-status" data-toggle="tooltip" title="{{__('messages.edit')}}"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>

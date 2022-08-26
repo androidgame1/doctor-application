@@ -63,7 +63,7 @@
                                         <td>{{$value->phone}}</td>
                                         <td>{{$value->city}}</td>
                                         <td>{!! $value->status !!}</td>
-                                        <td>{{\Carbon\Carbon::parse($value->created_at)}}</td>
+                                        <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                                         <td>
                                             <a href="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.show',['role'=>$role,'id'=>$value->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.show',['role'=>$role,'id'=>$value->id])}}@else javascript:void(0) @endif"
                                                 data-toggle="tooltip" title="{{__('messages.show')}}"> <i

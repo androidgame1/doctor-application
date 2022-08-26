@@ -42,13 +42,13 @@ class Purchase_invoice extends Model
 
     function getStatusStateAttribute(){
         if($this->status == 0){
-            return '<span class="badge bg-danger text-white">'.Lang::get("messages.unpaid").'</span>';
+            return '<span class="badge bg-danger text-white font-bold">'.Lang::get("messages.unpaid").'</span>';
         }else if($this->status == 1){
-            return '<span class="badge bg-warning text-white">'.Lang::get("messages.partiel").'</span>';
+            return '<span class="badge bg-warning text-white font-bold">'.Lang::get("messages.partiel").'</span>';
         }else if($this->status == 2){
-            return '<span class="badge bg-success text-white">'.Lang::get("messages.paid").'</span>';
+            return '<span class="badge bg-success text-white font-bold">'.Lang::get("messages.paid").'</span>';
         }else if($this->status == 3){
-            return '<span class="badge bg-danger text-white">'.Lang::get("messages.canceled").'</span>';
+            return '<span class="badge bg-danger text-white font-bold">'.Lang::get("messages.canceled").'</span>';
         }else{
             return 'Error';
         }

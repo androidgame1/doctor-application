@@ -18,7 +18,7 @@
             @if($sale_invoice->status == '0' || $sale_invoice->status == '1')
                 <a href="@if(auth()->user()->is_administrator){{route('administrator.sale_invoice_payment.create',$sale_invoice->id)}}@else javascript:void(0) @endif" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> {{__('messages.new')}} {{__('messages.sale_invoice')}}</a>
             @elseif($sale_invoice->status == '2')
-                <a href="javascript:void(0)" class="btn btn-success d-lg-block m-l-15">{{__('messages.paid')}}</a>
+                <a href="javascript:void(0)" class="btn btn-success d-lg-block m-l-15">{{__('messages.payment_completed')}}</a>
             @endif
             
         </div>
@@ -39,12 +39,14 @@
                         @include('messages.messages')
                     </div>
                     <div class="col-md-12">
+                        <h3>Sale invoice : <a href="@if(auth()->user()->is_administrator){{route('administrator.sale_invoice.show',$sale_invoice->id)}}@else javascript:void(0) @endif" class="btn-show-sale-invoice text-primary font-bold" title="{{__('messages.show')}}">{{$sale_invoice->series}}</a></span></h3>
+                    </div>
+                    <div class="col-md-12">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-datatable">
                                 <thead>
                                     <tr>
                                         <th class="d-none">#</th>
-                                        <th>{{__('messages.sale_invoice')}}</th>
                                         <th>{{__('messages.date')}}</th>
                                         <th>{{__('messages.ttc_amount')}}</th>
                                         <th>{{__('messages.given_amount')}}</th>
@@ -57,15 +59,14 @@
                                     @foreach($sale_invoice_payments as $value)
                                         <tr>
                                             <td class="d-none">{{$value->id}}</td>
-                                            <td><a href="javascript:void(0)" class="btn-show-sale-invoice" data-toggle="modal" data-target="#div-show-old-patient" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.sale_invoice.show',$value->sale_invoice->id)}}@else javascript:void(0) @endif"  title="{{__('messages.show')}}">{{$value->sale_invoice->series}}</a></td>
-                                            <td>{{\Carbon\Carbon::parse($value->date)->format('Y-m-d')}}</td>
+                                            <td>{{\Carbon\Carbon::parse($value->date)->format('d/m/Y')}}</td>
                                             <td>{{$value->sale_invoice->ttc_total_amount}} <b>MAD</b></td>
                                             <td>{{$value->given_amount}} <b>MAD</b></td>
                                             <td>{{$value->remaining_amount}} <b>MAD</b></td>
-                                            <td>{{\Carbon\Carbon::parse($value->created_at)->format('Y-m-d H:i:s')}}</td>
+                                            <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                                             <td>
                                                 <a href="javascript:void(0)" class="btn-show-sale-invoice-payment" data-toggle="modal" data-target="#div-show-old-sale-invoice-payment" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.sale_invoice_payment.show',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
-                                                <a href="@if(auth()->user()->is_administrator){{route('administrator.sale_invoice_payment.edit',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.edit')}}"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
+                                                <!-- <a href="@if(auth()->user()->is_administrator){{route('administrator.sale_invoice_payment.edit',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.edit')}}"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a> -->
                                                 <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal" data-target="#div-destroy-old-item" data-url-destroy="@if(auth()->user()->is_administrator){{route('administrator.sale_invoice_payment.destroy',$value->id)}}@else javascript:void(0) @endif" data-title="{{__('messages.sale_invoice_payment')}}" data-message="{{__('messages.do_you_want_to_delete_this')}} {{__('messages.sale_invoice_payment')}} ?" data-toggle="tooltip" title="{{__('messages.destroy')}}"> <i class="fa fa-trash text-danger icon-datatable"></i> </a>
                                             </td>
                                         </tr>
@@ -74,11 +75,11 @@
                                 <tfoot>
                                     <tr>
                                         <td><b>{{__('messages.total_given_amount')}}</b></td>
-                                        <td colspan="6"><span class="text-success">{{$sale_invoice->given_total_amount}} <b>MAD</b></span></td>
+                                        <td colspan="6"><span class="text-success font-bold">{{$sale_invoice->given_total_amount}} <b>MAD</b></span></td>
                                     </tr>
                                     <tr>
                                         <td><b>{{__('messages.total_remaining_amount')}}</b></td>
-                                        <td colspan="6"><span class="text-danger">{{$sale_invoice->remaining_total_amount}} <b>MAD</b></span></td>
+                                        <td colspan="6"><span class="text-danger font-bold">{{$sale_invoice->remaining_total_amount}} <b>MAD</b></span></td>
                                     </tr>
                                 </tfoot>
                             </table>

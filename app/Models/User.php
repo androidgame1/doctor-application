@@ -94,11 +94,11 @@ class User extends Authenticatable
 
     public function getStatusAttribute(){
         if($this->isvalidate == '0'){
-            return '<span class="badge badge-warning badge-pill">'.Lang::get("messages.no_validated").'</span>';
+            return '<span class="badge badge-warning badge-pill font-bold">'.Lang::get("messages.no_validated").'</span>';
         }else if($this->isvalidate == '1'){
-            return '<span class="badge badge-danger badge-pill">'.Lang::get("messages.no_activated").'</span>';
+            return '<span class="badge badge-danger badge-pill font-bold">'.Lang::get("messages.no_activated").'</span>';
         }else if($this->isvalidate == '2'){
-            return '<span class="badge badge-success badge-pill">'.Lang::get("messages.activated").'</span>';
+            return '<span class="badge badge-success badge-pill font-bold">'.Lang::get("messages.activated").'</span>';
         }else{
             return Lang::get("messages.error");
         }

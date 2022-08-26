@@ -59,7 +59,7 @@
                                             <td>{{$value->address}}</td>
                                             <td>{{$value->phone}}</td>
                                             <td>{{$value->city}}</td>
-                                            <td>{{\Carbon\Carbon::parse($value->created_at)}}</td>
+                                            <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                                             <td>
                                                 <a href="@if(auth()->user()->is_administrator){{route('administrator.patient.show',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.patient.show',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
                                                 <a href="@if(auth()->user()->is_administrator){{route('administrator.patient.edit',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.patient.edit',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.edit')}}"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>

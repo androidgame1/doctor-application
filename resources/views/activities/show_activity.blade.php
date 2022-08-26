@@ -48,7 +48,7 @@
                         </tr>
                         <tr>
                             <td><b>{{__('messages.date')}}</b></td>
-                            <td class="text-right"><span class="text-gray" name="city">{{\Carbon\Carbon::parse($activity->date)->format('Y-m-d')}}</span></td>
+                            <td class="text-right"><span class="text-gray" name="city">{{\Carbon\Carbon::parse($activity->date)->format('d/m/Y')}}</span></td>
                         </tr>
                         <tr>
                             <td><b>{{__('messages.remarque')}}</b></td>

@@ -56,7 +56,7 @@
                         </tr>
                         <tr>
                             <td><b>{{__('messages.birthday')}}</b></td>
-                            <td class="text-right"><span class="text-gray" name="city">{{\Carbon\Carbon::parse($patient->birthday)->format('Y-m-d')}}</span></td>
+                            <td class="text-right"><span class="text-gray" name="city">{{\Carbon\Carbon::parse($patient->birthday)->format('d/m/Y')}}</span></td>
                         </tr>
                         <tr>
                             <td><b>{{__('messages.gender')}}</b></td>

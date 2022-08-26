@@ -51,7 +51,7 @@
                                             <td class="d-none">{{$value->id}}</td>
                                             <td>{{$value->name}}</td>
                                             <td>{{$value->amount}} <b>MAD</b></td>
-                                            <td>{{\Carbon\Carbon::parse($value->created_at)}}</td>
+                                            <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                                             <td>
                                                 <a href="javascript:void(0)" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.act.show',$value->id)}}@else javascript:void(0) @endif" class="btn-show-act" data-toggle="modal" data-target="#div-show-old-act" data-toggle="tooltip" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
                                                 <a href="javascript:void(0)" data-url-edit="@if(auth()->user()->is_administrator){{route('administrator.act.edit',$value->id)}}@else javascript:void(0) @endif" class="btn-edit-act" data-url-update="@if(auth()->user()->is_administrator){{route('administrator.act.update',$value->id)}}@else javascript:void(0) @endif" data-toggle="modal" data-target="#div-edit-old-act" data-toggle="tooltip" title="{{__('messages.edit')}}"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
