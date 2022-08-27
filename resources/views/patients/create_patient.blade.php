@@ -5,7 +5,7 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">{{__('messages.new')}} {{__('messages.patient')}}</h4>
+        <h4 class="text-themecolor">{{__('messages.new_patient')}}</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
@@ -13,7 +13,7 @@
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
-                <li class="breadcrumb-item active">{{__('messages.new')}} {{__('messages.patient')}}</li>
+                <li class="breadcrumb-item active">{{__('messages.new_patient')}}</li>
             </ol>
         </div>
     </div>

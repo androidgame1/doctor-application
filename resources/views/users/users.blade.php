@@ -74,9 +74,9 @@
                                             <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal"
                                                 data-target="#div-destroy-old-item"
                                                 data-url-destroy="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.destroy',['role'=>$role,'id'=>$value->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.destroy',['role'=>$role,'id'=>$value->id])}}@else javascript:void(0) @endif"
-                                                data-title = "@if($role == 'administrator') {{__('messages.administrator')}} @elseif($role == 'secretary') {{__('messages.secretary')}} @endif"
+                                                data-title = "@if($role == 'administrator') {{__('messages.delete_administrator')}} @elseif($role == 'secretary') {{__('messages.delete_secretary')}} @endif"
                                                 data-message="{{__('messages.do_you_want_to_delete_this')}} @if($role == 'administrator') {{__('messages.administrator')}} @elseif($role == 'secretary') {{__('messages.secretary')}} @endif ?"
-                                                data-toggle="tooltip" title="{{__('messages.destroy')}}"> <i
+                                                data-toggle="tooltip" title="{{__('messages.delete')}}"> <i
                                                     class="fa fa-close text-danger icon-datatable"></i> </a>
                                         </td>
                                     </tr>

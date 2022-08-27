@@ -3,7 +3,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="div-show-old-act-modal">{{__('messages.show')}} {{__('messages.act')}}</h4>
+                <h4 class="modal-title" id="div-show-old-act-modal">{{__('messages.show_act')}}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">

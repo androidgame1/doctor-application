@@ -8,7 +8,7 @@
         @csrf
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="div-destroy-old-item-modal">{{__('messages.delete')}} <span name="span-title-old-item"></span></h4>
+                <h4 class="modal-title" id="div-destroy-old-item-modal"><span name="span-title-old-item"></span></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">

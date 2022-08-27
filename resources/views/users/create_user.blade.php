@@ -5,7 +5,7 @@
 <!-- ============================================================== -->
 <div class="row page-titles">
     <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">{{__('messages.new')}} @if($role=="administrator") {{__('messages.administrator')}} @elseif($role == "secretary") {{__('messages.secretary')}} @endif</h4>
+        <h4 class="text-themecolor">@if($role=="administrator") {{__('messages.new_administrator')}} @elseif($role == "secretary") {{__('messages.new_secretary')}} @endif</h4>
     </div>
     <div class="col-md-7 align-self-center text-right">
         <div class="d-flex justify-content-end align-items-center">
@@ -13,7 +13,7 @@
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_superadministrator){{route('superadministrator.home')}}@elseif(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
-                <li class="breadcrumb-item active">{{__('messages.new')}} @if($role=="administrator") {{__('messages.administrator')}} @elseif($role == "secretary") {{__('messages.secretary')}} @endif</li>
+                <li class="breadcrumb-item active">@if($role=="administrator") {{__('messages.new_administrator')}} @elseif($role == "secretary") {{__('messages.new_secretary')}} @endif</li>
             </ol>
         </div>
     </div>

@@ -6,7 +6,7 @@
                     enctype="multipart/form-data" class="needs-validation" novalidate>
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="div-create-new-act-modal">{{__('messages.new')}} {{__('messages.act')}}</h4>
+                <h4 class="modal-title" id="div-create-new-act-modal">{{__('messages.new_act')}}</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">

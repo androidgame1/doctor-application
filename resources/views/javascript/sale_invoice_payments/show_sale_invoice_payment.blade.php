@@ -25,7 +25,7 @@
                         $("#table-show-old-sale-invoice-payment").find('span[name="remaining_amount"]').text(result.remaining_amount)
                         $("#table-show-old-sale-invoice-payment").find('span[name="way_of_payment"]').text(result.way_of_payment)
                         $("#table-show-old-sale-invoice-payment").find('span[name="remark"]').text(result.remark)
-                        $("#table-show-old-sale-invoice-payment").find('span[name="date"]').text(result.date)
+                        $("#table-show-old-sale-invoice-payment").find('span[name="date"]').text(moment(result.date).format('DD/MM/YYYY'))
                         if(result.justification){
                             $("#table-show-old-sale-invoice-payment").find('div[name="justification"]').html(`<a href="{{asset('/')}}`+result.justification+`" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>`)
                         }
