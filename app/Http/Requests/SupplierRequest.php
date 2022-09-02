@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class SupplierRequest extends FormRequest
 {
@@ -61,15 +62,15 @@ class SupplierRequest extends FormRequest
      */
     public function messages(){
         $messages = [
-            'cin.required'=>'The CIN is required !',
-            'cin.unique'=>'The CIN is already exists !',
-            'fullname.required' => 'The fullname is required !',
-            'email.required'=>'The email is required !',
-            'email.email'=>'The email is incorrect !',
-            'email.unique'=>'The email is already exists !',
-            'address.required' => 'The address is required !',
-            'phone.required' => 'The phone is required !',
-            'city.required' => 'The city is required !',
+            'cin.required'=>Lang::get('messages.the_CIN_is_required'),
+            'cin.unique'=>Lang::get('messages.the_CIN_is_already_exists'),
+            'fullname.required' =>Lang::get('messages.the_fullname_is_required'),
+            'email.required'=>Lang::get('messages.the_email_is_required'),
+            'email.email'=>Lang::get('messages.the_email_is_incorrect'),
+            'email.unique'=>Lang::get('messages.the_email_is_already_exists'),
+            'address.required' =>Lang::get('messages.the_address_is_required'),
+            'phone.required' =>Lang::get('messages.the_phone_is_required'),
+            'city.required' =>Lang::get('messages.the_city_is_required'),
         ];
         return $messages;
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class AppointmentRequest extends FormRequest
 {
@@ -32,7 +33,7 @@ class AppointmentRequest extends FormRequest
             if($this->routeIs('secretary.appointment.store') || $this->routeIs('secretary.appointment.update') || $this->routeIs('administrator.appointment.store') || $this->routeIs('administrator.appointment.update')){
                 $rules = [
                     'patient_id' => 'required',
-                    'status_id' => 'required|numeric',
+                    'status_id' => 'required',
                     'start_date' => 'required|date',
                     'end_date' => 'required|date|after_or_equal:start_date',
                 ];
@@ -47,12 +48,13 @@ class AppointmentRequest extends FormRequest
      */
     public function messages(){
         $messages = [
-            'patient_id.required'=>'The patient is required !',
-            'status_id.required' => 'The status is required !',
-            'start_date.required'=>'The start date is required !',
-            'start_date.date'=>'The start date is not correct !',
-            'end_date.required'=>'The end date is required !',
-            'end_date.date'=>'The end date is not correct !',
+            'patient_id.required'=>Lang::get('messages.the_patient_is_required'),
+            'status_id.required' => Lang::get('messages.the_status_is_required'),
+            'start_date.required'=>Lang::get('messages.the_start_date_is_required'),
+            'start_date.date'=>Lang::get('messages.the_start_date_is_not_correct'),
+            'end_date.required'=>Lang::get('messages.the_end_date_is_required'),
+            'end_date.date'=>Lang::get('messages.the_end_date_is_not_correct'),
+            'end_date.after_or_equal'=>Lang::get('messages.the_end_date_must_be_greater_than_or_equal_the_start_date'),
         ];
         return $messages;
     }

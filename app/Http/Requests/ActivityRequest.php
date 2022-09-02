@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class ActivityRequest extends FormRequest
 {
@@ -59,33 +60,33 @@ class ActivityRequest extends FormRequest
      */
     public function messages(){
         $messages = [
-                    'series.required'=>'The series is required !',
-                    'patient_id.required'=>'The supplier is required !',
-                    'date.required'=>'The date is required !',
-                    'date.date'=>'The date is not correct !',
-                    'reduction_total_amount.required'=>'The reduction total amount is required !',
-                    'reduction_total_amount.numeric'=>'The reduction total amount is not numéric !',
-                    'reduction_total_amount.min'=>'The reduction total amount must be greater or equal 0 and less than or equal 100 !',
-                    'reduction_total_amount.max'=>'The reduction total amount must be greater or equal 0 and less than or equal 100 !',
-                    'ht_total_amount.required'=>'The HT total amount is required !',
-                    'ht_total_amount.numeric'=>'The HT total amount is not numéric !',
-                    'ht_total_amount.gt'=>'The HT total amount must be greater than 0 !',
+                    'series.required'=>Lang::get('messages.the_series_is_required'),
+                    'patient_id.required'=>Lang::get('messages.the_supplier_is_required'),
+                    'date.required'=>Lang::get('messages.the_date_is_required'),
+                    'date.date'=>Lang::get('messages.the_date_is_not_correct'),
+                    'reduction_total_amount.required'=>Lang::get('messages.the_reduction_total_amount_is_required'),
+                    'reduction_total_amount.numeric'=>Lang::get('messages.the_reduction_total_amount_is_not_numéric'),
+                    'reduction_total_amount.min'=>Lang::get('messages.the_reduction_total_amount_must_be_greater_or_equal_0_and_less_than_or_equal_100'),
+                    'reduction_total_amount.max'=>Lang::get('messages.the_reduction_total_amount_must_be_greater_or_equal_0_and_less_than_or_equal_100'),
+                    'ht_total_amount.required'=>Lang::get('messages.the_HT_total_amount_is_required'),
+                    'ht_total_amount.numeric'=>Lang::get('messages.the_HT_total_amount_is_not_numéric'),
+                    'ht_total_amount.gt'=>Lang::get('messages.the_HT_total_amount_must_be_greater_than_0'),
         ];
         foreach ($this->designation as $key => $value) {
-            $messages['designation.'.$key.'.required'] = "The designation of the line ".($key+1)." is required !";
-            $messages['quantity.'.$key.'.required'] = "The quantity of the line ".($key+1)." is required !";
-            $messages['quantity.'.$key.'.numeric'] = "The quantity of the line ".($key+1)." is not numéric !";
-            $messages['quantity.'.$key.'.gt'] = "The quantity of the line ".($key+1)." must be greater than 0 !";
-            $messages['unit_price.'.$key.'.required'] = "The unit price of the line ".($key+1)." is required !";
-            $messages['unit_price.'.$key.'.numeric'] = "The unit price of the line ".($key+1)." is not numéric !";
-            $messages['unit_price.'.$key.'.gt'] = "The unit price of the line ".($key+1)." must be greater than 0 !";
-            $messages['reduction_amount.'.$key.'.required'] = "The quantity of the line ".($key+1)." is required !";
-            $messages['reduction_amount.'.$key.'.numeric'] = "The quantity of the line ".($key+1)." is not numéric !";
-            $messages['reduction_amount.'.$key.'.min'] = "The reduction amount of the line ".($key+1)." must be greater or equal 0 and less than or equal 100 !";
-            $messages['reduction_amount.'.$key.'.max'] = "The reduction amount of the line ".($key+1)." must be greater or equal 0 and less than or equal 100 !";
-            $messages['ht_amount.'.$key.'.required'] = "The HT amount of the line ".($key+1)." is required !";
-            $messages['ht_amount.'.$key.'.numeric'] = "The HT amount of the line ".($key+1)." is not numéric !";
-            $messages['ht_amount.'.$key.'.gt'] = "The HT amount of the line ".($key+1)." must be greater than 0 !";
+            $messages['designation.'.$key.'.required'] = Lang::get('messages.the_designation_of_the_line_is_required',["index"=>($key+1)]);
+            $messages['quantity.'.$key.'.required'] = Lang::get('messages.the_quantity_of_the_line_is_required',["index"=>($key+1)]);
+            $messages['quantity.'.$key.'.numeric'] = Lang::get('messages.the_quantity_of_the_line_is_not_numéric',["index"=>($key+1)]);
+            $messages['quantity.'.$key.'.gt'] = Lang::get('messages.the_quantity_of_the_line_must_be_greater_than_0',["index"=>($key+1)]);
+            $messages['unit_price.'.$key.'.required'] = Lang::get('messages.the_unit_price_of_the_line_is_required',["index"=>($key+1)]);
+            $messages['unit_price.'.$key.'.numeric'] = Lang::get('messages.the_unit_price_of_the_line_is_not_numéric',["index"=>($key+1)]);
+            $messages['unit_price.'.$key.'.gt'] = Lang::get('messages.the_unit_price_of_the_line_must_be_greater_than_0',["index"=>($key+1)]);
+            $messages['reduction_amount.'.$key.'.required'] = Lang::get('messages.the_reduction_amount_of_the_line_is_required',["index"=>($key+1)]);
+            $messages['reduction_amount.'.$key.'.numeric'] = Lang::get('messages.the_reduction_amount_of_the_line_is_not_numéric',["index"=>($key+1)]);
+            $messages['reduction_amount.'.$key.'.min'] = Lang::get('messages.the_reduction_amount_of_the_line_must_be_greater_or_equal_0_and_less_than_or_equal_100',["index"=>($key+1)]);
+            $messages['reduction_amount.'.$key.'.max'] = Lang::get('messages.the_reduction_amount_of_the_line_must_be_greater_or_equal_0_and_less_than_or_equal_100',["index"=>($key+1)]);
+            $messages['ht_amount.'.$key.'.required'] = Lang::get('messages.the_HT_mount_of_the_line_is_required',["index"=>($key+1)]);
+            $messages['ht_amount.'.$key.'.numeric'] = Lang::get('messages.the_HT_mount_of_the_line_is_not_numéric',["index"=>($key+1)]);
+            $messages['ht_amount.'.$key.'.gt'] = Lang::get('messages.the_HT_mount_of_the_line_must_be_greater_than_0',["index"=>($key+1)]);
         }
         return $messages;
     }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class ActRequest extends FormRequest
 {
@@ -32,7 +33,7 @@ class ActRequest extends FormRequest
             if($this->routeIs('administrator.act.store') || $this->routeIs('administrator.act.update')){
                 $rules = [
                     'name' => 'required',
-                    'amount' => 'required|gt:0',
+                    'amount' => 'required|numeric|gt:0',
                 ];
             }
         }
@@ -45,9 +46,10 @@ class ActRequest extends FormRequest
      */
     public function messages(){
         $messages = [
-            'name.required'=>'The name is required !',
-            'amount.required'=>'The amount is required !',
-            'amount.gt' => 'The amount must be greater than 0 !',
+            'name.required'=>Lang::get('messages.the_name_is_required'),
+            'amount.required'=>Lang::get('messages.the_amount_is_required'),
+            'amount.numeric'=>Lang::get('messages.the_amount_is_not_numéric'),
+            'amount.gt' => Lang::get('messages.the_amount_must_be_greater_than_0'),
         ];
         return $messages;
     }

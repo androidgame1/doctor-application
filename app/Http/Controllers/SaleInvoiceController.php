@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SaleInvoiceRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Helper;
+use Lang;
 
 class SaleInvoiceController extends Controller
 {
@@ -81,12 +82,12 @@ class SaleInvoiceController extends Controller
                 $index++;
             }
             if(Sale_invoice_line::insert($data_sale_invoice_lines)){
-                toastr()->success('The sale invoice has inserted by success !');
+                toastr()->success(Lang::get('messages.the_sale_invoice_has_inserted_by_success'));
             }else{
-                toastr()->warning('The sale invoice has not inserted by success due a problem in sale invoice lines insertion !');
+                toastr()->warning(Lang::get('messages.the_sale_invoice_has_not_inserted_by_success_due_a_problem_in_sale_invoice_lines_insertion'));
             }
         }else{
-            toastr()->warning('The sale invoice has not inserted by success !');
+            toastr()->warning(Lang::get('messages.the_sale_invoice_has_not_inserted_by_success'));
         }
         return redirect()->route('administrator.sale_invoices');
     }
@@ -176,12 +177,12 @@ class SaleInvoiceController extends Controller
                 $index++;
             }
             if(Sale_invoice_line::insert($data_sale_invoice_lines)){
-                toastr()->success('The sale invoice has updated by success !');
+                toastr()->success(Lang::get('messages.the_sale_invoice_has_updated_by_success'));
             }else{
-                toastr()->warning('The sale invoice has not updated by success due a problem in sale invoice lines modification !');
+                toastr()->warning(Lang::get('messages.the_sale_invoice_has_not_updated_by_success_due_a_problem_in_sale_invoice_lines_modification'));
             }
         }else{
-            toastr()->warning('The sale invoice has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_sale_invoice_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -197,9 +198,9 @@ class SaleInvoiceController extends Controller
         $user = Auth::user();
         $sale_invoice = Sale_invoice::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         if($sale_invoice->delete()){
-            toastr()->success('The sale invoice has deleted by success !');
+            toastr()->success(Lang::get('messages.the_sale_invoice_has_deleted_by_success'));
         }else{
-            toastr()->warning('The sale invoice has not deleted by success !');
+            toastr()->warning(Lang::get('messages.the_sale_invoice_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }
@@ -217,9 +218,9 @@ class SaleInvoiceController extends Controller
             'status'=>3
         ];
         if($sale_invoice->update($data_sale_invoice)){
-            toastr()->success('The sale invoice has canceled by success !');
+            toastr()->success(Lang::get('messages.the_sale_invoice_has_canceled_by_success'));
         }else{
-            toastr()->warning('The sale invoice has not canceled by success !');
+            toastr()->warning(Lang::get('messages.the_sale_invoice_has_not_canceled_by_success'));
         }
         return redirect()->back();
     }

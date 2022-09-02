@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Lang;
 
 class UserRequest extends FormRequest
 {
@@ -97,82 +98,26 @@ class UserRequest extends FormRequest
      * @return array
      */
     public function messages(){
-        if($this->isMethod('post')){
-            if($this->routeIs('forget.password.post')){
-                $messages = [
-                    'email.required'=>'Email is required !',
-                    'email.email'=>'Email is incorrect !',
-                    'email.exists'=>'Email is not exists !',
-                    'password.required'=>'Password is required !'
-                ];
-                return $messages;
-            }else if($this->routeIs('reset.password.post')){
-                $messages = [
-                    'email.required'=>'Email is required !',
-                    'email.email'=>'Email is incorrect !',
-                    'email.exists'=>'Email is not exists !',
-                    'new_password.required' => 'The new password is required !',
-                    'confirm_password.required' => 'The confirm password is required !',
-                    'confirm_password.same' => 'The confirm password must be like the new password !'
-                ];
-                return $messages;
-            }else if($this->routeIs('administrator.user.store') || $this->routeIs('superadministrator.user.store')){
-                $messages = [
-                    'cin.required' => 'The CIN is required !',
-                    'cin.unique' => 'The CIN is already exists !',
-                    'fullname.required' => 'The fullname is required !',
-                    'email.required' => 'The email is required !',
-                    'email.email' => 'The email is incorrect !',
-                    'email.unique' => 'The email is already exists !',
-                    'address.required' => 'The address is required !',
-                    'phone.required' => 'The phone is required !',
-                    'city.required' => 'The city is required !',
-                    'password.required' => 'The password is required !',
-                    'confirm_password.required' => 'The confirm password is required !',
-                    'confirm_password.same' => 'The confirm password must be like the first password !',
-                ];
-                return $messages;
-            }
-        }else if($this->isMethod('put')){
-            if($this->routeIs('administrator.password.update') || $this->routeIs('superadministrator.password.update')|| $this->routeIs('secretary.password.update')){
-                $messages = [
-                    'old_password.required' => 'The old password is required !',
-                    'new_password.required' => 'The new password is required !',
-                    'confirm_password.required' => 'The confirm password is required !',
-                    'confirm_password.same' => 'The confirm password must be like the new password !',
-                ];
-                return $messages;
-            }else if($this->routeIs('administrator.profile.update') || $this->routeIs('superadministrator.profile.update')|| $this->routeIs('secretary.profile.update')){
-                $messages = [
-                    'image.image'=>'The file is not image !',
-                    'image.mimes'=>'The file extention must be include to (jpg,png,jpeg,gif,svg) !',
-                    'fullname.required' => 'The fullname is required !',
-                    'email.required' => 'The email is required !',
-                    'email.email' => 'The email is incorrect !',
-                    'email.unique' => 'The email is already exists !',
-                    'address.required' => 'The address is required !',
-                    'phone.required' => 'The phone is required !',
-                    'city.required' => 'The city is required !',
-                ];
-                return $messages;
-            }else if($this->routeIs('administrator.user.update') || $this->routeIs('superadministrator.user.update')){
-                $messages = [
-                    'cin.required' => 'The CIN is required !',
-                    'cin.unique' => 'The CIN is already exists !',
-                    'fullname.required' => 'The fullname is required !',
-                    'email.required' => 'The email is required !',
-                    'email.email' => 'The email is incorrect !',
-                    'email.unique' => 'The email is already exists !',
-                    'address.required' => 'The address is required !',
-                    'phone.required' => 'The phone is required !',
-                    'city.required' => 'The city is required !',
-                    'password.required' => 'The password is required !',
-                    'confirm_password.required' => 'The confirm password is required !',
-                    'confirm_password.same' => 'The confirm password must be like the first password !',
-                ];
-                return $messages;
-            }
+            $messages = [
+                'email.required'=>Lang::get('messages.the_email_is_required'),
+                'email.email'=>Lang::get('messages.the_email_is_incorrect'),
+                'email.exists'=>Lang::get('messages.the_email_is_not_exists'),
+                'password.required'=>Lang::get('messages.the_password_is_required'),
+                'new_password.required' =>Lang::get('messages.the_new_password_is_required'),
+                'confirm_password.required' =>Lang::get('messages.the_confirm_password_is_required'),
+                'confirm_password.same' =>Lang::get('messages.the_confirm_password_must_be_like_the_new_password'),
+                'cin.required' =>Lang::get('messages.the_CIN_is_required'),
+                'cin.unique' =>Lang::get('messages.the_CIN_is_already_exists'),
+                'fullname.required' =>Lang::get('messages.the_fullname_is_required'),
+                'email.unique' =>Lang::get('messages.the_email_is_already_exists'),
+                'address.required' =>Lang::get('messages.the_address_is_required'),
+                'phone.required' =>Lang::get('messages.the_phone_is_required'),
+                'city.required' =>Lang::get('messages.the_city_is_required'),
+                'old_password.required' =>Lang::get('messages.the_old_password_is_required'),
+                'image.image'=>Lang::get('messages.the_file_is_not_image'),
+                'image.mimes'=>Lang::get('messages.the_file_extention_must_be_include_to_(jpg,png,jpeg,gif,svg)'),
+            ];
+            return $messages;
 
-        }
     }
 }

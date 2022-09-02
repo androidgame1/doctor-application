@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class LoginRequest extends FormRequest
 {
@@ -38,9 +39,9 @@ class LoginRequest extends FormRequest
      */
     public function messages(){
         $messages = [
-            'email.required'=>'Email is required !',
-            'email.email'=>'Email is incorrect !',
-            'password.required'=>'Password is required !'
+            'email.required'=>Lang::get('messages.the_email_is_required'),
+            'email.email'=>Lang::get('messages.the_email_is_incorrect'),
+            'password.required'=>Lang::get('messages.the_password_is_required'),
         ];
         return $messages;
     }

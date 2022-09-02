@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class DrugRequest extends FormRequest
 {
@@ -45,8 +46,8 @@ class DrugRequest extends FormRequest
      */
     public function messages(){
         $messages = [
-            'trade_name.required'=>'The trade name is required !',
-            'generic_name.required'=>'The generic name is required !',
+            'trade_name.required'=>Lang::get('messages.the_trade_name_is_required'),
+            'generic_name.required'=>Lang::get('messages.the_generic_name_is_required'),
         ];
         return $messages;
     }

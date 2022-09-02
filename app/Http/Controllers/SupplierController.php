@@ -6,6 +6,7 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Requests\SupplierRequest;
 use Illuminate\Support\Facades\Auth;
+use Lang;
 
 class SupplierController extends Controller
 {
@@ -50,9 +51,9 @@ class SupplierController extends Controller
             'city'=>$request->city
         ];
         if(Supplier::create($data)){
-            toastr()->success('The supplier has inserted by success !');
+            toastr()->success(Lang::get('messages.the_supplier_has_inserted_by_success'));
         }else{
-            toastr()->warning('The supplier has not inserted by success !');
+            toastr()->warning(Lang::get('messages.the_supplier_has_not_inserted_by_success'));
         }
         return redirect()->route('administrator.suppliers');
     }
@@ -103,9 +104,9 @@ class SupplierController extends Controller
             'city'=>$request->city
         ];
         if($supplier->update($data)){
-            toastr()->success('The supplier has updated by success !');
+            toastr()->success(Lang::get('messages.the_supplier_has_updated_by_success'));
         }else{
-            toastr()->warning('The supplier has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_supplier_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -121,9 +122,9 @@ class SupplierController extends Controller
         $user = Auth::user();
         $supplier = Supplier::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         if($supplier->delete()){
-            toastr()->success('The supplier has deleted by success !');
+            toastr()->success(Lang::get('messages.the_supplier_has_deleted_by_success'));
         }else{
-            toastr()->warning('The supplier has not deleted by success !');
+            toastr()->warning(Lang::get('messages.the_supplier_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }

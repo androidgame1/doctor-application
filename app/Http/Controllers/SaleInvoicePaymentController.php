@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SaleInvoicePaymentRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Helper;
+use Lang;
 
 class SaleInvoicePaymentController extends Controller
 {
@@ -86,13 +87,13 @@ class SaleInvoicePaymentController extends Controller
                 $status = 1;
             }
             if($sale_invoice->update(['status'=>$status])){
-                toastr()->success('The payment has inserted by success !');
+                toastr()->success(Lang::get('messages.the_sale_invoice_payment_has_inserted_by_success'));
             }else{
-                toastr()->success('The payment has inserted by success , but the status of the sale invoice has not changed !');
+                toastr()->success(Lang::get('messages.the_payment_has_inserted_by_success_but_the_status_of_the_sale_invoice_has_not_changed'));
             }
             
         }else{
-            toastr()->warning('The payment has not inserted by success !');
+            toastr()->warning(Lang::get('messages.the_sale_invoice_payment_has_not_inserted_by_success'));
         }
         return redirect()->route('administrator.sale_invoice_payments',$sale_invoice->id);
     }
@@ -170,13 +171,13 @@ class SaleInvoicePaymentController extends Controller
                 $status = 1;
             }
             if($sale_invoice->update(['status'=>$status])){
-                toastr()->success('The payment has updated by success !');
+                toastr()->success(Lang::get('messages.the_sale_invoice_payment_has_updated_by_success'));
             }else{
-                toastr()->success('The payment has updated by success , but the status of the sale invoice has not changed !');
+                toastr()->success(Lang::get('messages.the_payment_has_updated_by_success_but_the_status_of_the_sale_invoice_has_not_changed'));
             }
             
         }else{
-            toastr()->warning('The payment has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_sale_invoice_payment_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -203,9 +204,9 @@ class SaleInvoicePaymentController extends Controller
                 $status = 2;
             }
             $sale_invoice->update(['status'=>$status]);
-            toastr()->success('The payment has deleted by success !');
+            toastr()->success(Lang::get('messages.the_sale_invoice_payment_has_deleted_by_success'));
         }else{
-            toastr()->warning('The payment has not deleted by success !');
+            toastr()->warning(Lang::get('messages.the_sale_invoice_payment_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }

@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ActivityRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Helper;
+use Lang;
 
 class ActivityController extends Controller
 {
@@ -76,12 +77,12 @@ class ActivityController extends Controller
                 $index++;
             }
             if(Activity_line::insert($data_activity_lines)){
-                toastr()->success('The activity has inserted by success !');
+                toastr()->success(Lang::get('messages.the_activity_has_inserted_by_success'));
             }else{
-                toastr()->warning('The activity has not inserted by success due a problem in purchase invoice lines insertion !');
+                toastr()->warning(Lang::get('messages.the_activity_has_not_inserted_by_success_due_a_problem_in_purchase_invoice_lines_insertion'));
             }
         }else{
-            toastr()->warning('The activity has not inserted by success !');
+            toastr()->warning(Lang::get('messages.the_activity_has_not_inserted_by_success'));
         }
         return redirect()->route('administrator.activities');
     }
@@ -166,12 +167,12 @@ class ActivityController extends Controller
                 $index++;
             }
             if(Activity_line::insert($data_activity_lines)){
-                toastr()->success('The activity has updated by success !');
+                toastr()->success(Lang::get('messages.the_activity_has_updated_by_success'));
             }else{
-                toastr()->warning('The activity has not updated by success due a problem in purchase invoice lines modification !');
+                toastr()->warning(Lang::get('messages.the_activity_has_not_updated_by_success_due_a_problem_in_purchase_invoice_lines_modification'));
             }
         }else{
-            toastr()->warning('The activity has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_activity_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -188,9 +189,9 @@ class ActivityController extends Controller
         $activity = Activity::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $activity_lines = Activity_line::where('activity_id',$activity->id);
         if($activity_lines->delete() && $activity->delete()){
-            toastr()->success('The activity has deleted by success !');
+            toastr()->success(Lang::get('messages.the_activity_has_deleted_by_success'));
         }else{
-            toastr()->warning('The activity has not deleted by success !');
+            toastr()->warning(Lang::get('messages.the_activity_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }
@@ -208,9 +209,9 @@ class ActivityController extends Controller
             'status'=>1
         ];
         if($activity->update($data_activity)){
-            toastr()->success('The activity has canceled by success !');
+            toastr()->success(Lang::get('messages.the_activity_has_canceled_by_success'));
         }else{
-            toastr()->warning('The activity has not canceled by success !');
+            toastr()->warning(Lang::get('messages.the_activity_has_not_canceled_by_success'));
         }
         return redirect()->back();
     }

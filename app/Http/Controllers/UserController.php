@@ -6,7 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;   
+use Illuminate\Support\Facades\Hash;
+use Lang;  
 
 class UserController extends Controller
 {
@@ -105,9 +106,9 @@ class UserController extends Controller
             'isvalidate'=>1
         ];
         if(User::create($data)){
-            toastr()->success('The '.$userRole.' has inserted by success !');
+            toastr()->success(Lang::get('messages.the_'.$userRole.'_has_inserted_by_success'));
         }else{
-            toastr()->warning('The '.$userRole.' has not inserted by success !');
+            toastr()->warning(Lang::get('messages.the_'.$userRole.'_has_not_inserted_by_success'));
         }
         if($user->is_superadministrator){
             return redirect()->route('superadministrator.users',$role);
@@ -221,9 +222,9 @@ class UserController extends Controller
             $data['password']=Hash::make($request->new_password);
         }
         if($user->update($data)){
-            toastr()->success('The '.$userRole.' has updated by success !');
+            toastr()->success(Lang::get('messages.the_'.$userRole.'_has_updated_by_success'));
         }else{
-            toastr()->warning('The '.$userRole.' has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_'.$userRole.'_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -258,9 +259,9 @@ class UserController extends Controller
         }
         $user = User::where(['administrator_id'=>$user->id,'role'=>$rolevalue,'id'=>$id])->firstOrFail();
         if($user->delete()){
-            toastr()->success('The '.$userRole.' has deleted by success !');
+            toastr()->success(Lang::get('messages.the_'.$userRole.'_has_deleted_by_success'));
         }else{
-            toastr()->warning('The '.$userRole.' has not deleted by success !');
+            toastr()->warning(Lang::get('messages.the_'.$userRole.'_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }
@@ -310,9 +311,9 @@ class UserController extends Controller
         ];
         
         if($user->update($data)){
-            toastr()->success('The '.$userRole.' has updated by success !');
+            toastr()->success(Lang::get('messages.the_'.$userRole.'_has_updated_by_success'));
         }else{
-            toastr()->warning('The '.$userRole.' has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_'.$userRole.'_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -344,12 +345,12 @@ class UserController extends Controller
         if($user->is_superadministrator || $user->is_administrator || $user->is_secretary){
             if(Hash::check($request->old_password, $user->password)){
                 if($user->update(['password'=>Hash::make($request->new_password)])){
-                    toastr()->success('The password has updated by success.');
+                    toastr()->success(Lang::get('messages.the_password_has_updated_by_success'));
                 }else{
-                    toastr()->warning('The password has not updated by success !');
+                    toastr()->warning(Lang::get('messages.the_password_has_not_updated_by_success'));
                 }
             }else{
-                toastr()->warning('The old password is incorrect !');
+                toastr()->warning(Lang::get('messages.the_old_password_is_incorrect'));
             }
             return redirect()->back();
         }else{
@@ -400,7 +401,7 @@ class UserController extends Controller
                     $request->image = $filename;
                 
                 }else{
-                    toastr()->error("Il y'a un probléme !");
+                    toastr()->error(Lang::get('messages.there_is_a_problem'));
                     return redirect()->back();
                 }
             }else{
@@ -418,9 +419,9 @@ class UserController extends Controller
                 'phone'=>$request->phone,
                 'city'=>$request->city
             ])){
-                toastr()->success('The profile has updated by success.');
+                toastr()->success(Lang::get('messages.the_profile_has_updated_by_success'));
             }else{
-                toastr()->warning('The profile has not updated by success !');
+                toastr()->warning(Lang::get('messages.the_profile_has_not_updated_by_success'));
             }
             return redirect()->back();
         }else{

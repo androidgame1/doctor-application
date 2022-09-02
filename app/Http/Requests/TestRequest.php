@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class TestRequest extends FormRequest
 {
@@ -44,7 +45,7 @@ class TestRequest extends FormRequest
      */
     public function messages(){
         $messages = [
-            'name.required'=>'The name is required !',
+            'name.required'=>Lang::get('messages.the_name_is_required'),
         ];
         return $messages;
     }

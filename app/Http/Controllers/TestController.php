@@ -6,6 +6,7 @@ use App\Models\Test;
 use Illuminate\Http\Request;
 use App\Http\Requests\TestRequest;
 use Illuminate\Support\Facades\Auth;
+use Lang;
 
 class TestController extends Controller
 {
@@ -18,7 +19,7 @@ class TestController extends Controller
     {
         $user = Auth::user();
         $tests = Test::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('parameters.tests',compact('tests'));
+        return view('settings.tests',compact('tests'));
     }
 
     /**
@@ -46,9 +47,9 @@ class TestController extends Controller
             'description'=>$request->description,
         ];
         if(Test::create($data)){
-            toastr()->success('The test has inserted by success !');
+            toastr()->success(Lang::get('messages.the_test_has_inserted_by_success'));
         }else{
-            toastr()->warning('The test has not inserted by success !');
+            toastr()->warning(Lang::get('messages.the_test_has_not_inserted_by_success'));
         }
         return redirect()->route('administrator.tests');
     }
@@ -99,9 +100,9 @@ class TestController extends Controller
             'description'=>$request->description,
         ];
         if($tests->update($data)){
-            toastr()->success('The test has updated by success !');
+            toastr()->success(Lang::get('messages.the_test_has_updated_by_success'));
         }else{
-            toastr()->warning('The test has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_test_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -117,9 +118,9 @@ class TestController extends Controller
         $user = Auth::user();
         $tests = Test::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         if($tests->delete()){
-            toastr()->success('The test has deleted by success !');
+            toastr()->success(Lang::get('messages.the_test_has_deleted_by_success'));
         }else{
-            toastr()->warning('The test has not deleted by success !');
+            toastr()->warning(Lang::get('messages.the_test_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }

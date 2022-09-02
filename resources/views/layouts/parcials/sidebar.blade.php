@@ -11,7 +11,7 @@
                         @if(auth()->user()->is_superadministrator)
                             <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_superadministrator) {{route('superadministrator.users','administrator')}} @else javascript:void(0) @endif" aria-expanded="false">
                                 <i class="fa fa-users"></i>
-                                <span class="hide-menu">Administrators</span></a>
+                                <span class="hide-menu">{{__('messages.administrators')}}</span></a>
                             </li>
                         @endif
                         @if(auth()->user()->is_administrator)
@@ -59,12 +59,12 @@
                                 <i class="fa fa-file-o"></i>
                                 <span class="hide-menu">{{__('messages.prescription')}}</span></a>
                             </li>
-                            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">Parameters</span></a>
+                            <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">{{__('messages.setting')}}</span></a>
                                 <ul aria-expanded="false" class="collapse">
-                                <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.type_drugs')}} @else javascript:void(0) @endif">Types of drug</a></li>
-                                    <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.drugs')}} @else javascript:void(0) @endif">Drugs</a></li>
-                                    <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.tests')}} @else javascript:void(0) @endif">Tests</a></li>
-                                    <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.status')}} @else javascript:void(0) @endif">status</a></li>
+                                <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.type_drugs')}} @else javascript:void(0) @endif">{{__('messages.types_of_drug')}}</a></li>
+                                    <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.drugs')}} @else javascript:void(0) @endif">{{__('messages.drugs')}}</a></li>
+                                    <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.tests')}} @else javascript:void(0) @endif">{{__('messages.tests')}}</a></li>
+                                    <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.status')}} @else javascript:void(0) @endif">{{__('messages.status')}}</a></li>
                                 </ul>
                             </li>
                         @endif

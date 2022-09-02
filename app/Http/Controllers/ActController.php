@@ -6,6 +6,7 @@ use App\Models\Act;
 use Illuminate\Http\Request;
 use App\Http\Requests\ActRequest;
 use Illuminate\Support\Facades\Auth;
+use Lang;
 
 class ActController extends Controller
 {
@@ -47,9 +48,9 @@ class ActController extends Controller
             'description'=>$request->description,
         ];
         if(Act::create($data)){
-            toastr()->success('The act has inserted by success !');
+            toastr()->success(Lang::get('messages.the_act_has_inserted_by_success'));
         }else{
-            toastr()->warning('The act has not inserted by success !');
+            toastr()->warning(Lang::get('messages.the_act_has_not_inserted_by_success'));
         }
         return redirect()->route('administrator.acts');
     }
@@ -101,9 +102,9 @@ class ActController extends Controller
             'description'=>$request->description,
         ];
         if($act->update($data)){
-            toastr()->success('The act has updated by success !');
+            toastr()->success(Lang::get('messages.the_act_has_updated_by_success'));
         }else{
-            toastr()->warning('The act has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_act_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -119,9 +120,9 @@ class ActController extends Controller
         $user = Auth::user();
         $act = Act::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         if($act->delete()){
-            toastr()->success('The act has deleted by success !');
+            toastr()->success(Lang::get('messages.the_act_has_deleted_by_success'));
         }else{
-            toastr()->warning('The act has not deleted by success !');
+            toastr()->warning(Lang::get('messages.the_act_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }

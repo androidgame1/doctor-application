@@ -8,6 +8,7 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\AppointmentRequest;
 use Illuminate\Support\Facades\Auth;
+use Lang;
 
 class AppointmentController extends Controller
 {
@@ -108,9 +109,9 @@ class AppointmentController extends Controller
             'remark'=>$request->remark,
         ];
         if(Appointment::create($data)){
-            toastr()->success('The appointment has inserted by success !');
+            toastr()->success(Lang::get('messages.the_appointment_has_inserted_by_success'));
         }else{
-            toastr()->warning('The appointment has not inserted by success !');
+            toastr()->warning(Lang::get('messages.the_appointment_has_not_inserted_by_success'));
         }
         return redirect()->back();
         
@@ -193,9 +194,9 @@ class AppointmentController extends Controller
             'remark'=>$request->remark,
         ];
         if($appointment->update($data)){
-            toastr()->success('The appointment has updated by success !');
+            toastr()->success(Lang::get('messages.the_appointment_has_updated_by_success'));
         }else{
-            toastr()->warning('The appointment has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_appointment_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -223,9 +224,9 @@ class AppointmentController extends Controller
             'end_date'=>$request->end_date,
         ];
         if($appointment->update($data)){
-            $data=['icon'=>'success','message'=>'The appointment has updated by success !'];
+            toastr()->success(Lang::get('messages.the_appointment_has_updated_by_success'));
         }else{
-            $data=['icon'=>'warning','message'=>'The appointment has not updated by success !'];
+            toastr()->warning(Lang::get('messages.the_appointment_has_not_updated_by_success'));
         }
         return response()->json($data);
     }
@@ -248,9 +249,9 @@ class AppointmentController extends Controller
         }
         $appointment = Appointment::where(['administrator_id'=>$administrator_id,'id'=>$id])->firstOrFail();
         if($appointment->delete()){
-            toastr()->success('The appointment has deleted by success !');
+            toastr()->success(Lang::get('messages.the_appointment_has_deleted_by_success'));
         }else{
-            toastr()->warning('The appointment has not deleted by success !');
+            toastr()->warning(Lang::get('messages.the_appointment_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }

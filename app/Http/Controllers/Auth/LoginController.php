@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Cookie;
+use Lang;
 
 class LoginController extends Controller
 {
@@ -81,7 +82,7 @@ class LoginController extends Controller
                 }
             }
         }else{
-            toastr()->warning('Email or password is incorrect !');
+            toastr()->warning(Lang::get('messages.email_or_password_is_incorrect'));
         }
         return redirect()->route('login');
     }

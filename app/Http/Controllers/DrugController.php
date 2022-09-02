@@ -6,6 +6,7 @@ use App\Models\Drug;
 use Illuminate\Http\Request;
 use App\Http\Requests\DrugRequest;
 use Illuminate\Support\Facades\Auth;
+use Lang;
 
 class DrugController extends Controller
 {
@@ -18,7 +19,7 @@ class DrugController extends Controller
     {
         $user = Auth::user();
         $drugs = Drug::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('parameters.drugs',compact('drugs'));
+        return view('settings.drugs',compact('drugs'));
     }
 
     /**
@@ -47,9 +48,9 @@ class DrugController extends Controller
             'description'=>$request->description,
         ];
         if(Drug::create($data)){
-            toastr()->success('The drug has inserted by success !');
+            toastr()->success(Lang::get('messages.the_drug_has_inserted_by_success'));
         }else{
-            toastr()->warning('The drug has not inserted by success !');
+            toastr()->warning(Lang::get('messages.the_drug_has_not_inserted_by_success'));
         }
         return redirect()->route('administrator.drugs');
     }
@@ -101,9 +102,9 @@ class DrugController extends Controller
             'description'=>$request->description,
         ];
         if($drugs->update($data)){
-            toastr()->success('The drug has updated by success !');
+            toastr()->success(Lang::get('messages.the_drug_has_updated_by_success'));
         }else{
-            toastr()->warning('The drug has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_drug_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -119,9 +120,9 @@ class DrugController extends Controller
         $user = Auth::user();
         $drugs = Drug::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         if($drugs->delete()){
-            toastr()->success('The drug has deleted by success !');
+            toastr()->success(Lang::get('messages.the_drug_has_deleted_by_success'));
         }else{
-            toastr()->warning('The drug has not deleted by success !');
+            toastr()->warning(Lang::get('messages.the_drug_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }

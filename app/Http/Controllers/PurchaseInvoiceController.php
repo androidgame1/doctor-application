@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PurchaseInvoiceRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Helper;
+use Lang;
 
 class PurchaseInvoiceController extends Controller
 {
@@ -81,12 +82,12 @@ class PurchaseInvoiceController extends Controller
                 $index++;
             }
             if(Purchase_invoice_line::insert($data_purchase_invoice_lines)){
-                toastr()->success('The purchase invoice has inserted by success !');
+                toastr()->success(Lang::get('messages.the_purchase_invoice_has_inserted_by_success'));
             }else{
-                toastr()->warning('The purchase invoice has not inserted by success due a problem in purchase invoice lines insertion !');
+                toastr()->warning(Lang::get('messages.the_purchase_invoice_has_not_inserted_by_success_due_a_problem_in_purchase_invoice_lines_insertion'));
             }
         }else{
-            toastr()->warning('The purchase invoice has not inserted by success !');
+            toastr()->warning(Lang::get('messages.the_purchase_invoice_has_not_inserted_by_success'));
         }
         return redirect()->route('administrator.purchase_invoices');
     }
@@ -176,12 +177,12 @@ class PurchaseInvoiceController extends Controller
                 $index++;
             }
             if(Purchase_invoice_line::insert($data_purchase_invoice_lines)){
-                toastr()->success('The purchase invoice has updated by success !');
+                toastr()->success(Lang::get('messages.the_purchase_invoice_has_updated_by_success'));
             }else{
-                toastr()->warning('The purchase invoice has not updated by success due a problem in purchase invoice lines modification !');
+                toastr()->warning(Lang::get('messages.the_purchase_invoice_has_not_updated_by_success_due_a_problem_in_purchase_invoice_lines_modification'));
             }
         }else{
-            toastr()->warning('The purchase invoice has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_purchase_invoice_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -197,9 +198,9 @@ class PurchaseInvoiceController extends Controller
         $user = Auth::user();
         $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         if($purchase_invoice->delete()){
-            toastr()->success('The purchase invoice has deleted by success !');
+            toastr()->success(Lang::get('messages.the_purchase_invoice_has_deleted_by_success'));
         }else{
-            toastr()->warning('The purchase invoice has not deleted by success !');
+            toastr()->warning(Lang::get('messages.the_purchase_invoice_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }
@@ -217,9 +218,9 @@ class PurchaseInvoiceController extends Controller
             'status'=>3
         ];
         if($purchase_invoice->update($data_purchase_invoice)){
-            toastr()->success('The purchase invoice has canceled by success !');
+            toastr()->success(Lang::get('messages.the_purchase_invoice_has_canceled_by_success'));
         }else{
-            toastr()->warning('The purchase invoice has not canceled by success !');
+            toastr()->warning(Lang::get('messages.the_purchase_invoice_has_not_canceled_by_success'));
         }
         return redirect()->back();
     }

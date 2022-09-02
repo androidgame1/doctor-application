@@ -6,6 +6,7 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\PatientRequest;
 use Illuminate\Support\Facades\Auth;
+use Lang;
 
 class PatientController extends Controller
 {
@@ -75,9 +76,9 @@ class PatientController extends Controller
             'height'=>$request->height,
         ];
         if(Patient::create($data)){
-            toastr()->success('The patient has inserted by success !');
+            toastr()->success(Lang::get('messages.the_patient_has_inserted_by_success'));
         }else{
-            toastr()->warning('The patient has not inserted by success !');
+            toastr()->warning(Lang::get('messages.the_patient_has_not_inserted_by_success'));
         }
         if($user->is_administrator){
             return redirect()->route('administrator.patients');
@@ -164,9 +165,9 @@ class PatientController extends Controller
             'height'=>$request->height,
         ];
         if($patient->update($data)){
-            toastr()->success('The patient has updated by success !');
+            toastr()->success(Lang::get('messages.the_patient_has_updated_by_success'));
         }else{
-            toastr()->warning('The patient has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_patient_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -190,9 +191,9 @@ class PatientController extends Controller
         }
         $patient = Patient::where(['administrator_id'=>$administrator_id,'id'=>$id])->firstOrFail();
         if($patient->delete()){
-            toastr()->success('The patient has deleted by success !');
+            toastr()->success(Lang::get('messages.the_patient_has_deleted_by_success'));
         }else{
-            toastr()->warning('The patient has not deleted by success !');
+            toastr()->warning(Lang::get('messages.the_patient_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }

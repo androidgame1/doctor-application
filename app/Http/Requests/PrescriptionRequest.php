@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class PrescriptionRequest extends FormRequest
 {
@@ -46,10 +47,10 @@ class PrescriptionRequest extends FormRequest
      */
     public function messages(){
         $messages = [
-            'patient_id.required'=>'The patient is required !',
-            'date.required'=>'The date is required !',
-            'date.date'=>'The date is incorrect !',
-            'note.required'=>'The note is required !',
+            'patient_id.required'=>Lang::get('messages.the_patient_is_required'),
+            'date.required'=>Lang::get('messages.the_date_is_required'),
+            'date.date'=>Lang::get('messages.the_date_is_not_correct'),
+            'note.required'=>Lang::get('messages.the_note_is_required'),
         ];
         return $messages;
     }

@@ -44,9 +44,9 @@
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
 
                                 <!-- text-->
-                                <a href="{{route('change.language','en')}}" class="dropdown-item">en</a>
+                                <a href="{{route('change.language','en')}}" class="dropdown-item">En</a>
                                 <!-- text-->
-                                <a href="{{route('change.language','fr')}}" class="dropdown-item">fr</a>
+                                <a href="{{route('change.language','fr')}}" class="dropdown-item">Fr</a>
                                 <!-- text-->
                                 <div class="dropdown-divider"></div>
                                 <!-- text-->

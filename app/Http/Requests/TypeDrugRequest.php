@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class TypeDrugRequest extends FormRequest
 {
@@ -45,8 +46,8 @@ class TypeDrugRequest extends FormRequest
      */
     public function messages(){
         $messages = [
-            'name.required'=>'The name is required !',
-            'measruing_unit.required'=>'The measruing unit is required !',
+            'name.required'=>Lang::get('messages.the_name_is_required'),
+            'measruing_unit.required'=>Lang::get('messages.the_measruing_unit_is_required'),
         ];
         return $messages;
     }

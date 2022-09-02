@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Lang;
 
 class SaleInvoicePaymentRequest extends FormRequest
 {
@@ -49,14 +50,14 @@ class SaleInvoicePaymentRequest extends FormRequest
      */
     public function messages(){
         $messages = [
-                    'sale_invoice_id.required'=>'The sale invoice is required !',
-                    'date.required'=>'The date of payment is required !',
-                    'date.date'=>'The date of payment is not correct !',
-                    'given_amount.required'=>'The given amount is required !',
-                    'given_amount.numeric'=>'The given amount is not numeric !',
-                    'given_amount.numeric'=>'The given amount must be greater than or equal 0 !',
-                    'way_of_payment.required'=>'The way of payment is required !',
-                    'justification.mimes'=>'The extention of justification muust be include in (jpg,png,jpeg,gif,svg,pdf,docx) !',
+                    'sale_invoice_id.required'=>Lang::get('messages.the_sale_invoice_is_required'),
+                    'date.required'=>Lang::get('messages.the_date_of_payment_is_required'),
+                    'date.date'=>Lang::get('messages.the_date_of_payment_is_not_correct'),
+                    'given_amount.required'=>Lang::get('messages.the_given_amount_is_required'),
+                    'given_amount.numeric'=>Lang::get('messages.the_given_amount_is_not_numeric'),
+                    'given_amount.numeric'=>Lang::get('messages.the_amount_must_be_greater_than_or_equal_0'),
+                    'way_of_payment.required'=>Lang::get('messages.the_way_of_payment_is_required'),
+                    'justification.mimes'=>Lang::get('messages.the_extention_of_justification_must_be_include_in_(jpg,png,jpeg,gif,svg,pdf,docx)'),
         ];
         
         return $messages;

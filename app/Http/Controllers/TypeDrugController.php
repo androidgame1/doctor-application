@@ -6,6 +6,7 @@ use App\Models\Type_drug;
 use Illuminate\Http\Request;
 use App\Http\Requests\TypeDrugRequest;
 use Illuminate\Support\Facades\Auth;
+use Lang;
 
 class TypeDrugController extends Controller
 {
@@ -18,7 +19,7 @@ class TypeDrugController extends Controller
     {
         $user = Auth::user();
         $type_drugs = Type_drug::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('parameters.type_drugs',compact('type_drugs'));
+        return view('settings.type_drugs',compact('type_drugs'));
     }
 
     /**
@@ -46,9 +47,9 @@ class TypeDrugController extends Controller
             'measruing_unit'=>$request->measruing_unit,
         ];
         if(Type_drug::create($data)){
-            toastr()->success('The type of drug has inserted by success !');
+            toastr()->success(Lang::get('messages.the_type_of_drug_has_inserted_by_success'));
         }else{
-            toastr()->warning('The type of drug has not inserted by success !');
+            toastr()->warning(Lang::get('messages.the_type_of_drug_has_not_inserted_by_success'));
         }
         return redirect()->route('administrator.type_drugs');
     }
@@ -99,9 +100,9 @@ class TypeDrugController extends Controller
             'color'=>$request->color,
         ];
         if($type_drugs->update($data)){
-            toastr()->success('The type of drug has updated by success !');
+            toastr()->success(Lang::get('messages.the_type_of_drug_has_updated_by_success'));
         }else{
-            toastr()->warning('The type of drug has not updated by success !');
+            toastr()->warning(Lang::get('messages.the_type_of_drug_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -117,9 +118,9 @@ class TypeDrugController extends Controller
         $user = Auth::user();
         $type_drugs = Type_drug::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         if($type_drugs->delete()){
-            toastr()->success('The type of drug has deleted by success !');
+            toastr()->success(Lang::get('messages.the_type_of_drug_has_deleted_by_success'));
         }else{
-            toastr()->warning('The type of drug has not deleted by success !');
+            toastr()->warning(Lang::get('messages.the_type_of_drug_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }
