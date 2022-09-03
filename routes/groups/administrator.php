@@ -48,6 +48,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/purchase_invoice/{id}/destroy',[App\Http\Controllers\PurchaseInvoiceController::class,'destroy'])->name('administrator.purchase_invoice.destroy');
     Route::get('/purchase_invoice/{id}/cancel',[App\Http\Controllers\PurchaseInvoiceController::class,'cancel'])->name('administrator.purchase_invoice.cancel');
     Route::get('/purchase_invoice/{id}/duplicate',[App\Http\Controllers\PurchaseInvoiceController::class,'duplicate'])->name('administrator.purchase_invoice.duplicate');
+    Route::get('/purchase_invoice/{id}/pdf',[App\Http\Controllers\PurchaseInvoiceController::class,'pdf'])->name('administrator.purchase_invoice.pdf');
     //routes purchase_invoice_payment controller
     Route::get('/purchase_invoice_payments/{purchase_invoice_id}',[App\Http\Controllers\PurchaseInvoicePaymentController::class,'index'])->name('administrator.purchase_invoice_payments');
     Route::get('/purchase_invoice_payment/{id}/show',[App\Http\Controllers\PurchaseInvoicePaymentController::class,'show'])->name('administrator.purchase_invoice_payment.show');
@@ -66,6 +67,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/sale_invoice/{id}/destroy',[App\Http\Controllers\SaleInvoiceController::class,'destroy'])->name('administrator.sale_invoice.destroy');
     Route::get('/sale_invoice/{id}/cancel',[App\Http\Controllers\SaleInvoiceController::class,'cancel'])->name('administrator.sale_invoice.cancel');
     Route::get('/sale_invoice/{id}/duplicate',[App\Http\Controllers\SaleInvoiceController::class,'duplicate'])->name('administrator.sale_invoice.duplicate');
+    Route::get('/sale_invoice/{id}/pdf',[App\Http\Controllers\SaleInvoiceController::class,'pdf'])->name('administrator.sale_invoice.pdf');
     //routes sale_invoice_payment controller
     Route::get('/sale_invoice_payments/{sale_invoice_id}',[App\Http\Controllers\SaleInvoicePaymentController::class,'index'])->name('administrator.sale_invoice_payments');
     Route::get('/sale_invoice_payment/{id}/show',[App\Http\Controllers\SaleInvoicePaymentController::class,'show'])->name('administrator.sale_invoice_payment.show');
@@ -138,5 +140,5 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/prescription/{id}/edit',[App\Http\Controllers\PrescriptionController::class,'edit'])->name('administrator.prescription.edit');
     Route::put('/prescription/{id}/update',[App\Http\Controllers\PrescriptionController::class,'update'])->name('administrator.prescription.update');
     Route::delete('/prescription/{id}/destroy',[App\Http\Controllers\PrescriptionController::class,'destroy'])->name('administrator.prescription.destroy');
+    Route::get('/prescription/{id}/pdf',[App\Http\Controllers\PrescriptionController::class,'pdf'])->name('administrator.prescription.pdf');
 });
-

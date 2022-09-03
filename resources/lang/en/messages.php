@@ -188,6 +188,7 @@
         'log_in' => 'Log In',
         'add' => 'Add',
         'reset' => 'Reset',
+        'pdf' => 'PDF',
         //End buttons
         //Start sentences
         'total_administrators' => 'Total administrators',
@@ -234,7 +235,8 @@
         'credit_card' => 'Credit card',
         'debit_card' => 'Debit card',
         'payment_completed' => 'Payment completed',
-        '' => '',
+        'invoiced_to' => 'Invoiced to',
+        'prescription_to' => 'Prescription to',
         //End sentences
         //Start messages
         //Start act

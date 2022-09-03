@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PurchaseInvoiceRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Helper;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Lang;
 
 class PurchaseInvoiceController extends Controller
@@ -223,5 +224,17 @@ class PurchaseInvoiceController extends Controller
             toastr()->warning(Lang::get('messages.the_purchase_invoice_has_not_canceled_by_success'));
         }
         return redirect()->back();
+    }
+    /**
+     * PDF the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    function pdf($id){
+        $user = Auth::user();
+        $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
+        $pdf = Pdf::loadView('purchase_invoices.pdf_purchase_invoice', compact('purchase_invoice'));
+        return $pdf->stream();
     }
 }

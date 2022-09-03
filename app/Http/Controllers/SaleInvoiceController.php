@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\SaleInvoiceRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Helper;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Lang;
 
 class SaleInvoiceController extends Controller
@@ -223,5 +224,17 @@ class SaleInvoiceController extends Controller
             toastr()->warning(Lang::get('messages.the_sale_invoice_has_not_canceled_by_success'));
         }
         return redirect()->back();
+    }
+    /**
+     * PDF the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    function pdf($id){
+        $user = Auth::user();
+        $sale_invoice = Sale_invoice::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
+        $pdf = Pdf::loadView('sale_invoices.pdf_sale_invoice', compact('sale_invoice'));
+        return $pdf->stream();
     }
 }

@@ -151,7 +151,7 @@
         'end_date' => 'Date de fin',
         'designation' => 'Désignation',
         'quantity' => 'Quantité',
-        'unit_price' => 'Prix ​​unitairee',
+        'unit_price' => 'Prix unitaire',
         'tva' => 'TVA',
         'reduction' => 'Réduction',
         'note' => 'Note',
@@ -187,6 +187,7 @@
         'log_in' => 'Se connecter',
         'add' => 'Ajouter',
         'reset' => 'Réinitialiser',
+        'pdf' => 'PDF',
         //End buttons
         //Start sentences
         'total_administrators' => 'Total d\'administrateurs',
@@ -233,7 +234,8 @@
         'credit_card' => 'Carte de crédit',
         'debit_card' => 'Carte de débit',
         'payment_completed' => 'Paiement terminé',
-        '' => '',
+        'invoiced_to' => 'Facturé à',
+        'prescription_to' => 'Ordonnance à',
         //End sentences
         //Start messages
         //Start act

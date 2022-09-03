@@ -10,6 +10,7 @@ use App\Models\Test;
 use Illuminate\Http\Request;
 use App\Http\Requests\PrescriptionRequest;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Lang;
 
 class PrescriptionController extends Controller
@@ -132,5 +133,17 @@ class PrescriptionController extends Controller
             toastr()->warning(Lang::get('messages.the_prescription_has_not_deleted_by_success'));
         }
         return redirect()->back();
+    }
+    /**
+     * PDF the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    function pdf($id){
+        $user = Auth::user();
+        $prescription = Prescription::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
+        $pdf = Pdf::loadView('prescriptions.pdf_prescription', compact('prescription'));
+        return $pdf->stream();
     }
 }

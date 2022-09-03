@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{__('messages.prescription')}}</title>
+    <title>{{__('messages.sale_invoice')}}</title>
     <style>
         @page {
              margin: 0px;
@@ -14,7 +14,7 @@
         body{
             margin:0;
             padding:20px;
-            padding-top:210px;
+            padding-top:180px;
             padding-bottom:100px;
             font-family: Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
             background-image:url("{{public_path('assets/images/background-pdf.png')}}");
@@ -72,7 +72,7 @@
         .footer-number-page::after{
             content: counter(page);
         }
-        .div-information-prescription{
+        .div-information-invoice{
             padding:10px;
         }
         .p-0{
@@ -128,7 +128,7 @@
             <img src="{{public_path('assets/images/logo-pdf.png')}}" onerror="this.onerror=null;this.src=`{{public_path('assets/images/default-image.png')}}`" alt="" class="img-header-logo">
         </div>
         <div class="div-header-title">
-            <span class="header-title">{{__('messages.prescription')}} : <span class="span-series"></span></span>
+            <span class="header-title">{{__('messages.sale_invoice')}} : <span class="span-series">N° {{$sale_invoice->series}}</span></span>
         </div>
     </header>
     <footer class="footer">
@@ -149,27 +149,74 @@
         </div>
     </footer>
     <main>
-        <div class="div-information-prescription">
+        <div class="div-information-invoice">
             <table width="100%">
                 <tbody>
                     <tr>
                         <td width="50%">
-                            <div><h3 class="m-0">{{__('messages.prescription_to')}} :</h3></div>
+                            <div><h3 class="m-0">{{__('messages.invoiced_to')}} :</h3></div>
                             <br>
-                            <div><b>{{__('messages.fullname')}} : {{$prescription->patient->fullname}}</b></div>
-                            <div><b>{{__('messages.email')}} : </b>{{$prescription->patient->email}}</div>
-                            <div><b>{{__('messages.address')}} : </b>{{$prescription->patient->address}}</div>
-                            <div><b>{{__('messages.phone')}} : </b>{{$prescription->patient->email}}</div>
+                            <div><b>{{__('messages.fullname')}} : {{$sale_invoice->patient->fullname}}</b></div>
+                            <div><b>{{__('messages.email')}} : </b>{{$sale_invoice->patient->email}}</div>
+                            <div><b>{{__('messages.address')}} : </b>{{$sale_invoice->patient->address}}</div>
+                            <div><b>{{__('messages.phone')}} : </b>{{$sale_invoice->patient->email}}</div>
                         </td>
                         <td width="15%" class="text-verticaly-top">
-                            <div><div><b>{{__('messages.date')}} : </b>{{\Carbon\Carbon::parse($prescription->start_date)->format('d/m/Y')}}</div></div>
+                            <div><div><b>{{__('messages.date')}} : </b>{{\Carbon\Carbon::parse($sale_invoice->start_date)->format('d/m/Y')}}</div></div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="div-table">
-            {!!$prescription->note!!}
+            <table class="table-sale-invoice">
+                <thead>
+                    <tr>
+                        <th>{{__('messages.designation')}}</th>
+                        <th>{{__('messages.quantity')}}</th>
+                        <th>{{__('messages.unit_price')}}</th>
+                        <th>{{__('messages.reduction')}}</th>
+                        <th>{{__('messages.ht_amount')}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($sale_invoice->sale_invoice_lines as $line)
+                        <tr>
+                            <td>
+                                <b>{{$line->designation}}</b>
+                                <p class="text-gray m-0">{!!$line->description!!}</p>
+                            </td>
+                            <td>{{$line->quantity}}</td>
+                            <td>{{$line->unit_price}} <b>MAD</b></td>
+                            <td>{{$line->reduction}} <b>MAD</b></td>
+                            <td>{{$line->ht_amount}} <b>MAD</b></td>
+                        </tr>
+                    @endforeach
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{__('messages.ht_amount')}}</td>
+                        <td>{{$sale_invoice->ht_total_amount}} <b>MAD</b></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{__('messages.tva_amount')}}</td>
+                        <td>{{$sale_invoice->tva_total_amount}} <b>MAD</b></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-white bg-black">{{__('messages.ttc_amount')}}</td>
+                        <td class="text-white bg-black">{{$sale_invoice->ttc_total_amount}} <b>MAD</b></td>
+                    </tr>
+                </tfoot>
+            </table>
         </div>
         <div class="div-signature">
             <p class="text-right"><b><u>Signature</u></b></p>
