@@ -404,7 +404,7 @@
         'the_TVA_total_amount_must_be_greater_or_equal_0_and_less_than_or_equal_100'=>'The TVA total amount must be greater or equal 0 and less than or equal 100 !',
         'the_designation_of_the_line_is_required'=>'The designation of the line :index is required !',
         'the_TTC_total_amount_is_required'=>'The TTC total amount is required !',
-        'the_TTC_total_amount_is_numéric'=>'The TTC total amount is numéric !',
+        'the_TTC_total_amount_is_not_numéric'=>'The TTC total amount is not numéric !',
         'the_TTC_total_amount_must_be_greater_than_0'=>'The TTC total amount must be greater than 0 !',
         'the_quantity_of_the_line_is_required'=>'The quantity of the line :index is required !',
         'the_quantity_of_the_line_is_not_numéric'=>'The quantity of the line :index is not numéric !',

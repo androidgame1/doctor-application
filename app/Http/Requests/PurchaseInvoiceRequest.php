@@ -82,7 +82,7 @@ class PurchaseInvoiceRequest extends FormRequest
                     'tva_total_amount.min'=>Lang::get('messages.the_TVA_total_amount_must_be_greater_or_equal_0_and_less_than_or_equal_100'),
                     'tva_total_amount.max'=>Lang::get('messages.the_TVA_total_amount_must_be_greater_or_equal_0_and_less_than_or_equal_100'),
                     'ttc_total_amount.required'=>Lang::get('messages.the_TTC_total_amount_is_required'),
-                    'ttc_total_amount.numeric'=>Lang::get('messages.the_TTC_total_amount_is_numéric'),
+                    'ttc_total_amount.numeric'=>Lang::get('messages.the_TTC_total_amount_is_not_numéric'),
                     'ttc_total_amount.gt'=>Lang::get('messages.the_TTC_total_amount_must_be_greater_than_0'),
         ];
         foreach ($this->designation as $key => $value) {
