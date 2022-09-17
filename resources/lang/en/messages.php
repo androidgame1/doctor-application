@@ -237,6 +237,9 @@
         'payment_completed' => 'Payment completed',
         'invoiced_to' => 'Invoiced to',
         'prescription_to' => 'Prescription to',
+        'me' => 'Me',
+        'you_can_edit_this_appointment' => 'You can edit this appointment.',
+        'you_can_not_edit_this_appointment' => 'You can not edit this appointment.',
         //End sentences
         //Start messages
         //Start act

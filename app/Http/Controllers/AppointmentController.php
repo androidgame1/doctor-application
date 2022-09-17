@@ -31,6 +31,7 @@ class AppointmentController extends Controller
 
         $appointments = Appointment::orderBy('id','desc')->where('administrator_id',$administrator_id)->get();
         foreach ($appointments as $value) {
+            $value->secretary = $value->secretary;
             $value->patient = $value->patient;
             $value->status_state = $value->status_state;
             $value->status = $value->status;

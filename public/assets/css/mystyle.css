@@ -122,3 +122,12 @@
 .border-green{
     border-color:rgb(8, 201, 191) !important;
 }
+.tooltipevent{
+    width:200px;
+    background:black;
+    position:absolute;
+    border-radius: 5px;
+    padding: 5px;
+    z-index:10001;
+    color:white;
+}

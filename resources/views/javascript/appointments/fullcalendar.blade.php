@@ -182,12 +182,16 @@ $(document).ready(function () {
 									title: appointment.patient.fullname,
                                     remark: appointment.remark,
                                     color: appointment.status.color,
+                                    secretary:appointment.secretary,
 									start: appointment.start_date,
                                     end: appointment.end_date,
                                     data_url_edit:data_url_edit,
                                     data_url_update:data_url_update,
                                     data_url_drop_or_resize:data_url_drop_or_resize
 								});
+                                
+                                
+                                
                             });
 							callback(events);
 						},error: function(xhr, ajaxOptions, thrownError) {
@@ -246,6 +250,12 @@ $(document).ready(function () {
                     let data_url_edit = event.data_url_edit
                     let _method = "post"
                     let _token = $("meta[name='csrf-token']").attr('content')
+                    @if(auth()->user()->is_secretary)
+                        let secretary_id = "{{auth()->user()->id}}"
+                        if([undefined,null,""].includes(event.secretary) || event.secretary.id != secretary_id){
+                            return;
+                        }
+                    @endif
                     $.ajax({
                         type:'post',
                         url:data_url_drop_or_resize,
@@ -274,6 +284,12 @@ $(document).ready(function () {
                     let data_url_edit = event.data_url_edit
                     let _method = "post"
                     let _token = $("meta[name='csrf-token']").attr('content')
+                    @if(auth()->user()->is_secretary)
+                        let secretary_id = "{{auth()->user()->id}}"
+                        if([undefined,null,""].includes(event.secretary) || event.secretary.id != secretary_id){
+                            return;
+                        }
+                    @endif
                     $.ajax({
                         type:'post',
                         url:data_url_drop_or_resize,
@@ -293,14 +309,48 @@ $(document).ready(function () {
                         }
                     })
                 },
-                eventMouseover: function (event,position)
-                {
-                    let x = position.pageX
-                    let y = position.pageY
-                },
-                eventMouseout: function (event) {
+                eventMouseover: function(calEvent, jsEvent) {
+                    let secretary = ""
+                    let remark = ""
+                    let message = ""
+                    @if(auth()->user()->is_administrator)
+                        if(![undefined,null,""].includes(calEvent.secretary)){
+                            secretary ='<p class="m-0 p-0"><span class="text-success">{{__("messages.secretary")}}</span> : '+ calEvent.secretary.fullname + '</p>'
+                        }
+                    @elseif(auth()->user()->is_secretary)
+                        let secretary_id = "{{auth()->user()->id}}"
+                        if(![undefined,null,""].includes(calEvent.secretary) && calEvent.secretary.id == secretary_id){
+                            secretary ='<p class="m-0 p-0"><span class="text-success">{{__("messages.secretary")}}</span> : {{__("messages.me")}}</p>'
+                            message = '<p class="text-success mt-2">{{__("messages.you_can_edit_this_appointment")}}</p>'
+                        }else{
+                            message = '<p class="text-danger mt-2">{{__("messages.you_can_not_edit_this_appointment")}}</p>'
+                        }
+                    @endif
+                    if(![undefined,null,""].includes(calEvent.remark)){
+                        remark='<p class="m-0 p-0"><span class="text-success">{{__("messages.remark")}}</span> : '+ calEvent.remark + '</p>'
+                    }
+                    var tooltip = '<div class="tooltipevent">' +
+                    secretary+
+                    '<p class="m-0 p-0"><span class="text-success">{{__("messages.patient")}}</span> : '+ calEvent.title + '</p>'+
+                    remark+
+                    message+
+                    '</div>';
+                    var $tooltip = $(tooltip).appendTo('body');
 
+                    $(this).mouseover(function(e) {
+                        $(this).css('z-index', 10000);
+                        $tooltip.fadeIn('500');
+                        $tooltip.fadeTo('10', 1.9);
+                    }).mousemove(function(e) {
+                        $tooltip.css('top', e.pageY + 10);
+                        $tooltip.css('left', e.pageX + 20);
+                    });
                 },
+
+                eventMouseout: function(calEvent, jsEvent) {
+                    $(this).css('z-index', 8);
+                    $('.tooltipevent').remove();
+                }
             });
             //on new event
             this.$saveCategoryBtn.on('click', function () {

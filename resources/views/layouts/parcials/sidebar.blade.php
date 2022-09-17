@@ -71,15 +71,15 @@
                         @if(auth()->user()->is_secretary)
                             <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_secretary) {{route('secretary.patients')}} @else javascript:void(0) @endif" aria-expanded="false">
                                 <i class="fa fa-users"></i>
-                                <span class="hide-menu">{{__('messages.Patients')}}</span></a>
+                                <span class="hide-menu">{{__('messages.patients')}}</span></a>
                             </li>
                             <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_secretary) {{route('secretary.calendar')}} @else javascript:void(0) @endif" aria-expanded="false">
                                 <i class="fa fa-calendar"></i>
-                                <span class="hide-menu">{{__('messages.Calendar')}}</span></a>
+                                <span class="hide-menu">{{__('messages.calendar')}}</span></a>
                             </li>
                             <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_secretary) {{route('secretary.appointments','appointments')}} @else javascript:void(0) @endif" aria-expanded="false">
                                 <i class="fa fa-calendar-o"></i>
-                                <span class="hide-menu">{{__('messages.Appointments')}}</span></a>
+                                <span class="hide-menu">{{__('messages.appointments')}}</span></a>
                             </li>
                         @endif
                         

@@ -102,8 +102,9 @@
     <script src="{{asset('assets/node_modules/calendar/jquery-ui.min.js')}}"></script>
     <script src="{{asset('assets/node_modules/moment/moment.js')}}"></script>
     <script src="{{asset('assets/node_modules/calendar/dist/fullcalendar.min.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.1.2/tinymce.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.1.2/tinymce.min.js"></script>
     <script src="{{asset('assets/node_modules/dropify/dist/js/dropify.min.js')}}"></script>
+
     <script>
         tinymce.init({
             selector: '.note-editor',

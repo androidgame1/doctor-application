@@ -236,6 +236,9 @@
         'payment_completed' => 'Paiement terminé',
         'invoiced_to' => 'Facturé à',
         'prescription_to' => 'Ordonnance à',
+        'me' => 'Moi',
+        'you_can_edit_this_appointment' => 'Vous pouvez modifier ce rendez-vous.',
+        'you_can_not_edit_this_appointment' => 'Vous ne pouvez pas modifier ce rendez-vous.',
         //End sentences
         //Start messages
         //Start act
