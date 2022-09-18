@@ -192,6 +192,16 @@
         //End buttons
         //Start sentences
         'total_administrators' => 'Total administrators',
+        'total_secretaries' => 'Total secretaries',
+        'total_suppliers' => 'Total suppliers',
+        'total_patients' => 'Total patients',
+        'total_products' => 'Total products',
+        'total_acts' => 'Total acts',
+        'total_prescriptions' => 'Total prescriptions',
+        'total_sale_invoices' => 'Total sale invoices',
+        'total_purchase_invoices' => 'Total purchase invoices',
+        'total_activities' => 'Total activities',
+        'total_appointments' => 'Total appointments',
         'activated_administrators' => 'Activated administrators',
         'deactivated_administrators' => 'Deactivated administrators',
         'YOU_SEEM_TO_BE_TRYING_TO_FIND_HIS_WAY_HOME' => 'YOU SEEM TO BE TRYING TO FIND HIS WAY HOME',

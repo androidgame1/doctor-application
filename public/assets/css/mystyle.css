@@ -122,6 +122,24 @@
 .border-green{
     border-color:rgb(8, 201, 191) !important;
 }
+.text-black{
+    color:black !important;
+}
+.bg-black{
+    background-color:black !important;
+}
+.border-black{
+    border-color:black !important;
+}
+.text-gray{
+    color:gray !important;
+}
+.bg-gray{
+    background-color:gray !important;
+}
+.border-gray{
+    border-color:gray !important;
+}
 .tooltipevent{
     width:200px;
     background:black;
