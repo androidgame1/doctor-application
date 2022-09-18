@@ -25,6 +25,116 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
+@if(auth()->user()->id_superadministrator)
+
+@elseif(auth()->user()->is_administrator && Route::current()->getName() == 'administrator.sale_invoices')
+    <div class="row">
+        <div class="col-12">
+            <div class="card-group">
+                <div class="card">
+                    <a href="{{route('administrator.sale_invoices.filter','0')}}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h3><i class="fa fa-users text-danger"></i></h3>
+                                            <p class="text-muted">{{__('messages.unpaid')}}</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <h2 class="counter text-danger">{{$count_unpaid_sale_invoices}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Column -->
+                <div class="card">
+                    <a href="{{route('administrator.sale_invoices.filter','1')}}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h3><i class="fa fa-users text-warning"></i></h3>
+                                            <p class="text-muted">{{__('messages.partiel')}}</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <h2 class="counter text-warning">{{$count_partiel_sale_invoices}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Column -->
+                <!-- Column -->
+                <div class="card">
+                    <a href="{{route('administrator.sale_invoices.filter','2')}}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h3><i class="fa fa-users text-success"></i></h3>
+                                            <p class="text-muted">{{__('messages.paid')}}</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <h2 class="counter text-success">{{$count_paid_sale_invoices}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Column -->
+                <div class="card">
+                    <a href="{{route('administrator.sale_invoices.filter','3')}}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h3><i class="fa fa-users text-danger"></i></h3>
+                                            <p class="text-muted">{{__('messages.canceled')}}</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <h2 class="counter text-danger">{{$count_canceled_sale_invoices}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div> 
+        </div>
+    </div>
+@endif
 <div class="row">
     <div class="col-12">
         <div class="card">

@@ -24,6 +24,30 @@ class SaleInvoiceController extends Controller
     {
         $user = Auth::user();
         $sale_invoices = Sale_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        $count_unpaid_sale_invoices = $sale_invoices->filter(function($value){
+            return $value->status == '0';
+        })->count();
+        $count_partiel_sale_invoices = $sale_invoices->filter(function($value){
+            return $value->status == '1';
+        })->count();
+        $count_paid_sale_invoices = $sale_invoices->filter(function($value){
+            return $value->status == '2';
+        })->count();
+        $count_canceled_sale_invoices = $sale_invoices->filter(function($value){
+            return $value->status == '3';
+        })->count();
+        $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        return view('sale_invoices.sale_invoices',compact('sale_invoices','patients','count_unpaid_sale_invoices','count_partiel_sale_invoices','count_paid_sale_invoices','count_canceled_sale_invoices'));
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter($item="")
+    {
+        $user = Auth::user();
+        $sale_invoices = Sale_invoice::orderBy('id','desc')->where(['administrator_id'=>$user->id,'status'=>$item])->get();
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
         return view('sale_invoices.sale_invoices',compact('sale_invoices','patients'));
     }

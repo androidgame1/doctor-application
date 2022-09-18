@@ -40,6 +40,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/act/{id}/destroy',[App\Http\Controllers\ActController::class,'destroy'])->name('administrator.act.destroy');
     //routes purchase_invoices controller
     Route::get('/purchase_invoices',[App\Http\Controllers\PurchaseInvoiceController::class,'index'])->name('administrator.purchase_invoices');
+    Route::get('/purchase_invoices/{status}/filter',[App\Http\Controllers\PurchaseInvoiceController::class,'filter'])->name('administrator.purchase_invoices.filter');
     Route::get('/purchase_invoice/{id}/show',[App\Http\Controllers\PurchaseInvoiceController::class,'show'])->name('administrator.purchase_invoice.show');
     Route::get('/purchase_invoice/create',[App\Http\Controllers\PurchaseInvoiceController::class,'create'])->name('administrator.purchase_invoice.create');
     Route::post('/purchase_invoice/store',[App\Http\Controllers\PurchaseInvoiceController::class,'store'])->name('administrator.purchase_invoice.store');
@@ -59,6 +60,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/purchase_invoice_payment/{id}/destroy',[App\Http\Controllers\PurchaseInvoicePaymentController::class,'destroy'])->name('administrator.purchase_invoice_payment.destroy');
     //routes sale_invoices controller
     Route::get('/sale_invoices',[App\Http\Controllers\SaleInvoiceController::class,'index'])->name('administrator.sale_invoices');
+    Route::get('/sale_invoices/{status}/filter',[App\Http\Controllers\SaleInvoiceController::class,'filter'])->name('administrator.sale_invoices.filter');
     Route::get('/sale_invoice/{id}/show',[App\Http\Controllers\SaleInvoiceController::class,'show'])->name('administrator.sale_invoice.show');
     Route::get('/sale_invoice/create',[App\Http\Controllers\SaleInvoiceController::class,'create'])->name('administrator.sale_invoice.create');
     Route::post('/sale_invoice/store',[App\Http\Controllers\SaleInvoiceController::class,'store'])->name('administrator.sale_invoice.store');

@@ -20,10 +20,34 @@ class PurchaseInvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($item="")
     {
         $user = Auth::user();
         $purchase_invoices = Purchase_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        $count_unpaid_purchase_invoices = $purchase_invoices->filter(function($value){
+            return $value->status == '0';
+        })->count();
+        $count_partiel_purchase_invoices = $purchase_invoices->filter(function($value){
+            return $value->status == '1';
+        })->count();
+        $count_paid_purchase_invoices = $purchase_invoices->filter(function($value){
+            return $value->status == '2';
+        })->count();
+        $count_canceled_purchase_invoices = $purchase_invoices->filter(function($value){
+            return $value->status == '3';
+        })->count();
+        $suppliers = Supplier::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        return view('purchase_invoices.purchase_invoices',compact('purchase_invoices','suppliers','count_unpaid_purchase_invoices','count_partiel_purchase_invoices','count_paid_purchase_invoices','count_canceled_purchase_invoices'));
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter($item="")
+    {
+        $user = Auth::user();
+        $purchase_invoices = Purchase_invoice::orderBy('id','desc')->where(['administrator_id'=>$user->id,'status'=>$item])->get();
         $suppliers = Supplier::orderBy('id','desc')->where('administrator_id',$user->id)->get();
         return view('purchase_invoices.purchase_invoices',compact('purchase_invoices','suppliers'));
     }
