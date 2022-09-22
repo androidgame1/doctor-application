@@ -23,8 +23,14 @@ class ActivityController extends Controller
     {
         $user = Auth::user();
         $activities = Activity::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        $count_activated_activities = $activities->filter(function($value){
+            return $value->status == 0;
+        })->count();
+        $count_canceled_activities = $activities->filter(function($value){
+            return $value->status == 1;
+        })->count();
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('activities.activities',compact('activities','patients'));
+        return view('activities.activities',compact('activities','patients','count_activated_activities','count_canceled_activities'));
     }
 
     /**
@@ -214,5 +220,17 @@ class ActivityController extends Controller
             toastr()->warning(Lang::get('messages.the_activity_has_not_canceled_by_success'));
         }
         return redirect()->back();
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter($item="")
+    {
+        $user = Auth::user();
+        $activities = Activity::orderBy('id','desc')->where(['administrator_id'=>$user->id,'status'=>$item])->get();
+        $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        return view('activities.activities',compact('activities','patients'));
     }
 }

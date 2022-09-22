@@ -9,6 +9,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::put('/update-profile', [App\Http\Controllers\UserController::class, 'updateProfile'])->name('administrator.profile.update');
     //routes user controller
     Route::get('/users/{role}',[App\Http\Controllers\UserController::class,'index'])->name('administrator.users');
+    Route::get('/users/{role}/{validation}',[App\Http\Controllers\UserController::class,'filter'])->name('administrator.users.filter');
     Route::get('/user/{role}/{id}/show',[App\Http\Controllers\UserController::class,'show'])->name('administrator.user.show');
     Route::get('/user/{role}/create',[App\Http\Controllers\UserController::class,'create'])->name('administrator.user.create');
     Route::post('/user/{role}/store',[App\Http\Controllers\UserController::class,'store'])->name('administrator.user.store');
@@ -80,6 +81,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/sale_invoice_payment/{id}/destroy',[App\Http\Controllers\SaleInvoicePaymentController::class,'destroy'])->name('administrator.sale_invoice_payment.destroy');
     //routes purchase_invoices controller
     Route::get('/activities',[App\Http\Controllers\ActivityController::class,'index'])->name('administrator.activities');
+    Route::get('/activities/{status}/filter',[App\Http\Controllers\ActivityController::class,'filter'])->name('administrator.activities.filter');
     Route::get('/activity/{id}/show',[App\Http\Controllers\ActivityController::class,'show'])->name('administrator.activity.show');
     Route::get('/activity/create',[App\Http\Controllers\ActivityController::class,'create'])->name('administrator.activity.create');
     Route::post('/activity/store',[App\Http\Controllers\ActivityController::class,'store'])->name('administrator.activity.store');

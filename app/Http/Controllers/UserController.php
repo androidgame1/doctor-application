@@ -36,7 +36,16 @@ class UserController extends Controller
             return view('error');
         }
         $users = User::where(['administrator_id'=>$user->id,'role'=>$rolevalue])->get();
-        return view('users.users',compact('users','role'));
+        $count_no_validated_users = $users->filter(function($value){
+            return $value->isvalidate =='0';
+        })->count();
+        $count_no_activated_users = $users->filter(function($value){
+            return $value->isvalidate =='1';
+        })->count();
+        $count_activated_users = $users->filter(function($value){
+            return $value->isvalidate =='2';
+        })->count();
+        return view('users.users',compact('users','role','count_no_validated_users','count_no_activated_users','count_activated_users'));
     }
 
     /**
@@ -428,6 +437,33 @@ class UserController extends Controller
             return view('error');
         }
         
+    }
+    /**
+     * Filter a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function filter($role,$validation)
+    {
+        $user = Auth::user();
+        $rolevalue="";
+        if($user->is_superadministrator){
+            if($role == "administrator"){
+                $rolevalue=1;
+            }else{
+                return view('error');
+            }
+        }else if($user->is_administrator){
+            if($role == "secretary"){
+                $rolevalue=2;
+            }else{
+                return view('error');
+            }
+        }else{
+            return view('error');
+        }
+        $users = User::where(['administrator_id'=>$user->id,'role'=>$rolevalue,'isvalidate'=>$validation])->get();
+        return view('users.users',compact('users','role'));
     }
 
 }
