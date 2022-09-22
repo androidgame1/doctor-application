@@ -25,23 +25,75 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-@if(auth()->user()->is_administrator && Route::current()->getName() == 'administrator.activities')
+@if(auth()->user()->id_superadministrator)
+
+@elseif(auth()->user()->is_administrator && Route::current()->getName() == 'administrator.activities')
     <div class="row">
         <div class="col-12">
             <div class="card-group">
-                <!-- Column -->
                 <div class="card">
-                    <a href="{{route('administrator.activities.filter',0)}}">
+                    <a href="{{route('administrator.activities.filter','0')}}">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="d-flex no-block align-items-center">
                                         <div>
-                                            <h3><i class="fa fa-users text-success"></i></h3>
-                                            <p class="text-muted">{{__('messages.activated')}}</p>
+                                            <h3><i class="fa fa-file-text text-danger"></i></h3>
+                                            <p class="text-muted">{{__('messages.unpaid')}}</p>
                                         </div>
                                         <div class="ml-auto">
-                                            <h2 class="counter text-success">{{$count_activated_activities}}</h2>
+                                            <h2 class="counter text-danger">{{$count_unpaid_activities}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Column -->
+                <div class="card">
+                    <a href="{{route('administrator.activities.filter','1')}}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h3><i class="fa fa-file-text text-warning"></i></h3>
+                                            <p class="text-muted">{{__('messages.partiel')}}</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <h2 class="counter text-warning">{{$count_partiel_activities}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Column -->
+                <!-- Column -->
+                <div class="card">
+                    <a href="{{route('administrator.activities.filter','2')}}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h3><i class="fa fa-file-text text-success"></i></h3>
+                                            <p class="text-muted">{{__('messages.paid')}}</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <h2 class="counter text-success">{{$count_paid_activities}}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -56,13 +108,13 @@
                 </div>
                 <!-- Column -->
                 <div class="card">
-                    <a href="{{route('administrator.activities.filter',1)}}">
+                    <a href="{{route('administrator.activities.filter','3')}}">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="d-flex no-block align-items-center">
                                         <div>
-                                            <h3><i class="fa fa-users text-danger"></i></h3>
+                                            <h3><i class="fa fa-file-text text-danger"></i></h3>
                                             <p class="text-muted">{{__('messages.canceled')}}</p>
                                         </div>
                                         <div class="ml-auto">
@@ -122,10 +174,15 @@
                                                 <a href="@if(auth()->user()->is_administrator){{route('administrator.activity.show',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
                                                 <a href="@if(auth()->user()->is_administrator){{route('administrator.activity.edit',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.edit')}}"> <i class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
                                                 <a href="@if(auth()->user()->is_administrator){{route('administrator.activity.duplicate',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.duplicate')}}"> <i class="fa fa-files-o text-warning m-r-10 icon-datatable"></i> </a>
+                                                <a href="@if(auth()->user()->is_administrator){{route('administrator.activity.pdf',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.pdf')}}"> <i class="fa fa-file text-primary m-r-10 icon-datatable"></i> </a>
                                                 @if($value->status == '0')
+                                                    <a href="@if(auth()->user()->is_administrator){{route('administrator.activity_payment.create',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.create')}}"> <i class="fa fa-money text-purple m-r-10 icon-datatable"></i> </a>
                                                     <a href="javascript:void(0)" class="btn-cancel-item" data-toggle="modal" data-target="#div-cancel-old-item" data-url-cancel="@if(auth()->user()->is_administrator){{route('administrator.activity.cancel',$value->id)}}@else javascript:void(0) @endif" data-title="{{__('messages.cancel_activity')}}" data-message="{{__('messages.do_you_want_to_cancel_this')}} {{__('messages.activity')}} ?" data-toggle="tooltip" title="{{__('messages.cancel')}}"> <i class="fa fa-ban text-danger icon-datatable"></i> </a>
                                                 @elseif($value->status == '1')
+                                                    <a href="@if(auth()->user()->is_administrator){{route('administrator.activity_payment.create',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.create')}}"> <i class="fa fa-money text-brown m-r-10 icon-datatable"></i> </a>
                                                     <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal" data-target="#div-destroy-old-item" data-url-destroy="@if(auth()->user()->is_administrator){{route('administrator.activity.destroy',$value->id)}}@else javascript:void(0) @endif" data-title="{{__('messages.delete_activity')}}" data-message="{{__('messages.do_you_want_to_delete_this')}} {{__('messages.activity')}} ?" data-toggle="tooltip" title="{{__('messages.delete')}}"> <i class="fa fa-trash text-danger icon-datatable"></i> </a>
+                                                @elseif($value->status == '2')
+                                                    <a href="@if(auth()->user()->is_administrator){{route('administrator.activity_payments',$value->id)}}@else javascript:void(0) @endif" data-toggle="tooltip" title="{{__('messages.activity_payments')}}"> <i class="fa fa-money text-gray m-r-10 icon-datatable"></i> </a>
                                                 @endif
                                             </td>
                                         </tr>

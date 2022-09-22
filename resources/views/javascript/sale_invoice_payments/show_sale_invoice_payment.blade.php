@@ -22,7 +22,6 @@
                         $("#table-show-old-sale-invoice-payment").find('span[name="ttc_amount"]').text(result.sale_invoice.ttc_total_amount)
                         $("#table-show-old-sale-invoice-payment").find('span[name="given_amount"]').text(result.given_amount)
                         $("#table-show-old-sale-invoice-payment").find('span[name="remaining_amount"]').text(result.remaining_amount)
-                        $("#table-show-old-sale-invoice-payment").find('span[name="remaining_amount"]').text(result.remaining_amount)
                         $("#table-show-old-sale-invoice-payment").find('span[name="way_of_payment"]').text(result.way_of_payment)
                         $("#table-show-old-sale-invoice-payment").find('span[name="remark"]').text(result.remark)
                         $("#table-show-old-sale-invoice-payment").find('span[name="date"]').text(moment(result.date).format('DD/MM/YYYY'))

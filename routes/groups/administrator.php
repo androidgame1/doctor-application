@@ -90,6 +90,15 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/activity/{id}/destroy',[App\Http\Controllers\ActivityController::class,'destroy'])->name('administrator.activity.destroy');
     Route::get('/activity/{id}/cancel',[App\Http\Controllers\ActivityController::class,'cancel'])->name('administrator.activity.cancel');
     Route::get('/activity/{id}/duplicate',[App\Http\Controllers\ActivityController::class,'duplicate'])->name('administrator.activity.duplicate');
+    Route::get('/activity/{id}/pdf',[App\Http\Controllers\ActivityController::class,'pdf'])->name('administrator.activity.pdf');
+    //routes activity_payment controller
+    Route::get('/activity_payments/{activity_id}',[App\Http\Controllers\ActivityPaymentController::class,'index'])->name('administrator.activity_payments');
+    Route::get('/activity_payment/{id}/show',[App\Http\Controllers\ActivityPaymentController::class,'show'])->name('administrator.activity_payment.show');
+    Route::get('/activity_payment/{activity_id}/create',[App\Http\Controllers\ActivityPaymentController::class,'create'])->name('administrator.activity_payment.create');
+    Route::post('/activity_payment/store',[App\Http\Controllers\ActivityPaymentController::class,'store'])->name('administrator.activity_payment.store');
+    Route::get('/activity_payment/{id}/edit',[App\Http\Controllers\ActivityPaymentController::class,'edit'])->name('administrator.activity_payment.edit');
+    Route::put('/activity_payment/{id}/update',[App\Http\Controllers\ActivityPaymentController::class,'update'])->name('administrator.activity_payment.update');
+    Route::delete('/activity_payment/{id}/destroy',[App\Http\Controllers\ActivityPaymentController::class,'destroy'])->name('administrator.activity_payment.destroy');
     //routes patient controller
     Route::get('/patients',[App\Http\Controllers\PatientController::class,'index'])->name('administrator.patients');
     Route::get('/patient/{id}/show',[App\Http\Controllers\PatientController::class,'show'])->name('administrator.patient.show');

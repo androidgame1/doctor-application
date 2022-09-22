@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ActivityRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Helper;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Lang;
 
 class ActivityController extends Controller
@@ -23,14 +24,20 @@ class ActivityController extends Controller
     {
         $user = Auth::user();
         $activities = Activity::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        $count_activated_activities = $activities->filter(function($value){
-            return $value->status == 0;
+        $count_unpaid_activities = $activities->filter(function($value){
+            return $value->status == '0';
+        })->count();
+        $count_partiel_activities = $activities->filter(function($value){
+            return $value->status == '1';
+        })->count();
+        $count_paid_activities = $activities->filter(function($value){
+            return $value->status == '2';
         })->count();
         $count_canceled_activities = $activities->filter(function($value){
-            return $value->status == 1;
+            return $value->status == '3';
         })->count();
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('activities.activities',compact('activities','patients','count_activated_activities','count_canceled_activities'));
+        return view('activities.activities',compact('activities','patients','count_unpaid_activities','count_partiel_activities','count_partiel_activities','count_paid_activities','count_canceled_activities'));
     }
 
     /**
@@ -232,5 +239,17 @@ class ActivityController extends Controller
         $activities = Activity::orderBy('id','desc')->where(['administrator_id'=>$user->id,'status'=>$item])->get();
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
         return view('activities.activities',compact('activities','patients'));
+    }
+    /**
+     * PDF the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    function pdf($id){
+        $user = Auth::user();
+        $activity = Activity::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
+        $pdf = Pdf::loadView('activities.pdf_activity', compact('activity'));
+        return $pdf->stream();
     }
 }

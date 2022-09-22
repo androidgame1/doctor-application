@@ -7,6 +7,7 @@ use App\Models\Purchase_invoice_payment;
 use App\Models\Sale_invoice;
 use App\Models\Sale_invoice_payment;
 use App\Models\Activity;
+use App\Models\Activity_payment;
 use Illuminate\Support\Facades\Auth;
 
 class Helper{
@@ -66,6 +67,29 @@ class Helper{
         }
         return $series; 
         
+    }
+
+    function remainingAmountActivityPayment($activity_id,$given_amount=0){
+        $user = Auth::user();
+        $activity = Activity::where(['administrator_id'=>$user->id,'id'=>$activity_id])->firstOrFail();
+        $activity_payment = Activity_payment::where(['administrator_id'=>$user->id,'activity_id'=>$activity_id])->get();
+        $remaining_amount = floatval($activity->ht_total_amount) - floatval($activity_payment->sum('given_amount')) - floatval($given_amount);
+        return $remaining_amount;
+    }
+
+    function remainingAmountPlusEditedAmountActivityPayment($activity_id,$given_amount=0){
+        $user = Auth::user();
+        $activity = Activity::where(['administrator_id'=>$user->id,'id'=>$activity_id])->firstOrFail();
+        $activity_payment = Activity_payment::where(['administrator_id'=>$user->id,'activity_id'=>$activity_id])->get();
+        $remaining_amount = floatval($activity->ht_total_amount) - floatval($activity_payment->sum('given_amount')) + floatval($given_amount);
+        return $remaining_amount;
+    }
+
+    function givenAmountActivityPayment($activity_id){
+        $user = Auth::user();
+        $activity_payment = Activity_payment::where(['administrator_id'=>$user->id,'activity_id'=>$activity_id])->get();
+        $given_amount = floatval($activity_payment->sum('given_amount'));
+        return $given_amount;
     }
 
     function remainingAmountSaleInvoicePayment($sale_invoice_id,$given_amount=0){
