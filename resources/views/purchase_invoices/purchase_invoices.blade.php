@@ -38,7 +38,7 @@
                                 <div class="col-md-12">
                                     <div class="d-flex no-block align-items-center">
                                         <div>
-                                            <h3><i class="fa fa-users text-danger"></i></h3>
+                                            <h3><i class="fa fa-file-text text-danger"></i></h3>
                                             <p class="text-muted">{{__('messages.unpaid')}}</p>
                                         </div>
                                         <div class="ml-auto">
@@ -63,7 +63,7 @@
                                 <div class="col-md-12">
                                     <div class="d-flex no-block align-items-center">
                                         <div>
-                                            <h3><i class="fa fa-users text-warning"></i></h3>
+                                            <h3><i class="fa fa-file-text text-warning"></i></h3>
                                             <p class="text-muted">{{__('messages.partiel')}}</p>
                                         </div>
                                         <div class="ml-auto">
@@ -89,7 +89,7 @@
                                 <div class="col-md-12">
                                     <div class="d-flex no-block align-items-center">
                                         <div>
-                                            <h3><i class="fa fa-users text-success"></i></h3>
+                                            <h3><i class="fa fa-file-text text-success"></i></h3>
                                             <p class="text-muted">{{__('messages.paid')}}</p>
                                         </div>
                                         <div class="ml-auto">
@@ -114,7 +114,7 @@
                                 <div class="col-md-12">
                                     <div class="d-flex no-block align-items-center">
                                         <div>
-                                            <h3><i class="fa fa-users text-danger"></i></h3>
+                                            <h3><i class="fa fa-file-text text-danger"></i></h3>
                                             <p class="text-muted">{{__('messages.canceled')}}</p>
                                         </div>
                                         <div class="ml-auto">
