@@ -46,6 +46,8 @@
         'activity_payments' => 'Activity payments',
         'purchase_invoice_payment' => 'Purchase invoice payment',
         'purchase_invoice_payments' => 'Purchase invoice payments',
+        'delivery_order' => 'Delivery order',
+        'delivery_orders' => 'Delivery orders',
         'new_administrator' => 'New administrator',
         'edit_administrator' => 'Edit administrator',
         'show_administrator' => 'Show administrator',
@@ -128,6 +130,10 @@
         'edit_purchase_invoice_payment' => 'Edit purchase invoice payment',
         'show_purchase_invoice_payment' => 'Show purchase invoice payment',
         'delete_purchase_invoice_payment' => 'Delete purchase invoice payment',
+        'new_delivery_order' => 'New delivery order',
+        'edit_delivery_order' => 'Edit delivery order',
+        'show_delivery_order' => 'Show delivery order',
+        'delete_delivery_order' => 'Delete delivery order',
         //End title
         //Start fields
         'cin' => 'CIN',
@@ -169,6 +175,7 @@
         'days' => 'Days',
         'way_of_payment' => 'Way of payment',
         'justification' => 'Justification',
+        'file' => 'file',
         'given_amount' => 'Given amount',
         'paid_amount' => 'Paid amount',
         'total_given_amount' => 'Total given amount',
@@ -340,6 +347,24 @@
         'the_purchase_invoice_payment_has_deleted_by_success' => 'The purchase invoice payment has deleted by success.',
         'the_purchase_invoice_payment_has_not_deleted_by_success' => 'The purchase invoice payment has not deleted by success !',
         //End purchase_invoice_payment
+        //Start activity_payment
+        'the_activity_payment_has_inserted_by_success' => 'The activity payment has inserted by success.',
+        'the_payment_has_inserted_by_success_but_the_status_of_the_activity_has_not_changed' => 'The payment has inserted by success , but the status of the activity has not changed !',
+        'the_activity_payment_has_not_inserted_by_success' => 'The activity payment has not inserted by success !',
+        'the_activity_payment_has_updated_by_success' => 'The activity payment has updated by success.',
+        'the_payment_has_updated_by_success_but_the_status_of_the_activity_has_not_changed' => 'The payment has updated by success , but the status of the activity has not changed !',
+        'the_activity_payment_has_not_updated_by_success' => 'The activity payment has not updated by success !',
+        'the_activity_payment_has_deleted_by_success' => 'The activity payment has deleted by success.',
+        'the_activity_payment_has_not_deleted_by_success' => 'The activity payment has not deleted by success !',
+        //End activity_payment
+        //Start delivery order
+        'the_delivery_order_has_inserted_by_success' => 'The delivery order has inserted by success.',
+        'the_delivery_order_has_not_inserted_by_success' => 'The delivery order has not inserted by success !',
+        'the_delivery_order_has_updated_by_success' => 'The delivery order has updated by success.',
+        'the_delivery_order_has_not_updated_by_success' => 'The delivery order has not updated by success !',
+        'the_delivery_order_has_deleted_by_success' => 'The delivery order has deleted by success.',
+        'the_delivery_order_has_not_deleted_by_success' => 'The delivery order has not deleted by success !',
+        //End delivery order
         //Start status
         'the_status_has_inserted_by_success' => 'The status has inserted by success.',
         'the_status_has_not_inserted_by_success' => 'The status has not inserted by success !',
@@ -411,6 +436,7 @@
         //End messages
         //Start request
         'the_series_is_required'=>'The series is required !',
+        'the_series_is_already_exists'=>'The series is already exists !',
         'the_supplier_is_required'=>'The supplier is required !',
         'the_date_is_required'=>'The date is required !',
         'the_date_is_not_correct'=>'The date is not correct !',
@@ -469,8 +495,8 @@
         'the_CIN_is_required'=>'The CIN is required !',
         'the_CIN_is_already_exists'=>'The CIN is already exists !',
         'the_fullname_is_required'=>'The fullname is required !',
-        'the_email_is_already_exists '=>'The email is already exists !',
-        'the_email_is_not_exists '=>'The email is not exists !',
+        'the_email_is_already_exists'=>'The email is already exists !',
+        'the_email_is_not_exists'=>'The email is not exists !',
         'the_address_is_required'=>'The address is required !',
         'the_phone_is_required'=>'The phone is required !',
         'the_city_is_required'=>'The city is required !',

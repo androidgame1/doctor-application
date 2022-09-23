@@ -23,6 +23,10 @@
                                 <i class="fa fa-th-large"></i>
                                 <span class="hide-menu">{{__('messages.products')}}</span></a>
                             </li>
+                            <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_administrator) {{route('administrator.delivery_orders')}} @else javascript:void(0) @endif" aria-expanded="false">
+                                <i class="fa fa-file"></i>
+                                <span class="hide-menu">{{__('messages.delivery_orders')}}</span></a>
+                            </li>
                             <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_administrator) {{route('administrator.purchase_invoices')}} @else javascript:void(0) @endif" aria-expanded="false">
                                 <i class="fa fa-file"></i>
                                 <span class="hide-menu">{{__('messages.purchase_invoices')}}</span></a>

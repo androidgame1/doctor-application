@@ -46,6 +46,8 @@
         'activity_payments' => 'Paiements d\'activités de vente',
         'purchase_invoice_payment' => 'Paiement de facture d\'achat',
         'purchase_invoice_payments' => 'Paiements de facture d\'achat',
+        'delivery_order' => 'Bon de livraison',
+        'delivery_orders' => 'Bons de livraison',
         'new_administrator' => 'Nouvel administrateur',
         'edit_administrator' => 'Modifier l\'administrateur',
         'show_administrator' => 'Afficher l\'administrateur',
@@ -123,10 +125,14 @@
         'edit_activity_payment' => 'Modifier le paiement d\'activité',
         'show_activity_payment' => 'Afficher le paiement d\'activité',
         'delete_activity_payment' => 'Supprimer le paiement d\'activité',
-        'new_purchase_invoice_payment' => 'Nouveau paiement de facture d\'achat',
+        'new_purchase_invoice_payment' => 'Nouveau paiement de la facture d\'achat',
         'edit_purchase_invoice_payment' => 'Modifier le paiement de la facture d\'achat',
         'show_purchase_invoice_payment' => 'Afficher le paiement de la facture d\'achat',
         'delete_purchase_invoice_payment' => 'Supprimer le paiement de la facture d\'achat',
+        'new_delivery_order' => 'Nouveau bon de livraison',
+        'edit_delivery_order' => 'Modifier le bon de livraison',
+        'show_delivery_order' => 'Afficher le bon de livraison',
+        'delete_delivery_order' => 'Supprimer le bon de livraison',
         //End title
         //Start fields
         'cin' => 'CIN',
@@ -168,6 +174,7 @@
         'days' => 'jours',
         'way_of_payment' => 'Mode de paiement',
         'justification' => 'Justification',
+        'file' => 'Fichier',
         'given_amount' => 'Montant donné',
         'paid_amount' => 'Montant payé',
         'total_given_amount' => 'Montant total donné',
@@ -339,6 +346,24 @@
         'the_purchase_invoice_payment_has_deleted_by_success' => 'Le paiement de la facture d\'achat a été supprimé avec succès.',
         'the_purchase_invoice_payment_has_not_deleted_by_success' => 'Le paiement de la facture d\'achat n\'a pas été supprimé par succès !',
         //End purchase_invoice_payment
+        //Start activity payment
+        'the_activity_payment_has_inserted_by_success' => 'Le paiement d\'activité a été inséré par succès.',
+        'the_payment_has_inserted_by_success_but_the_status_of_the_purchase_invoice_has_not_changed' => 'Le paiement a été inséré avec succès, mais le statut du paiement d\'activité n\'a pas changé !',
+        'the_activity_payment_has_not_inserted_by_success' => 'Le paiement d\'activité n\'a pas été inséré par succès !',
+        'the_activity_payment_has_updated_by_success' => 'Le paiement d\'activité a été mis à jour par succès.',
+        'the_payment_has_updated_by_success_but_the_status_of_the_purchase_invoice_has_not_changed' => 'Le paiement a été mis à jour avec succès, mais le statut du paiement d\'activité n\'a pas changé !',
+        'the_activity_payment_has_not_updated_by_success' => 'Le paiement d\'activité n\'a pas été mis à jour par succès !',
+        'the_activity_payment_has_deleted_by_success' => 'Le paiement d\'activité a été supprimé avec succès.',
+        'the_activity_payment_has_not_deleted_by_success' => 'Le paiement d\'activité n\'a pas été supprimé par succès !',
+        //End activity payment
+        //Start delivery order
+        'the_delivery_order_has_inserted_by_success' => 'Le bon de livraison a été inséré par succès.',
+        'the_delivery_order_has_not_inserted_by_success' => 'Le bon de livraison n\'a pas été inséré par succès !',
+        'the_delivery_order_has_updated_by_success' => 'Le bon de livraison a été mis à jour par succès.',
+        'the_delivery_order_has_not_updated_by_success' => 'Le bon de livraison n\'a pas été mis à jour par succès !',
+        'the_delivery_order_has_deleted_by_success' => 'Le bon de livraison a été supprimé avec succès.',
+        'the_delivery_order_has_not_deleted_by_success' => 'Le bon de livraison n\'a pas été supprimé par succès !',
+        //End delivery order
         //Start status
         'the_status_has_inserted_by_success' => 'Le statut a été inséré par succès.',
         'the_status_has_not_inserted_by_success' => 'Le statut n\'a pas été inséré par succès !',
@@ -410,6 +435,7 @@
         //End messages
         //Start request
         'the_series_is_required'=>'La série est obligatoire !',
+        'the_series_is_already_exists'=>'La série existe déjà !',
         'the_supplier_is_required'=>'Le fournisseur est obligatoire !',
         'the_date_is_required'=>'La date est obligatoire !',
         'the_date_is_not_correct'=>'La date n\'est pas correcte !',
@@ -468,8 +494,8 @@
         'the_CIN_is_required'=>'Le CIN est obligatoire !',
         'the_CIN_is_already_exists'=>'Le CIN existe déjà !',
         'the_fullname_is_required'=>'Le nom complet est obligatoire !',
-        'the_email_is_already_exists '=>'L\'e-mail existe déjà !',
-        'the_email_is_not_exists '=>'L\'e-mail n\'existe pas !',
+        'the_email_is_already_exists'=>'L\'e-mail existe déjà !',
+        'the_email_is_not_exists'=>'L\'e-mail n\'existe pas !',
         'the_address_is_required'=>'L\'adresse est obligatoire !',
         'the_phone_is_required'=>'Le téléphone est obligatoire !',
         'the_city_is_required'=>'La ville est obligatoire !',

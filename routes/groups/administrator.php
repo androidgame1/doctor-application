@@ -99,6 +99,15 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/activity_payment/{id}/edit',[App\Http\Controllers\ActivityPaymentController::class,'edit'])->name('administrator.activity_payment.edit');
     Route::put('/activity_payment/{id}/update',[App\Http\Controllers\ActivityPaymentController::class,'update'])->name('administrator.activity_payment.update');
     Route::delete('/activity_payment/{id}/destroy',[App\Http\Controllers\ActivityPaymentController::class,'destroy'])->name('administrator.activity_payment.destroy');
+    //routes delivery order controller
+    Route::get('/delivery_orders',[App\Http\Controllers\DeliveryOrderController::class,'index'])->name('administrator.delivery_orders');
+    Route::get('/delivery_order/{id}/show',[App\Http\Controllers\DeliveryOrderController::class,'show'])->name('administrator.delivery_order.show');
+    Route::get('/delivery_order/create',[App\Http\Controllers\DeliveryOrderController::class,'create'])->name('administrator.delivery_order.create');
+    Route::post('/delivery_order/store',[App\Http\Controllers\DeliveryOrderController::class,'store'])->name('administrator.delivery_order.store');
+    Route::get('/delivery_order/{id}/edit',[App\Http\Controllers\DeliveryOrderController::class,'edit'])->name('administrator.delivery_order.edit');
+    Route::put('/delivery_order/{id}/update',[App\Http\Controllers\DeliveryOrderController::class,'update'])->name('administrator.delivery_order.update');
+    Route::delete('/delivery_order/{id}/destroy',[App\Http\Controllers\DeliveryOrderController::class,'destroy'])->name('administrator.delivery_order.destroy');
+    Route::get('/delivery_order/{id}/duplicate',[App\Http\Controllers\DeliveryOrderController::class,'duplicate'])->name('administrator.delivery_order.duplicate');
     //routes patient controller
     Route::get('/patients',[App\Http\Controllers\PatientController::class,'index'])->name('administrator.patients');
     Route::get('/patient/{id}/show',[App\Http\Controllers\PatientController::class,'show'])->name('administrator.patient.show');
