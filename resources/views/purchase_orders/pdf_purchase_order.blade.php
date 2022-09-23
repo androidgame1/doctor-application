@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{__('messages.prescription')}}</title>
+    <title>{{__('messages.purchase_order')}}</title>
     <style>
         @page {
              margin: 0px;
@@ -72,7 +72,7 @@
         .footer-number-page::after{
             content: counter(page);
         }
-        .div-information-prescription{
+        .div-information-purchase_order{
             padding:10px;
         }
         .p-0{
@@ -128,7 +128,7 @@
             <img src="{{public_path('assets/images/logo-pdf.png')}}" onerror="this.onerror=null;this.src=`{{public_path('assets/images/default-image.png')}}`" alt="" class="img-header-logo">
         </div>
         <div class="div-header-title">
-            <span class="header-title">{{__('messages.prescription')}} : <span class="span-series">N° {{$prescription->id}}</span></span>
+            <span class="header-title">{{__('messages.purchase_order')}} : <span class="span-series">N° {{$purchase_order->id}}</span></span>
         </div>
     </header>
     <footer class="footer">
@@ -149,27 +149,27 @@
         </div>
     </footer>
     <main>
-        <div class="div-information-prescription">
+        <div class="div-information-purchase_order">
             <table width="100%">
                 <tbody>
                     <tr>
                         <td width="50%">
-                            <div><h3 class="m-0">{{__('messages.prescription_to')}} :</h3></div>
+                            <div><h3 class="m-0">{{__('messages.purchase_order_to')}} :</h3></div>
                             <br>
-                            <div><b>{{__('messages.fullname')}} : {{$prescription->patient->fullname}}</b></div>
-                            <div><b>{{__('messages.email')}} : </b>{{$prescription->patient->email}}</div>
-                            <div><b>{{__('messages.address')}} : </b>{{$prescription->patient->address}}</div>
-                            <div><b>{{__('messages.phone')}} : </b>{{$prescription->patient->phone}}</div>
+                            <div><b>{{__('messages.fullname')}} : {{$purchase_order->supplier->fullname}}</b></div>
+                            <div><b>{{__('messages.email')}} : </b>{{$purchase_order->supplier->email}}</div>
+                            <div><b>{{__('messages.address')}} : </b>{{$purchase_order->supplier->address}}</div>
+                            <div><b>{{__('messages.phone')}} : </b>{{$purchase_order->supplier->phone}}</div>
                         </td>
                         <td width="15%" class="text-verticaly-top">
-                            <div><div><b>{{__('messages.date')}} : </b>{{\Carbon\Carbon::parse($prescription->start_date)->format('d/m/Y')}}</div></div>
+                            <div><div><b>{{__('messages.date')}} : </b>{{\Carbon\Carbon::parse($purchase_order->start_date)->format('d/m/Y')}}</div></div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="div-table">
-            {!!$prescription->note!!}
+            {!!$purchase_order->note!!}
         </div>
         <div class="div-signature">
             <p class="text-right"><b><u>Signature</u></b></p>

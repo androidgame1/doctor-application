@@ -31,6 +31,8 @@
         'tests' => 'Tests',
         'prescription' => 'Ordonnance',
         'prescriptions' => 'Ordonnances',
+        'purchase_order' => 'Bon de commande',
+        'purchase_orders' => 'Bon de commandes',
         'status' => 'Statuts',
         'type_of_drug' => 'Type de Médicament',
         'types_of_drug' => 'Types de Médicament',
@@ -96,6 +98,10 @@
         'edit_prescription' => 'Modifier l\'ordonnance',
         'show_prescription' => 'Afficher l\'ordonnance',
         'delete_prescription' => 'Supprimer l\'ordonnance',
+        'new_purchase_order' => 'Nouvelle bon de commande',
+        'edit_purchase_order' => 'Modifier le bon de commande',
+        'show_purchase_order' => 'Afficher le bon de commande',
+        'delete_purchase_order' => 'Supprimer le bon de commande',
         'new_status' => 'Nouveau statut',
         'edit_status' => 'Modifier le statut',
         'show_status' => 'Afficher le statut',
@@ -210,6 +216,7 @@
         'total_products' => 'Total des produits',
         'total_acts' => 'Total des actes',
         'total_prescriptions' => 'Total d\'ordonnance',
+        'total_purchase_orders' => 'Total des bons de commande',
         'total_sale_invoices' => 'Total des facture de vente',
         'total_purchase_invoices' => 'Total des facture d\'achat',
         'total_activities' => 'Total d\'activités',
@@ -259,6 +266,7 @@
         'payment_completed' => 'Paiement terminé',
         'invoiced_to' => 'Facturé à',
         'prescription_to' => 'Ordonnance à',
+        'purchase_order_to' => 'Bon de commande à',
         'me' => 'Moi',
         'you_can_edit_this_appointment' => 'Vous pouvez modifier ce rendez-vous.',
         'you_can_not_edit_this_appointment' => 'Vous ne pouvez pas modifier ce rendez-vous.',
@@ -309,13 +317,21 @@
         'the_patient_has_not_deleted_by_success' => 'Le patient n\'a pas été supprimé par succès !',
         //End patient
         //Start prescription
-        'the_prescription_has_inserted_by_success' => 'La prescription a été inséré par succès.',
+        'the_prescription_has_inserted_by_success' => 'La prescription a été insérée par succès.',
         'the_prescription_has_not_inserted_by_success' => 'La prescription n\'a pas été insérée par succès !',
         'the_prescription_has_updated_by_success' => 'La prescription a été mise à jour par succès.',
         'the_prescription_has_not_updated_by_success' => 'La prescription n\'a pas été mise à jour par succès !',
         'the_prescription_has_deleted_by_success' => 'La prescription a été supprimée par succès.',
         'the_prescription_has_not_deleted_by_success' => 'La prescription n\'a pas été supprimée par succès !',
         //End prescription
+        //Start purchase_order
+        'the_purchase_order_has_inserted_by_success' => 'Le bon de commande a été inséré par succès.',
+        'the_purchase_order_has_not_inserted_by_success' => 'Le bon de commande n\'a pas été inséré par succès !',
+        'the_purchase_order_has_updated_by_success' => 'Le bon de commande a été mise à jour par succès.',
+        'the_purchase_order_has_not_updated_by_success' => 'Le bon de commande n\'a pas été mise à jour par succès !',
+        'the_purchase_order_has_deleted_by_success' => 'Le bon de commande a été supprimé par succès.',
+        'the_purchase_order_has_not_deleted_by_success' => 'Le bon de commande n\'a pas été supprimé par succès !',
+        //End purchase_order
         //Start product
         'the_product_has_inserted_by_success' => 'Le produit a été inséré par succès.',
         'the_product_has_not_inserted_by_success' => 'Le produit n\'a pas été inséré par succès !',

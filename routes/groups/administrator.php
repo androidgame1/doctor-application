@@ -108,6 +108,15 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::put('/delivery_order/{id}/update',[App\Http\Controllers\DeliveryOrderController::class,'update'])->name('administrator.delivery_order.update');
     Route::delete('/delivery_order/{id}/destroy',[App\Http\Controllers\DeliveryOrderController::class,'destroy'])->name('administrator.delivery_order.destroy');
     Route::get('/delivery_order/{id}/duplicate',[App\Http\Controllers\DeliveryOrderController::class,'duplicate'])->name('administrator.delivery_order.duplicate');
+    //routes drug controller
+    Route::get('/purchase_orders',[App\Http\Controllers\PurchaseOrderController::class,'index'])->name('administrator.purchase_orders');
+    Route::get('/purchase_order/{id}/show',[App\Http\Controllers\PurchaseOrderController::class,'show'])->name('administrator.purchase_order.show');
+    Route::get('/purchase_order/create',[App\Http\Controllers\PurchaseOrderController::class,'create'])->name('administrator.purchase_order.create');
+    Route::post('/purchase_order/store',[App\Http\Controllers\PurchaseOrderController::class,'store'])->name('administrator.purchase_order.store');
+    Route::get('/purchase_order/{id}/edit',[App\Http\Controllers\PurchaseOrderController::class,'edit'])->name('administrator.purchase_order.edit');
+    Route::put('/purchase_order/{id}/update',[App\Http\Controllers\PurchaseOrderController::class,'update'])->name('administrator.purchase_order.update');
+    Route::delete('/purchase_order/{id}/destroy',[App\Http\Controllers\PurchaseOrderController::class,'destroy'])->name('administrator.purchase_order.destroy');
+    Route::get('/purchase_order/{id}/pdf',[App\Http\Controllers\PurchaseOrderController::class,'pdf'])->name('administrator.purchase_order.pdf');
     //routes patient controller
     Route::get('/patients',[App\Http\Controllers\PatientController::class,'index'])->name('administrator.patients');
     Route::get('/patient/{id}/show',[App\Http\Controllers\PatientController::class,'show'])->name('administrator.patient.show');
