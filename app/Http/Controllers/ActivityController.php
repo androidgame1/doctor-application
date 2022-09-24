@@ -36,8 +36,13 @@ class ActivityController extends Controller
         $count_canceled_activities = $activities->filter(function($value){
             return $value->status == '3';
         })->count();
+        $canceled_payments = Helper::totalActivityPayments('canceled');
+        $activated_payments = Helper::totalActivityPayments('activated');
+        $paid_payments = Helper::totalActivityPayments('paid');
+        $partiel_payments = Helper::totalActivityPayments('partiel');
+        $unpaid_payments = Helper::totalActivityPayments('unpaid');
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('activities.activities',compact('activities','patients','count_unpaid_activities','count_partiel_activities','count_partiel_activities','count_paid_activities','count_canceled_activities'));
+        return view('activities.activities',compact('activities','patients','count_unpaid_activities','count_partiel_activities','count_partiel_activities','count_paid_activities','count_canceled_activities','canceled_payments','activated_payments','paid_payments','partiel_payments','unpaid_payments'));
     }
 
     /**

@@ -39,6 +39,10 @@ class Activity extends Model
         return $this->hasMany(\App\Models\Activity_line::class);
     }
 
+    function activity_payments(){
+        return $this->hasMany(\App\Models\Activity_payment::class);
+    }
+
     function getStatusStateAttribute(){
         if($this->status == 0){
             return '<span class="badge bg-danger text-white font-bold">'.Lang::get("messages.unpaid").'</span>';

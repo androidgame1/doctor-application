@@ -320,11 +320,11 @@
                                 <div class="col-md-12">
                                     <div class="d-flex no-block align-items-center">
                                         <div>
-                                            <h3><i class="fa fa-calendar-o text-black"></i></h3>
-                                            <p class="text-muted">{{__('messages.total_appointments')}}</p>
+                                            <h3><i class="fa fa-file-text text-black"></i></h3>
+                                            <p class="text-muted">{{__('messages.total_purchase_orders')}}</p>
                                         </div>
                                         <div class="ml-auto">
-                                            <h2 class="counter text-black">{{$count_appointments}}</h2>
+                                            <h2 class="counter text-black">{{$count_purchase_orders}}</h2>
                                         </div>
                                     </div>
                                 </div>
@@ -339,17 +339,120 @@
                 </div>
                 <!-- Column -->
                 <div class="card">
+                    <a href="{{route('administrator.quotes')}}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h3><i class="fa fa-file-text text-info"></i></h3>
+                                            <p class="text-muted">{{__('messages.total_delivery_orders')}}</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <h2 class="counter text-info">{{$count_delivery_orders}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-info" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div> 
+                <!-- Column -->
+                <div class="card">
+                    <a href="{{route('administrator.quotes')}}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h3><i class="fa fa-file-text text-primary"></i></h3>
+                                            <p class="text-muted">{{__('messages.total_quotes')}}</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <h2 class="counter text-primary">{{$count_quotes}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-primary" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div> 
+                <!-- Column -->
+                <div class="card">
                     <a href="{{route('administrator.activities')}}">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="d-flex no-block align-items-center">
                                         <div>
-                                            <h3><i class="fa fa-file-text text-gray"></i></h3>
+                                            <h3><i class="fa fa-file-text text-green"></i></h3>
                                             <p class="text-muted">{{__('messages.total_activities')}}</p>
                                         </div>
                                         <div class="ml-auto">
-                                            <h2 class="counter text-gray">{{$count_activities}}</h2>
+                                            <h2 class="counter text-green">{{$count_activities}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-green" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>  
+            </div> 
+        </div>
+        <div class="col-12">
+            <div class="card-group">
+                <div class="card">
+                    <a href="{{route('administrator.appointments','appointments')}}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h3><i class="fa fa-calendar-o text-purple"></i></h3>
+                                            <p class="text-muted">{{__('messages.total_appointments')}}</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <h2 class="counter text-purple">{{$count_appointments}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-purple" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Column -->
+                <div class="card">
+                    <a href="{{route('administrator.activities')}}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h3><i class="fa fa-money text-gray"></i></h3>
+                                            <p class="text-muted">{{__('messages.total_charges')}}</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <h2 class="counter text-gray">{{$count_charges}}</h2>
                                         </div>
                                     </div>
                                 </div>

@@ -36,8 +36,13 @@ class SaleInvoiceController extends Controller
         $count_canceled_sale_invoices = $sale_invoices->filter(function($value){
             return $value->status == '3';
         })->count();
+        $canceled_payments = Helper::totalSaleInvoicePayments('canceled');
+        $activated_payments = Helper::totalSaleInvoicePayments('activated');
+        $paid_payments = Helper::totalSaleInvoicePayments('paid');
+        $partiel_payments = Helper::totalSaleInvoicePayments('partiel');
+        $unpaid_payments = Helper::totalSaleInvoicePayments('unpaid');
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('sale_invoices.sale_invoices',compact('sale_invoices','patients','count_unpaid_sale_invoices','count_partiel_sale_invoices','count_paid_sale_invoices','count_canceled_sale_invoices'));
+        return view('sale_invoices.sale_invoices',compact('sale_invoices','patients','count_unpaid_sale_invoices','count_partiel_sale_invoices','count_paid_sale_invoices','count_canceled_sale_invoices','canceled_payments','activated_payments','paid_payments','partiel_payments','unpaid_payments'));
     }
     /**
      * Display a listing of the resource.

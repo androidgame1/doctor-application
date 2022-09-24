@@ -11,6 +11,10 @@ use App\Models\Prescription;
 use App\Models\Activity;
 use App\Models\Purchase_invoice;
 use App\Models\Sale_invoice;
+use App\Models\Purchase_order;
+use App\Models\Delivery_order;
+use App\Models\Quote;
+use App\Models\Charge;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -57,8 +61,12 @@ class HomeController extends Controller
             $count_activities = Activity::where(['administrator_id'=>$user->id])->count();
             $count_purchase_invoices = Purchase_invoice::where(['administrator_id'=>$user->id])->count();
             $count_sale_invoices = Sale_invoice::where(['administrator_id'=>$user->id])->count();
+            $count_purchase_orders = Purchase_order::where(['administrator_id'=>$user->id])->count();
+            $count_delivery_orders = Delivery_order::where(['administrator_id'=>$user->id])->count();
+            $count_quotes = Quote::where(['administrator_id'=>$user->id])->count();
+            $count_charges = Charge::where(['administrator_id'=>$user->id])->count();
             $count_appointments = Appointment::where(['administrator_id'=>$user->id])->count();
-            return view('home',compact('count_secretaries','count_suppliers','count_patients','count_products','count_acts','count_prescriptions','count_activities','count_purchase_invoices','count_sale_invoices','count_appointments'));
+            return view('home',compact('count_secretaries','count_suppliers','count_patients','count_products','count_acts','count_prescriptions','count_activities','count_purchase_invoices','count_sale_invoices','count_purchase_orders','count_delivery_orders','count_quotes','count_charges','count_appointments'));
         }else if(Auth::user()->is_secretary){
             return view('home');
         }else{

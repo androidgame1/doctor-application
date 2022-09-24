@@ -36,8 +36,13 @@ class PurchaseInvoiceController extends Controller
         $count_canceled_purchase_invoices = $purchase_invoices->filter(function($value){
             return $value->status == '3';
         })->count();
+        $canceled_payments = Helper::totalPurchaseInvoicePayments('canceled');
+        $activated_payments = Helper::totalPurchaseInvoicePayments('activated');
+        $paid_payments = Helper::totalPurchaseInvoicePayments('paid');
+        $partiel_payments = Helper::totalPurchaseInvoicePayments('partiel');
+        $unpaid_payments = Helper::totalPurchaseInvoicePayments('unpaid');
         $suppliers = Supplier::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('purchase_invoices.purchase_invoices',compact('purchase_invoices','suppliers','count_unpaid_purchase_invoices','count_partiel_purchase_invoices','count_paid_purchase_invoices','count_canceled_purchase_invoices'));
+        return view('purchase_invoices.purchase_invoices',compact('purchase_invoices','suppliers','count_unpaid_purchase_invoices','count_partiel_purchase_invoices','count_paid_purchase_invoices','count_canceled_purchase_invoices','canceled_payments','activated_payments','paid_payments','partiel_payments','unpaid_payments'));
     }
     /**
      * Display a listing of the resource.

@@ -10,6 +10,7 @@ use App\Models\Activity;
 use App\Models\Quote;
 use App\Models\Activity_payment;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Database\Eloquent\Builder;
 
 class Helper{
 
@@ -156,6 +157,75 @@ class Helper{
         $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id,'purchase_invoice_id'=>$purchase_invoice_id])->get();
         $given_amount = floatval($purchase_invoice_payment->sum('given_amount'));
         return $given_amount;
+    }
+
+    function totalActivityPayments($status){
+        $user = Auth::user();
+        $total_activity_payments = 0;
+        if($status == 'canceled'){
+            $total_activity_payments = Activity::where(['administrator_id'=>$user->id,'status'=>3])->get()->sum('ht_total_amount');
+        }else if($status == 'activated'){
+            $total_activity_payments = Activity::where(['administrator_id'=>$user->id])->where('status','<>',3)->get()->sum('ht_total_amount');
+        }else if($status == 'paid'){
+            $total_activity_payments = Activity_payment::where(['administrator_id'=>$user->id])->whereHas('activity',function(Builder $query) use ($status){
+                $query->where('status',2);
+            })->get()->sum('given_amount');
+        }else if($status == 'partiel'){
+            $total_activity_payments = Activity::where(['administrator_id'=>$user->id,'status'=>1])->get()->sum('ht_total_amount');
+            $total_given_amount = Activity_payment::where(['administrator_id'=>$user->id])->whereHas('activity',function(Builder $query) use ($status){
+                $query->where('status',1);
+            })->get()->sum('given_amount');
+            $total_activity_payments = floatval($total_activity_payments) - floatval($total_given_amount);
+        }else if($status == 'unpaid'){
+            $total_activity_payments = Activity::where(['administrator_id'=>$user->id,'status'=>0])->get()->sum('ht_total_amount');
+        }
+        return $total_activity_payments;
+    }
+
+    function totalSaleInvoicePayments($status){
+        $user = Auth::user();
+        $total_sale_invoice_payments = 0;
+        if($status == 'canceled'){
+            $total_sale_invoice_payments = Sale_invoice::where(['administrator_id'=>$user->id,'status'=>3])->get()->sum('ttc_total_amount');
+        }else if($status == 'activated'){
+            $total_sale_invoice_payments = Sale_invoice::where(['administrator_id'=>$user->id])->where('status','<>',3)->get()->sum('ttc_total_amount');
+        }else if($status == 'paid'){
+            $total_sale_invoice_payments = Sale_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('sale_invoice',function(Builder $query) use ($status){
+                $query->where('status',2);
+            })->get()->sum('given_amount');
+        }else if($status == 'partiel'){
+            $total_sale_invoice_payments = Sale_invoice::where(['administrator_id'=>$user->id,'status'=>1])->get()->sum('ttc_total_amount');
+            $total_given_amount = Sale_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('sale_invoice',function(Builder $query) use ($status){
+                $query->where('status',1);
+            })->get()->sum('given_amount');
+            $total_sale_invoice_payments = floatval($total_sale_invoice_payments) - floatval($total_given_amount);
+        }else if($status == 'unpaid'){
+            $total_sale_invoice_payments = Sale_invoice::where(['administrator_id'=>$user->id,'status'=>0])->get()->sum('ttc_total_amount');
+        }
+        return $total_sale_invoice_payments;
+    }
+
+    function totalPurchaseInvoicePayments($status){
+        $user = Auth::user();
+        $total_purchase_invoice_payments = 0;
+        if($status == 'canceled'){
+            $total_purchase_invoice_payments = Purchase_invoice::where(['administrator_id'=>$user->id,'status'=>3])->get()->sum('ttc_total_amount');
+        }else if($status == 'activated'){
+            $total_purchase_invoice_payments = Purchase_invoice::where(['administrator_id'=>$user->id])->where('status','<>',3)->get()->sum('ttc_total_amount');
+        }else if($status == 'paid'){
+            $total_purchase_invoice_payments = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('purchase_invoice',function(Builder $query) use ($status){
+                $query->where('status',2);
+            })->get()->sum('given_amount');
+        }else if($status == 'partiel'){
+            $total_purchase_invoice_payments = Purchase_invoice::where(['administrator_id'=>$user->id,'status'=>1])->get()->sum('ttc_total_amount');
+            $total_given_amount = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('purchase_invoice',function(Builder $query) use ($status){
+                $query->where('status',1);
+            })->get()->sum('given_amount');
+            $total_purchase_invoice_payments = floatval($total_purchase_invoice_payments) - floatval($total_given_amount);
+        }else if($status == 'unpaid'){
+            $total_purchase_invoice_payments = Purchase_invoice::where(['administrator_id'=>$user->id,'status'=>0])->get()->sum('ttc_total_amount');
+        }
+        return $total_purchase_invoice_payments;
     }
 
 }
