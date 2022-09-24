@@ -79,7 +79,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/sale_invoice_payment/{id}/edit',[App\Http\Controllers\SaleInvoicePaymentController::class,'edit'])->name('administrator.sale_invoice_payment.edit');
     Route::put('/sale_invoice_payment/{id}/update',[App\Http\Controllers\SaleInvoicePaymentController::class,'update'])->name('administrator.sale_invoice_payment.update');
     Route::delete('/sale_invoice_payment/{id}/destroy',[App\Http\Controllers\SaleInvoicePaymentController::class,'destroy'])->name('administrator.sale_invoice_payment.destroy');
-    //routes purchase_invoices controller
+    //routes activity controller
     Route::get('/activities',[App\Http\Controllers\ActivityController::class,'index'])->name('administrator.activities');
     Route::get('/activities/{status}/filter',[App\Http\Controllers\ActivityController::class,'filter'])->name('administrator.activities.filter');
     Route::get('/activity/{id}/show',[App\Http\Controllers\ActivityController::class,'show'])->name('administrator.activity.show');
@@ -91,6 +91,18 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/activity/{id}/cancel',[App\Http\Controllers\ActivityController::class,'cancel'])->name('administrator.activity.cancel');
     Route::get('/activity/{id}/duplicate',[App\Http\Controllers\ActivityController::class,'duplicate'])->name('administrator.activity.duplicate');
     Route::get('/activity/{id}/pdf',[App\Http\Controllers\ActivityController::class,'pdf'])->name('administrator.activity.pdf');
+    //routes quote controller
+    Route::get('/quotes',[App\Http\Controllers\QuoteController::class,'index'])->name('administrator.quotes');
+    Route::get('/quotes/{status}/filter',[App\Http\Controllers\QuoteController::class,'filter'])->name('administrator.quotes.filter');
+    Route::get('/quote/{id}/show',[App\Http\Controllers\QuoteController::class,'show'])->name('administrator.quote.show');
+    Route::get('/quote/create',[App\Http\Controllers\QuoteController::class,'create'])->name('administrator.quote.create');
+    Route::post('/quote/store',[App\Http\Controllers\QuoteController::class,'store'])->name('administrator.quote.store');
+    Route::get('/quote/{id}/edit',[App\Http\Controllers\QuoteController::class,'edit'])->name('administrator.quote.edit');
+    Route::put('/quote/{id}/update',[App\Http\Controllers\QuoteController::class,'update'])->name('administrator.quote.update');
+    Route::delete('/quote/{id}/destroy',[App\Http\Controllers\QuoteController::class,'destroy'])->name('administrator.quote.destroy');
+    Route::get('/quote/{id}/cancel',[App\Http\Controllers\QuoteController::class,'cancel'])->name('administrator.quote.cancel');
+    Route::get('/quote/{id}/duplicate',[App\Http\Controllers\QuoteController::class,'duplicate'])->name('administrator.quote.duplicate');
+    Route::get('/quote/{id}/pdf',[App\Http\Controllers\QuoteController::class,'pdf'])->name('administrator.quote.pdf');
     //routes activity_payment controller
     Route::get('/activity_payments/{activity_id}',[App\Http\Controllers\ActivityPaymentController::class,'index'])->name('administrator.activity_payments');
     Route::get('/activity_payment/{id}/show',[App\Http\Controllers\ActivityPaymentController::class,'show'])->name('administrator.activity_payment.show');

@@ -7,6 +7,7 @@ use App\Models\Purchase_invoice_payment;
 use App\Models\Sale_invoice;
 use App\Models\Sale_invoice_payment;
 use App\Models\Activity;
+use App\Models\Quote;
 use App\Models\Activity_payment;
 use Illuminate\Support\Facades\Auth;
 
@@ -64,6 +65,25 @@ class Helper{
                 $zero.="0";
             }
             $series = "A-".$zero.$next_id;
+        }
+        return $series; 
+        
+    }
+
+    public static function seriesQuote(){
+        $user = Auth::user();
+        $series = "D-0001";
+        if(Quote::where('administrator_id',$user->id)->exists()){
+            $last_quote = Quote::orderBy('id','desc')->where('administrator_id',$user->id)->firstOrFail();
+            $cut_series = explode('-',$last_quote->series);
+            $length_id = strlen(intval($cut_series[1]));
+            $next_id =intval($cut_series[1]) + 1;
+            $length_zero =  ((4 - intval($length_id)) >=0 ? (4 - intval($length_id)) : 0);
+            $zero = "";
+            for ($i=0; $i < intval($length_zero); $i++) { 
+                $zero.="0";
+            }
+            $series = "D-".$zero.$next_id;
         }
         return $series; 
         

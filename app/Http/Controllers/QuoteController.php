@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Act;
 use App\Models\Patient;
-use App\Models\Activity;
-use App\Models\Activity_line;
+use App\Models\Quote;
+use App\Models\Quote_line;
 use Illuminate\Http\Request;
-use App\Http\Requests\ActivityRequest;
+use App\Http\Requests\QuoteRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Helper;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Lang;
 
-class ActivityController extends Controller
+class QuoteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,21 +23,15 @@ class ActivityController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $activities = Activity::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        $count_unpaid_activities = $activities->filter(function($value){
+        $quotes = Quote::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        $count_activated_quotes = $quotes->filter(function($value){
             return $value->status == '0';
         })->count();
-        $count_partiel_activities = $activities->filter(function($value){
+        $count_canceled_quotes = $quotes->filter(function($value){
             return $value->status == '1';
         })->count();
-        $count_paid_activities = $activities->filter(function($value){
-            return $value->status == '2';
-        })->count();
-        $count_canceled_activities = $activities->filter(function($value){
-            return $value->status == '3';
-        })->count();
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('activities.activities',compact('activities','patients','count_unpaid_activities','count_partiel_activities','count_partiel_activities','count_paid_activities','count_canceled_activities'));
+        return view('quotes.quotes',compact('quotes','patients','count_activated_quotes','count_canceled_quotes'));
     }
 
     /**
@@ -48,10 +42,10 @@ class ActivityController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $series = Helper::seriesActivity();
+        $series = Helper::seriesQuote();
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
         $designations = Act::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view("activities.create_activity",compact('patients','designations','series'));
+        return view("quotes.create_quote",compact('patients','designations','series'));
     }
 
     /**
@@ -60,10 +54,10 @@ class ActivityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ActivityRequest $request)
+    public function store(QuoteRequest $request)
     {
         $user = Auth::user();
-        $data_activity = [
+        $data_quote = [
             'series'=>$request->series,
             'administrator_id'=>$user->id,
             'patient_id'=>$request->patient_id,
@@ -72,13 +66,13 @@ class ActivityController extends Controller
             'reduction_total_amount'=>$request->reduction_total_amount,
             'ht_total_amount'=>$request->ht_total_amount,
         ];
-        if($activity = Activity::create($data_activity)){
-            $data_activity_lines=[];
+        if($quote = Quote::create($data_quote)){
+            $data_quote_lines=[];
             $index=0;
             foreach ($request->designation as $value) {
-                $data_activity_lines[]=[
+                $data_quote_lines[]=[
                     'administrator_id'=>$user->id,
-                    'activity_id'=>$activity->id,
+                    'quote_id'=>$quote->id,
                     'designation'=>$request->designation[$index],
                     'description'=>$request->description[$index],
                     'quantity'=>$request->quantity[$index],
@@ -89,15 +83,15 @@ class ActivityController extends Controller
                 ];
                 $index++;
             }
-            if(Activity_line::insert($data_activity_lines)){
-                toastr()->success(Lang::get('messages.the_activity_has_inserted_by_success'));
+            if(Quote_line::insert($data_quote_lines)){
+                toastr()->success(Lang::get('messages.the_quote_has_inserted_by_success'));
             }else{
-                toastr()->warning(Lang::get('messages.the_activity_has_not_inserted_by_success_due_a_problem_in_purchase_invoice_lines_insertion'));
+                toastr()->warning(Lang::get('messages.the_quote_has_not_inserted_by_success_due_a_problem_in_purchase_invoice_lines_insertion'));
             }
         }else{
-            toastr()->warning(Lang::get('messages.the_activity_has_not_inserted_by_success'));
+            toastr()->warning(Lang::get('messages.the_quote_has_not_inserted_by_success'));
         }
-        return redirect()->route('administrator.activities');
+        return redirect()->route('administrator.quotes');
     }
 
     /**
@@ -109,8 +103,8 @@ class ActivityController extends Controller
     public function show($id)
     {
         $user = Auth::user();
-        $activity = Activity::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
-        return view('activities.show_activity',compact('activity'));
+        $quote = Quote::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
+        return view('quotes.show_quote',compact('quote'));
     }
 
     /**
@@ -122,10 +116,10 @@ class ActivityController extends Controller
     public function edit($id)
     {
         $user = Auth::user();
-        $activity = Activity::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
+        $quote = Quote::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
         $designations = Act::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('activities.edit_activity',compact('activity','patients','designations'));
+        return view('quotes.edit_quote',compact('quote','patients','designations'));
     }
 
      /**
@@ -137,11 +131,11 @@ class ActivityController extends Controller
     public function duplicate($id)
     {
         $user = Auth::user();
-        $series = Helper::seriesActivity();
-        $activity = Activity::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
+        $series = Helper::seriesQuote();
+        $quote = Quote::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
         $designations = Act::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('activities.duplicate_activity',compact('activity','patients','designations','series'));
+        return view('quotes.duplicate_quote',compact('quote','patients','designations','series'));
     }
 
     /**
@@ -151,24 +145,24 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ActivityRequest $request, $id)
+    public function update(QuoteRequest $request, $id)
     {
         $user = Auth::user();
-        $activity = Activity::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
-        $data_activity = [
+        $quote = Quote::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
+        $data_quote = [
             'date'=>$request->date,
             'remark'=>$request->remark,
             'reduction_total_amount'=>$request->reduction_total_amount,
             'ht_total_amount'=>$request->ht_total_amount,
         ];
-        if($activity->update($data_activity)){
-            Activity_line::where(['administrator_id'=>$user->id,'activity_id'=>$activity->id])->delete();
-            $data_activity_lines=[];
+        if($quote->update($data_quote)){
+            Quote_line::where(['administrator_id'=>$user->id,'quote_id'=>$quote->id])->delete();
+            $data_quote_lines=[];
             $index=0;
             foreach ($request->designation as $value) {
-                $data_activity_lines[]=[
+                $data_quote_lines[]=[
                     'administrator_id'=>$user->id,
-                    'activity_id'=>$activity->id,
+                    'quote_id'=>$quote->id,
                     'designation'=>$request->designation[$index],
                     'description'=>$request->description[$index],
                     'quantity'=>$request->quantity[$index],
@@ -179,13 +173,13 @@ class ActivityController extends Controller
                 ];
                 $index++;
             }
-            if(Activity_line::insert($data_activity_lines)){
-                toastr()->success(Lang::get('messages.the_activity_has_updated_by_success'));
+            if(Quote_line::insert($data_quote_lines)){
+                toastr()->success(Lang::get('messages.the_quote_has_updated_by_success'));
             }else{
-                toastr()->warning(Lang::get('messages.the_activity_has_not_updated_by_success_due_a_problem_in_purchase_invoice_lines_modification'));
+                toastr()->warning(Lang::get('messages.the_quote_has_not_updated_by_success_due_a_problem_in_purchase_invoice_lines_modification'));
             }
         }else{
-            toastr()->warning(Lang::get('messages.the_activity_has_not_updated_by_success'));
+            toastr()->warning(Lang::get('messages.the_quote_has_not_updated_by_success'));
         }
         return redirect()->back();
     }
@@ -199,12 +193,12 @@ class ActivityController extends Controller
     public function destroy($id)
     {
         $user = Auth::user();
-        $activity = Activity::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
-        $activity_lines = Activity_line::where('activity_id',$activity->id);
-        if($activity_lines->delete() && $activity->delete()){
-            toastr()->success(Lang::get('messages.the_activity_has_deleted_by_success'));
+        $quote = Quote::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
+        $quote_lines = Quote_line::where('quote_id',$quote->id);
+        if($quote_lines->delete() && $quote->delete()){
+            toastr()->success(Lang::get('messages.the_quote_has_deleted_by_success'));
         }else{
-            toastr()->warning(Lang::get('messages.the_activity_has_not_deleted_by_success'));
+            toastr()->warning(Lang::get('messages.the_quote_has_not_deleted_by_success'));
         }
         return redirect()->back();
     }
@@ -217,14 +211,14 @@ class ActivityController extends Controller
     public function cancel($id)
     {
         $user = Auth::user();
-        $activity = Activity::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
-        $data_activity=[
-            'status'=>3
+        $quote = Quote::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
+        $data_quote=[
+            'status'=>1
         ];
-        if($activity->update($data_activity)){
-            toastr()->success(Lang::get('messages.the_activity_has_canceled_by_success'));
+        if($quote->update($data_quote)){
+            toastr()->success(Lang::get('messages.the_quote_has_canceled_by_success'));
         }else{
-            toastr()->warning(Lang::get('messages.the_activity_has_not_canceled_by_success'));
+            toastr()->warning(Lang::get('messages.the_quote_has_not_canceled_by_success'));
         }
         return redirect()->back();
     }
@@ -236,9 +230,9 @@ class ActivityController extends Controller
     public function filter($item="")
     {
         $user = Auth::user();
-        $activities = Activity::orderBy('id','desc')->where(['administrator_id'=>$user->id,'status'=>$item])->get();
+        $quotes = Quote::orderBy('id','desc')->where(['administrator_id'=>$user->id,'status'=>$item])->get();
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('activities.activities',compact('activities','patients'));
+        return view('quotes.quotes',compact('quotes','patients'));
     }
     /**
      * PDF the specified resource from storage.
@@ -248,8 +242,8 @@ class ActivityController extends Controller
      */
     function pdf($id){
         $user = Auth::user();
-        $activity = Activity::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
-        $pdf = Pdf::loadView('activities.pdf_activity', compact('activity'));
+        $quote = Quote::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
+        $pdf = Pdf::loadView('quotes.pdf_quote', compact('quote'));
         return $pdf->stream();
     }
 }
