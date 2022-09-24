@@ -184,4 +184,11 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::put('/prescription/{id}/update',[App\Http\Controllers\PrescriptionController::class,'update'])->name('administrator.prescription.update');
     Route::delete('/prescription/{id}/destroy',[App\Http\Controllers\PrescriptionController::class,'destroy'])->name('administrator.prescription.destroy');
     Route::get('/prescription/{id}/pdf',[App\Http\Controllers\PrescriptionController::class,'pdf'])->name('administrator.prescription.pdf');
+    //routes product controller
+    Route::get('/charges',[App\Http\Controllers\ChargeController::class,'index'])->name('administrator.charges');
+    Route::get('/charge/{id}/show',[App\Http\Controllers\ChargeController::class,'show'])->name('administrator.charge.show');
+    Route::post('/charge/store',[App\Http\Controllers\ChargeController::class,'store'])->name('administrator.charge.store');
+    Route::get('/charge/{id}/edit',[App\Http\Controllers\ChargeController::class,'edit'])->name('administrator.charge.edit');
+    Route::put('/charge/{id}/update',[App\Http\Controllers\ChargeController::class,'update'])->name('administrator.charge.update');
+    Route::delete('/charge/{id}/destroy',[App\Http\Controllers\ChargeController::class,'destroy'])->name('administrator.charge.destroy');
 });

@@ -71,6 +71,10 @@
                                 <i class="fa fa-file-o"></i>
                                 <span class="hide-menu">{{__('messages.prescription')}}</span></a>
                             </li>
+                            <li> <a class="waves-effect waves-dark" href="@if(auth()->user()->is_administrator) {{route('administrator.charges')}} @else javascript:void(0) @endif" aria-expanded="false">
+                                <i class="fa fa-money"></i>
+                                <span class="hide-menu">{{__('messages.charges')}}</span></a>
+                            </li>
                             <li> <a class="has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false"><i class="fa fa-cogs"></i><span class="hide-menu">{{__('messages.setting')}}</span></a>
                                 <ul aria-expanded="false" class="collapse">
                                 <li><a href="@if(auth()->user()->is_administrator) {{route('administrator.type_drugs')}} @else javascript:void(0) @endif">{{__('messages.types_of_drug')}}</a></li>

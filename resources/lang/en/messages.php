@@ -14,6 +14,8 @@
         'suppliers' => 'Suppliers',
         'product' => 'Product',
         'products' => 'Products',
+        'charge' => 'Charge',
+        'charges' => 'Charges',
         'purchase_invoice' => 'Purchase invoice',
         'purchase_invoices' => 'Purchase invoices',
         'secretary' => 'Secretary',
@@ -68,6 +70,10 @@
         'edit_product' => 'Edit product',
         'show_product' => 'Show product',
         'delete_product' => 'Delete product',
+        'new_charge' => 'New charge',
+        'edit_charge' => 'Edit charge',
+        'show_charge' => 'Show charge',
+        'delete_charge' => 'Delete charge',
         'new_purchase_invoice' => 'New purchase invoice',
         'edit_purchase_invoice' => 'Edit purchase invoice',
         'duplicate_purchase_invoice' => 'Duplicate purchase invoice',
@@ -221,6 +227,7 @@
         'total_suppliers' => 'Total suppliers',
         'total_patients' => 'Total patients',
         'total_products' => 'Total products',
+        'total_charges' => 'Total charges',
         'total_acts' => 'Total acts',
         'total_prescriptions' => 'Total prescriptions',
         'total_purchase_orders' => 'Total purchase orders',
@@ -359,6 +366,14 @@
         'the_product_has_deleted_by_success' => 'The product has deleted by success.',
         'the_product_has_not_deleted_by_success' => 'The product has not deleted by success !',
         //End product
+        //Start charge
+        'the_charge_has_inserted_by_success' => 'The charge has inserted by success.',
+        'the_charge_has_not_inserted_by_success' => 'The charge has not inserted by success !',
+        'the_charge_has_updated_by_success' => 'The charge has updated by success.',
+        'the_charge_has_not_updated_by_success' => 'The charge has not updated by success !',
+        'the_charge_has_deleted_by_success' => 'The charge has deleted by success.',
+        'the_charge_has_not_deleted_by_success' => 'The charge has not deleted by success !',
+        //End charge
         //Start purchase_invoice
         'the_purchase_invoice_has_inserted_by_success' => 'The purchase invoice has inserted by success.',
         'the_purchase_invoice_has_not_inserted_by_success' => 'The purchase invoice has not inserted by success !',

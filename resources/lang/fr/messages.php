@@ -14,6 +14,8 @@
         'suppliers' => 'Fournisseurs',
         'product' => 'Produit',
         'products' => 'Produits',
+        'charge' => 'Charge',
+        'charges' => 'Charges',
         'purchase_invoice' => 'Facture d\'achat',
         'purchase_invoices' => 'Factures d\'achat',
         'secretary' => 'Secrétaire',
@@ -68,6 +70,10 @@
         'edit_product' => 'Modifier le produit',
         'show_product' => 'Afficher le produit',
         'delete_product' => 'Supprimer le produit',
+        'new_charge' => 'Nouveau charge',
+        'edit_charge' => 'Modifier le charge',
+        'show_charge' => 'Afficher le charge',
+        'delete_charge' => 'Supprimer le charge',
         'new_purchase_invoice' => 'Nouvelle facture d\'achat',
         'edit_purchase_invoice' => 'Modifier la facture d\'achat',
         'duplicate_purchase_invoice' => 'Dupliquer la facture d\'achat',
@@ -220,6 +226,7 @@
         'total_suppliers' => 'Total des fournisseurs',
         'total_patients' => 'Total des patients',
         'total_products' => 'Total des produits',
+        'total_charges' => 'Total des charges',
         'total_acts' => 'Total des actes',
         'total_prescriptions' => 'Total d\'ordonnance',
         'total_purchase_orders' => 'Total des bons de commande',
@@ -358,6 +365,14 @@
         'the_product_has_deleted_by_success' => 'Le produit a été supprimé avec succès.',
         'the_product_has_not_deleted_by_success' => 'Le produit n\'a pas été supprimé par succès !',
         //End product
+        //Start charge
+        'the_charge_has_inserted_by_success' => 'Le charge a été inséré par succès.',
+        'the_charge_has_not_inserted_by_success' => 'Le charge n\'a pas été inséré par succès !',
+        'the_charge_has_updated_by_success' => 'Le charge a été mis à jour par succès.',
+        'the_charge_has_not_updated_by_success' => 'Le charge n\'a pas été mis à jour par succès !',
+        'the_charge_has_deleted_by_success' => 'Le charge a été supprimé avec succès.',
+        'the_charge_has_not_deleted_by_success' => 'Le charge n\'a pas été supprimé par succès !',
+        //End charge
         //Start purchase_invoice
         'the_purchase_invoice_has_inserted_by_success' => 'La facture d\'achat a été insérée par succès.',
         'the_purchase_invoice_has_not_inserted_by_success' => 'La facture d\'achat n\'a pas été insérée par succès !',
