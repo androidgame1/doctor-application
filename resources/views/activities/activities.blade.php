@@ -209,8 +209,12 @@
                         </div>
                     </a>
                 </div>
-                <!-- Column -->
-                <div class="card">
+            </div> 
+        </div>
+        <div class="col-12">
+            <div class="card-group">
+<!-- Column -->
+<div class="card">
                     <a href="javascript:void(0)">
                         <div class="card-body">
                             <div class="row">
@@ -259,8 +263,8 @@
                         </div>
                     </a>
                 </div>
-            </div> 
-        </div>
+            </div>
+        </div>   
     </div>
 @endif
 <div class="row">
