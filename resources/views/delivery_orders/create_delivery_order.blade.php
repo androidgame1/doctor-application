@@ -31,6 +31,10 @@
                 <form method="post" id="form-create-new-delivery-order" action="@if(auth()->user()->is_administrator){{route('administrator.delivery_order.store')}} @else javascript:void(0) @endif" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @method('post')
                     @csrf
+                    <input type="hidden" name="action" id="action" value="{{Route::current()->getName() == 'administrator.delivery_order.convert_po_to_do' ? 'convert' : 'store'}}">
+                    @if(Route::current()->getName() == 'administrator.delivery_order.convert_po_to_do')
+                        <input type="hidden" name="purchase_order_id" id="purchase_order_id" value="{{$purchase_order_id}}">
+                    @endif
                     <div class="row">
                         <div class="col-md-12">
                             @include('messages.messages')

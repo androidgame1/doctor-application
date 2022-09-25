@@ -20,6 +20,7 @@ class CreateDeliveryOrdersTable extends Migration
             $table->bigInteger('supplier_id')->nullable();
             $table->bigInteger('purchase_order_id')->nullable();
             $table->date('date')->nullable();
+            $table->integer('status')->default(0);
             $table->string('remark')->nullable();
             $table->text('file')->nullable();          
             $table->timestamps();

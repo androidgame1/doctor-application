@@ -137,4 +137,16 @@ class PurchaseOrderController extends Controller
         $pdf = Pdf::loadView('purchase_orders.pdf_purchase_order', compact('purchase_order'));
         return $pdf->stream();
     }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function convert_po_to_do($purchase_order_id)
+    {
+        $user = Auth::user();
+        $suppliers = Supplier::where('administrator_id',$user->id)->get();
+        return view('delivery_orders.create_delivery_order',compact('suppliers','purchase_order_id'));
+    }
+
 }

@@ -22,6 +22,7 @@ class Delivery_order extends Model
         'supplier_id',
         'purchase_order_id',
         'date',
+        'status',
         'remark',
         'file',
     ];
@@ -32,5 +33,15 @@ class Delivery_order extends Model
 
     function supplier(){
         return $this->belongsTo(\App\Models\Supplier::class);
+    }
+
+    function getStatusStateAttribute(){
+        if($this->status == 0){
+            return '<span class="badge bg-gray text-white font-bold">'.Lang::get("messages.normal").'</span>';
+        }else if($this->status == 1){
+            return '<span class="badge bg-success text-white font-bold">'.Lang::get("messages.converted").'</span>';
+        }else{
+            return 'Error';
+        }
     }
 }

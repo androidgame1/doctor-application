@@ -17,10 +17,13 @@ class DeliveryOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($item="")
     {
         $user = Auth::user();
         $delivery_orders = Delivery_order::where(['administrator_id'=>$user->id])->get();
+        if($item){
+            $delivery_orders = Delivery_order::where(['administrator_id'=>$user->id,'purchase_order_id'=>$item])->get();
+        }
         return view('delivery_orders.delivery_orders',compact('delivery_orders'));
     }
 
@@ -62,6 +65,10 @@ class DeliveryOrderController extends Controller
             'remark' => $request->remark,
             'file'=>$request->file,
         ];
+        if($request->action == 'convert'){
+            $data_delivery_order['purchase_order_id'] = $request->purchase_order_id;
+            $data_delivery_order['status'] = 1;    
+        }
         if(Delivery_order::create($data_delivery_order)){
             toastr()->success(Lang::get('messages.the_delivery_order_has_inserted_by_success'));
         }else{

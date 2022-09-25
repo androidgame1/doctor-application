@@ -207,6 +207,7 @@
         'destroy' => 'Destroy',
         'delete' => 'Delete',
         'duplicate' => 'Duplicate',
+        'convert' => 'Convert',
         'remove' => 'Remove',
         'cancel' => 'Cancel',
         'back_to_dashboard' => 'Back to dashboard',
@@ -251,6 +252,8 @@
         'no_validated' => 'No validated',
         'activated' => 'Activated',
         'canceled' => 'Canceled',
+        'converted' => 'Converted',
+        'normal' => 'Normal',
         'do_you_want_to_delete_this' => 'Do you want to delete this',
         'do_you_want_to_cancel_this' => 'Do you want to cancel this',
         'total_amount_of_reduction' => 'Total amount of reduction',
@@ -286,6 +289,7 @@
         'me' => 'Me',
         'you_can_edit_this_appointment' => 'You can edit this appointment.',
         'you_can_not_edit_this_appointment' => 'You can not edit this appointment.',
+        'convert_to_delivery_order'=>'Convert to delivery order',
         //End sentences
         //Start messages
         //Start act

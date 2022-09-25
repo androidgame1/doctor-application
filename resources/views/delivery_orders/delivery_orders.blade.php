@@ -43,6 +43,7 @@
                                         <th>{{__('messages.series')}}</th>
                                         <th>{{__('messages.supplier')}}</th>
                                         <th>{{__('messages.date')}}</th>
+                                        <th>{{__('messages.status')}}</th>
                                         <th>{{__('messages.date_creation')}}</th>
                                         <th>{{__('messages.action')}}</th>
                                     </tr>
@@ -54,6 +55,7 @@
                                             <td><a href="javascript:void(0)" class="btn-show-delivery-order" data-toggle="modal" data-target="#div-show-old-patient" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.delivery_order.show',$value->id)}}@else javascript:void(0) @endif"  title="{{__('messages.show')}}">{{$value->series}}</a></td>
                                             <td>{{$value->supplier->fullname}}</td>
                                             <td>{{\Carbon\Carbon::parse($value->date)->format('d/m/Y')}}</td>
+                                            <th>{!!$value->status_state!!}</th>
                                             <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                                             <td>
                                                 <a href="javascript:void(0)" class="btn-show-delivery-order" data-toggle="modal" data-target="#div-show-old-delivery-order" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.delivery_order.show',$value->id)}}@else javascript:void(0) @endif" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>

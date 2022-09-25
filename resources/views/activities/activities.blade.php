@@ -213,8 +213,8 @@
         </div>
         <div class="col-12">
             <div class="card-group">
-<!-- Column -->
-<div class="card">
+                <!-- Column -->
+                <div class="card">
                     <a href="javascript:void(0)">
                         <div class="card-body">
                             <div class="row">

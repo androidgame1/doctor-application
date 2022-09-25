@@ -34,7 +34,7 @@
         'prescription' => 'Ordonnance',
         'prescriptions' => 'Ordonnances',
         'purchase_order' => 'Bon de commande',
-        'purchase_orders' => 'Bon de commandes',
+        'purchase_orders' => 'Bons de commande',
         'status' => 'Statuts',
         'type_of_drug' => 'Type de Médicament',
         'types_of_drug' => 'Types de Médicament',
@@ -206,6 +206,7 @@
         'destroy' => 'Détruire',
         'delete' => 'Supprimer',
         'duplicate' => 'Dupliquer',
+        'Convert' => 'Convertir',
         'remove' => 'Retirer',
         'cancel' => 'Annuler',
         'back_to_dashboard' => 'Retour au tableau de bord',
@@ -250,10 +251,12 @@
         'no_validated' => 'Non validé',
         'activated' => 'Activé',
         'canceled' => 'Annulé',
+        'converted' => 'Converté',
+        'normal' => 'Normal',
         'do_you_want_to_delete_this' => 'Voulez-vous supprimer cet/cette',
         'do_you_want_to_cancel_this' => 'Voulez-vous annuler ce/cette',
         'total_amount_of_reduction' => 'Montant total de la réduction',
-        'total_mount_of_ht' => 'Montage total de HT',
+        'total_mount_of_ht' => 'Montant total de HT',
         'total_amount_of_tva' => 'Montant total de la TVA',
         'total_amount_of_ttc' => 'Montant total de TTC',
         'date' => 'Date',
@@ -285,6 +288,7 @@
         'me' => 'Moi',
         'you_can_edit_this_appointment' => 'Vous pouvez modifier ce rendez-vous.',
         'you_can_not_edit_this_appointment' => 'Vous ne pouvez pas modifier ce rendez-vous.',
+        'convert_to_delivery_order'=>'convertir en bon de livraison',
         //End sentences
         //Start messages
         //Start act

@@ -113,6 +113,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/activity_payment/{id}/destroy',[App\Http\Controllers\ActivityPaymentController::class,'destroy'])->name('administrator.activity_payment.destroy');
     //routes delivery order controller
     Route::get('/delivery_orders',[App\Http\Controllers\DeliveryOrderController::class,'index'])->name('administrator.delivery_orders');
+    Route::get('/delivery_orders/{id}/purchase_order',[App\Http\Controllers\DeliveryOrderController::class,'index'])->name('administrator.delivery_orders.purchase_order');
     Route::get('/delivery_order/{id}/show',[App\Http\Controllers\DeliveryOrderController::class,'show'])->name('administrator.delivery_order.show');
     Route::get('/delivery_order/create',[App\Http\Controllers\DeliveryOrderController::class,'create'])->name('administrator.delivery_order.create');
     Route::post('/delivery_order/store',[App\Http\Controllers\DeliveryOrderController::class,'store'])->name('administrator.delivery_order.store');
@@ -129,6 +130,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::put('/purchase_order/{id}/update',[App\Http\Controllers\PurchaseOrderController::class,'update'])->name('administrator.purchase_order.update');
     Route::delete('/purchase_order/{id}/destroy',[App\Http\Controllers\PurchaseOrderController::class,'destroy'])->name('administrator.purchase_order.destroy');
     Route::get('/purchase_order/{id}/pdf',[App\Http\Controllers\PurchaseOrderController::class,'pdf'])->name('administrator.purchase_order.pdf');
+    Route::get('/purchase-order-to-delivery-order/{id}/convert',[App\Http\Controllers\PurchaseOrderController::class,'convert_po_to_do'])->name('administrator.delivery_order.convert_po_to_do');
     //routes patient controller
     Route::get('/patients',[App\Http\Controllers\PatientController::class,'index'])->name('administrator.patients');
     Route::get('/patient/{id}/show',[App\Http\Controllers\PatientController::class,'show'])->name('administrator.patient.show');
