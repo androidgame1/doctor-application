@@ -16,6 +16,7 @@ class CreateChargesTable extends Migration
         Schema::create('charges', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('administrator_id')->nullable();
+            $table->bigInteger('secretary_id')->nullable();
             $table->string('name')->nullable();
             $table->decimal('amount')->default(0);
             $table->text('description')->nullable();

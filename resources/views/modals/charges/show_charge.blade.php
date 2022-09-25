@@ -9,9 +9,15 @@
             <div class="modal-body">
                 <table id="table-show-old-charge" class="table browser m-t-30 no-border">
                 <tbody>
+                    @if($secretary)
+                        <tr>
+                            <td><b></b>{{__('messages.secretary')}}</td>
+                            <td class="text-right"><span class="text-gray" name="secretary"></span></td>
+                        </tr>
+                    @endif
                     <tr>
                         <td><b></b>{{__('messages.name')}}</td>
-                        <td class="text-right"><span class="text-primary" name="name"></span></td>
+                        <td class="text-right"><span class="text-gray" name="name"></span></td>
                     </tr>
                     <tr>
                         <td><b>{{__('messages.amount')}}</b></td>

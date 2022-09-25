@@ -17,6 +17,7 @@ class Charge extends Model
      */
     protected $fillable = [
         'administrator_id',
+        'secretary_id',
         'name',
         'amount',
         'description'

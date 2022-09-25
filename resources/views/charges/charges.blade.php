@@ -33,6 +33,11 @@
                     <div class="col-md-12">
                         @include('messages.messages')
                     </div>
+                    @if($secretary)
+                        <div class="col-md-12">
+                            <h3>{{__('messages.secretary')}} : <span class="text-primary">{{$secretary->fullname}}</span></a></span></h3>
+                        </div>
+                    @endif
                     <div class="col-md-12">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-datatable">

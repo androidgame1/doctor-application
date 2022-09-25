@@ -188,6 +188,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/prescription/{id}/pdf',[App\Http\Controllers\PrescriptionController::class,'pdf'])->name('administrator.prescription.pdf');
     //routes product controller
     Route::get('/charges',[App\Http\Controllers\ChargeController::class,'index'])->name('administrator.charges');
+    Route::get('/charges/{secretary_id}/secretary',[App\Http\Controllers\ChargeController::class,'index'])->name('administrator.charges.secretary');
     Route::get('/charge/{id}/show',[App\Http\Controllers\ChargeController::class,'show'])->name('administrator.charge.show');
     Route::post('/charge/store',[App\Http\Controllers\ChargeController::class,'store'])->name('administrator.charge.store');
     Route::get('/charge/{id}/edit',[App\Http\Controllers\ChargeController::class,'edit'])->name('administrator.charge.edit');

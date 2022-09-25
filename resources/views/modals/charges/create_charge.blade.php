@@ -13,6 +13,17 @@
                     @method('post')
                     @csrf
                     <div class="row">
+                        @if($secretary)
+                            <div class="col-md-12 col-12">
+                                <div class="form-group">
+                                    <label class="label-group">{{__('messages.secretary')}}<span class="text-danger"> * </span></label>
+                                    <input class="form-control {{$errors->has('secretary')?'form-control-danger':''}}"
+                                        type="text" placeholder="{{__('messages.secretary')}}" value="{{$secretary->fullname}}" name="secretary" readonly required>
+                                        <input class="form-control {{$errors->has('secretary')?'form-control-danger':''}}"
+                                        type="hidden" placeholder="{{__('messages.secretary')}}" value="{{$secretary->id}}" name="secretary_id" required>
+                                </div>
+                            </div>
+                        @endif
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.name')}}<span class="text-danger"> * </span></label>

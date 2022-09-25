@@ -154,6 +154,11 @@
                                             <a href="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.edit',['role'=>$role,'id'=>$value->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.edit',['role'=>$role,'id'=>$value->id])}}@else javascript:void(0) @endif"
                                              title="{{__('messages.edit')}}"> <i
                                                     class="fa fa-pencil text-success m-r-10 icon-datatable"></i> </a>
+                                            @if($role == 'secretary')
+                                                <a href="@if(auth()->user()->is_administrator){{route('administrator.charges.secretary',['secretary_id'=>$value->id])}}@else javascript:void(0) @endif"
+                                                title="{{__('messages.charges')}}"> <i
+                                                        class="fa fa-money text-gray m-r-10 icon-datatable"></i> </a>
+                                            @endif        
                                             <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal"
                                                 data-target="#div-destroy-old-item"
                                                 data-url-destroy="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.destroy',['role'=>$role,'id'=>$value->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.destroy',['role'=>$role,'id'=>$value->id])}}@else javascript:void(0) @endif"

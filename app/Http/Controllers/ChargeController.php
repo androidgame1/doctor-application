@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Charge;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\ChargeRequest;
 use Illuminate\Support\Facades\Auth;
@@ -15,11 +16,16 @@ class ChargeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($item="")
     {
         $user = Auth::user();
         $charges = Charge::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        return view('charges.charges',compact('charges'));
+        $secretary=null;
+        if($item){
+            $secretary = User::where(['administrator_id'=>$user->id,'role'=>2,'id'=>$item])->firstOrFail();
+            $charges = Charge::orderBy('id','desc')->where(['administrator_id'=>$user->id,'secretary_id'=>$item])->get();
+        }
+        return view('charges.charges',compact('charges','secretary'));
     }
 
     /**
@@ -41,18 +47,22 @@ class ChargeController extends Controller
     public function store(ChargeRequest $request)
     {
         $user = Auth::user();
-        $data = [
+        $data_charge = [
             'administrator_id'=>$user->id,
             'name'=>$request->name,
             'amount'=>$request->amount,
             'description'=>$request->description,
         ];
-        if(Charge::create($data)){
+        if($request->secretary_id){
+            $data_charge['secretary_id'] = $request->secretary_id;
+        }
+        if(Charge::create($data_charge)){
             toastr()->success(Lang::get('messages.the_charge_has_inserted_by_success'));
         }else{
             toastr()->warning(Lang::get('messages.the_charge_has_not_inserted_by_success'));
         }
-        return redirect()->route('administrator.charges');
+        return redirect()->back();
+        
     }
 
     /**
