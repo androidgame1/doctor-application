@@ -28,7 +28,6 @@ class AppointmentController extends Controller
         }else{
             return view('error');
         }
-
         $appointments = Appointment::orderBy('id','desc')->where('administrator_id',$administrator_id)->get();
         foreach ($appointments as $value) {
             $value->secretary = $value->secretary;

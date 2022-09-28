@@ -35,7 +35,7 @@ class QuoteRequest extends FormRequest
                     'series'=>'required',
                     'patient_id'=>'required',
                     'date'=>'required|date',
-                    'reduction_total_amount'=>'required|numeric|min:0|max:100',
+                    'reduction_total_amount'=>'required|numeric|gt:-1',
                     'ht_total_amount'=>'required|numeric|gt:0',
                     'designation'=>'required|array',
                     'designation.*'=>'required',
@@ -46,7 +46,7 @@ class QuoteRequest extends FormRequest
                     'reduction'=>'required|array',
                     'reduction.*'=>'required|numeric|min:0|max:100',
                     'reduction_amount'=>'required|array',
-                    'reduction_amount.*'=>'required|numeric|gt:0',
+                    'reduction_amount.*'=>'required|numeric|gt:-1',
                     'ht_amount'=>'required|array',
                     'ht_amount.*'=>'required|numeric|gt:0',
                 ];
@@ -68,7 +68,7 @@ class QuoteRequest extends FormRequest
                     'date.date'=>Lang::get('messages.the_date_is_not_correct'),
                     'reduction_total_amount.required'=>Lang::get('messages.the_reduction_total_amount_is_required'),
                     'reduction_total_amount.numeric'=>Lang::get('messages.the_reduction_total_amount_is_not_numéric'),
-                    'reduction_total_amount.gt'=>Lang::get('messages.the_reduction_total_amount_must_be_greater_than_0'),
+                    'reduction_total_amount.gt'=>Lang::get('messages.the_reduction_total_amount_must_be_greater_than_or_equal_0'),
                     'ht_total_amount.required'=>Lang::get('messages.the_HT_total_amount_is_required'),
                     'ht_total_amount.numeric'=>Lang::get('messages.the_HT_total_amount_is_not_numéric'),
                     'ht_total_amount.gt'=>Lang::get('messages.the_HT_total_amount_must_be_greater_than_0'),
@@ -87,7 +87,7 @@ class QuoteRequest extends FormRequest
             $messages['reduction.'.$key.'.max'] = Lang::get('messages.the_reduction_of_the_line_must_be_greater_or_equal_0_and_less_than_or_equal_100',["index"=>($key+1)]);
             $messages['reduction_amount.'.$key.'.required'] = Lang::get('messages.the_reduction_amount_of_the_line_is_required',["index"=>($key+1)]);
             $messages['reduction_amount.'.$key.'.numeric'] = Lang::get('messages.the_reduction_amount_of_the_line_is_not_numéric',["index"=>($key+1)]);
-            $messages['reduction_amount.'.$key.'.gt'] = Lang::get('messages.the_reduction_amount_of_the_line_must_be_greater_than_0',["index"=>($key+1)]);
+            $messages['reduction_amount.'.$key.'.gt'] = Lang::get('messages.the_reduction_amount_of_the_line_must_be_greater_than_or_equal_0',["index"=>($key+1)]);
             $messages['ht_amount.'.$key.'.required'] = Lang::get('messages.the_HT_mount_of_the_line_is_required',["index"=>($key+1)]);
             $messages['ht_amount.'.$key.'.numeric'] = Lang::get('messages.the_HT_mount_of_the_line_is_not_numéric',["index"=>($key+1)]);
             $messages['ht_amount.'.$key.'.gt'] = Lang::get('messages.the_HT_mount_of_the_line_must_be_greater_than_0',["index"=>($key+1)]);

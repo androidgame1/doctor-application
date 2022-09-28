@@ -15,7 +15,7 @@
                 </li>
                 <li class="breadcrumb-item active">{{__('messages.delivery_orders')}}</li>
             </ol>
-            <a href="@if(auth()->user()->is_administrator){{route('administrator.delivery_order.create')}}@else javascript:void(0) @endif" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> {{__('messages.new')}} {{__('messages.delivery_order')}}</a>
+            <a href="@if(auth()->user()->is_administrator)@if(Route::current()->getName()=='administrator.delivery_orders.purchase_order'){{route('administrator.delivery_order.convert_po_to_do',$purchase_order->id)}} @else {{route('administrator.delivery_order.create')}} @endif @else javascript:void(0) @endif" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> {{__('messages.new')}} {{__('messages.delivery_order')}}</a>
             
         </div>
     </div>
@@ -34,6 +34,11 @@
                     <div class="col-md-12">
                         @include('messages.messages')
                     </div>
+                    @if($purchase_order)
+                        <div class="col-md-12">
+                            <h3>{{__('messages.purchase_order')}} : <a href="javascript:void(0)" class="text-primary font-bold">{{$purchase_order->series}}</a></span></h3>
+                        </div>
+                    @endif
                     <div class="col-md-12">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped table-datatable">

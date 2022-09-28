@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Delivery_order;
+use App\Models\Purchase_order;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Requests\DeliveryOrderRequest;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Helper;
+use Illuminate\Support\Facades\Route;
 use Lang;
 
 class DeliveryOrderController extends Controller
@@ -17,14 +19,16 @@ class DeliveryOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($item="")
+    public function index($purchase_order_id="")
     {
         $user = Auth::user();
+        $purchase_order = null;
         $delivery_orders = Delivery_order::where(['administrator_id'=>$user->id])->get();
-        if($item){
-            $delivery_orders = Delivery_order::where(['administrator_id'=>$user->id,'purchase_order_id'=>$item])->get();
+        if($purchase_order_id){
+            $purchase_order = Purchase_order::where(['administrator_id'=>$user->id,'id'=>$purchase_order_id])->firstOrFail();
+            $delivery_orders = Delivery_order::where(['administrator_id'=>$user->id,'purchase_order_id'=>$purchase_order_id])->get();
         }
-        return view('delivery_orders.delivery_orders',compact('delivery_orders'));
+        return view('delivery_orders.delivery_orders',compact('delivery_orders','purchase_order'));
     }
 
     /**
@@ -74,7 +78,12 @@ class DeliveryOrderController extends Controller
         }else{
             toastr()->warning(Lang::get('messages.the_delivery_order_has_not_inserted_by_success'));
         }
-        return redirect()->route('administrator.delivery_orders');
+        if($request->action == 'convert'){
+            return redirect()->route('administrator.delivery_orders.purchase_order',$request->purchase_order_id);
+        }else{
+            return redirect()->route('administrator.delivery_orders');
+        }
+        
     }
 
     /**

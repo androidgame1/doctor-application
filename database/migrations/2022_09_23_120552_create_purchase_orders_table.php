@@ -15,6 +15,7 @@ class CreatePurchaseOrdersTable extends Migration
     {
         Schema::create('purchase_orders', function (Blueprint $table) {
             $table->id();
+            $table->string('series')->nullable();
             $table->bigInteger('administrator_id')->nullable();
             $table->bigInteger('supplier_id')->nullable();
             $table->date('date')->nullbale();

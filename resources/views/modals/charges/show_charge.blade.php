@@ -12,7 +12,7 @@
                     @if($secretary)
                         <tr>
                             <td><b></b>{{__('messages.secretary')}}</td>
-                            <td class="text-right"><span class="text-gray" name="secretary"></span></td>
+                            <td class="text-right"><span class="text-primary" name="secretary">{{$secretary->fullname}}</span></td>
                         </tr>
                     @endif
                     <tr>

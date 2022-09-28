@@ -33,12 +33,17 @@
                     @csrf
                     <input type="hidden" name="action" id="action" value="{{Route::current()->getName() == 'administrator.delivery_order.convert_po_to_do' ? 'convert' : 'store'}}">
                     @if(Route::current()->getName() == 'administrator.delivery_order.convert_po_to_do')
-                        <input type="hidden" name="purchase_order_id" id="purchase_order_id" value="{{$purchase_order_id}}">
+                        <input type="hidden" name="purchase_order_id" id="purchase_order_id" value="{{$purchase_order->id}}">
                     @endif
                     <div class="row">
                         <div class="col-md-12">
                             @include('messages.messages')
                         </div>
+                        @if($purchase_order)
+                            <div class="col-md-12">
+                                <h3>{{__('messages.purchase_order')}} : <a href="javascript:void(0)" class="text-primary font-bold">{{$purchase_order->series}}</a></span></h3>
+                            </div>
+                        @endif
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.suppliers')}}<span class="text-danger"> * </span></label>

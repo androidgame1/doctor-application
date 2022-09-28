@@ -36,6 +36,11 @@ class PurchaseOrderRequest extends FormRequest
                     'date' => 'required|date',
                     'note' => 'required',
                 ];
+                if($this->routeIs('administrator.purchase_order.store')){
+                    $rules['series']='required|unique:purchase_orders';
+                }else if($this->routeIs('administrator.purchase_order.update')){
+                    $rules['series']='required|unique:purchase_orders,series,'.$this->id;
+                }
             }
         }
         return $rules;
@@ -47,6 +52,8 @@ class PurchaseOrderRequest extends FormRequest
      */
     public function messages(){
         $messages = [
+            'series.required'=>Lang::get('messages.the_series_is_required'),
+            'series.unique'=>Lang::get('messages.the_series_is_already_exists'),
             'supplier_id.required'=>Lang::get('messages.the_supplier_is_required'),
             'date.required'=>Lang::get('messages.the_date_is_required'),
             'date.date'=>Lang::get('messages.the_date_is_not_correct'),

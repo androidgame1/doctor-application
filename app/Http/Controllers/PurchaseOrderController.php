@@ -46,6 +46,7 @@ class PurchaseOrderController extends Controller
     {
         $user = Auth::user();
         $data = [
+            'series'=>$request->series,
             'administrator_id'=>$user->id,
             'supplier_id'=>$request->supplier_id,
             'date'=>\Carbon\Carbon::parse($request->date)->format('Y-m-d'),
@@ -96,6 +97,7 @@ class PurchaseOrderController extends Controller
         $user = Auth::user();
         $purchase_orders = Purchase_order::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $data = [
+            'series'=>$request->series,
             'supplier_id'=>$request->supplier_id,
             'date'=>\Carbon\Carbon::parse($request->date)->format('Y-m-d'),
             'note'=>$request->note,
@@ -145,8 +147,9 @@ class PurchaseOrderController extends Controller
     public function convert_po_to_do($purchase_order_id)
     {
         $user = Auth::user();
+        $purchase_order = Purchase_order::where(['administrator_id'=>$user->id,'id'=>$purchase_order_id])->firstOrFail();
         $suppliers = Supplier::where('administrator_id',$user->id)->get();
-        return view('delivery_orders.create_delivery_order',compact('suppliers','purchase_order_id'));
+        return view('delivery_orders.create_delivery_order',compact('suppliers','purchase_order'));
     }
 
 }

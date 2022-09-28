@@ -49,6 +49,13 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
+                                <label class="label-group">{{__('messages.series')}}<span class="text-danger"> * </span></label>
+                                <input class="form-control {{$errors->has('series')?'form-control-danger':''}}"
+                                    type="text" placeholder="{{__('messages.series')}}" value="{{$delivery_order->series}}" name="series" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
                                 <label class="label-group">{{__('messages.date')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('date')?'form-control-danger':''}}"
                                     type="date" placeholder="{{__('messages.date')}}" name="date" value="{{\Carbon\Carbon::parse($purchase_order->date)->format('Y-m-d')}}" required>

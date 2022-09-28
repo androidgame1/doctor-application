@@ -17,6 +17,7 @@ class Purchase_order extends Model
      * @var array<int, string>
      */
     protected $fillable = [
+        'series',
         'administrator_id',
         'supplier_id',
         'date',
