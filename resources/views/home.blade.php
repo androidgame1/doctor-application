@@ -21,7 +21,7 @@
 <!-- ============================================================== -->
 <!-- Info box -->
 <!-- ============================================================== -->
-
+@include('includes.search_between_two_dates')
 @if(auth()->user()->id_superadministrator)
 <div class="row">
     <div class="col-12">

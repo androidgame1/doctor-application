@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Helper;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Lang;
+use Carbon\Carbon;
 
 class ActivityController extends Controller
 {
@@ -20,10 +21,14 @@ class ActivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
         $activities = Activity::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->start_date)){
+            $activities = Activity::orderBy('id','desc')->where('administrator_id',$user->id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->get();
+        }
         $count_unpaid_activities = $activities->filter(function($value){
             return $value->status == '0';
         })->count();
@@ -36,12 +41,12 @@ class ActivityController extends Controller
         $count_canceled_activities = $activities->filter(function($value){
             return $value->status == '3';
         })->count();
-        $canceled_payments = Helper::totalActivityPayments('canceled');
-        $activated_payments = Helper::totalActivityPayments('activated');
-        $paid_payments = Helper::totalActivityPayments('paid');
-        $partiel_payments = Helper::totalActivityPayments('partiel');
-        $unpaid_payments = Helper::totalActivityPayments('unpaid');
-        $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        $canceled_payments = Helper::totalActivityPayments('canceled',$request->start_date,$request->end_date);
+        $activated_payments = Helper::totalActivityPayments('activated',$request->start_date,$request->end_date);
+        $paid_payments = Helper::totalActivityPayments('paid',$request->start_date,$request->end_date);
+        $partiel_payments = Helper::totalActivityPayments('partiel',$request->start_date,$request->end_date);
+        $unpaid_payments = Helper::totalActivityPayments('unpaid',$request->start_date,$request->end_date);
+        
         return view('activities.activities',compact('activities','patients','count_unpaid_activities','count_partiel_activities','count_partiel_activities','count_paid_activities','count_canceled_activities','canceled_payments','activated_payments','paid_payments','partiel_payments','unpaid_payments'));
     }
 

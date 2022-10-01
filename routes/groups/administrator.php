@@ -41,6 +41,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/act/{id}/destroy',[App\Http\Controllers\ActController::class,'destroy'])->name('administrator.act.destroy');
     //routes purchase_invoices controller
     Route::get('/purchase_invoices',[App\Http\Controllers\PurchaseInvoiceController::class,'index'])->name('administrator.purchase_invoices');
+    Route::post('/purchase_invoices',[App\Http\Controllers\PurchaseInvoiceController::class,'index'])->name('administrator.purchase_invoices.dates.filter');
     Route::get('/purchase_invoices/{status}/filter',[App\Http\Controllers\PurchaseInvoiceController::class,'filter'])->name('administrator.purchase_invoices.filter');
     Route::get('/purchase_invoice/{id}/show',[App\Http\Controllers\PurchaseInvoiceController::class,'show'])->name('administrator.purchase_invoice.show');
     Route::get('/purchase_invoice/create',[App\Http\Controllers\PurchaseInvoiceController::class,'create'])->name('administrator.purchase_invoice.create');
@@ -61,6 +62,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/purchase_invoice_payment/{id}/destroy',[App\Http\Controllers\PurchaseInvoicePaymentController::class,'destroy'])->name('administrator.purchase_invoice_payment.destroy');
     //routes sale_invoices controller
     Route::get('/sale_invoices',[App\Http\Controllers\SaleInvoiceController::class,'index'])->name('administrator.sale_invoices');
+    Route::post('/sale_invoices',[App\Http\Controllers\SaleInvoiceController::class,'index'])->name('administrator.sale_invoices.dates.filter');
     Route::get('/sale_invoices/{status}/filter',[App\Http\Controllers\SaleInvoiceController::class,'filter'])->name('administrator.sale_invoices.filter');
     Route::get('/sale_invoice/{id}/show',[App\Http\Controllers\SaleInvoiceController::class,'show'])->name('administrator.sale_invoice.show');
     Route::get('/sale_invoice/create',[App\Http\Controllers\SaleInvoiceController::class,'create'])->name('administrator.sale_invoice.create');
@@ -81,6 +83,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/sale_invoice_payment/{id}/destroy',[App\Http\Controllers\SaleInvoicePaymentController::class,'destroy'])->name('administrator.sale_invoice_payment.destroy');
     //routes activity controller
     Route::get('/activities',[App\Http\Controllers\ActivityController::class,'index'])->name('administrator.activities');
+    Route::post('/activities',[App\Http\Controllers\ActivityController::class,'index'])->name('administrator.activities.dates.filter');
     Route::get('/activities/{status}/filter',[App\Http\Controllers\ActivityController::class,'filter'])->name('administrator.activities.filter');
     Route::get('/activity/{id}/show',[App\Http\Controllers\ActivityController::class,'show'])->name('administrator.activity.show');
     Route::get('/activity/create',[App\Http\Controllers\ActivityController::class,'create'])->name('administrator.activity.create');

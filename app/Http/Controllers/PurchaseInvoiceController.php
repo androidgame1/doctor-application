@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Helper;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Lang;
+use Carbon\Carbon;
 
 class PurchaseInvoiceController extends Controller
 {
@@ -20,10 +21,14 @@ class PurchaseInvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($item="")
+    public function index(Request $request,$item="")
     {
         $user = Auth::user();
         $purchase_invoices = Purchase_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        $suppliers = Supplier::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->start_date)){
+            $purchase_invoices = Purchase_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->get();
+        }
         $count_unpaid_purchase_invoices = $purchase_invoices->filter(function($value){
             return $value->status == '0';
         })->count();
@@ -36,12 +41,11 @@ class PurchaseInvoiceController extends Controller
         $count_canceled_purchase_invoices = $purchase_invoices->filter(function($value){
             return $value->status == '3';
         })->count();
-        $canceled_payments = Helper::totalPurchaseInvoicePayments('canceled');
-        $activated_payments = Helper::totalPurchaseInvoicePayments('activated');
-        $paid_payments = Helper::totalPurchaseInvoicePayments('paid');
-        $partiel_payments = Helper::totalPurchaseInvoicePayments('partiel');
-        $unpaid_payments = Helper::totalPurchaseInvoicePayments('unpaid');
-        $suppliers = Supplier::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        $canceled_payments = Helper::totalPurchaseInvoicePayments('canceled',$request->start_date,$request->end_date);
+        $activated_payments = Helper::totalPurchaseInvoicePayments('activated',$request->start_date,$request->end_date);
+        $paid_payments = Helper::totalPurchaseInvoicePayments('paid',$request->start_date,$request->end_date);
+        $partiel_payments = Helper::totalPurchaseInvoicePayments('partiel',$request->start_date,$request->end_date);
+        $unpaid_payments = Helper::totalPurchaseInvoicePayments('unpaid',$request->start_date,$request->end_date);
         return view('purchase_invoices.purchase_invoices',compact('purchase_invoices','suppliers','count_unpaid_purchase_invoices','count_partiel_purchase_invoices','count_paid_purchase_invoices','count_canceled_purchase_invoices','canceled_payments','activated_payments','paid_payments','partiel_payments','unpaid_payments'));
     }
     /**

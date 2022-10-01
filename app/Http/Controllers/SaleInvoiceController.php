@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Helper;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Lang;
+use Carbon\Carbon;
 
 class SaleInvoiceController extends Controller
 {
@@ -20,10 +21,14 @@ class SaleInvoiceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
         $sale_invoices = Sale_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->start_date)){
+            $sale_invoices = Sale_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->get();
+        }
         $count_unpaid_sale_invoices = $sale_invoices->filter(function($value){
             return $value->status == '0';
         })->count();
@@ -36,12 +41,11 @@ class SaleInvoiceController extends Controller
         $count_canceled_sale_invoices = $sale_invoices->filter(function($value){
             return $value->status == '3';
         })->count();
-        $canceled_payments = Helper::totalSaleInvoicePayments('canceled');
-        $activated_payments = Helper::totalSaleInvoicePayments('activated');
-        $paid_payments = Helper::totalSaleInvoicePayments('paid');
-        $partiel_payments = Helper::totalSaleInvoicePayments('partiel');
-        $unpaid_payments = Helper::totalSaleInvoicePayments('unpaid');
-        $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        $canceled_payments = Helper::totalSaleInvoicePayments('canceled',$request->start_date,$request->end_date);
+        $activated_payments = Helper::totalSaleInvoicePayments('activated',$request->start_date,$request->end_date);
+        $paid_payments = Helper::totalSaleInvoicePayments('paid',$request->start_date,$request->end_date);
+        $partiel_payments = Helper::totalSaleInvoicePayments('partiel',$request->start_date,$request->end_date);
+        $unpaid_payments = Helper::totalSaleInvoicePayments('unpaid',$request->start_date,$request->end_date);
         return view('sale_invoices.sale_invoices',compact('sale_invoices','patients','count_unpaid_sale_invoices','count_partiel_sale_invoices','count_paid_sale_invoices','count_canceled_sale_invoices','canceled_payments','activated_payments','paid_payments','partiel_payments','unpaid_payments'));
     }
     /**
