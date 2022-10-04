@@ -35,6 +35,7 @@
         'prescriptions' => 'Ordonnances',
         'purchase_order' => 'Bon de commande',
         'purchase_orders' => 'Bons de commande',
+        'payments' => 'Paiements',
         'status' => 'Statuts',
         'type_of_drug' => 'Type de Médicament',
         'types_of_drug' => 'Types de Médicament',

@@ -281,6 +281,7 @@
         'unpaid' => 'Unpaid',
         'partiel' => 'Partiel',
         'cash' => 'Cash',
+        'payments' => 'Payments',
         'credit_card' => 'Credit card',
         'debit_card' => 'Debit card',
         'payment_completed' => 'Payment completed',

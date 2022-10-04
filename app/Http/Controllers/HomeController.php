@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Arr;
 use Session;
 use App;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -39,38 +40,72 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        if(Auth::user()->is_superadministrator){
-            $administrators = User::where('role','administrator')->count();
-            $activated_administrators = $administrators->filter(function($value){
-                return $value->isvalidate == '1';
-            })->count();
-            $deactivated_administrators = $administrators->filter(function($value){
-                $value->isvalidate == '0';
-            })->count();
-            return view('home',compact('administrators','activated_administrators','deactivated_administrators'));
-        }else if(Auth::user()->is_administrator){
-            $user = Auth::user();
-            $count_secretaries = User::where(['administrator_id'=>$user->id,'role'=>'secretary'])->count();
-            $count_suppliers = Supplier::where(['administrator_id'=>$user->id])->count();
-            $count_patients = Patient::where(['administrator_id'=>$user->id])->count();
-            $count_products = Product::where(['administrator_id'=>$user->id])->count();
-            $count_acts = Act::where(['administrator_id'=>$user->id])->count();
-            $count_prescriptions = Prescription::where(['administrator_id'=>$user->id])->count();
-            $count_activities = Activity::where(['administrator_id'=>$user->id])->count();
-            $count_purchase_invoices = Purchase_invoice::where(['administrator_id'=>$user->id])->count();
-            $count_sale_invoices = Sale_invoice::where(['administrator_id'=>$user->id])->count();
-            $count_purchase_orders = Purchase_order::where(['administrator_id'=>$user->id])->count();
-            $count_delivery_orders = Delivery_order::where(['administrator_id'=>$user->id])->count();
-            $count_quotes = Quote::where(['administrator_id'=>$user->id])->count();
-            $count_charges = Charge::where(['administrator_id'=>$user->id])->count();
-            $count_appointments = Appointment::where(['administrator_id'=>$user->id])->count();
-            return view('home',compact('count_secretaries','count_suppliers','count_patients','count_products','count_acts','count_prescriptions','count_activities','count_purchase_invoices','count_sale_invoices','count_purchase_orders','count_delivery_orders','count_quotes','count_charges','count_appointments'));
-        }else if(Auth::user()->is_secretary){
-            return view('home');
+        if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->end_date)){
+            if(Auth::user()->is_superadministrator){
+                $administrators = User::where('role','administrator')->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $activated_administrators = $administrators->filter(function($value){
+                    return $value->isvalidate == '1';
+                })->count();
+                $deactivated_administrators = $administrators->filter(function($value){
+                    $value->isvalidate == '0';
+                })->count();
+                return view('home',compact('administrators','activated_administrators','deactivated_administrators'));
+            }else if(Auth::user()->is_administrator){
+                $user = Auth::user();
+                $count_secretaries = User::where(['administrator_id'=>$user->id,'role'=>'secretary'])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_suppliers = Supplier::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_patients = Patient::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_products = Product::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_acts = Act::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_prescriptions = Prescription::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_activities = Activity::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_purchase_invoices = Purchase_invoice::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_sale_invoices = Sale_invoice::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_purchase_orders = Purchase_order::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_delivery_orders = Delivery_order::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_quotes = Quote::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_charges = Charge::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_appointments = Appointment::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                return view('home',compact('count_secretaries','count_suppliers','count_patients','count_products','count_acts','count_prescriptions','count_activities','count_purchase_invoices','count_sale_invoices','count_purchase_orders','count_delivery_orders','count_quotes','count_charges','count_appointments'));
+            }else if(Auth::user()->is_secretary){
+                return view('home');
+            }else{
+                return view('error');
+            }
         }else{
-            return view('error');
+            if(Auth::user()->is_superadministrator){
+                $administrators = User::where('role','administrator')->count();
+                $activated_administrators = $administrators->filter(function($value){
+                    return $value->isvalidate == '1';
+                })->count();
+                $deactivated_administrators = $administrators->filter(function($value){
+                    $value->isvalidate == '0';
+                })->count();
+                return view('home',compact('administrators','activated_administrators','deactivated_administrators'));
+            }else if(Auth::user()->is_administrator){
+                $user = Auth::user();
+                $count_secretaries = User::where(['administrator_id'=>$user->id,'role'=>'secretary'])->count();
+                $count_suppliers = Supplier::where(['administrator_id'=>$user->id])->count();
+                $count_patients = Patient::where(['administrator_id'=>$user->id])->count();
+                $count_products = Product::where(['administrator_id'=>$user->id])->count();
+                $count_acts = Act::where(['administrator_id'=>$user->id])->count();
+                $count_prescriptions = Prescription::where(['administrator_id'=>$user->id])->count();
+                $count_activities = Activity::where(['administrator_id'=>$user->id])->count();
+                $count_purchase_invoices = Purchase_invoice::where(['administrator_id'=>$user->id])->count();
+                $count_sale_invoices = Sale_invoice::where(['administrator_id'=>$user->id])->count();
+                $count_purchase_orders = Purchase_order::where(['administrator_id'=>$user->id])->count();
+                $count_delivery_orders = Delivery_order::where(['administrator_id'=>$user->id])->count();
+                $count_quotes = Quote::where(['administrator_id'=>$user->id])->count();
+                $count_charges = Charge::where(['administrator_id'=>$user->id])->count();
+                $count_appointments = Appointment::where(['administrator_id'=>$user->id])->count();
+                return view('home',compact('count_secretaries','count_suppliers','count_patients','count_products','count_acts','count_prescriptions','count_activities','count_purchase_invoices','count_sale_invoices','count_purchase_orders','count_delivery_orders','count_quotes','count_charges','count_appointments'));
+            }else if(Auth::user()->is_secretary){
+                return view('home');
+            }else{
+                return view('error');
+            }
         }
     }
      /**

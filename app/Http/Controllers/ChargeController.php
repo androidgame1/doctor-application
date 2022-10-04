@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ChargeRequest;
 use Illuminate\Support\Facades\Auth;
 use Lang;
+use Carbon\Carbon;
 
 class ChargeController extends Controller
 {
@@ -16,16 +17,27 @@ class ChargeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($item="")
+    public function index(Request $request,$item="")
     {
+        // dd($request->all());
         $user = Auth::user();
-        $charges = Charge::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        $charges = Charge::orderBy('id','desc')->where('administrator_id',$user->id);
         $secretary=null;
         if($item){
             $secretary = User::where(['administrator_id'=>$user->id,'role'=>2,'id'=>$item])->firstOrFail();
-            $charges = Charge::orderBy('id','desc')->where(['administrator_id'=>$user->id,'secretary_id'=>$item])->get();
+            $charges = Charge::orderBy('id','desc')->where(['administrator_id'=>$user->id,'secretary_id'=>$item]);
         }
-        return view('charges.charges',compact('charges','secretary'));
+        if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->end_date)){
+            $charges = Charge::orderBy('id','desc')->where('administrator_id',$user->id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"]);
+            if($item){
+                $secretary = User::where(['administrator_id'=>$user->id,'role'=>2,'id'=>$item])->firstOrFail();
+                $charges = Charge::orderBy('id','desc')->where(['administrator_id'=>$user->id,'secretary_id'=>$item])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"]);
+            }
+        }
+        $charges = $charges->get();
+        $count_charges = $charges->count();
+        $charge_payments = $charges->sum('amount');
+        return view('charges.charges',compact('charges','secretary','count_charges','charge_payments'));
     }
 
     /**

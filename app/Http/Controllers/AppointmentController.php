@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AppointmentRequest;
 use Illuminate\Support\Facades\Auth;
 use Lang;
+use Carbon\Carbon;
 
 class AppointmentController extends Controller
 {
@@ -17,7 +18,7 @@ class AppointmentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($from)
+    public function index(Request $request,$from)
     {
         $user = Auth::user();
         $administrator_id = "";
@@ -29,16 +30,27 @@ class AppointmentController extends Controller
             return view('error');
         }
         $appointments = Appointment::orderBy('id','desc')->where('administrator_id',$administrator_id)->get();
+        $patients = Patient::orderBy('id','desc')->where('administrator_id',$administrator_id)->get();
+        $status = Status::orderBy('id','desc')->where('administrator_id',$administrator_id)->get();
+        $counts_appintment_status = Status::leftJoin('appointments', function($query) {
+            $query->on('statuses.id', '=', 'appointments.status_id');
+        })->select('statuses.id','statuses.name','statuses.color')->selectRaw('count(appointments.id) as count_appointments')->groupBy('statuses.id','statuses.name','statuses.color')->get();
+        if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->end_date)){
+            $appointments = Appointment::orderBy('id','desc')->where('administrator_id',$administrator_id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->get();
+            $counts_appintment_status = Status::leftJoin('appointments', function($query) use ($request) {
+                $query->on('statuses.id', '=', 'appointments.status_id');
+                $query->whereBetween('statuses.created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"]);
+            })->select('statuses.id','statuses.name','statuses.color')->selectRaw('count(appointments.id) as count_appointments')->groupBy('statuses.id','statuses.name','statuses.color')->get();
+        }
         foreach ($appointments as $value) {
             $value->secretary = $value->secretary;
             $value->patient = $value->patient;
             $value->status_state = $value->status_state;
             $value->status = $value->status;
         }
-        $patients = Patient::orderBy('id','desc')->where('administrator_id',$administrator_id)->get();
-        $status = Status::orderBy('id','desc')->where('administrator_id',$administrator_id)->get();
+        
         if($from == "appointments"){
-            return view('appointments.appointments',compact('appointments','patients','status'));
+            return view('appointments.appointments',compact('appointments','patients','status','counts_appintment_status'));
         }else if($from == "calendar"){
             $data=['icon'=>'success','appointments'=>$appointments,'patients'=>$patients,'status'=>$status];
             return response()->json($data);

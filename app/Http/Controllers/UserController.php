@@ -16,7 +16,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($role)
+    public function index(Request $request,$role)
     {
         $user = Auth::user();
         $rolevalue="";
@@ -36,6 +36,9 @@ class UserController extends Controller
             return view('error');
         }
         $users = User::where(['administrator_id'=>$user->id,'role'=>$rolevalue])->get();
+        if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->end_date)){
+            $users = User::where(['administrator_id'=>$user->id,'role'=>$rolevalue])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->get();
+        }
         $count_no_validated_users = $users->filter(function($value){
             return $value->isvalidate =='0';
         })->count();

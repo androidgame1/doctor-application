@@ -27,7 +27,8 @@
 <!-- ============================================================== -->
 @if(auth()->user()->id_superadministrator)
 
-@elseif(auth()->user()->is_administrator && Route::current()->getName() == 'administrator.quotes')
+@elseif(auth()->user()->is_administrator && (in_array(Route::current()->getName(),['administrator.quotes','administrator.quotes.dates.filter'])))
+    @include('includes.search_between_two_dates',['route'=>'administrator.quotes.dates.filter'])      
     <div class="row">
         <div class="col-12">
             <div class="card-group">

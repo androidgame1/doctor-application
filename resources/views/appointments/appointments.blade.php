@@ -25,6 +25,41 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
+@if(auth()->user()->is_administrator)
+@include('includes.search_between_two_dates',['route'=>'administrator.appointments.dates.filter','param1'=>'appointments']) 
+<div class="row">
+        <div class="col-12">
+            <div class="card-group">
+                @foreach($counts_appintment_status as $count_appintment_status)
+                    <div class="card">
+                        <a href="javascript:void(0)">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="d-flex no-block align-items-center">
+                                            <div>
+                                                <h3><i class="fa fa-calendar-o" style="color:{{$count_appintment_status->color}}"></i></h3>
+                                                <p class="text-muted">{{$count_appintment_status->name}}</p>
+                                            </div>
+                                            <div class="ml-auto">
+                                                <h2 class="counter" style="color:{{$count_appintment_status->color}}">{{$count_appintment_status->count_appointments}}</h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: 100%; height: 6px;background:{{$count_appintment_status->color}}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+            </div> 
+        </div>
+    </div>
+@endif
 <div class="row">
     <div class="col-12">
         <div class="card">

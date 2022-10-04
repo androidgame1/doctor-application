@@ -21,8 +21,9 @@
 <!-- ============================================================== -->
 <!-- Info box -->
 <!-- ============================================================== -->
-@include('includes.search_between_two_dates')
+
 @if(auth()->user()->id_superadministrator)
+@include('includes.search_between_two_dates')
 <div class="row">
     <div class="col-12">
         <div class="card-group">
@@ -101,6 +102,7 @@
     </div>
 </div>
 @elseif(auth()->user()->is_administrator)
+    @include('includes.search_between_two_dates',['route'=>'administrator.home.filter'])
     <div class="row">
         <div class="col-12">
             <div class="card-group">

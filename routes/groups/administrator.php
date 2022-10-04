@@ -2,6 +2,7 @@
 Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','is.administrator']],function(){
     // Routes home controller
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('administrator.home');
+    Route::post('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('administrator.home.filter');
     // Routes user controller
     Route::get('/edit-password', [App\Http\Controllers\UserController::class, 'editPassword'])->name('administrator.password.edit');
     Route::put('/update-password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name('administrator.password.update');
@@ -96,6 +97,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/activity/{id}/pdf',[App\Http\Controllers\ActivityController::class,'pdf'])->name('administrator.activity.pdf');
     //routes quote controller
     Route::get('/quotes',[App\Http\Controllers\QuoteController::class,'index'])->name('administrator.quotes');
+    Route::post('/quotes',[App\Http\Controllers\QuoteController::class,'index'])->name('administrator.quotes.dates.filter');
     Route::get('/quotes/{status}/filter',[App\Http\Controllers\QuoteController::class,'filter'])->name('administrator.quotes.filter');
     Route::get('/quote/{id}/show',[App\Http\Controllers\QuoteController::class,'show'])->name('administrator.quote.show');
     Route::get('/quote/create',[App\Http\Controllers\QuoteController::class,'create'])->name('administrator.quote.create');
@@ -144,6 +146,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/patient/{id}/destroy',[App\Http\Controllers\PatientController::class,'destroy'])->name('administrator.patient.destroy');
     //routes appointment controller
     Route::get('/appointments/{from}',[App\Http\Controllers\AppointmentController::class,'index'])->name('administrator.appointments');
+    Route::post('/appointments/{from}',[App\Http\Controllers\AppointmentController::class,'index'])->name('administrator.appointments.dates.filter');
     Route::get('/calendar',[App\Http\Controllers\AppointmentController::class,'calendar'])->name('administrator.calendar');
     Route::get('/appointment/{id}/show',[App\Http\Controllers\AppointmentController::class,'show'])->name('administrator.appointment.show');
     Route::get('/appointment/create',[App\Http\Controllers\AppointmentController::class,'create'])->name('administrator.appointment.create');
@@ -191,7 +194,9 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/prescription/{id}/pdf',[App\Http\Controllers\PrescriptionController::class,'pdf'])->name('administrator.prescription.pdf');
     //routes product controller
     Route::get('/charges',[App\Http\Controllers\ChargeController::class,'index'])->name('administrator.charges');
+    Route::post('/charges',[App\Http\Controllers\ChargeController::class,'index'])->name('administrator.charges.dates.filter');
     Route::get('/charges/{secretary_id}/secretary',[App\Http\Controllers\ChargeController::class,'index'])->name('administrator.charges.secretary');
+    Route::post('/charges/{secretary_id}/secretary',[App\Http\Controllers\ChargeController::class,'index'])->name('administrator.charges.secretary.dates.filter');
     Route::get('/charge/{id}/show',[App\Http\Controllers\ChargeController::class,'show'])->name('administrator.charge.show');
     Route::post('/charge/store',[App\Http\Controllers\ChargeController::class,'store'])->name('administrator.charge.store');
     Route::get('/charge/{id}/edit',[App\Http\Controllers\ChargeController::class,'edit'])->name('administrator.charge.edit');

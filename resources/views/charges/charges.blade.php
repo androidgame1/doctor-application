@@ -25,6 +25,70 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
+@if(auth()->user()->id_superadministrator)
+
+@elseif(auth()->user()->is_administrator && (in_array(Route::current()->getName(),['administrator.charges','administrator.charges.dates.filter','administrator.charges.secretary','administrator.charges.secretary.dates.filter']))  )
+    @if(in_array(Route::current()->getName(),['administrator.charges','administrator.charges.dates.filter']))
+        @include('includes.search_between_two_dates',['route'=>'administrator.charges.dates.filter'])
+    @else
+        @include('includes.search_between_two_dates',['route'=>'administrator.charges.secretary.dates.filter','param1'=>$secretary->id])
+    @endif
+    <div class="row">
+        <div class="col-12">
+            <div class="card-group">
+                <div class="card">
+                    <a href="{{route('administrator.charges')}}">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h3><i class="fa fa-money text-gray"></i></h3>
+                                            <p class="text-muted">{{__('messages.total_charges')}}</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <h2 class="counter text-gray">{{count($charges)}}</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-gray" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <!-- Column -->
+                <div class="card">
+                    <a href="javascript:void(0)">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="d-flex no-block align-items-center">
+                                        <div>
+                                            <h3><i class="fa fa-money text-success"></i></h3>
+                                            <p class="text-muted">{{__('messages.payments')}}</p>
+                                        </div>
+                                        <div class="ml-auto">
+                                            <h2 class="counter text-success">{{$charge_payments}} MAD</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div> 
+        </div>   
+    </div>
+@endif
 <div class="row">
     <div class="col-12">
         <div class="card">
