@@ -26,7 +26,7 @@ class SaleInvoiceController extends Controller
         $user = Auth::user();
         $sale_invoices = Sale_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->get();
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
-        if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->start_date)){
+        if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->end_date)){
             $sale_invoices = Sale_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->get();
         }
         $count_unpaid_sale_invoices = $sale_invoices->filter(function($value){
