@@ -40,7 +40,7 @@
                         <!-- User Profile -->
                         <!-- ============================================================== -->
                         <li class="nav-item dropdown u-pro">
-                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  <span class="hidden-md-down">{{Session::get('lang_code') ?? 'en'}} </span> </a>
+                            <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">  <span class="hidden-md-down">{{Session::get('lang_code') ?? 'fr'}} </span> </a>
                             <div class="dropdown-menu dropdown-menu-right animated flipInY">
 
                                 <!-- text-->

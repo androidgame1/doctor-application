@@ -3,6 +3,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     // Routes home controller
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('administrator.home');
     Route::post('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('administrator.home.filter');
+    Route::post('/home/report',[App\Http\Controllers\HomeController::class,'report'])->name('administrator.home.report');
     // Routes user controller
     Route::get('/edit-password', [App\Http\Controllers\UserController::class, 'editPassword'])->name('administrator.password.edit');
     Route::put('/update-password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name('administrator.password.update');

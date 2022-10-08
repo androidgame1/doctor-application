@@ -22,5 +22,29 @@
                 </form>
             </div>
         </div>
+        @if(Route::current()->getName() == 'administrator.home')
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" id="form-filter-report-between-two-dates" action="{{route('administrator.home.report')}}" enctype="multipart/form-data" class="needs-validation" novalidate target="_blank">
+                        @method('post')
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-12">
+                                @include('messages.messages')
+                            </div>
+                            <div class="col-12">
+                                <div class="d-flex">
+                                        <input class="form-control mx-1 {{$errors->has('start_date')?'form-control-danger':''}}"
+                                        type="date" placeholder="{{__('messages.start_date')}}" name="start_date" value="">
+                                        <input class="form-control mx-1 {{$errors->has('end_date')?'form-control-danger':''}}"
+                                        type="date" placeholder="{{__('messages.end_date')}}" name="end_date" value="">        
+                                        <button type="submit" class="btn btn-info mx-1"><i class="fa fa-file"></i> {{__('messages.report')}}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        @endif
     </div>
 </div>

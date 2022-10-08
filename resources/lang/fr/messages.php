@@ -153,6 +153,7 @@
         'edit_delivery_order' => 'Modifier le bon de livraison',
         'show_delivery_order' => 'Afficher le bon de livraison',
         'delete_delivery_order' => 'Supprimer le bon de livraison',
+        'report'=>'Rapport',
         //End title
         //Start fields
         'cin' => 'CIN',
@@ -276,7 +277,7 @@
         'enter_your_email_and_instructions_will_be_sent_to_you' => 'Entrez votre email et des instructions vous seront envoyées !',
         'enter_the_new_password' => 'Entrez le nouveau mot de passe !',
         'test_to_do' => 'Test à faire',
-        'doctor_management' => 'Gestion des médecins',
+        'clinic_management' => 'Gestion de clinique',
         'paid' => 'Payé',
         'unpaid' => 'Non payé',
         'partiel' => 'Partiel',

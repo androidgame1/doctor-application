@@ -153,6 +153,7 @@
         'edit_delivery_order' => 'Edit delivery order',
         'show_delivery_order' => 'Show delivery order',
         'delete_delivery_order' => 'Delete delivery order',
+        'report'=>'Report',
         //End title
         //Start fields
         'cin' => 'CIN',
@@ -276,7 +277,7 @@
         'enter_your_email_and_instructions_will_be_sent_to_you' => 'Enter your Email and instructions will be sent to you !',
         'enter_the_new_password' => 'Enter the new password !',
         'test_to_do' => 'Test to do',
-        'doctor_management' => 'Doctor management',
+        'clinic_management' => 'Clinic management',
         'paid' => 'Paid',
         'unpaid' => 'Unpaid',
         'partiel' => 'Partiel',
@@ -288,6 +289,7 @@
         'invoiced_to' => 'Invoiced to',
         'prescription_to' => 'Prescription to',
         'purchase_order_to' => 'Purchase order to',
+        'report_to_activities' => 'Report to activities',
         'me' => 'Me',
         'you_can_edit_this_appointment' => 'You can edit this appointment.',
         'you_can_not_edit_this_appointment' => 'You can not edit this appointment.',
