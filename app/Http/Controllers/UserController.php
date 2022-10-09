@@ -423,13 +423,25 @@ class UserController extends Controller
                     $request->image = null;
                 }
             }
+            if($user->is_administrator){
+                if($request->hasfile("logo")){
+                    $file = $request->file('logo');
+                    $extention = $file->getClientOriginalExtension();
+                    $filename = "uploads/administrator/logo/files_administrator_".$user->id."/".time().'.'.$extention;
+                    $file->move("uploads/administrator/logo/files_administrator_".$user->id,$filename);
+                    $request->logo = $filename;
+                }else{
+                    $request->logo = $user->logo;
+                }
+            }
             if($user->update([
                 'image'=>$request->image,
                 'fullname'=>$request->fullname,
                 'email'=>$request->email,
                 'address'=>$request->address,
                 'phone'=>$request->phone,
-                'city'=>$request->city
+                'city'=>$request->city,
+                'logo'=>$request->logo
             ])){
                 toastr()->success(Lang::get('messages.the_profile_has_updated_by_success'));
             }else{

@@ -7,7 +7,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <table id="table-show-old-status" class="table browser m-t-30 no-border">
+                <table id="table-show-old-status" class="table browser m-0 no-border">
                 <tbody>
                     <tr>
                         <td><b></b>{{__('messages.name')}}</td>

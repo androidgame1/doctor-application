@@ -201,6 +201,7 @@
         'total_given_amount' => 'Total given amount',
         'remaining_amount' => 'Remaining amount',
         'total_remaining_amount' => 'Total remaining amount',
+        'logo'=>'Logo',
         //End fields
         //Start buttons
         'create' => 'Create',

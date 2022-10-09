@@ -28,7 +28,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <table id="table-show-old-supplier" class="table browser m-t-30 no-border">
+                <table id="table-show-old-supplier" class="table browser m-0 no-border">
                     <tbody>
                         <tr>
                             <td><b></b>{{__('messages.cin')}}</td>

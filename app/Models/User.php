@@ -29,6 +29,7 @@ class User extends Authenticatable
         'city',
         'image',
         'role',
+        'logo',
         'password',
         'isvalidate'
     ];

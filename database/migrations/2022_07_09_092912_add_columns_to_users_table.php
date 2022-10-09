@@ -21,6 +21,7 @@ class AddColumnsToUsersTable extends Migration
             $table->string('phone')->after('address')->nullable();
             $table->string('city')->after('phone')->nullable();
             $table->integer('role')->after('city')->default(0);
+            $table->string('logo')->after('role')->default(0);
             $table->integer('isvalidate')->after('role')->default(0);
         });
     }

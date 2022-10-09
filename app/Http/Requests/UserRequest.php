@@ -72,6 +72,7 @@ class UserRequest extends FormRequest
                     'address' => 'required',
                     'phone' => 'required',
                     'city' => 'required',
+                    'logo'=>'image|mimes:jpg,png,jpeg,gif,svg',
                 ];
                 return $rules;
             }else if($this->routeIs('administrator.user.update') || $this->routeIs('superadministrator.user.update')){
