@@ -1,6 +1,6 @@
 <div class="preloader">
         <div class="loader">
             <div class="loader__figure"></div>
-            <p class="loader__label">{{__('messages.clinic_management')}}</p>
+            <p class="loader__label">{{__('messages.hospital_management')}}</p>
         </div>
     </div>

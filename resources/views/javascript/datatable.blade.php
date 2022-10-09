@@ -10,7 +10,7 @@
     <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
     <script>
         $(function(){
-            @if(session()->has("lang_code") && session()->get("lang_code") == 'fr')
+            @if(!session()->has("lang_code") || session()->get("lang_code") == 'fr')
                 $('.table-datatable').DataTable({
                     'ordering':false,
                     "language":{

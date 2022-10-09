@@ -136,31 +136,8 @@
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="div-header-logo">
-            <img src="{{public_path('assets/images/logo-pdf.png')}}" onerror="this.onerror=null;this.src=`{{public_path('assets/images/default-image.png')}}`" alt="" class="img-header-logo">
-        </div>
-        <div class="div-header-title">
-            <span class="header-title">{{__('messages.report')}}</span>
-        </div>
-    </header>
-    <footer class="footer">
-        <div class="div-administrator-information">
-            <table width="100%">
-                <tbody>
-                    <tr>
-                        <td><span><b>{{__('messages.address')}} :</b> {{auth()->user()->address}}</span></td>
-                        <td><span><b>{{__('messages.email')}} :</b> {{auth()->user()->email}}</span></td>
-                        <td><span><b>{{__('messages.phone')}} :</b> {{auth()->user()->phone}}</span></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <br>
-        <div class="div-footer-number-page">
-            <span class="footer-number-page"></span>
-        </div>
-    </footer>
+    @include('layouts.pdf_parcials.header',['title'=>__('messages.report')])
+    @include('layouts.pdf_parcials.footer')
     <main>
         <div class="div-table">
             <div class="div-activities">

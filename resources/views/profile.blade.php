@@ -91,12 +91,14 @@
                                     required>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label class="label-group">{{__('messages.logo')}}<span class="text-danger d-none"> * </span></label>
-                                <input type="file" class="form-control dropify {{$errors->has('logo')?'form-control-danger':''}}"  data-default-file="{{auth()->user()->logo ? asset(auth()->user()->logo) : ''}}" placeholder="{{__('messages.logo')}}" name="logo">
+                        @if(auth()->user()->is_administrator)
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="label-group">{{__('messages.logo')}}<span class="text-danger d-none"> * </span></label>
+                                    <input type="file" class="form-control dropify {{$errors->has('logo')?'form-control-danger':''}}"  data-default-file="{{auth()->user()->logo ? asset(auth()->user()->logo) : ''}}" placeholder="{{__('messages.logo')}}" name="logo">
+                                </div>
                             </div>
-                        </div>
+                        @endif
                         <div class="col-md-12 col-12">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-info"><i class="fa fa-edit"></i> {{__('messages.modify')}}</button>

@@ -278,7 +278,7 @@
         'enter_your_email_and_instructions_will_be_sent_to_you' => 'Entrez votre email et des instructions vous seront envoyées !',
         'enter_the_new_password' => 'Entrez le nouveau mot de passe !',
         'test_to_do' => 'Test à faire',
-        'clinic_management' => 'Gestion de clinique',
+        'hospital_management' => 'Gestion hospitalière',
         'paid' => 'Payé',
         'unpaid' => 'Non payé',
         'partiel' => 'Partiel',
