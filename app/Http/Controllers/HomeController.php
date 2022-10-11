@@ -47,12 +47,8 @@ class HomeController extends Controller
         if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->end_date)){
             if(Auth::user()->is_superadministrator){
                 $administrators = User::where('role','administrator')->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $activated_administrators = $administrators->filter(function($value){
-                    return $value->isvalidate == '1';
-                })->count();
-                $deactivated_administrators = $administrators->filter(function($value){
-                    $value->isvalidate == '0';
-                })->count();
+                $activated_administrators =$administrators = User::where(['role'=>'administrator','isvalidate'=>0])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $deactivated_administrators = $administrators = User::where(['role'=>'administrator','isvalidate'=>0])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
                 return view('home',compact('administrators','activated_administrators','deactivated_administrators'));
             }else if(Auth::user()->is_administrator){
                 $user = Auth::user();
@@ -79,12 +75,8 @@ class HomeController extends Controller
         }else{
             if(Auth::user()->is_superadministrator){
                 $administrators = User::where('role','administrator')->count();
-                $activated_administrators = $administrators->filter(function($value){
-                    return $value->isvalidate == '1';
-                })->count();
-                $deactivated_administrators = $administrators->filter(function($value){
-                    $value->isvalidate == '0';
-                })->count();
+                $activated_administrators = User::where(['role'=>'administrator','isvalidate'=>1])->count();
+                $deactivated_administrators =  User::where(['role'=>'administrator','isvalidate'=>0])->count();
                 return view('home',compact('administrators','activated_administrators','deactivated_administrators'));
             }else if(Auth::user()->is_administrator){
                 $user = Auth::user();

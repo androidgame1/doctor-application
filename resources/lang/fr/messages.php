@@ -202,6 +202,7 @@
         'remaining_amount' => 'Montant restant',
         'total_remaining_amount' => 'Montant total restant',
         'logo'=>'Logo',
+        'by'=>'par',
         //End fields
         //Start buttons
         'create' => 'Créer',
