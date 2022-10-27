@@ -36,7 +36,10 @@ class AppointmentController extends Controller
             $query->on('statuses.id', '=', 'appointments.status_id');
         })->select('statuses.id','statuses.name','statuses.color')->selectRaw('count(appointments.id) as count_appointments')->groupBy('statuses.id','statuses.name','statuses.color')->get();
         if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->end_date)){
-            $appointments = Appointment::orderBy('id','desc')->where('administrator_id',$administrator_id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->get();
+            $appointments = Appointment::orderBy('id','desc')->where('administrator_id',$administrator_id)
+            ->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")
+            ->get();
             $counts_appintment_status = Status::leftJoin('appointments', function($query) use ($request) {
                 $query->on('statuses.id', '=', 'appointments.status_id');
                 $query->whereBetween('statuses.created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"]);

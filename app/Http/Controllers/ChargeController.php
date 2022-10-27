@@ -28,10 +28,14 @@ class ChargeController extends Controller
             $charges = Charge::orderBy('id','desc')->where(['administrator_id'=>$user->id,'secretary_id'=>$item]);
         }
         if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->end_date)){
-            $charges = Charge::orderBy('id','desc')->where('administrator_id',$user->id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"]);
+            $charges = Charge::orderBy('id','desc')->where('administrator_id',$user->id)
+            ->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%");
             if($item){
                 $secretary = User::where(['administrator_id'=>$user->id,'role'=>2,'id'=>$item])->firstOrFail();
-                $charges = Charge::orderBy('id','desc')->where(['administrator_id'=>$user->id,'secretary_id'=>$item])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"]);
+                $charges = Charge::orderBy('id','desc')->where(['administrator_id'=>$user->id,'secretary_id'=>$item])
+                ->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+                ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%");
             }
         }
         $charges = $charges->get();

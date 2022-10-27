@@ -97,7 +97,7 @@ class TypeDrugController extends Controller
         $type_drugs = Type_drug::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $data = [
             'name'=>$request->name,
-            'color'=>$request->color,
+            'measruing_unit'=>$request->measruing_unit,
         ];
         if($type_drugs->update($data)){
             toastr()->success(Lang::get('messages.the_type_of_drug_has_updated_by_success'));

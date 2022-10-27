@@ -203,6 +203,7 @@
         'total_remaining_amount' => 'Total remaining amount',
         'logo'=>'Logo',
         'by'=>'by',
+        'measruing_unit'=>'Measruing unit',
         //End fields
         //Start buttons
         'create' => 'Create',

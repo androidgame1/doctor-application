@@ -12,9 +12,9 @@
                         <div class="col-12">
                             <div class="d-flex">
                                     <input class="form-control mx-1 {{$errors->has('start_date')?'form-control-danger':''}}"
-                                    type="date" placeholder="{{__('messages.start_date')}}" name="start_date" value="">
+                                    type="date" placeholder="{{__('messages.start_date')}}" name="start_date" value="{{old('start_date')}}">
                                     <input class="form-control mx-1 {{$errors->has('end_date')?'form-control-danger':''}}"
-                                    type="date" placeholder="{{__('messages.end_date')}}" name="end_date" value="">        
+                                    type="date" placeholder="{{__('messages.end_date')}}" name="end_date" value="{{old('end_date')}}">        
                                     <button type="submit" class="btn btn-primary mx-1"><i class="fa fa-search"></i></button>
                             </div>
                         </div>
@@ -35,9 +35,9 @@
                             <div class="col-12">
                                 <div class="d-flex">
                                         <input class="form-control mx-1 {{$errors->has('start_date')?'form-control-danger':''}}"
-                                        type="date" placeholder="{{__('messages.start_date')}}" name="start_date" value="">
+                                        type="date" placeholder="{{__('messages.start_date')}}" name="start_date"  value="{{old('start_date')}}">
                                         <input class="form-control mx-1 {{$errors->has('end_date')?'form-control-danger':''}}"
-                                        type="date" placeholder="{{__('messages.end_date')}}" name="end_date" value="">        
+                                        type="date" placeholder="{{__('messages.end_date')}}" name="end_date" value="{{old('end_date')}}">        
                                         <button type="submit" class="btn btn-info mx-1"><i class="fa fa-file"></i> {{__('messages.report')}}</button>
                                 </div>
                             </div>

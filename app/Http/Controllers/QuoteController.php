@@ -27,7 +27,10 @@ class QuoteController extends Controller
         $quotes = Quote::orderBy('id','desc')->where('administrator_id',$user->id)->get();
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$user->id)->get();
         if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->end_date)){
-            $quotes = Quote::orderBy('id','desc')->where('administrator_id',$user->id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->get();
+            $quotes = Quote::orderBy('id','desc')->where('administrator_id',$user->id)
+            ->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")
+            ->get();
         }
         $count_activated_quotes = $quotes->filter(function($value){
             return $value->status == '0';

@@ -101,8 +101,8 @@
         'add_test' => 'Ajouter un test',
         'new_test' => 'Nouveau test',
         'edit_test' => 'Modifier le test',
-        'show_test' => 'Afficher test',
-        'delete_test' => 'Supprimer test',
+        'show_test' => 'Afficher le test',
+        'delete_test' => 'Supprimer le test',
         'new_prescription' => 'Nouvelle ordonnance',
         'edit_prescription' => 'Modifier l\'ordonnance',
         'show_prescription' => 'Afficher l\'ordonnance',
@@ -203,6 +203,7 @@
         'total_remaining_amount' => 'Montant total restant',
         'logo'=>'Logo',
         'by'=>'par',
+        'measruing_unit'=>'Unité de mesure',
         //End fields
         //Start buttons
         'create' => 'Créer',

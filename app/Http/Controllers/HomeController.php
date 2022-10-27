@@ -46,26 +46,43 @@ class HomeController extends Controller
     {
         if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->end_date)){
             if(Auth::user()->is_superadministrator){
-                $administrators = User::where('role','administrator')->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $activated_administrators =$administrators = User::where(['role'=>'administrator','isvalidate'=>0])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $deactivated_administrators = $administrators = User::where(['role'=>'administrator','isvalidate'=>0])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $administrators = User::where('role','administrator')->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $activated_administrators =$administrators = User::where(['role'=>'administrator','isvalidate'=>0])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $deactivated_administrators = $administrators = User::where(['role'=>'administrator','isvalidate'=>0])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
                 return view('home',compact('administrators','activated_administrators','deactivated_administrators'));
             }else if(Auth::user()->is_administrator){
                 $user = Auth::user();
-                $count_secretaries = User::where(['administrator_id'=>$user->id,'role'=>'secretary'])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_suppliers = Supplier::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_patients = Patient::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_products = Product::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_acts = Act::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_prescriptions = Prescription::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_activities = Activity::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_purchase_invoices = Purchase_invoice::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_sale_invoices = Sale_invoice::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_purchase_orders = Purchase_order::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_delivery_orders = Delivery_order::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_quotes = Quote::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_charges = Charge::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
-                $count_appointments = Appointment::where(['administrator_id'=>$user->id])->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->count();
+                $count_secretaries = User::where(['administrator_id'=>$user->id,'role'=>'secretary'])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_suppliers = Supplier::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_patients = Patient::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_products = Product::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_acts = Act::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_prescriptions = Prescription::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_activities = Activity::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_purchase_invoices = Purchase_invoice::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_sale_invoices = Sale_invoice::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_purchase_orders = Purchase_order::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_delivery_orders = Delivery_order::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_quotes = Quote::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_charges = Charge::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
+                $count_appointments = Appointment::where(['administrator_id'=>$user->id])->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")->count();
                 return view('home',compact('count_secretaries','count_suppliers','count_patients','count_products','count_acts','count_prescriptions','count_activities','count_purchase_invoices','count_sale_invoices','count_purchase_orders','count_delivery_orders','count_quotes','count_charges','count_appointments'));
             }else if(Auth::user()->is_secretary){
                 return view('home');
@@ -126,10 +143,21 @@ class HomeController extends Controller
             $purchase_invoices = Purchase_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->get();
             $charges = Charge::orderBy('id','desc')->where('administrator_id',$user->id);
             if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->end_date)){
-                $activities = Activity::orderBy('id','desc')->where('administrator_id',$user->id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->get();
-                $sale_invoices = Sale_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->get();
-                $purchase_invoices = Purchase_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"])->get();
-                $charges = Charge::orderBy('id','desc')->where('administrator_id',$user->id)->whereBetween('created_at',[Carbon::parse($request->start_date)->format('Y-m-d')."%",Carbon::parse($request->end_date)->format('Y-m-d')."%"]);
+                $activities = Activity::orderBy('id','desc')->where('administrator_id',$user->id)
+                ->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+                ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")
+                ->get();
+                $sale_invoices = Sale_invoice::orderBy('id','desc')->where('administrator_id',$user->id)
+                ->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+                ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")
+                ->get();
+                $purchase_invoices = Purchase_invoice::orderBy('id','desc')->where('administrator_id',$user->id)
+                ->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+                ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")
+                ->get();
+                $charges = Charge::orderBy('id','desc')->where('administrator_id',$user->id)
+                ->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+                ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%");
             }
             $activities_canceled_payments = Helper::totalActivityPayments('canceled',$request->start_date,$request->end_date);
             $activities_activated_payments = Helper::totalActivityPayments('activated',$request->start_date,$request->end_date);
