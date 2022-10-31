@@ -24,6 +24,14 @@
                         <td class="text-right"><span class="text-gray" name="amount"></span> <b>MAD</b></td>
                     </tr>
                     <tr>
+                        <td><b>{{__('messages.given_amount')}}</b></td>
+                        <td class="text-right"><span class="text-gray" name="given_amount"></span></td>
+                    </tr>
+                    <tr>
+                        <td><b>{{__('messages.remaining_amount')}}</b></td>
+                        <td class="text-right"><span class="text-gray" name="remaining_amount"></span></td>
+                    </tr>
+                    <tr>
                         <td><b>{{__('messages.description')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="description"></span></td>
                     </tr>

@@ -196,6 +196,8 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     //routes product controller
     Route::get('/charges',[App\Http\Controllers\ChargeController::class,'index'])->name('administrator.charges');
     Route::post('/charges',[App\Http\Controllers\ChargeController::class,'index'])->name('administrator.charges.dates.filter');
+    Route::get('/charges/{status}/filter',[App\Http\Controllers\ChargeController::class,'filter'])->name('administrator.charges.filter');
+    Route::get('/charges/{status}/secretary/{secretary_id}/filter/',[App\Http\Controllers\ChargeController::class,'filter'])->name('administrator.charges.secretary.filter');
     Route::get('/charges/{secretary_id}/secretary',[App\Http\Controllers\ChargeController::class,'index'])->name('administrator.charges.secretary');
     Route::post('/charges/{secretary_id}/secretary',[App\Http\Controllers\ChargeController::class,'index'])->name('administrator.charges.secretary.dates.filter');
     Route::get('/charge/{id}/show',[App\Http\Controllers\ChargeController::class,'show'])->name('administrator.charge.show');
@@ -203,4 +205,12 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/charge/{id}/edit',[App\Http\Controllers\ChargeController::class,'edit'])->name('administrator.charge.edit');
     Route::put('/charge/{id}/update',[App\Http\Controllers\ChargeController::class,'update'])->name('administrator.charge.update');
     Route::delete('/charge/{id}/destroy',[App\Http\Controllers\ChargeController::class,'destroy'])->name('administrator.charge.destroy');
+    //routes charge_payment controller
+    Route::get('/charge_payments/{charge_id}',[App\Http\Controllers\ChargePaymentController::class,'index'])->name('administrator.charge_payments');
+    Route::get('/charge_payment/{id}/show',[App\Http\Controllers\ChargePaymentController::class,'show'])->name('administrator.charge_payment.show');
+    Route::get('/charge_payment/{charge_id}/create',[App\Http\Controllers\ChargePaymentController::class,'create'])->name('administrator.charge_payment.create');
+    Route::post('/charge_payment/store',[App\Http\Controllers\ChargePaymentController::class,'store'])->name('administrator.charge_payment.store');
+    Route::get('/charge_payment/{id}/edit',[App\Http\Controllers\ChargePaymentController::class,'edit'])->name('administrator.charge_payment.edit');
+    Route::put('/charge_payment/{id}/update',[App\Http\Controllers\ChargePaymentController::class,'update'])->name('administrator.charge_payment.update');
+    Route::delete('/charge_payment/{id}/destroy',[App\Http\Controllers\ChargePaymentController::class,'destroy'])->name('administrator.charge_payment.destroy');
 });

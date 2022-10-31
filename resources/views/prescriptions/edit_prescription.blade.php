@@ -57,7 +57,7 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.drug')}}<span class="text-danger"> * </span></label><br>
-                                <a href="javascripti:void(0)" data-toggle="modal" data-target="#div-add-new-drug" class="btn btn-info"><i class="fa fa-plus"></i> {{__('messages.add')}} {{__('messages.drag')}}</a>
+                                <a href="javascripti:void(0)" data-toggle="modal" data-target="#div-add-new-drug" class="btn btn-info"><i class="fa fa-plus"></i> {{__('messages.add')}} {{__('messages.drg')}}</a>
                             </div>
                         </div>
                         <div class="col-md-6">

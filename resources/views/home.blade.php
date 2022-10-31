@@ -444,7 +444,7 @@
                 </div>
                 <!-- Column -->
                 <div class="card">
-                    <a href="{{route('administrator.activities')}}">
+                    <a href="{{route('administrator.charges')}}">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
