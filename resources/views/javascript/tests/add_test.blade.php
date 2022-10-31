@@ -9,7 +9,7 @@
             let description = $("#form-add-new-test").find('textarea[name="description"]').val()
             let self = $(this)
             let old_note = tinymce.get("note").getContent();
-            $("#form-add-new-drug").addClass('was-validated')
+            $("#form-add-new-test").addClass('was-validated')
             if(document.getElementById('form-add-new-test').checkValidity()){
                 test_list += '<h3> + {{__("messages.test_to_do")}}</h3>'
                 if(![undefined,null,''].includes(name)){

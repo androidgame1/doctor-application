@@ -1,7 +1,7 @@
 <script>
         $("#select-type-of-drug").on('change',function(){
             let measruing_unit = $(this).find(':selected').attr('data-measruing-unit')
-            $("#form-add-new-drug").find("label[data-field='quantity']").find('span[name="quantity"]').text('('+measruing_unit+')')
+            $("#form-add-new-drug").find("label[data-field='quantity']").find('span[name="quantity"]').text(!["",undefined,null].includes(measruing_unit) ? '('+measruing_unit+')' : '')
         })
 
         $(document).on("click","#btn-save-new-drug",function(e){

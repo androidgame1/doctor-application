@@ -32,7 +32,7 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="btn-save-new-test"><i class="fa fa-save"></i> {{__('messages.save')}}</button>
+                <button type="submit" class="btn btn-primary" id="btn-save-new-test"><i class="fa fa-save"></i> {{__('messages.save')}}</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{__('messages.close')}}</button>
             </div>
         </div>
