@@ -40,6 +40,7 @@
                     </div>
                     <div class="col-md-12">
                         <h3>{{__('messages.activity')}} : <a href="@if(auth()->user()->is_administrator){{route('administrator.activity.show',$activity->id)}}@else javascript:void(0) @endif" class="btn-show-activity text-primary font-bold" title="{{__('messages.show')}}">{{$activity->series}}</a></span></h3>
+                        <h3>{{__('messages.patient')}} : <a href="javascript:void(0)" class="btn-show-sale-invoice text-primary" title="{{__('messages.show')}}">{{$activity->patient->fullname}}</a></span></h3>
                     </div>
                     <div class="col-md-12">
                         <div class="table-responsive">
@@ -48,9 +49,9 @@
                                     <tr>
                                         <th class="d-none">#</th>
                                         <th>{{__('messages.date')}}</th>
-                                        <th>{{__('messages.ht_amount')}}</th>
                                         <th>{{__('messages.given_amount')}}</th>
                                         <th>{{__('messages.remaining_amount')}}</th>
+                                        <th>{{__('messages.way_of_payment')}}</th>
                                         <th>{{__('messages.date_creation')}}</th>
                                         <th>{{__('messages.action')}}</th>
                                     </tr>
@@ -60,9 +61,9 @@
                                         <tr>
                                             <td class="d-none">{{$value->id}}</td>
                                             <td>{{\Carbon\Carbon::parse($value->date)->format('d/m/Y')}}</td>
-                                            <td>{{$value->activity->ht_total_amount}} <b>MAD</b></td>
                                             <td>{{$value->given_amount}} <b>MAD</b></td>
                                             <td>{{$value->remaining_amount}} <b>MAD</b></td>
+                                            <td>{{$value->way_of_payment_name}}</td>
                                             <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                                             <td>
                                                 <a href="javascript:void(0)" class="btn-show-activity-payment" data-toggle="modal" data-target="#div-show-old-activity-payment" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.activity_payment.show',$value->id)}}@else javascript:void(0) @endif" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
@@ -74,12 +75,16 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
+                                        <td><b>{{__('messages.total_amount')}}</b></td>
+                                        <td colspan="5"><span class="font-bold">{{$activity->ttc_total_amount}} <b>MAD</b></span></td>
+                                    </tr>
+                                    <tr>
                                         <td><b>{{__('messages.total_given_amount')}}</b></td>
-                                        <td colspan="6"><span class="text-success font-bold">{{$activity->given_total_amount}} <b>MAD</b></span></td>
+                                        <td colspan="5"><span class="text-success font-bold">{{$activity->given_total_amount}} <b>MAD</b></span></td>
                                     </tr>
                                     <tr>
                                         <td><b>{{__('messages.total_remaining_amount')}}</b></td>
-                                        <td colspan="6"><span class="text-danger font-bold">{{$activity->remaining_total_amount}} <b>MAD</b></span></td>
+                                        <td colspan="5"><span class="text-danger font-bold">{{$activity->remaining_total_amount}} <b>MAD</b></span></td>
                                     </tr>
                                 </tfoot>
                             </table>

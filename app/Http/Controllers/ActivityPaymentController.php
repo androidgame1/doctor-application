@@ -81,9 +81,9 @@ class ActivityPaymentController extends Controller
         ];
         if($activity_payment = Activity_payment::create($data_activity_payment)){
             $given_amount_with_new_given_amount = Helper::givenAmountActivityPayment($activity->id);
-            if($activity->ht_total_amount == $given_amount_with_new_given_amount){
+            if($activity->ttc_total_amount == $given_amount_with_new_given_amount){
                 $status = 2;
-            }else if($activity->ht_total_amount>$given_amount_with_new_given_amount){
+            }else if($activity->ttc_total_amount>$given_amount_with_new_given_amount){
                 $status = 1;
             }
             if($activity->update(['status'=>$status])){
@@ -110,6 +110,7 @@ class ActivityPaymentController extends Controller
         $user = Auth::user();
         $activity_payment = Activity_payment::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $activity_payment->activity = $activity_payment->activity;
+        $activity_payment->way_of_payment = $activity_payment->way_of_payment_name;
         $data=['icon'=>'success','activity_payment'=>$activity_payment];
         return response()->json($data);
     }
@@ -165,9 +166,9 @@ class ActivityPaymentController extends Controller
         ];
         if($activity_payment->update($data_activity_payment)){
             $given_amount_with_new_given_amount = Helper::givenAmountActivityPayment($activity->id);
-            if($activity->ht_total_amount == $given_amount_with_new_given_amount){
+            if($activity->ttc_total_amount == $given_amount_with_new_given_amount){
                 $status = 2;
-            }else if($activity->ht_total_amount>$given_amount_with_new_given_amount){
+            }else if($activity->ttc_total_amount>$given_amount_with_new_given_amount){
                 $status = 1;
             }
             if($activity->update(['status'=>$status])){
@@ -196,9 +197,9 @@ class ActivityPaymentController extends Controller
         $status = $activity->status;
         if($activity_payment->delete()){
             $remaining_amount = Helper::remainingAmountActivityPayment($activity->id);
-            if($activity->ht_total_amount == $remaining_amount){
+            if($activity->ttc_total_amount == $remaining_amount){
                 $status = 0;
-            }else if($activity->ht_total_amount>$remaining_amount){
+            }else if($activity->ttc_total_amount>$remaining_amount){
                 $status = 1;
             }else if($remaining_amount == 0){
                 $status = 2;

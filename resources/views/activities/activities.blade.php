@@ -33,7 +33,7 @@
         <div class="col-12">
             <div class="card-group">
                 <div class="card">
-                    <a href="{{route('administrator.activities.filter','0')}}">
+                    <a href="javascript:void(0)">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -58,7 +58,7 @@
                 </div>
                 <!-- Column -->
                 <div class="card">
-                    <a href="{{route('administrator.activities.filter','1')}}">
+                    <a href="javascript:void(0)">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -84,7 +84,7 @@
                 <!-- Column -->
                 <!-- Column -->
                 <div class="card">
-                    <a href="{{route('administrator.activities.filter','2')}}">
+                    <a href="javascript:void(0)">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -109,7 +109,7 @@
                 </div>
                 <!-- Column -->
                 <div class="card">
-                    <a href="{{route('administrator.activities.filter','3')}}">
+                    <a href="javascript:void(0)">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -210,35 +210,6 @@
                         </div>
                     </a>
                 </div>
-            </div> 
-        </div>
-        <div class="col-12">
-            <div class="card-group">
-                <!-- Column -->
-                <div class="card">
-                    <a href="javascript:void(0)">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="d-flex no-block align-items-center">
-                                        <div>
-                                            <h3><i class="fa fa-money text-warning"></i></h3>
-                                            <p class="text-muted">{{__('messages.partiel')}}</p>
-                                        </div>
-                                        <div class="ml-auto">
-                                            <h2 class="counter text-warning">{{$partiel_payments}} MAD</h2>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="progress">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 100%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
                 <!-- Column -->
                 <div class="card">
                     <a href="javascript:void(0)">
@@ -264,7 +235,7 @@
                         </div>
                     </a>
                 </div>
-            </div>
+            </div> 
         </div>   
     </div>
 @endif
@@ -285,8 +256,9 @@
                                         <th>{{__('messages.series')}}</th>
                                         <th>{{__('messages.patient')}}</th>
                                         <th>{{__('messages.date')}}</th>
-                                        <th>{{__('messages.reduction_amount')}}</th>
-                                        <th>{{__('messages.ht_amount')}}</th>
+                                        <th>{{__('messages.ttc_amount')}}</th>
+                                        <th>{{__('messages.given_amount')}}</th>
+                                        <th>{{__('messages.remaining_amount')}}</th>
                                         <th>{{__('messages.status')}}</th>
                                         <th>{{__('messages.date_creation')}}</th>
                                         <th>{{__('messages.action')}}</th>
@@ -299,8 +271,9 @@
                                             <td><a href="javascript:void(0)" class="btn-show-activity" data-toggle="modal" data-target="#div-show-old-activity" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.activity.show',$value->id)}}@else javascript:void(0) @endif"  title="{{__('messages.show')}}">{{$value->series}}</a></td>
                                             <td>{{$value->patient->fullname}}</td>
                                             <td>{{\Carbon\Carbon::parse($value->date)->format('d/m/Y')}}</td>
-                                            <td>{{$value->reduction_total_amount}} <b>MAD</b></td>
-                                            <td>{{$value->ht_total_amount}} <b>MAD</b></td>
+                                            <td>{{$value->ttc_total_amount}} <b>MAD</b></td>
+                                            <td><span class="text-success font-bold">{{$value->total_given_amount}} <b>MAD</b></span></td>
+                                            <td><span class="text-danger font-bold">{{$value->total_remaining_amount}} <b>MAD</b></span></td>
                                             <td>{!!$value->status_state!!}</td>
                                             <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                                             <td>
@@ -321,6 +294,20 @@
                                         </tr>
                                     @endforeach
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td><b>{{__('messages.total_amount')}}</b></td>
+                                        <td colspan="8"><span class="font-bold">{{$total_amount}} <b>MAD</b></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>{{__('messages.total_given_amount')}}</b></td>
+                                        <td colspan="8"><span class="text-success font-bold">{{$total_given_amount}} <b>MAD</b></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>{{__('messages.total_remaining_amount')}}</b></td>
+                                        <td colspan="8"><span class="text-danger font-bold">{{$total_remaining_amount}} <b>MAD</b></span></td>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
                     </div>

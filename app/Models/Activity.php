@@ -24,6 +24,8 @@ class Activity extends Model
         'remark',
         'reduction_total_amount',
         'ht_total_amount',
+        'tva_total_amount',
+        'ttc_total_amount',
         'status'
     ];
 
@@ -62,6 +64,14 @@ class Activity extends Model
     }
     
     function getRemainingAmountAttribute(){
+        return Helper::remainingAmountActivityPayment($this->id);
+    }
+
+    function getTotalGivenAmountAttribute(){
+        return Helper::givenAmountActivityPayment($this->id);
+    }
+    
+    function getTotalRemainingAmountAttribute(){
         return Helper::remainingAmountActivityPayment($this->id);
     }
 }

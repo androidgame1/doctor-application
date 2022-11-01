@@ -24,6 +24,9 @@ class CreateActivityLinesTable extends Migration
             $table->decimal('reduction')->default(0);
             $table->decimal('reduction_amount')->default(0);
             $table->decimal('ht_amount')->default(0);
+            $table->decimal('tva')->default(0);
+            $table->decimal('tva_amount')->default(0);
+            $table->decimal('ttc_amount')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

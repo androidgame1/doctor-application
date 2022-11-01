@@ -47,10 +47,11 @@ class ActivityController extends Controller
         $canceled_payments = Helper::totalActivityPayments('canceled',$request->start_date,$request->end_date);
         $activated_payments = Helper::totalActivityPayments('activated',$request->start_date,$request->end_date);
         $paid_payments = Helper::totalActivityPayments('paid',$request->start_date,$request->end_date);
-        $partiel_payments = Helper::totalActivityPayments('partiel',$request->start_date,$request->end_date);
         $unpaid_payments = Helper::totalActivityPayments('unpaid',$request->start_date,$request->end_date);
-        
-        return view('activities.activities',compact('activities','patients','count_unpaid_activities','count_partiel_activities','count_partiel_activities','count_paid_activities','count_canceled_activities','canceled_payments','activated_payments','paid_payments','partiel_payments','unpaid_payments'));
+        $total_amount = $activities->where('status','<>','3')->sum('ttc_total_amount');
+        $total_given_amount = Helper::givenAmountActivityPayment(null,$request->start_date,$request->end_date);
+        $total_remaining_amount = Helper::remainingAmountActivityPayment(null,0,$request->start_date,$request->end_date);
+        return view('activities.activities',compact('activities','patients','count_unpaid_activities','count_partiel_activities','count_paid_activities','count_canceled_activities','canceled_payments','activated_payments','paid_payments','unpaid_payments','total_amount','total_given_amount','total_remaining_amount'));
     }
 
     /**
@@ -84,6 +85,8 @@ class ActivityController extends Controller
             'remark'=>$request->remark,
             'reduction_total_amount'=>$request->reduction_total_amount,
             'ht_total_amount'=>$request->ht_total_amount,
+            'tva_total_amount'=>$request->tva_total_amount,
+            'ttc_total_amount'=>$request->ttc_total_amount,
         ];
         if($activity = Activity::create($data_activity)){
             $data_activity_lines=[];
@@ -99,6 +102,9 @@ class ActivityController extends Controller
                     'reduction'=>$request->reduction[$index],
                     'reduction_amount'=>$request->reduction_amount[$index],
                     'ht_amount'=>$request->ht_amount[$index],
+                    'tva'=>$request->tva[$index],
+                    'tva_amount'=>$request->tva_amount[$index],
+                    'ttc_amount'=>$request->ttc_amount[$index],
                 ];
                 $index++;
             }
@@ -173,6 +179,8 @@ class ActivityController extends Controller
             'remark'=>$request->remark,
             'reduction_total_amount'=>$request->reduction_total_amount,
             'ht_total_amount'=>$request->ht_total_amount,
+            'tva_total_amount'=>$request->tva_total_amount,
+            'ttc_total_amount'=>$request->ttc_total_amount,
         ];
         if($activity->update($data_activity)){
             Activity_line::where(['administrator_id'=>$user->id,'activity_id'=>$activity->id])->delete();
@@ -189,6 +197,9 @@ class ActivityController extends Controller
                     'reduction'=>$request->reduction[$index],
                     'reduction_amount'=>$request->reduction_amount[$index],
                     'ht_amount'=>$request->ht_amount[$index],
+                    'tva'=>$request->tva[$index],
+                    'tva_amount'=>$request->tva_amount[$index],
+                    'ttc_amount'=>$request->ttc_amount[$index],
                 ];
                 $index++;
             }

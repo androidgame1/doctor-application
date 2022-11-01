@@ -37,6 +37,8 @@ class QuoteRequest extends FormRequest
                     'date'=>'required|date',
                     'reduction_total_amount'=>'required|numeric|gt:-1',
                     'ht_total_amount'=>'required|numeric|gt:0',
+                    'tva_total_amount'=>'required|numeric|gt:-1',
+                    'ttc_total_amount'=>'required|numeric|gt:0',
                     'designation'=>'required|array',
                     'designation.*'=>'required',
                     'quantity'=>'required|array',
@@ -49,6 +51,12 @@ class QuoteRequest extends FormRequest
                     'reduction_amount.*'=>'required|numeric|gt:-1',
                     'ht_amount'=>'required|array',
                     'ht_amount.*'=>'required|numeric|gt:0',
+                    'tva'=>'required|array',
+                    'tva.*'=>'required|numeric|min:0|max:100',
+                    'tva_amount'=>'required|array',
+                    'tva_amount.*'=>'required|numeric|gt:-1',
+                    'ttc_amount'=>'required|array',
+                    'ttc_amount.*'=>'required|numeric|gt:0',
                 ];
                 
             }
@@ -72,7 +80,13 @@ class QuoteRequest extends FormRequest
                     'ht_total_amount.required'=>Lang::get('messages.the_HT_total_amount_is_required'),
                     'ht_total_amount.numeric'=>Lang::get('messages.the_HT_total_amount_is_not_numéric'),
                     'ht_total_amount.gt'=>Lang::get('messages.the_HT_total_amount_must_be_greater_than_0'),
-        ];
+                    'tva_total_amount.required'=>Lang::get('messages.the_TVA_total_amount_is_required'),
+                    'tva_total_amount.numeric'=>Lang::get('messages.the_TVA_total_amount_is_not_numéric'),
+                    'tva_total_amount.gt'=>Lang::get('messages.the_TVA_total_amount_must_be_greater_than_or_equal_0'),
+                    'ttc_total_amount.required'=>Lang::get('messages.the_TTC_total_amount_is_required'),
+                    'ttc_total_amount.numeric'=>Lang::get('messages.the_TTC_total_amount_is_not_numéric'),
+                    'ttc_total_amount.gt'=>Lang::get('messages.the_TTC_total_amount_must_be_greater_than_0'),
+                ];
         foreach ($this->designation as $key => $value) {
             $messages['designation.'.$key.'.required'] = Lang::get('messages.the_designation_of_the_line_is_required',["index"=>($key+1)]);
             $messages['quantity.'.$key.'.required'] = Lang::get('messages.the_quantity_of_the_line_is_required',["index"=>($key+1)]);
@@ -91,6 +105,16 @@ class QuoteRequest extends FormRequest
             $messages['ht_amount.'.$key.'.required'] = Lang::get('messages.the_HT_mount_of_the_line_is_required',["index"=>($key+1)]);
             $messages['ht_amount.'.$key.'.numeric'] = Lang::get('messages.the_HT_mount_of_the_line_is_not_numéric',["index"=>($key+1)]);
             $messages['ht_amount.'.$key.'.gt'] = Lang::get('messages.the_HT_mount_of_the_line_must_be_greater_than_0',["index"=>($key+1)]);
+            $messages['tva.'.$key.'.required'] = Lang::get('messages.the_TVA_of_the_line_is_required',["index"=>($key+1)]);
+            $messages['tva.'.$key.'.numeric'] = Lang::get('messages.the_TVA_of_the_line_is_not_numéric',["index"=>($key+1)]);
+            $messages['tva.'.$key.'.min'] = Lang::get('messages.the_TVA_of_the_line_must_be_greater_or_equal_0_and_less_than_or_equal_100',["index"=>($key+1)]);
+            $messages['tva.'.$key.'.max'] = Lang::get('messages.the_TVA_of_the_line_must_be_greater_or_equal_0_and_less_than_or_equal_100',["index"=>($key+1)]);
+            $messages['tva_amount.'.$key.'.required'] = Lang::get('messages.the_TVA_amount_of_the_line_is_required',["index"=>($key+1)]);
+            $messages['tva_amount.'.$key.'.numeric'] = Lang::get('messages.the_TVA_amount_of_the_line_is_not_numéric',["index"=>($key+1)]);
+            $messages['tva_amount.'.$key.'.gt'] = Lang::get('messages.the_TVA_amount_of_the_line_must_be_greater_than_or_equal_0',["index"=>($key+1)]);
+            $messages['ttc_amount.'.$key.'.required'] = Lang::get('messages.the_TTC_amount_of_the_line_is_required',["index"=>($key+1)]);
+            $messages['ttc_amount.'.$key.'.numeric'] = Lang::get('messages.the_TTC_amount_of_the_line_is_not_numéric',["index"=>($key+1)]);
+            $messages['ttc_amount.'.$key.'.gt'] = Lang::get('messages.the_TTC_amount_of_the_line_must_be_greater_than_0',["index"=>($key+1)]);
         }
         return $messages;
     }

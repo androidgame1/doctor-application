@@ -25,6 +25,9 @@ class Activity_line extends Model
         'reduction',
         'reduction_amount',
         'ht_amount',
+        'tva',
+        'tva_amount',
+        'ttc_amount',
     ];
     
     function administrator(){
