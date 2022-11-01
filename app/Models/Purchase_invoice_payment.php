@@ -33,4 +33,8 @@ class Purchase_invoice_payment extends Model
     function purchase_invoice(){
         return $this->belongsTo(\App\Models\Purchase_invoice::class,'purchase_invoice_id');
     }
+    
+    function getWayOfPaymentNameAttribute(){
+        return Lang::get('messages.'.$this->way_of_payment);
+    }
 }

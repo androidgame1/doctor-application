@@ -33,4 +33,8 @@ class Sale_invoice_payment extends Model
     function sale_invoice(){
         return $this->belongsTo(\App\Models\Sale_invoice::class,'sale_invoice_id');
     }
+
+    function getWayOfPaymentNameAttribute(){
+        return Lang::get('messages.'.$this->way_of_payment);
+    }
 }

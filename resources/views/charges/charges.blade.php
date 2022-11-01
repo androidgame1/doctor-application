@@ -263,6 +263,7 @@
                                     <tr>
                                         <th class="d-none">#</th>
                                         <th>{{__('messages.name')}}</th>
+                                        <th>{{__('messages.secretary')}}</th>
                                         <th>{{__('messages.amount')}}</th>
                                         <th>{{__('messages.given_amount')}}</th>
                                         <th>{{__('messages.remaining_amount')}}</th>
@@ -276,6 +277,7 @@
                                         <tr>
                                             <td class="d-none">{{$value->id}}</td>
                                             <td>{{$value->name}}</td>
+                                            <td>{{$value->secretary ? $value->secretary->fullname : ''}}</td>
                                             <td>{{$value->amount}} <b>MAD</b></td>
                                             <td><span class="text-success font-bold">{{$value->total_given_amount}} <b>MAD</b></span></td>
                                             <td><span class="text-danger font-bold">{{$value->total_remaining_amount}} <b>MAD</b></span></td>

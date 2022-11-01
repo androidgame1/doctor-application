@@ -110,6 +110,7 @@ class SaleInvoicePaymentController extends Controller
         $user = Auth::user();
         $sale_invoice_payment = Sale_invoice_payment::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $sale_invoice_payment->sale_invoice = $sale_invoice_payment->sale_invoice;
+        $sale_invoice_payment->way_of_payment = $sale_invoice_payment->way_of_payment_name;
         $data=['icon'=>'success','sale_invoice_payment'=>$sale_invoice_payment];
         return response()->json($data);
     }

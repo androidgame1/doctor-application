@@ -62,4 +62,12 @@ class Sale_invoice extends Model
     function getRemainingAmountAttribute(){
         return Helper::remainingAmountSaleInvoicePayment($this->id);
     }
+    
+    function getTotalGivenAmountAttribute(){
+        return Helper::givenAmountSaleInvoicePayment($this->id);
+    }
+    
+    function getTotalRemainingAmountAttribute(){
+        return Helper::remainingAmountSaleInvoicePayment($this->id);
+    }
 }

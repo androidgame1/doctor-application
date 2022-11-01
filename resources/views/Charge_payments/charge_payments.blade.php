@@ -54,6 +54,7 @@
                                         <th>{{__('messages.date')}}</th>
                                         <th>{{__('messages.given_amount')}}</th>
                                         <th>{{__('messages.remaining_amount')}}</th>
+                                        <th>{{__('messages.way_of_payment')}}</th>
                                         <th>{{__('messages.date_creation')}}</th>
                                         <th>{{__('messages.action')}}</th>
                                     </tr>
@@ -65,6 +66,7 @@
                                             <td>{{\Carbon\Carbon::parse($value->date)->format('d/m/Y')}}</td>
                                             <td>{{$value->given_amount}} <b>MAD</b></td>
                                             <td>{{$value->remaining_amount}} <b>MAD</b></td>
+                                            <td>{{$value->way_of_payment_name}}</td>
                                             <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                                             <td>
                                                 <a href="javascript:void(0)" class="btn-show-charge-payment" data-toggle="modal" data-target="#div-show-old-charge-payment" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.charge_payment.show',$value->id)}}@else javascript:void(0) @endif" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>

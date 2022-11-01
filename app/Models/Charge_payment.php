@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
+use Lang;
 
 class Charge_payment extends Model
 {
@@ -31,5 +32,9 @@ class Charge_payment extends Model
     
     function charge(){
         return $this->belongsTo(\App\Models\Charge::class,'charge_id');
+    }
+    
+    function getWayOfPaymentNameAttribute(){
+        return Lang::get('messages.'.$this->way_of_payment);
     }
 }

@@ -110,6 +110,7 @@ class ChargePaymentController extends Controller
         $user = Auth::user();
         $charge_payment = Charge_payment::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
         $charge_payment->charge = $charge_payment->charge;
+        $charge_payment->way_of_payment = $charge_payment->way_of_payment_name;
         $data=['icon'=>'success','charge_payment'=>$charge_payment];
         return response()->json($data);
     }

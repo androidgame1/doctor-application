@@ -34,4 +34,8 @@ class Activity_payment extends Model
     function activity(){
         return $this->belongsTo(\App\Models\Activity::class,'activity_id');
     }
+    
+    function getWayOfPaymentNameAttribute(){
+        return Lang::get('messages.'.$this->way_of_payment);
+    }
 }

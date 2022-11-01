@@ -47,9 +47,11 @@ class SaleInvoiceController extends Controller
         $canceled_payments = Helper::totalSaleInvoicePayments('canceled',$request->start_date,$request->end_date);
         $activated_payments = Helper::totalSaleInvoicePayments('activated',$request->start_date,$request->end_date);
         $paid_payments = Helper::totalSaleInvoicePayments('paid',$request->start_date,$request->end_date);
-        $partiel_payments = Helper::totalSaleInvoicePayments('partiel',$request->start_date,$request->end_date);
         $unpaid_payments = Helper::totalSaleInvoicePayments('unpaid',$request->start_date,$request->end_date);
-        return view('sale_invoices.sale_invoices',compact('sale_invoices','patients','count_unpaid_sale_invoices','count_partiel_sale_invoices','count_paid_sale_invoices','count_canceled_sale_invoices','canceled_payments','activated_payments','paid_payments','partiel_payments','unpaid_payments'));
+        $total_amount = $sale_invoices->where('status','<>','3')->sum('ttc_total_amount');
+        $total_given_amount = Helper::givenAmountSaleInvoicePayment(null,$request->start_date,$request->end_date);
+        $total_remaining_amount = Helper::remainingAmountSaleInvoicePayment(null,0,$request->start_date,$request->end_date);
+        return view('sale_invoices.sale_invoices',compact('sale_invoices','patients','count_unpaid_sale_invoices','count_partiel_sale_invoices','count_paid_sale_invoices','count_canceled_sale_invoices','canceled_payments','activated_payments','paid_payments','unpaid_payments','total_amount','total_given_amount','total_remaining_amount'));
     }
     /**
      * Display a listing of the resource.
