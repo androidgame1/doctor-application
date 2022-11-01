@@ -24,6 +24,8 @@ class Quote extends Model
         'remark',
         'reduction_total_amount',
         'ht_total_amount',
+        'tva_total_amount',
+        'ttc_total_amount',
         'status'
     ];
     

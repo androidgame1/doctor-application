@@ -26,12 +26,10 @@ $(document).on('click','.btn-add-row',function(){
             `<td>`+
                 `<input placeholder="0" min="1" value="0" type="number" name="unit_price[]" class="form-control calculate-row {{$errors->has('unit_price')?'form-control-danger':''}} unit_price" required>`+
             `</td>`+
-            @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.create' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate')
                 `<td>`+
                     `<input placeholder="0" min="0" value="0" max="100" type="number" name="tva[]" class="form-control calculate-row {{$errors->has('tva')?'form-control-danger':''}} tva mb-3">`+
                     `<input placeholder="0" min="0" value="0" type="number" name="tva_amount[]" readonly class="form-control calculate-row {{$errors->has('tva_amount')?'form-control-danger':''}} tva_amount" required>`+
                 `</td>`+
-            @endif
             `<td>`+
                 `<input placeholder="0" min="0" value="0" max="100" type="number" name="reduction[]" class="form-control calculate-row {{$errors->has('reduction')?'form-control-danger':''}} reduction mb-3" required>`+
                 `<input placeholder="0" min="0" value="0" type="number" name="reduction_amount[]" readonly class="form-control calculate-row {{$errors->has('reduction_amount')?'form-control-danger':''}} reduction_amount"  required>`+
@@ -39,11 +37,9 @@ $(document).on('click','.btn-add-row',function(){
             `<td>`+
                 `<input placeholder="0" min="1" value="0" type="number" name="ht_amount[]" class="form-control calculate-row {{$errors->has('ht_amount')?'form-control-danger':''}} ht_amount" readonly required>`+
             `</td>`+
-            @if(Route::current()->getName() == 'administrator.purchase_invoice.create' || Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.create' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate')
                 `<td>`+
                     ` <input placeholder="0" min="1" value="0" type="number" name="ttc_amount[]" class="form-control calculate-row {{$errors->has('ttc_amount')?'form-control-danger':''}} ttc_amount" readonly required>`+
                 `</td>`+
-            @endif
             `<td>`+
                 ` <a href="javascript:void(0)" class="btn `+class_btn_delete+` btn-delete-row"><i class="fa fa-trash"></i></a>`+
             `</td>`+

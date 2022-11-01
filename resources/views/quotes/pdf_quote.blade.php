@@ -198,8 +198,22 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td class="text-white bg-black">{{__('messages.ht_amount')}}</td>
-                        <td class="text-white bg-black">{{$quote->ht_total_amount}} <b>MAD</b></td>
+                        <td>{{__('messages.ht_amount')}}</td>
+                        <td>{{$quote->ht_total_amount}} <b>MAD</b></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{__('messages.tva_amount')}}</td>
+                        <td>{{$quote->tva_total_amount}} <b>MAD</b></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-white bg-black">{{__('messages.ttc_amount')}}</td>
+                        <td class="text-white bg-black">{{$quote->ttc_total_amount}} <b>MAD</b></td>
                     </tr>
                 </tfoot>
             </table>

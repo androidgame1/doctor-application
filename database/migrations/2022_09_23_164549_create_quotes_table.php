@@ -22,6 +22,8 @@ class CreateQuotesTable extends Migration
             $table->string('remark')->nullable();
             $table->decimal('reduction_total_amount')->nullable();
             $table->decimal('ht_total_amount')->default(0);
+            $table->decimal('tva_total_amount')->default(0);
+            $table->decimal('ttc_total_amount')->default(0);
             $table->integer('status')->default(0);  
             $table->timestamps();
             $table->softDeletes();

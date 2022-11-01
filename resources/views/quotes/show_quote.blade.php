@@ -47,6 +47,14 @@
                             <td class="text-right"><span class="text-gray" name="address">{{$quote->ht_total_amount}}</span> <b>MAD</b></td>
                         </tr>
                         <tr>
+                            <td><b>{{__('messages.total_amount_of_tva')}}</b></td>
+                            <td class="text-right"><span class="text-gray" name="phone">{{$quote->tva_total_amount}}</span> <b>MAD</b></td>
+                        </tr>
+                        <tr>
+                            <td><b>{{__('messages.total_amount_of_ttc')}}</b></td>
+                            <td class="text-right"><span class="text-gray" name="city">{{$quote->ttc_total_amount}}</span> <b>MAD</b></td>
+                        </tr>
+                        <tr>
                             <td><b>{{__('messages.date')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="city">{{\Carbon\Carbon::parse($quote->date)->format('d/m/Y')}}</span></td>
                         </tr>

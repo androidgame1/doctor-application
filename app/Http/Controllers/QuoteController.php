@@ -72,6 +72,8 @@ class QuoteController extends Controller
             'remark'=>$request->remark,
             'reduction_total_amount'=>$request->reduction_total_amount,
             'ht_total_amount'=>$request->ht_total_amount,
+            'tva_total_amount'=>$request->tva_total_amount,
+            'ttc_total_amount'=>$request->ttc_total_amount,
         ];
         if($quote = Quote::create($data_quote)){
             $data_quote_lines=[];
@@ -87,6 +89,9 @@ class QuoteController extends Controller
                     'reduction'=>$request->reduction[$index],
                     'reduction_amount'=>$request->reduction_amount[$index],
                     'ht_amount'=>$request->ht_amount[$index],
+                    'tva'=>$request->tva[$index],
+                    'tva_amount'=>$request->tva_amount[$index],
+                    'ttc_amount'=>$request->ttc_amount[$index],
                 ];
                 $index++;
             }
@@ -161,6 +166,8 @@ class QuoteController extends Controller
             'remark'=>$request->remark,
             'reduction_total_amount'=>$request->reduction_total_amount,
             'ht_total_amount'=>$request->ht_total_amount,
+            'tva_total_amount'=>$request->tva_total_amount,
+            'ttc_total_amount'=>$request->ttc_total_amount,
         ];
         if($quote->update($data_quote)){
             Quote_line::where(['administrator_id'=>$user->id,'quote_id'=>$quote->id])->delete();
@@ -177,6 +184,9 @@ class QuoteController extends Controller
                     'reduction'=>$request->reduction[$index],
                     'reduction_amount'=>$request->reduction_amount[$index],
                     'ht_amount'=>$request->ht_amount[$index],
+                    'tva'=>$request->tva[$index],
+                    'tva_amount'=>$request->tva_amount[$index],
+                    'ttc_amount'=>$request->ttc_amount[$index],
                 ];
                 $index++;
             }

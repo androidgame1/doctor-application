@@ -102,8 +102,7 @@
                                         <th>{{__('messages.series')}}</th>
                                         <th>{{__('messages.patient')}}</th>
                                         <th>{{__('messages.date')}}</th>
-                                        <th>{{__('messages.reduction_amount')}}</th>
-                                        <th>{{__('messages.ht_amount')}}</th>
+                                        <th>{{__('messages.ttc_amount')}}</th>
                                         <th>{{__('messages.status')}}</th>
                                         <th>{{__('messages.date_creation')}}</th>
                                         <th>{{__('messages.action')}}</th>
@@ -116,8 +115,7 @@
                                             <td><a href="javascript:void(0)" class="btn-show-quote" data-toggle="modal" data-target="#div-show-old-quote" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.quote.show',$value->id)}}@else javascript:void(0) @endif"  title="{{__('messages.show')}}">{{$value->series}}</a></td>
                                             <td>{{$value->patient->fullname}}</td>
                                             <td>{{\Carbon\Carbon::parse($value->date)->format('d/m/Y')}}</td>
-                                            <td>{{$value->reduction_total_amount}} <b>MAD</b></td>
-                                            <td>{{$value->ht_total_amount}} <b>MAD</b></td>
+                                            <td>{{$value->ttc_total_amount}} <b>MAD</b></td>
                                             <td>{!!$value->status_state!!}</td>
                                             <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                                             <td>
