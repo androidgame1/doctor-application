@@ -31,29 +31,39 @@ class PatientRequest extends FormRequest
         if($this->isMethod('post')){
             if($this->routeIs('secretary.patient.store') || $this->routeIs('administrator.patient.store')){
                 $rules = [
-                    'cin' => 'required|unique:patients',
                     'fullname' => 'required',
-                    'email' => 'required|email|unique:patients',
                     'phone' => 'required',
-                    'birthday' => 'required|date',
-                    'gender' => 'required',
                     'weight' => 'numeric',
                     'height' => 'numeric',
                 ];
+                if($this->cin){
+                    $rules['email'] = 'unique:patients';
+                }
+                if($this->email){
+                    $rules['email'] = 'email|unique:patients';
+                }
+                if($this->cin){
+                    $rules['birthday'] = 'date';
+                }
                 return $rules;
             }
         }else if($this->isMethod('put')){
             if($this->routeIs('secretary.patient.update') || $this->routeIs('administrator.patient.update')){
                 $rules = [
-                    'cin' => 'required|unique:patients,cin,'.$this->id,
                     'fullname' => 'required',
-                    'email' => 'required|email|unique:patients,email,'.$this->id,
                     'phone' => 'required',
-                    'birthday' => 'required|date',
-                    'gender' => 'required',
                     'weight' => 'numeric',
                     'height' => 'numeric',
                 ];
+                if($this->cin){
+                    $rules['cin'] = 'unique:patients,cin,'.$this->id;
+                }
+                if($this->email){
+                    $rules['email'] = 'email|unique:patients,email,'.$this->id;
+                }
+                if($this->cin){
+                    $rules['birthday'] = 'date';
+                }
                 return $rules;
             }
 

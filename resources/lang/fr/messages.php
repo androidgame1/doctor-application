@@ -180,7 +180,7 @@
         'select' => 'Sélectionner',
         'gender' => 'Genre',
         'blood_group' => 'Groupe sanguin',
-        'weight' => 'Lester',
+        'weight' => 'Poids',
         'height' => 'Hauteur',
         'trade_name' => 'Nom commercial',
         'generic_name' => 'Nom générique',

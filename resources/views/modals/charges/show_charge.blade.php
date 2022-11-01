@@ -10,28 +10,28 @@
                 <table id="table-show-old-charge" class="table browser m-0 no-border">
                 <tbody>
                     @if($secretary)
-                        <tr>
+                        <tr class="tr-show">
                             <td><b></b>{{__('messages.secretary')}}</td>
                             <td class="text-right"><span class="text-primary" name="secretary">{{$secretary->fullname}}</span></td>
                         </tr>
                     @endif
-                    <tr>
+                    <tr class="tr-show">
                         <td><b></b>{{__('messages.name')}}</td>
                         <td class="text-right"><span class="text-gray" name="name"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.amount')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="amount"></span> <b>MAD</b></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.given_amount')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="given_amount"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.remaining_amount')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="remaining_amount"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.description')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="description"></span></td>
                     </tr>

@@ -9,23 +9,23 @@
             <div class="modal-body">
                 <table id="table-show-old-appointment" class="table browser m-0 no-border">
                 <tbody>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.patient')}}</b></td>
                         <td class="text-right"><span class="text-primary" name="patient"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.start_date')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="start_date"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.end_date')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="end_date"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.status')}}</b></td>
                         <td class="text-right" name="status"></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.remark')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="remark"></span></td>
                     </tr>

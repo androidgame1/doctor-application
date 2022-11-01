@@ -26,8 +26,8 @@ class CreatePatientsTable extends Migration
             $table->date('birthday')->nullable();
             $table->string('gender')->nullable();
             $table->string('blood_group')->nullable();
-            $table->integer('weight')->default(0);
-            $table->integer('height')->default(0);
+            $table->decimal('weight')->default(0);
+            $table->decimal('height')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

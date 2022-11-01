@@ -30,27 +30,27 @@
             <div class="card-body">
                 <table id="table-show-old-supplier" class="table browser m-0 no-border">
                     <tbody>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b></b>{{__('messages.cin')}}</td>
                             <td class="text-right"><span class="text-primary" name="cin">{{$supplier->cin}}</span></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.fullname')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="fullname">{{$supplier->fullname}}</span></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.email')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="email">{{$supplier->email}}</span></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.address')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="address">{{$supplier->address}}</span></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.phone')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="phone">{{$supplier->phone}}</span></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.city')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="city">{{$supplier->city}}</span></td>
                         </tr>

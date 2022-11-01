@@ -9,35 +9,35 @@
             <div class="modal-body">
                 <table id="table-show-old-purchase-invoice-payment" class="table browser m-0 no-border">
                 <tbody>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b></b>{{__('messages.purchase_invoice')}}</td>
                         <td class="text-right"><span class="text-primary" name="purchase_invoice"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.ttc_amount')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="ttc_amount"></span> <b>MAD</b></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.given_amount')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="given_amount"></span> <b>MAD</b></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.ttc_amount')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="remaining_amount"></span> <b>MAD</b></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.way_of_payment')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="way_of_payment"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.remark')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="remark"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.justification')}}</b></td>
                         <td class="text-right"><div name="justification"></div></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.date')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="date"></span></td>
                     </tr>

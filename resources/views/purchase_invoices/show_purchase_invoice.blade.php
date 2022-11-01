@@ -30,47 +30,47 @@
             <div class="card-body">
                 <table id="table-show-old-patient" class="table browser no-border">
                     <tbody>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.series')}}</b></td>
                             <td class="text-right"><a href = "@if(auth()->user()->is_administrator) {{route('administrator.purchase_invoice.show',$purchase_invoice->id)}} @else javascript:void(0) @endif" class="text-primary" name="cin">{{$purchase_invoice->series}}</a></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.supplier')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="fullname">{{$purchase_invoice->supplier->fullname}}</span></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.total_amount_of_reduction')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="email">{{$purchase_invoice->reduction_total_amount}}</span> <b>MAD</b></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.total_mount_of_ht')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="address">{{$purchase_invoice->ht_total_amount}}</span> <b>MAD</b></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.total_amount_of_tva')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="phone">{{$purchase_invoice->tva_total_amount}}</span> <b>MAD</b></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.total_amount_of_ttc')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="city">{{$purchase_invoice->ttc_total_amount}}</span> <b>MAD</b></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.paid_amount')}}</b></td>
                             <td class="text-right"><span class="text-success font-bold" name="city">{{$purchase_invoice->paid_amount}} <b>MAD</b></span></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.remaining_amount')}}</b></td>
                             <td class="text-right"><span class="text-danger font-bold" name="city">{{$purchase_invoice->remaining_amount}} <b>MAD</b></span></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.date')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="city">{{\Carbon\Carbon::parse($purchase_invoice->date)->format('d/m/Y')}}</span></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.remarque')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="city">{{$purchase_invoice->remark}}</span></td>
                         </tr>
-                        <tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.status')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="city">{!!$purchase_invoice->status_state!!}</span></td>
                         </tr>

@@ -9,23 +9,23 @@
             <div class="modal-body">
                 <table id="table-show-old-delivery-order" class="table browser m-0 no-border">
                 <tbody>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b></b>{{__('messages.series')}}</td>
                         <td class="text-right"><span class="text-primary" name="series"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.supplier')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="supplier"></span><b></b></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.remark')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="remark"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.file')}}</b></td>
                         <td class="text-right"><div name="file"></div></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.date')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="date"></span></td>
                     </tr>

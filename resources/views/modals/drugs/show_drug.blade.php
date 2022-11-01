@@ -9,15 +9,15 @@
             <div class="modal-body">
                 <table id="table-show-old-drug" class="table browser m-0 no-border">
                 <tbody>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b></b>{{__('messages.trade_name')}}</td>
                         <td class="text-right"><span class="text-gray" name="trade_name"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.generic_name')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="generic_name"></span></td>
                     </tr>
-                    <tr>
+                    <tr class="tr-show">
                         <td><b>{{__('messages.description')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="description"></span></td>
                     </tr>
