@@ -39,6 +39,22 @@ class Patient extends Model
         return $this->belongsTo(\App\Models\User::class,'secretary_id');
     }
 
+    function appointments(){
+        return $this->hasMany(\App\Models\Appointment::class,'patient_id');
+    }
+
+    function quotes(){
+        return $this->hasMany(\App\Models\Quote::class,'patient_id');
+    }
+
+    function activities(){
+        return $this->hasMany(\App\Models\Activity::class,'patient_id');
+    }
+
+    function sale_invoices(){
+        return $this->hasMany(\App\Models\Sale_invoice::class,'patient_id');
+    }
+
     function getGenderNameAttribute(){
         if($this->gender == '0'){
             return 'Male';

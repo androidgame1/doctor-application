@@ -49,8 +49,8 @@ class ActivityController extends Controller
         $paid_payments = Helper::totalActivityPayments('paid',$request->start_date,$request->end_date);
         $unpaid_payments = Helper::totalActivityPayments('unpaid',$request->start_date,$request->end_date);
         $total_amount = $activities->where('status','<>','3')->sum('ttc_total_amount');
-        $total_given_amount = Helper::givenAmountActivityPayment(null,$request->start_date,$request->end_date);
-        $total_remaining_amount = Helper::remainingAmountActivityPayment(null,0,$request->start_date,$request->end_date);
+        $total_given_amount = Helper::givenAmountActivityPayment(null,null,$request->start_date,$request->end_date);
+        $total_remaining_amount = Helper::remainingAmountActivityPayment(null,null,0,$request->start_date,$request->end_date);
         return view('activities.activities',compact('activities','patients','count_unpaid_activities','count_partiel_activities','count_paid_activities','count_canceled_activities','canceled_payments','activated_payments','paid_payments','unpaid_payments','total_amount','total_given_amount','total_remaining_amount'));
     }
 

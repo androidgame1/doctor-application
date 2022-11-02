@@ -15,13 +15,17 @@
                     
                     let icon = data.icon
                     let result = data.appointment
-                    console.log(result)
                     if(icon == 'success'){
                         $("#table-show-old-appointment").find('span[name="patient"]').text(result.patient.fullname)
                         $("#table-show-old-appointment").find('span[name="remark"]').text(result.remark)
                         $("#table-show-old-appointment").find('td[name="status"]').html(result.status_state)
                         $("#table-show-old-appointment").find('span[name="start_date"]').text(moment(result.start_date).format('DD/MM/YYYY H:mm:ss'))
                         $("#table-show-old-appointment").find('span[name="end_date"]').text(moment(result.end_date).format('DD/MM/YYYY H:mm:ss'))
+                        let path = "{{route('administrator.patient.show','value')}}".replace('value',result.patient.id)
+                        $(".btn-appointments-target").attr('href',path+'#patient_appointments')
+                        $(".btn-quotes-target").attr('href',path+'#patient_quotes')
+                        $(".btn-activities-target").attr('href',path+'#patient_activities')
+                        $(".btn-sale-invoices-target").attr('href',path+'#patient_sale_invoices')
                     }else{
                         console.log('There is no appointment')
                     }

@@ -114,6 +114,15 @@
             // statusbar: false,
         });
         $(".dropify").dropify()
+        $('html, body').animate({
+                scrollTop: $(location.hash).offset().top - 85
+        }, 500);
+        $(document).on('click', 'a[href^="#"]', function (event) {
+            event.preventDefault();
+            $('html, body').animate({
+                scrollTop: $($.attr(this, 'href')).offset().top - 85
+            }, 500);
+        });
     </script>
     @include('javascript.validation')
     @yield('javascript')

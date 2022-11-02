@@ -232,6 +232,11 @@ $(document).ready(function () {
                                 $("input[name='end_date']").val(appointment.end_date)
                                 $("textarea[name='remark']").val(appointment.remark)
                                 $("#form-edit-old-appointment").attr('action',data_url_update)
+                                let path = "{{route('administrator.patient.show','value')}}".replace('value',appointment.patient.id)
+                                $(".btn-appointments-target").attr('href',path+'#patient_appointments')
+                                $(".btn-quotes-target").attr('href',path+'#patient_quotes')
+                                $(".btn-activities-target").attr('href',path+'#patient_activities')
+                                $(".btn-sale-invoices-target").attr('href',path+'#patient_sale_invoices')
                                 $("#div-edit-old-appointment").modal()
                             }else{
                                 console.log("There is a problem in appointment edition !")

@@ -95,12 +95,12 @@ class Helper{
 
     
 
-    function remainingAmountActivityPayment($activity_id=null,$given_amount=0,$start_date=null,$end_date=null){
+    function remainingAmountActivityPayment($activity_id=null,$patient_id=null,$given_amount=0,$start_date=null,$end_date=null){
         $user = Auth::user();
         $activity = Activity::where(['administrator_id'=>$user->id])->where('status','<>','3');
         $activity_payment = Activity_payment::where(['administrator_id'=>$user->id])->whereHas('activity',function($query) use ($start_date,$end_date){
                 $query->where('status','<>','3');
-            });
+        });
         if(!is_null($start_date) && !is_null($end_date)){
             $activity = Activity::where(['administrator_id'=>$user->id])->where('status','<>','3')->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
             ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
@@ -113,13 +113,19 @@ class Helper{
             $activity = $activity->where('id',$activity_id);
             $activity_payment = $activity_payment->where('activity_id',$activity_id);
         }
+        if($patient_id){
+            $activity = $activity->where('patient_id',$patient_id);
+            $activity_payment = $activity_payment->whereHas('activity',function($query) use ($patient_id){
+                $query->where('patient_id',$patient_id);
+            });
+        }
         $activity = $activity->get();
         $activity_payment = $activity_payment->get();
         $remaining_amount = floatval($activity->sum('ttc_total_amount')) - floatval($activity_payment->sum('given_amount')) - floatval($given_amount);
         return $remaining_amount;
     }
 
-    function remainingAmountPlusEditedAmountActivityPayment($activity_id=null,$given_amount=0){
+    function remainingAmountPlusEditedAmountActivityPayment($activity_id=null,$patient_id=null,$given_amount=0){
         $user = Auth::user();
         $activity = Activity::where(['administrator_id'=>$user->id])->get();
         $activity_payment = Activity_payment::where(['administrator_id'=>$user->id])->get();
@@ -131,7 +137,7 @@ class Helper{
         return $remaining_amount;
     }
 
-    function givenAmountActivityPayment($activity_id=null,$start_date=null,$end_date=null){
+    function givenAmountActivityPayment($activity_id=null,$patient_id=null,$start_date=null,$end_date=null){
         $user = Auth::user();
         $activity_payment = Activity_payment::where(['administrator_id'=>$user->id])->whereHas('activity',function($query) use ($start_date,$end_date){
             $query->where('status','<>','3');
@@ -145,6 +151,11 @@ class Helper{
         if($activity_id){
             $activity_payment = $activity_payment->where('activity_id',$activity_id);
         }
+        if($patient_id){
+            $activity_payment = $activity_payment->whereHas('activity',function($query) use ($patient_id){
+                $query->where('patient_id',$patient_id);
+            });
+        }
         $activity_payment = $activity_payment->get();
         $given_amount = floatval($activity_payment->sum('given_amount'));
         return $given_amount;
@@ -154,7 +165,7 @@ class Helper{
 
 
 
-    function remainingAmountSaleInvoicePayment($sale_invoice_id=null,$given_amount=0,$start_date=null,$end_date=null){
+    function remainingAmountSaleInvoicePayment($sale_invoice_id=null,$patient_id=null,$given_amount=0,$start_date=null,$end_date=null){
         $user = Auth::user();
         $sale_invoice = Sale_invoice::where(['administrator_id'=>$user->id])->where('status','<>','3');
         $sale_invoice_payment = Sale_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('sale_invoice',function($query) use ($start_date,$end_date){
@@ -171,6 +182,12 @@ class Helper{
         if($sale_invoice_id){
             $sale_invoice = $sale_invoice->where('id',$sale_invoice_id);
             $sale_invoice_payment = $sale_invoice_payment->where('sale_invoice_id',$sale_invoice_id);
+        }
+        if($patient_id){
+            $sale_invoice = $sale_invoice->where('patient_id',$patient_id);
+            $sale_invoice_payment = $sale_invoice_payment->whereHas('sale_invoice',function($query) use ($patient_id){
+                $query->where('patient_id',$patient_id);
+            });
         }
         $sale_invoice = $sale_invoice->get();
         $sale_invoice_payment = $sale_invoice_payment->get();
@@ -190,7 +207,7 @@ class Helper{
         return $remaining_amount;
     }
 
-    function givenAmountSaleInvoicePayment($sale_invoice_id=null,$start_date=null,$end_date=null){
+    function givenAmountSaleInvoicePayment($sale_invoice_id=null,$patient_id=null,$start_date=null,$end_date=null){
         $user = Auth::user();
         $sale_invoice_payment = Sale_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('sale_invoice',function($query) use ($start_date,$end_date){
             $query->where('status','<>','3');
@@ -203,6 +220,11 @@ class Helper{
         }
         if($sale_invoice_id){
             $sale_invoice_payment = $sale_invoice_payment->where('sale_invoice_id',$sale_invoice_id);
+        }
+        if($patient_id){
+            $sale_invoice_payment = $sale_invoice_payment->whereHas('sale_invoice',function($query) use ($patient_id){
+                $query->where('patient_id',$patient_id);
+            });
         }
         $sale_invoice_payment = $sale_invoice_payment->get();
         $given_amount = floatval($sale_invoice_payment->sum('given_amount'));

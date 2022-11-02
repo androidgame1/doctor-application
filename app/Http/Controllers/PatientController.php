@@ -6,6 +6,7 @@ use App\Models\Patient;
 use Illuminate\Http\Request;
 use App\Http\Requests\PatientRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Helper;
 use Lang;
 
 class PatientController extends Controller
@@ -27,6 +28,7 @@ class PatientController extends Controller
             return view('error');
         }
         $patients = Patient::orderBy('id','desc')->where('administrator_id',$administrator_id)->get();
+        
         return view('patients.patients',compact('patients'));
     }
 
@@ -96,7 +98,7 @@ class PatientController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         $user = Auth::user();
         $administrator_id = "";
@@ -108,7 +110,28 @@ class PatientController extends Controller
             return view('error');
         }
         $patient = Patient::where(['administrator_id'=>$administrator_id,'id'=>$id])->firstOrFail();
-        return view('patients.show_patient',compact('patient'));
+        //start activities
+        $activities = $patient->activities;
+        $total_amount_activities = $activities->where('status','<>','3')->sum('ttc_total_amount');
+        $total_given_amount_activities = Helper::givenAmountActivityPayment(null,$patient->id,$request->start_date,$request->end_date);
+        $total_remaining_amount_activities = Helper::remainingAmountActivityPayment(null,$patient->id,0,$request->start_date,$request->end_date);
+        //end activities
+        //start sale_invoices
+        $sale_invoices = $patient->sale_invoices;
+        $total_amount_sale_invoices = $sale_invoices->where('status','<>','3')->sum('ttc_total_amount');
+        $total_given_amount_sale_invoices = Helper::givenAmountSaleInvoicePayment(null,$patient->id,$request->start_date,$request->end_date);
+        $total_remaining_amount_sale_invoices = Helper::remainingAmountSaleInvoicePayment(null,$patient->id,0,$request->start_date,$request->end_date);
+        //end sale_invoices
+        return view('patients.show_patient',compact(
+            'patient',
+            'activities',
+            'total_amount_activities',
+            'total_given_amount_activities',
+            'total_remaining_amount_activities',
+            'total_amount_sale_invoices',
+            'total_given_amount_sale_invoices',
+            'total_remaining_amount_sale_invoices'
+        ));
     }
 
     /**

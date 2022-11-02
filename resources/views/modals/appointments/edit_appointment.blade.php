@@ -56,6 +56,14 @@
                     </div>
                 
             </div>
+            @if(auth()->user()->is_administrator)
+                <div class="modal-footer text-center d-block">
+                    <a href="javascript:void(0)" class="btn btn-secondary btn-appointments-target">{{__('messages.appointments')}}</a>
+                    <a href="javascript:void(0)" class="btn btn-success btn-quotes-target">{{__('messages.quotes')}}</a>
+                    <a href="javascript:void(0)" class="btn btn-danger btn-activities-target">{{__('messages.activities')}}</a>
+                    <a href="javascript:void(0)" class="btn btn-warning btn-sale-invoices-target">{{__('messages.sale_invoices')}}</a>
+                </div>
+            @endif
             <div class="modal-footer">
                 <button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> {{__('messages.modify')}}</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">{{__('messages.close')}}</button>

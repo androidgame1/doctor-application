@@ -28,6 +28,18 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                <div>
+                    <a href="#patient_appointments" class="btn btn-secondary btn-appointments-target">{{__('messages.appointments')}}</a>
+                    <a href="#patient_quotes" class="btn btn-success btn-quotes-target">{{__('messages.quotes')}}</a>
+                    <a href="#patient_activities" class="btn btn-danger btn-activities-target">{{__('messages.activities')}}</a>
+                    <a href="#patient_sale_invoices" class="btn btn-warning btn-sale-invoices-target">{{__('messages.sale_invoices')}}</a>
+                </div>
+            </div>
+        </div>
+    </div>        
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
                 <table id="table-show-old-patient" class="table browser no-border">
                     <tbody>
                         <tr class="tr-show">
@@ -79,8 +91,69 @@
             </div>
         </div>
     </div>
+    <div class="col-12" id="patient_appointments">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{{__('messages.appointments')}}</h4>
+                    </div>
+                    <div class="col-md-12">
+                        @include('tables.appointments',['appointments'=>$patient->appointments])
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12" id="patient_quotes">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{{__('messages.quotes')}}</h4>
+                    </div>
+                    <div class="col-md-12">
+                        @include('tables.quotes',['quotes'=>$patient->quotes])
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12" id="patient_activities">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{{__('messages.activities')}}</h4>
+                    </div>
+                    <div class="col-md-12">
+                        @include('tables.activities',['activities'=>$patient->activities,'total_amount'=>$total_amount_activities,'total_given_amount'=>$total_given_amount_activities,'total_remaining_amount'=>$total_remaining_amount_activities])
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12" id="patient_sale_invoices">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{{__('messages.sale_invoices')}}</h4>
+                    </div>
+                    <div class="col-md-12">
+                        @include('tables.sale_invoices',['sale_invoices'=>$patient->sale_invoices,'total_amount'=>$total_amount_sale_invoices,'total_given_amount'=>$total_given_amount_sale_invoices,'total_remaining_amount'=>$total_remaining_amount_sale_invoices])
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 @section('javascript')
     @include('javascript.helper')
+    @include('javascript.datatable')
 @endsection

@@ -29,6 +29,16 @@
                         <td><b>{{__('messages.remark')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="remark"></span></td>
                     </tr>
+                    @if(auth()->user()->is_administrator)
+                        <tr class="tr-show">
+                            <td colspan="2">
+                                <a href="javascript:void(0)" class="btn btn-secondary btn-appointments-target">{{__('messages.appointments')}}</a>
+                                <a href="javascript:void(0)" class="btn btn-success btn-quotes-target">{{__('messages.quotes')}}</a>
+                                <a href="javascript:void(0)" class="btn btn-danger btn-activities-target">{{__('messages.activities')}}</a>
+                                <a href="javascript:void(0)" class="btn btn-warning btn-sale-invoices-target">{{__('messages.sale_invoices')}}</a>
+                            </td>
+                        </tr>
+                    @endif
                 </tbody>
                 </table>
             </div>

@@ -23,6 +23,11 @@
                         $("#form-edit-old-appointment").find('select[name="status_id"]').val(result.status_id)
                         $("#form-edit-old-appointment").find('textarea[name="remark"]').val(result.remark)
                         $("#form-edit-old-appointment").attr('action',data_url_update)
+                        let path = "{{route('administrator.patient.show','value')}}".replace('value',result.patient.id)
+                        $(".btn-appointments-target").attr('href',path+'#patient_appointments')
+                        $(".btn-quotes-target").attr('href',path+'#patient_quotes')
+                        $(".btn-activities-target").attr('href',path+'#patient_activities')
+                        $(".btn-sale-invoices-target").attr('href',path+'#patient_sale_invoices')
                     }else{
                         console.log('There is no appointment')
                     }
