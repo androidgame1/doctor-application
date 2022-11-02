@@ -42,15 +42,15 @@
         <tfoot>
             <tr>
                 <td><b>{{__('messages.total_amount')}}</b></td>
-                <td colspan="6"><span class="font-bold">{{$total_amount}} <b>MAD</b></span></td>
+                <td colspan="7"><span class="font-bold">{{$total_amount}} <b>MAD</b></span></td>
             </tr>
             <tr>
                 <td><b>{{__('messages.total_given_amount')}}</b></td>
-                <td colspan="6"><span class="text-success font-bold">{{$total_given_amount}} <b>MAD</b></span></td>
+                <td colspan="7"><span class="text-success font-bold">{{$total_given_amount}} <b>MAD</b></span></td>
             </tr>
             <tr>
                 <td><b>{{__('messages.total_remaining_amount')}}</b></td>
-                <td colspan="6"><span class="text-danger font-bold">{{$total_remaining_amount}} <b>MAD</b></span></td>
+                <td colspan="7"><span class="text-danger font-bold">{{$total_remaining_amount}} <b>MAD</b></span></td>
             </tr>
         </tfoot>
     </table>

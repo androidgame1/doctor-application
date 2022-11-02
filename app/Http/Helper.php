@@ -314,7 +314,9 @@ class Helper{
             ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
         }
         if($secretary_id){
-            $charge_payment = $charge_payment->where('secretary_id',$secretary_id);
+            $charge_payment = $charge_payment->whereHas('charge',function($query) use ($secretary_id){
+                $query->where('secretary_id',$secretary_id);
+            });
         }
         if($charge_id){
             $charge_payment = $charge_payment->where('charge_id',$charge_id);

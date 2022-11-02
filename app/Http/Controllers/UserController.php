@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Charge;
+use App\Models\Appoitment;
+use App\Models\Patient;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Helper;
 use Lang;  
 
 class UserController extends Controller
@@ -141,10 +146,14 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($role,$id)
+    public function show(Request $request,$role,$id)
     {
         $user = Auth::user();
         $rolevalue="";
+        $charges=null;
+        $total_amount_charges = 0;
+        $total_given_amount_charges = 0;
+        $total_remaining_amount_charges = 0;
         if($user->is_superadministrator){
             if($role == 'administrator'){
                 $rolevalue=1;
@@ -161,9 +170,27 @@ class UserController extends Controller
             return view('error');
         }
         $user = User::where(['administrator_id'=>$user->id,'role'=>$rolevalue,'id'=>$id])->firstOrFail();
+        $patients = Patient::where(['administrator_id'=>$user->id])->get();
+        $status = Status::where(['administrator_id'=>$user->id])->get();
         $user->status = $user->status;
         $user->editstatus = $user->editstatus;
-        return view('users.show_user',compact('user','role'));
+        if($rolevalue == 2){
+            //start charges
+            $charges = $user->chargesSecretary;
+            $total_amount_charges = $charges->sum('amount');
+            $total_given_amount_charges = Helper::givenAmountChargePayment(null,$user->id,$request->start_date,$request->end_date);
+            $total_remaining_amount_charges = Helper::remainingAmountChargePayment(null,$user->id,0,$request->start_date,$request->end_date);
+            //end charges
+        }
+        return view('users.show_user',compact('user',
+            'role',
+            'charges',
+            'patients',
+            'status',
+            'total_amount_charges',
+            'total_given_amount_charges',
+            'total_remaining_amount_charges'
+        ));
     }
 
     /**

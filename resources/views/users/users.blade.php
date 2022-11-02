@@ -158,14 +158,16 @@
                                                 <a href="@if(auth()->user()->is_administrator){{route('administrator.charges.secretary',['secretary_id'=>$value->id])}}@else javascript:void(0) @endif"
                                                 title="{{__('messages.charges')}}"> <i
                                                         class="fa fa-money text-gray m-r-10 icon-datatable"></i> </a>
-                                            @endif        
-                                            <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal"
-                                                data-target="#div-destroy-old-item"
-                                                data-url-destroy="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.destroy',['role'=>$role,'id'=>$value->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.destroy',['role'=>$role,'id'=>$value->id])}}@else javascript:void(0) @endif"
-                                                data-title = "@if($role == 'administrator') {{__('messages.delete_administrator')}} @elseif($role == 'secretary') {{__('messages.delete_secretary')}} @endif"
-                                                data-message="{{__('messages.do_you_want_to_delete_this')}} @if($role == 'administrator') {{__('messages.administrator')}} @elseif($role == 'secretary') {{__('messages.secretary')}} @endif ?"
-                                             title="{{__('messages.delete')}}"> <i
-                                                    class="fa fa-close text-danger icon-datatable"></i> </a>
+                                            @endif 
+                                            @if($role == 'secretary' && count($value->patientsSecretary)<=0 &&count($value->appointmentsSecretary)<=0 &&count($value->chargesSecretary)<=0)
+                                                <a href="javascript:void(0)" class="btn-destroy-item" data-toggle="modal"
+                                                    data-target="#div-destroy-old-item"
+                                                    data-url-destroy="@if(auth()->user()->is_superadministrator){{route('superadministrator.user.destroy',['role'=>$role,'id'=>$value->id])}}@elseif(auth()->user()->is_administrator){{route('administrator.user.destroy',['role'=>$role,'id'=>$value->id])}}@else javascript:void(0) @endif"
+                                                    data-title = "@if($role == 'administrator') {{__('messages.delete_administrator')}} @elseif($role == 'secretary') {{__('messages.delete_secretary')}} @endif"
+                                                    data-message="{{__('messages.do_you_want_to_delete_this')}} @if($role == 'administrator') {{__('messages.administrator')}} @elseif($role == 'secretary') {{__('messages.secretary')}} @endif ?"
+                                                title="{{__('messages.delete')}}"> <i
+                                                        class="fa fa-close text-danger icon-datatable"></i> </a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach

@@ -57,6 +57,18 @@ class User extends Authenticatable
         return $this->belongsTo(\App\Models\User::class,'administrator_id');
     }
 
+    function patientsSecretary(){
+        return $this->hasMany(\App\Models\Patient::class,'secretary_id'); 
+    }
+
+    function appointmentsSecretary(){
+        return $this->hasMany(\App\Models\Appointment::class,'secretary_id'); 
+    }
+
+    function chargesSecretary(){
+        return $this->hasMany(\App\Models\Charge::class,'secretary_id'); 
+    }
+
     public function getIsSuperadministratorAttribute(){
         return $this->role == 0;
     }

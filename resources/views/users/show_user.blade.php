@@ -25,6 +25,19 @@
 <!-- Start Page Content -->
 <!-- ============================================================== -->
 <div class="row">
+    @if(auth()->user()->is_administrator && $user->role == '2')
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div>
+                        <a href="#secretary_patients" class="btn btn-secondary btn-appointments-target">{{__('messages.patients')}}</a>
+                        <a href="#secretary_appointments" class="btn btn-success btn-quotes-target">{{__('messages.appointments')}}</a>
+                        <a href="#secretary_charges" class="btn btn-danger btn-activities-target">{{__('messages.charges')}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="col-12">
         <div class="card">
             <div class="card-body">
@@ -68,8 +81,74 @@
             </div>
         </div>
     </div>
+    @if(auth()->user()->is_administrator && $user->role == '2')
+        <div class="col-12" id="secretary_patients">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>{{__('messages.patients')}}</h4>
+                        </div>
+                        <div class="col-md-12">
+                            @include('tables.patients',['patients'=>$user->patientsSecretary])
+                        </div>
+                    </div>
+
+                </div>
+        </div>
+        <div class="col-12" id="secretary_appointments">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>{{__('messages.appointments')}}</h4>
+                        </div>
+                        <div class="col-md-12">
+                            @include('tables.appointments',['appointments'=>$user->appointmentsSecretary,'patients'=>$patients,'status'=>$status])
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-12" id="secretary_charges">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>{{__('messages.charges')}}</h4>
+                        </div>
+                        <div class="col-md-12">
+                            @include('tables.charges',['charges'=>$user->chargesSecretary,'total_amount'=>$total_amount_charges,'total_given_amount'=>$total_given_amount_charges,'total_remaining_amount'=>$total_remaining_amount_charges])
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
+@include('modals.destroy')
+@include('modals.cancel')
+
+@include('modals.appointments.create_appointment')
+@include('modals.appointments.edit_appointment')
+@include('modals.appointments.show_appointment')
+
+@include('modals.charges.create_charge',['secretary'=>$user])
+@include('modals.charges.edit_charge',['secretary'=>$user])
+@include('modals.charges.show_charge',['secretary'=>$user])
 @endsection
 @section('javascript')
     @include('javascript.helper')
+    @include('javascript.datatable')
+
+    @include('javascript.appointments.edit_appointment')
+    @include('javascript.appointments.show_appointment')
+
+    @include('javascript.charges.edit_charge')
+    @include('javascript.charges.show_charge')
+
+    @include('javascript.destroy')
+    @include('javascript.cancel')
 @endsection
