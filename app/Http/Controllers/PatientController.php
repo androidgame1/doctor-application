@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Patient;
+use App\Models\Status;
 use Illuminate\Http\Request;
 use App\Http\Requests\PatientRequest;
 use Illuminate\Support\Facades\Auth;
@@ -110,6 +111,8 @@ class PatientController extends Controller
             return view('error');
         }
         $patient = Patient::where(['administrator_id'=>$administrator_id,'id'=>$id])->firstOrFail();
+        $patients = Patient::where(['administrator_id'=>$administrator_id])->get();
+        $status = Status::where(['administrator_id'=>$administrator_id])->get();
         //start activities
         $activities = $patient->activities;
         $total_amount_activities = $activities->where('status','<>','3')->sum('ttc_total_amount');
@@ -124,6 +127,8 @@ class PatientController extends Controller
         //end sale_invoices
         return view('patients.show_patient',compact(
             'patient',
+            'patients',
+            'status',
             'activities',
             'total_amount_activities',
             'total_given_amount_activities',

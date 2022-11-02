@@ -99,7 +99,22 @@
                         <h4>{{__('messages.appointments')}}</h4>
                     </div>
                     <div class="col-md-12">
-                        @include('tables.appointments',['appointments'=>$patient->appointments])
+                        @include('tables.appointments',['appointments'=>$patient->appointments,'patients'=>$patients,'status'=>$status])
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12" id="patient_prescriptions">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{{__('messages.prescriptions')}}</h4>
+                    </div>
+                    <div class="col-md-12">
+                        @include('tables.prescriptions',['prescriptions'=>$patient->prescriptions])
                     </div>
                 </div>
 
@@ -152,8 +167,21 @@
         </div>
     </div>
 </div>
+@include('modals.destroy')
+@include('modals.cancel')
+
+@include('modals.appointments.create_appointment')
+@include('modals.appointments.edit_appointment')
+@include('modals.appointments.show_appointment')
+
 @endsection
 @section('javascript')
     @include('javascript.helper')
     @include('javascript.datatable')
+
+    @include('javascript.appointments.edit_appointment')
+    @include('javascript.appointments.show_appointment')
+
+    @include('javascript.destroy')
+    @include('javascript.cancel')
 @endsection

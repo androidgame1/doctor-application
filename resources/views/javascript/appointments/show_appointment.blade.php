@@ -23,6 +23,7 @@
                         $("#table-show-old-appointment").find('span[name="end_date"]').text(moment(result.end_date).format('DD/MM/YYYY H:mm:ss'))
                         let path = "{{route('administrator.patient.show','value')}}".replace('value',result.patient.id)
                         $(".btn-appointments-target").attr('href',path+'#patient_appointments')
+                        $(".btn-prescriptions-target").attr('href',path+'#patient_prescriptions')
                         $(".btn-quotes-target").attr('href',path+'#patient_quotes')
                         $(".btn-activities-target").attr('href',path+'#patient_activities')
                         $(".btn-sale-invoices-target").attr('href',path+'#patient_sale_invoices')

@@ -43,6 +43,9 @@ class Patient extends Model
         return $this->hasMany(\App\Models\Appointment::class,'patient_id');
     }
 
+    function prescriptions(){
+        return $this->hasMany(\App\Models\Prescription::class,'patient_id');
+    }
     function quotes(){
         return $this->hasMany(\App\Models\Quote::class,'patient_id');
     }

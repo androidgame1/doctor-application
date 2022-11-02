@@ -16,12 +16,17 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.patient')}}<span class="text-danger"> * </span></label>
-                                <select name="patient_id" id="patient_id" class="form-control {{$errors->has('patient_id')?'form-control-danger':''}}" required>
-                                    <option value="">Select</option>
-                                    @foreach($patients as $value)
-                                        <option value="{{$value->id}}">{{$value->fullname}}</option>
-                                    @endforeach
-                                </select>
+                                @if(in_array(Route::current()->getName(),['administrator.patient.show','secretary.patient.show']))
+                                    <input type="hidden" class="form-control {{$errors->has('patient_id')?'form-control-danger':''}}" placeholder="{{__('messages.patient')}}" name="patient_id" readonly required/>
+                                    <input type="text" class="form-control {{$errors->has('patient')?'form-control-danger':''}}" placeholder="{{__('messages.patient')}}" name="patient" readonly required/>
+                                @else
+                                    <select name="patient_id" id="patient_id" class="form-control {{$errors->has('patient_id')?'form-control-danger':''}}" required>
+                                        <option value="">Select</option>
+                                        @foreach($patients as $value)
+                                            <option value="{{$value->id}}">{{$value->fullname}}</option>
+                                        @endforeach
+                                    </select>
+                                @endif
                             </div>
                         </div>
                         <div class="col-md-6 col-12">

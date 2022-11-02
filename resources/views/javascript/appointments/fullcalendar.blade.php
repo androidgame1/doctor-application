@@ -227,6 +227,8 @@ $(document).ready(function () {
                             let appointment = data.appointment
                             if(icon == 'success'){
                                 $("select[name='patient_id']").val(appointment.patient_id)
+                                $("input[name='patient_id']").val(appointment.patient_id)
+                                $("input[name='patient']").val(appointment.patient.fullname)
                                 $("select[name='status_id']").val(appointment.status_id)
                                 $("input[name='start_date']").val(appointment.start_date)
                                 $("input[name='end_date']").val(appointment.end_date)
@@ -234,6 +236,7 @@ $(document).ready(function () {
                                 $("#form-edit-old-appointment").attr('action',data_url_update)
                                 let path = "{{route('administrator.patient.show','value')}}".replace('value',appointment.patient.id)
                                 $(".btn-appointments-target").attr('href',path+'#patient_appointments')
+                                $(".btn-prescriptions-target").attr('href',path+'#patient_prescriptions')
                                 $(".btn-quotes-target").attr('href',path+'#patient_quotes')
                                 $(".btn-activities-target").attr('href',path+'#patient_activities')
                                 $(".btn-sale-invoices-target").attr('href',path+'#patient_sale_invoices')
