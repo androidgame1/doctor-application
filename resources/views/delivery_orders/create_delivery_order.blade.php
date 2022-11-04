@@ -4,18 +4,13 @@
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
 <div class="row page-titles">
-    <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">{{__('messages.new_delivery_order')}} </h4>
-    </div>
-    <div class="col-md-7 align-self-center text-right">
-        <div class="d-flex justify-content-end align-items-center">
+    <div class="col-12 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
                 <li class="breadcrumb-item active">{{__('messages.new_delivery_order')}}</li>
             </ol>
-        </div>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -31,6 +26,7 @@
                 <form method="post" id="form-create-new-delivery-order" action="@if(auth()->user()->is_administrator){{route('administrator.delivery_order.store')}} @else javascript:void(0) @endif" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @method('post')
                     @csrf
+                    <input type="hidden" name="way_storing" value="store">
                     <input type="hidden" name="action" id="action" value="{{Route::current()->getName() == 'administrator.delivery_order.convert_po_to_do' ? 'convert' : 'store'}}">
                     @if(Route::current()->getName() == 'administrator.delivery_order.convert_po_to_do')
                         <input type="hidden" name="purchase_order_id" id="purchase_order_id" value="{{$purchase_order->id}}">
@@ -51,7 +47,7 @@
                                     type="text" name="supplier_id" required>
                                     <option value="" selected>{{__('messages.select')}}</option>
                                     @foreach($suppliers as $value)
-                                        <option value="{{$value->id}}">{{$value->fullname}}</option>
+                                        <option value="{{$value->id}}" @if(Route::current()->getName() == 'administrator.delivery_order.convert_po_to_do') {{$purchase_order->supplier->id == $value->id ? 'selected' : ''}} @endif>{{$value->fullname}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -72,14 +68,19 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="label-group">{{__('messages.file')}}<span class="text-danger"> * </span></label>
-                                <input type="file" class="form-control dropify {{$errors->has('file')?'form-control-danger':''}}" placeholder="{{__('messages.file')}}" name="file" required>
+                                <label class="label-group">{{__('messages.file')}}<span class="text-danger d-none"> * </span></label>
+                                <input type="file" class="form-control dropify {{$errors->has('file')?'form-control-danger':''}}" placeholder="{{__('messages.file')}}" name="file">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.remark')}}<span class="text-danger d-none"> * </span></label>
                                 <textarea rows="5" class="form-control {{$errors->has('remark')?'form-control-danger':''}}" placeholder="{{__('messages.remark')}}" name="remark"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                            @include('includes.adding_rows')
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -96,4 +97,5 @@
 @endsection
 @section('javascript')
     @include('javascript.helper')
+    @include('javascript.adding_rows')
 @endsection

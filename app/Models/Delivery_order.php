@@ -22,9 +22,13 @@ class Delivery_order extends Model
         'supplier_id',
         'purchase_order_id',
         'date',
-        'status',
         'remark',
         'file',
+        'reduction_total_amount',
+        'ht_total_amount',
+        'tva_total_amount',
+        'ttc_total_amount',
+        'status'
     ];
 
     function administrator(){
@@ -35,13 +39,41 @@ class Delivery_order extends Model
         return $this->belongsTo(\App\Models\Supplier::class);
     }
 
+    function delivery_order_lines(){
+        return $this->hasMany(\App\Models\Delivery_order_line::class);
+    }
+
+    function delivery_order_payments(){
+        return $this->hasMany(\App\Models\Delivery_order_payment::class);
+    }
+
     function getStatusStateAttribute(){
         if($this->status == 0){
-            return '<span class="badge bg-gray text-white font-bold">'.Lang::get("messages.normal").'</span>';
+            return '<span class="badge bg-danger text-white font-bold">'.Lang::get("messages.unpaid").'</span>';
         }else if($this->status == 1){
-            return '<span class="badge bg-success text-white font-bold">'.Lang::get("messages.converted").'</span>';
+            return '<span class="badge bg-warning text-white font-bold">'.Lang::get("messages.partiel").'</span>';
+        }else if($this->status == 2){
+            return '<span class="badge bg-success text-white font-bold">'.Lang::get("messages.paid").'</span>';
+        }else if($this->status == 3){
+            return '<span class="badge bg-danger text-white font-bold">'.Lang::get("messages.canceled").'</span>';
         }else{
             return 'Error';
         }
+    }
+
+    function getPaidAmountAttribute(){
+        return Helper::givenAmountDeliveryOrderPayment($this->id);
+    }
+    
+    function getRemainingAmountAttribute(){
+        return Helper::remainingAmountDeliveryOrderPayment($this->id);
+    }
+
+    function getTotalGivenAmountAttribute(){
+        return Helper::givenAmountDeliveryOrderPayment($this->id);
+    }
+    
+    function getTotalRemainingAmountAttribute(){
+        return Helper::remainingAmountDeliveryOrderPayment($this->id);
     }
 }

@@ -4,18 +4,13 @@
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
 <div class="row page-titles">
-    <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">{{__('messages.edit_delivery_order')}} </h4>
-    </div>
-    <div class="col-md-7 align-self-center text-right">
-        <div class="d-flex justify-content-end align-items-center">
+    <div class="col-12 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
                 <li class="breadcrumb-item active">{{__('messages.edit_delivery_order')}}</li>
             </ol>
-        </div>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -73,6 +68,11 @@
                                 <textarea rows="5" class="form-control {{$errors->has('remark')?'form-control-danger':''}}" placeholder="{{__('messages.remark')}}" name="remark">{{$delivery_order->remark}}</textarea>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                            @include('includes.adding_rows')
+                            </div>
+                        </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success"><i class="fa fa-edit"></i> {{__('messages.modify')}}</button>
@@ -87,4 +87,5 @@
 @endsection
 @section('javascript')
     @include('javascript.helper')
+    @include('javascript.adding_rows')
 @endsection

@@ -20,9 +20,12 @@ class CreateDeliveryOrdersTable extends Migration
             $table->bigInteger('supplier_id')->nullable();
             $table->bigInteger('purchase_order_id')->nullable();
             $table->date('date')->nullable();
-            $table->integer('status')->default(0);
             $table->string('remark')->nullable();
-            $table->text('file')->nullable();          
+            $table->text('file')->nullable();$table->decimal('reduction_total_amount')->nullable();
+            $table->decimal('ht_total_amount')->default(0);
+            $table->decimal('tva_total_amount')->default(0);
+            $table->decimal('ttc_total_amount')->default(0);
+            $table->integer('status')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

@@ -4,18 +4,13 @@
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
 <div class="row page-titles">
-    <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">{{__('messages.edit_supplier')}}</h4>
-    </div>
-    <div class="col-md-7 align-self-center text-right">
-        <div class="d-flex justify-content-end align-items-center">
+    <div class="col-12 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
                 <li class="breadcrumb-item active">{{__('messages.edit_supplier')}}</li>
             </ol>
-        </div>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -34,9 +29,9 @@
                     <div class="row">
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">{{__('messages.cin')}}<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.cin')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('cin')?'form-control-danger':''}}"
-                                    type="text" placeholder="{{__('messages.cin')}}" name="cin" value="{{$supplier->cin}}" required>
+                                    type="text" placeholder="{{__('messages.cin')}}" name="cin" value="{{$supplier->cin}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -48,16 +43,16 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">{{__('messages.email')}}<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.email')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('email')?'form-control-danger':''}}"
-                                    type="email" placeholder="{{__('messages.email')}}" name="email"  value="{{$supplier->email}}" required>
+                                    type="email" placeholder="{{__('messages.email')}}" name="email"  value="{{$supplier->email}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">{{__('messages.address')}}<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.address')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('address')?'form-control-danger':''}}"
-                                    type="text" placeholder="{{__('messages.address')}}" name="address" value="{{$supplier->address}}" required>
+                                    type="text" placeholder="{{__('messages.address')}}" name="address" value="{{$supplier->address}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -69,9 +64,9 @@
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
-                                <label class="label-group">{{__('messages.city')}}<span class="text-danger"> * </span></label>
+                                <label class="label-group">{{__('messages.city')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('city')?'form-control-danger':''}}"
-                                    type="text" placeholder="{{__('messages.city')}}" name="city" value="{{$supplier->city}}" required>
+                                    type="text" placeholder="{{__('messages.city')}}" name="city" value="{{$supplier->city}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">

@@ -4,15 +4,10 @@
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
 <div class="row page-titles">
-    <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">{{__("messages.dashboard")}}</h4>
-    </div>
-    <div class="col-md-7 align-self-center text-right">
-        <div class="d-flex justify-content-end align-items-center">
-            <ol class="breadcrumb">
+    <div class="col-12 align-self-center">
+             <ol class="breadcrumb">
                 <li class="breadcrumb-item active">{{__("messages.dashboard")}}</li>
             </ol>
-        </div>
     </div>
 </div>
 <!-- ============================================================== -->

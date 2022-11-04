@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Http\Helper;
 use Lang;
 
 class Purchase_invoice extends Model
@@ -52,5 +53,21 @@ class Purchase_invoice extends Model
         }else{
             return 'Error';
         }
+    }
+    
+    function getPaidAmountAttribute(){
+        return Helper::givenAmountPurchaseInvoicePayment($this->id);
+    }
+    
+    function getRemainingAmountAttribute(){
+        return Helper::remainingAmountPurchaseInvoicePayment($this->id);
+    }
+    
+    function getTotalGivenAmountAttribute(){
+        return Helper::givenAmountPurchaseInvoicePayment($this->id);
+    }
+    
+    function getTotalRemainingAmountAttribute(){
+        return Helper::remainingAmountPurchaseInvoicePayment($this->id);
     }
 }

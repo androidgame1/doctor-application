@@ -4,18 +4,13 @@
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
 <div class="row page-titles">
-    <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">{{__('messages.supplier')}}</h4>
-    </div>
-    <div class="col-md-7 align-self-center text-right">
-        <div class="d-flex justify-content-end align-items-center">
+    <div class="col-12 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
                 <li class="breadcrumb-item active">{{__('messages.supplier')}}</li>
             </ol>
-        </div>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -31,7 +26,7 @@
                 <table id="table-show-old-supplier" class="table browser m-0 no-border">
                     <tbody>
                         <tr class="tr-show">
-                            <td><b></b>{{__('messages.cin')}}</td>
+                            <td><b>{{__('messages.cin')}}</b></td>
                             <td class="text-right"><span class="text-primary" name="cin">{{$supplier->cin}}</span></td>
                         </tr>
                         <tr class="tr-show">

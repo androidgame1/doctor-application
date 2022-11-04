@@ -4,17 +4,16 @@
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
 <div class="row page-titles">
-    <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">{{__('messages.patients')}}</h4>
-    </div>
-    <div class="col-md-7 align-self-center text-right">
-        <div class="d-flex justify-content-end align-items-center">
+    <div class="col-md-6 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
                 <li class="breadcrumb-item active">{{__('messages.patients')}}</li>
             </ol>
+    </div>
+    <div class="col-md-6 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
             <a href="@if(auth()->user()->is_administrator){{route('administrator.patient.create')}}@elseif(auth()->user()->is_secretary){{route('secretary.patient.create')}}@else javascript:void(0) @endif" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> {{__('messages.new')}} {{__('messages.patient')}}</a>
         </div>
     </div>

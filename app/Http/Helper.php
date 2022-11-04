@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Models\Delivery_order;
+use App\Models\Delivery_order_payment;
 use App\Models\Purchase_invoice;
 use App\Models\Purchase_invoice_payment;
 use App\Models\Sale_invoice;
@@ -231,15 +233,116 @@ class Helper{
         return $given_amount;
     }
 
-    function remainingAmountPurchaseInvoicePayment($purchase_invoice_id=null,$given_amount=0){
+
+
+
+
+    function remainingAmountDeliveryOrderPayment($delivery_order_id=null,$purchase_order_id=null,$supplier_id=null,$given_amount=0,$start_date=null,$end_date=null){
         $user = Auth::user();
-        $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id])->get();
-        $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->get();
-        if($purchase_invoice_id){
-            $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id,'id'=>$purchase_invoice_id])->get();
-            $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id,'purchase_invoice_id'=>$purchase_invoice_id])->get();
+        $delivery_order = Delivery_order::where(['administrator_id'=>$user->id])->where('status','<>','3');
+        $delivery_order_payment = Delivery_order_payment::where(['administrator_id'=>$user->id])->whereHas('delivery_order',function($query) use ($start_date,$end_date){
+                $query->where('status','<>','3');
+            });
+        if(!is_null($start_date) && !is_null($end_date)){
+            $delivery_order = Delivery_order::where(['administrator_id'=>$user->id])->where('status','<>','3')->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
+            $delivery_order_payment = Delivery_order_payment::where(['administrator_id'=>$user->id])->whereHas('delivery_order',function($query) use ($start_date,$end_date){
+                $query->where('status','<>','3')->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+                ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
+            });
         }
-        
+        if($delivery_order_id){
+            $delivery_order = $delivery_order->where('id',$delivery_order_id);
+            $delivery_order_payment = $delivery_order_payment->where('delivery_order_id',$delivery_order_id);
+        }
+        if($supplier_id){
+            $delivery_order = $delivery_order->where('supplier_id',$supplier_id);
+            $delivery_order_payment = $delivery_order_payment->whereHas('delivery_order',function($query) use ($supplier_id){
+                $query->where('supplier_id',$supplier_id);
+            });
+        }
+        if($purchase_order_id){
+            $delivery_order = $delivery_order->where('purchase_order_id',$purchase_order_id);
+            $delivery_order_payment = $delivery_order_payment->whereHas('delivery_order',function($query) use ($purchase_order_id){
+                $query->where('purchase_order_id',$purchase_order_id);
+            });
+        }
+        $delivery_order = $delivery_order->get();
+        $delivery_order_payment = $delivery_order_payment->get();
+        $remaining_amount = floatval($delivery_order->sum('ttc_total_amount')) - floatval($delivery_order_payment->sum('given_amount')) - floatval($given_amount);
+        return $remaining_amount;
+    }
+
+    function remainingAmountPlusEditedAmountDeliveryOrderPayment($delivery_order_id=null,$given_amount=0){
+        $user = Auth::user();
+        $delivery_order = Delivery_order::where(['administrator_id'=>$user->id])->get();
+        $delivery_order_payment = Delivery_order_payment::where(['administrator_id'=>$user->id])->get();
+        if($delivery_order_id){
+            $delivery_order = Delivery_order::where(['administrator_id'=>$user->id,'id'=>$delivery_order_id])->get();
+            $delivery_order_payment = Delivery_order_payment::where(['administrator_id'=>$user->id,'delivery_order_id'=>$delivery_order_id])->get();
+        }
+        $remaining_amount = floatval($delivery_order->sum('ttc_total_amount')) - floatval($delivery_order_payment->sum('given_amount')) + floatval($given_amount);
+        return $remaining_amount;
+    }
+
+    function givenAmountDeliveryOrderPayment($delivery_order_id=null,$purchase_order_id=null,$supplier_id=null,$start_date=null,$end_date=null){
+        $user = Auth::user();
+        $delivery_order_payment = Delivery_order_payment::where(['administrator_id'=>$user->id])->whereHas('delivery_order',function($query) use ($start_date,$end_date){
+            $query->where('status','<>','3');
+        });
+        if(!is_null($start_date) && !is_null($end_date)){
+            $delivery_order_payment = Delivery_order_payment::where(['administrator_id'=>$user->id])->whereHas('delivery_order',function($query) use ($start_date,$end_date){
+                $query->where('status','<>','3')->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+                ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
+            });
+        }
+        if($delivery_order_id){
+            $delivery_order_payment = $delivery_order_payment->where('delivery_order_id',$delivery_order_id);
+        }
+        if($supplier_id){
+            $delivery_order_payment = $delivery_order_payment->whereHas('delivery_order',function($query) use ($supplier_id){
+                $query->where('supplier_id',$supplier_id);
+            });
+        }
+        if($purchase_order_id){
+            $delivery_order_payment = $delivery_order_payment->whereHas('delivery_order',function($query) use ($purchase_order_id){
+                $query->where('purchase_order_id',$purchase_order_id);
+            });
+        }
+        $delivery_order_payment = $delivery_order_payment->get();
+        $given_amount = floatval($delivery_order_payment->sum('given_amount'));
+        return $given_amount;
+    }
+
+    
+
+
+    function remainingAmountPurchaseInvoicePayment($purchase_invoice_id=null,$supplier_id=null,$given_amount=0,$start_date=null,$end_date=null){
+        $user = Auth::user();
+        $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id])->where('status','<>','3');
+        $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('purchase_invoice',function($query) use ($start_date,$end_date){
+                $query->where('status','<>','3');
+            });
+        if(!is_null($start_date) && !is_null($end_date)){
+            $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id])->where('status','<>','3')->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
+            $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('purchase_invoice',function($query) use ($start_date,$end_date){
+                $query->where('status','<>','3')->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+                ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
+            });
+        }
+        if($purchase_invoice_id){
+            $purchase_invoice = $purchase_invoice->where('id',$purchase_invoice_id);
+            $purchase_invoice_payment = $purchase_invoice_payment->where('purchase_invoice_id',$purchase_invoice_id);
+        }
+        if($supplier_id){
+            $purchase_invoice = $purchase_invoice->where('supplier_id',$supplier_id);
+            $purchase_invoice_payment = $purchase_invoice_payment->whereHas('purchase_invoice',function($query) use ($supplier_id){
+                $query->where('supplier_id',$supplier_id);
+            });
+        }
+        $purchase_invoice = $purchase_invoice->get();
+        $purchase_invoice_payment = $purchase_invoice_payment->get();
         $remaining_amount = floatval($purchase_invoice->sum('ttc_total_amount')) - floatval($purchase_invoice_payment->sum('given_amount')) - floatval($given_amount);
         return $remaining_amount;
     }
@@ -249,22 +352,39 @@ class Helper{
         $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id])->get();
         $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->get();
         if($purchase_invoice_id){
-            $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id,'id'=>$purchase_invoice_id])->get();
+            $purchase_invoice = Purchase_invoice::where(['administrator_id'=>$user->id,'id'=>$sale_invoice_id])->get();
             $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id,'purchase_invoice_id'=>$purchase_invoice_id])->get();
         }
         $remaining_amount = floatval($purchase_invoice->sum('ttc_total_amount')) - floatval($purchase_invoice_payment->sum('given_amount')) + floatval($given_amount);
         return $remaining_amount;
     }
 
-    function givenAmountPurchaseInvoicePayment($purchase_invoice_id=null){
+    function givenAmountPurchaseInvoicePayment($purchase_invoice_id=null,$supplier_id=null,$start_date=null,$end_date=null){
         $user = Auth::user();
-        $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->get();
-        if($purchase_invoice_id){
-            $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id,'purchase_invoice_id'=>$purchase_invoice_id])->get();
+        $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('purchase_invoice',function($query) use ($start_date,$end_date){
+            $query->where('status','<>','3');
+        });
+        if(!is_null($start_date) && !is_null($end_date)){
+            $purchase_invoice_payment = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('purchase_invoice',function($query) use ($start_date,$end_date){
+                $query->where('status','<>','3')->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+                ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
+            });
         }
+        if($purchase_invoice_id){
+            $purchase_invoice_payment = $purchase_invoice_payment->where('purchase_invoice_id',$purchase_invoice_id);
+        }
+        if($supplier_id){
+            $purchase_invoice_payment = $purchase_invoice_payment->whereHas('purchase_invoice',function($query) use ($supplier_id){
+                $query->where('supplier_id',$supplier_id);
+            });
+        }
+        $purchase_invoice_payment = $purchase_invoice_payment->get();
         $given_amount = floatval($purchase_invoice_payment->sum('given_amount'));
         return $given_amount;
     }
+
+
+
 
     function remainingAmountChargePayment($charge_id=null,$secretary_id=null,$given_amount=0,$start_date=null,$end_date=null){
         $user = Auth::user();
@@ -359,14 +479,12 @@ class Helper{
                 $total_activity_payments = Activity_payment::where(['administrator_id'=>$user->id])->whereHas('activity',function(Builder $query) use ($status){
                     $query->whereIn('status',[1,2]);
                 })->get()->sum('given_amount');
-            }else if($status == 'partiel'){
+            }else if($status == 'unpaid'){
                 $total_activity_payments = Activity::where('administrator_id',$user->id)->whereIn('status',[0,1])->get()->sum('ttc_total_amount');
                 $total_given_amount = Activity_payment::where(['administrator_id'=>$user->id])->whereHas('activity',function(Builder $query) use ($status){
                     $query->whereIn('status',[0,1]);
                 })->get()->sum('given_amount');
                 $total_activity_payments = floatval($total_activity_payments) - floatval($total_given_amount);
-            }else if($status == 'unpaid'){
-                $total_activity_payments = Activity::where(['administrator_id'=>$user->id,'status'=>0])->get()->sum('ttc_total_amount');
             }
         }
         return $total_activity_payments;
@@ -405,14 +523,12 @@ class Helper{
                 $total_sale_invoice_payments = Sale_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('sale_invoice',function(Builder $query) use ($status){
                     $query->whereIn('status',[1,2]);
                 })->get()->sum('given_amount');
-            }else if($status == 'partiel'){
+            }else if($status == 'unpaid'){
                 $total_sale_invoice_payments = Sale_invoice::where('administrator_id',$user->id)->whereIn('status',[0,1])->get()->sum('ttc_total_amount');
                 $total_given_amount = Sale_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('sale_invoice',function(Builder $query) use ($status){
                     $query->whereIn('status',[0,1]);
                 })->get()->sum('given_amount');
                 $total_sale_invoice_payments = floatval($total_sale_invoice_payments) - floatval($total_given_amount);
-            }else if($status == 'unpaid'){
-                $total_sale_invoice_payments = Sale_invoice::where(['administrator_id'=>$user->id,'status'=>0])->get()->sum('ttc_total_amount');
             }
         }
         return $total_sale_invoice_payments;
@@ -429,20 +545,18 @@ class Helper{
                 $total_purchase_invoice_payments = Purchase_invoice::where(['administrator_id'=>$user->id])->where('status','<>',3)->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
             ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%")->get()->sum('ttc_total_amount');
             }else if($status == 'paid'){
-                $total_purchase_invoice_payments = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('purchase_invoice',function(Builder $query) use ($status){
-                    $query->where('status',2)->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+                $total_purchase_invoice_payments = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('purchase_invoice',function(Builder $query) use ($status,$start_date,$end_date){
+                    $query->whereIn('status',[1,2])->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
                     ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
                 })->get()->sum('given_amount');
-            }else if($status == 'partiel'){
-                $total_purchase_invoice_payments = Purchase_invoice::where(['administrator_id'=>$user->id,'status'=>1])->get()->sum('ttc_total_amount');
-                $total_given_amount = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('purchase_invoice',function(Builder $query) use ($status){
-                    $query->where('status',1)->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+            }else if($status == 'unpaid'){
+                $total_purchase_invoice_payments = Purchase_invoice::where('administrator_id',$user->id)->whereIn('status',[0,1])->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+                ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%")->get()->sum('ttc_total_amount');
+                $total_given_amount = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('purchase_invoice',function(Builder $query) use ($status,$start_date,$end_date){
+                    $query->whereIn('status',[0,1])->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
                     ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
                 })->get()->sum('given_amount');
                 $total_purchase_invoice_payments = floatval($total_purchase_invoice_payments) - floatval($total_given_amount);
-            }else if($status == 'unpaid'){
-                $total_purchase_invoice_payments = Purchase_invoice::where(['administrator_id'=>$user->id,'status'=>0])->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
-            ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%")->get()->sum('ttc_total_amount');
             }
         }else{
             if($status == 'canceled'){
@@ -451,20 +565,61 @@ class Helper{
                 $total_purchase_invoice_payments = Purchase_invoice::where(['administrator_id'=>$user->id])->where('status','<>',3)->get()->sum('ttc_total_amount');
             }else if($status == 'paid'){
                 $total_purchase_invoice_payments = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('purchase_invoice',function(Builder $query) use ($status){
-                    $query->where('status',2);
+                    $query->whereIn('status',[1,2]);
                 })->get()->sum('given_amount');
-            }else if($status == 'partiel'){
-                $total_purchase_invoice_payments = Purchase_invoice::where(['administrator_id'=>$user->id,'status'=>1])->get()->sum('ttc_total_amount');
+            }else if($status == 'unpaid'){
+                $total_purchase_invoice_payments = Purchase_invoice::where('administrator_id',$user->id)->whereIn('status',[0,1])->get()->sum('ttc_total_amount');
                 $total_given_amount = Purchase_invoice_payment::where(['administrator_id'=>$user->id])->whereHas('purchase_invoice',function(Builder $query) use ($status){
-                    $query->where('status',1);
+                    $query->whereIn('status',[0,1]);
                 })->get()->sum('given_amount');
                 $total_purchase_invoice_payments = floatval($total_purchase_invoice_payments) - floatval($total_given_amount);
-            }else if($status == 'unpaid'){
-                $total_purchase_invoice_payments = Purchase_invoice::where(['administrator_id'=>$user->id,'status'=>0])->get()->sum('ttc_total_amount');
             }
         }
-        
         return $total_purchase_invoice_payments;
+    }
+
+    function totalDeliveryOrderPayments($status,$start_date=null,$end_date=null){
+        $user = Auth::user();
+        $total_delivery_order_payments = 0;
+        if(!is_null($start_date) && !is_null($end_date)){
+            if($status == 'canceled'){
+                $total_delivery_order_payments = Delivery_order::where(['administrator_id'=>$user->id,'status'=>3])->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%")->get()->sum('ttc_total_amount');
+            }else if($status == 'activated'){
+                $total_delivery_order_payments = Delivery_order::where(['administrator_id'=>$user->id])->where('status','<>',3)->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+            ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%")->get()->sum('ttc_total_amount');
+            }else if($status == 'paid'){
+                $total_delivery_order_payments = Delivery_order_payment::where(['administrator_id'=>$user->id])->whereHas('delivery_order',function(Builder $query) use ($status,$start_date,$end_date){
+                    $query->whereIn('status',[1,2])->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+                    ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
+                })->get()->sum('given_amount');
+            }else if($status == 'unpaid'){
+                $total_delivery_order_payments = Delivery_order::where('administrator_id',$user->id)->whereIn('status',[0,1])->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+                ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%")->get()->sum('ttc_total_amount');
+                $total_given_amount = Delivery_order_payment::where(['administrator_id'=>$user->id])->whereHas('delivery_order',function(Builder $query) use ($status,$start_date,$end_date){
+                    $query->whereIn('status',[0,1])->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
+                    ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
+                })->get()->sum('given_amount');
+                $total_delivery_order_payments = floatval($total_delivery_order_payments) - floatval($total_given_amount);
+            }
+        }else{
+            if($status == 'canceled'){
+                $total_delivery_order_payments = Delivery_order::where(['administrator_id'=>$user->id,'status'=>3])->get()->sum('ttc_total_amount');
+            }else if($status == 'activated'){
+                $total_delivery_order_payments = Delivery_order::where(['administrator_id'=>$user->id])->where('status','<>',3)->get()->sum('ttc_total_amount');
+            }else if($status == 'paid'){
+                $total_delivery_order_payments = Delivery_order_payment::where(['administrator_id'=>$user->id])->whereHas('delivery_order',function(Builder $query) use ($status){
+                    $query->whereIn('status',[1,2]);
+                })->get()->sum('given_amount');
+            }else if($status == 'unpaid'){
+                $total_delivery_order_payments = Delivery_order::where('administrator_id',$user->id)->whereIn('status',[0,1])->get()->sum('ttc_total_amount');
+                $total_given_amount = Delivery_order_payment::where(['administrator_id'=>$user->id])->whereHas('delivery_order',function(Builder $query) use ($status){
+                    $query->whereIn('status',[0,1]);
+                })->get()->sum('given_amount');
+                $total_delivery_order_payments = floatval($total_delivery_order_payments) - floatval($total_given_amount);
+            }
+        }
+        return $total_delivery_order_payments;
     }
 
     function totalChargePayments($status,$secretary_id=null,$start_date=null,$end_date=null){
@@ -493,7 +648,7 @@ class Helper{
                     $query->where('status',2)->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
                     ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
                 })->get()->sum('given_amount');
-            }else if($status == 'paid'){
+            }else if($status == 'unpaid'){
                 $total_charge_payments = Charge::where('administrator_id',$user->id)->whereIn('status',[0,1])->whereDate('created_at','>=',Carbon::parse($start_date)->format('Y-m-d')."%")
                 ->whereDate('created_at','<=',Carbon::parse($end_date)->format('Y-m-d')."%");
                 if($secretary_id){

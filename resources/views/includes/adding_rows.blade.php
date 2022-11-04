@@ -15,7 +15,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if(Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate' || Route::current()->getName() == 'administrator.activity.edit' || Route::current()->getName() == 'administrator.activity.duplicate' || Route::current()->getName() == 'administrator.quote.edit' || Route::current()->getName() == 'administrator.quote.duplicate')
+                    @if(Route::current()->getName() == 'administrator.purchase_invoice.edit' || Route::current()->getName() == 'administrator.purchase_invoice.duplicate' || Route::current()->getName() == 'administrator.sale_invoice.edit' || Route::current()->getName() == 'administrator.sale_invoice.duplicate' || Route::current()->getName() == 'administrator.activity.edit' || Route::current()->getName() == 'administrator.activity.duplicate' || Route::current()->getName() == 'administrator.quote.edit' || Route::current()->getName() == 'administrator.quote.duplicate' || Route::current()->getName() == 'administrator.delivery_order.edit' || Route::current()->getName() == 'administrator.delivery_order.duplicate')
                         @php
                          $lines = [];
                          $index = 0; 
@@ -28,6 +28,8 @@
                             @php $lines = $activity->activity_lines; @endphp
                         @elseif(Route::current()->getName() == 'administrator.quote.edit' || Route::current()->getName() == 'administrator.quote.duplicate')
                             @php $lines = $quote->quote_lines; @endphp
+                        @elseif(Route::current()->getName() == 'administrator.delivery_order.edit' || Route::current()->getName() == 'administrator.delivery_order.duplicate')
+                            @php $lines = $delivery_order->delivery_order_lines; @endphp
                         @endif
 
                         @foreach($lines as $line)

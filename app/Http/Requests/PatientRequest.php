@@ -42,7 +42,7 @@ class PatientRequest extends FormRequest
                 if($this->email){
                     $rules['email'] = 'email|unique:patients';
                 }
-                if($this->cin){
+                if($this->birthday){
                     $rules['birthday'] = 'date';
                 }
                 return $rules;
@@ -61,7 +61,7 @@ class PatientRequest extends FormRequest
                 if($this->email){
                     $rules['email'] = 'email|unique:patients,email,'.$this->id;
                 }
-                if($this->cin){
+                if($this->birthday){
                     $rules['birthday'] = 'date';
                 }
                 return $rules;

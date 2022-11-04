@@ -119,14 +119,26 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::delete('/activity_payment/{id}/destroy',[App\Http\Controllers\ActivityPaymentController::class,'destroy'])->name('administrator.activity_payment.destroy');
     //routes delivery order controller
     Route::get('/delivery_orders',[App\Http\Controllers\DeliveryOrderController::class,'index'])->name('administrator.delivery_orders');
+    Route::post('/delivery_orders',[App\Http\Controllers\DeliveryOrderController::class,'index'])->name('administrator.delivery_orders.dates.filter');
     Route::get('/delivery_orders/{id}/purchase_order',[App\Http\Controllers\DeliveryOrderController::class,'index'])->name('administrator.delivery_orders.purchase_order');
+    Route::get('/delivery_orders/{status}/filter',[App\Http\Controllers\DeliveryOrderController::class,'filter'])->name('administrator.delivery_orders.filter');
     Route::get('/delivery_order/{id}/show',[App\Http\Controllers\DeliveryOrderController::class,'show'])->name('administrator.delivery_order.show');
     Route::get('/delivery_order/create',[App\Http\Controllers\DeliveryOrderController::class,'create'])->name('administrator.delivery_order.create');
     Route::post('/delivery_order/store',[App\Http\Controllers\DeliveryOrderController::class,'store'])->name('administrator.delivery_order.store');
     Route::get('/delivery_order/{id}/edit',[App\Http\Controllers\DeliveryOrderController::class,'edit'])->name('administrator.delivery_order.edit');
     Route::put('/delivery_order/{id}/update',[App\Http\Controllers\DeliveryOrderController::class,'update'])->name('administrator.delivery_order.update');
     Route::delete('/delivery_order/{id}/destroy',[App\Http\Controllers\DeliveryOrderController::class,'destroy'])->name('administrator.delivery_order.destroy');
+    Route::get('/delivery_order/{id}/cancel',[App\Http\Controllers\DeliveryOrderController::class,'cancel'])->name('administrator.delivery_order.cancel');
     Route::get('/delivery_order/{id}/duplicate',[App\Http\Controllers\DeliveryOrderController::class,'duplicate'])->name('administrator.delivery_order.duplicate');
+    Route::get('/delivery_order/{id}/pdf',[App\Http\Controllers\DeliveryOrderController::class,'pdf'])->name('administrator.delivery_order.pdf');
+    //routes delivery_order_payment controller
+    Route::get('/delivery_order_payments/{sale_invoice_id}',[App\Http\Controllers\DeliveryOrderPaymentController::class,'index'])->name('administrator.delivery_order_payments');
+    Route::get('/delivery_order_payment/{id}/show',[App\Http\Controllers\DeliveryOrderPaymentController::class,'show'])->name('administrator.delivery_order_payment.show');
+    Route::get('/delivery_order_payment/{sale_invoice_id}/create',[App\Http\Controllers\DeliveryOrderPaymentController::class,'create'])->name('administrator.delivery_order_payment.create');
+    Route::post('/delivery_order_payment/store',[App\Http\Controllers\DeliveryOrderPaymentController::class,'store'])->name('administrator.delivery_order_payment.store');
+    Route::get('/delivery_order_payment/{id}/edit',[App\Http\Controllers\DeliveryOrderPaymentController::class,'edit'])->name('administrator.delivery_order_payment.edit');
+    Route::put('/delivery_order_payment/{id}/update',[App\Http\Controllers\DeliveryOrderPaymentController::class,'update'])->name('administrator.delivery_order_payment.update');
+    Route::delete('/delivery_order_payment/{id}/destroy',[App\Http\Controllers\DeliveryOrderPaymentController::class,'destroy'])->name('administrator.delivery_order_payment.destroy');
     //routes drug controller
     Route::get('/purchase_orders',[App\Http\Controllers\PurchaseOrderController::class,'index'])->name('administrator.purchase_orders');
     Route::get('/purchase_order/{id}/show',[App\Http\Controllers\PurchaseOrderController::class,'show'])->name('administrator.purchase_order.show');

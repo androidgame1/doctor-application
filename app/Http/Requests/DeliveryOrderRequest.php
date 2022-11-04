@@ -32,13 +32,12 @@ class DeliveryOrderRequest extends FormRequest
         if($this->isMethod('post') || $this->isMethod('put')){
             $rules = [
                 'supplier_id'=>'required',
-                'date'=>'required|date'
+                'date'=>'required|date',
+                'file'=>'mimes:jpg,png,jpeg,gif,svg,pdf,docx'
             ];
             if($this->routeIs('administrator.delivery_order.store')){
-                $rules['file']='required|mimes:jpg,png,jpeg,gif,svg,pdf,docx';
                 $rules['series']='required|unique:delivery_orders';
             }else if($this->routeIs('administrator.delivery_order.update')){
-                $rules['file']='mimes:jpg,png,jpeg,gif,svg,pdf,docx';
                 $rules['series']='required|unique:delivery_orders,series,'.$this->id;
             }
         }

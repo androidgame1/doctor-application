@@ -31,25 +31,29 @@ class SupplierRequest extends FormRequest
         if($this->isMethod('post')){
             if($this->routeIs('administrator.supplier.store')){
                 $rules = [
-                    'cin' => 'required|unique:suppliers',
                     'fullname' => 'required',
-                    'email' => 'required|email|unique:suppliers',
-                    'address' => 'required',
                     'phone' => 'required',
-                    'city' => 'required',
                 ];
+                if($this->cin){
+                    $rules['email'] = 'unique:suppliers';
+                }
+                if($this->email){
+                    $rules['email'] = 'email|unique:suppliers';
+                }
                 return $rules;
             }
         }else if($this->isMethod('put')){
             if($this->routeIs('administrator.supplier.update')){
                 $rules = [
-                    'cin' => 'required|unique:suppliers,cin,'.$this->id,
                     'fullname' => 'required',
-                    'email' => 'required|email|unique:suppliers,email,'.$this->id,
-                    'address' => 'required',
                     'phone' => 'required',
-                    'city' => 'required',
                 ];
+                if($this->cin){
+                    $rules['cin'] = 'unique:suppliers,cin,'.$this->id;
+                }
+                if($this->email){
+                    $rules['email'] = 'email|unique:suppliers,email,'.$this->id;
+                }
                 return $rules;
             }
 

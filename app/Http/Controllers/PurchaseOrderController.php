@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Purchase_order;
 use App\Models\Supplier;
+use App\Models\Act;
 use Illuminate\Http\Request;
 use App\Http\Requests\PurchaseOrderRequest;
 use Illuminate\Support\Facades\Auth;
@@ -149,7 +150,8 @@ class PurchaseOrderController extends Controller
         $user = Auth::user();
         $purchase_order = Purchase_order::where(['administrator_id'=>$user->id,'id'=>$purchase_order_id])->firstOrFail();
         $suppliers = Supplier::where('administrator_id',$user->id)->get();
-        return view('delivery_orders.create_delivery_order',compact('suppliers','purchase_order'));
+        $designations = Act::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+        return view('delivery_orders.create_delivery_order',compact('suppliers','designations','purchase_order'));
     }
 
 }

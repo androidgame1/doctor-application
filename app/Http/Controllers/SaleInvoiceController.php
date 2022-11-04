@@ -158,7 +158,6 @@ class SaleInvoiceController extends Controller
         $designations = Act::orderBy('id','desc')->where('administrator_id',$user->id)->get();
         return view('sale_invoices.edit_sale_invoice',compact('sale_invoice','patients','designations'));
     }
-
      /**
      * Show the form for editing the specified resource.
      *

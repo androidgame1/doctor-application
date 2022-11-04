@@ -4,17 +4,16 @@
 <!-- Bread crumb and right sidebar toggle -->
 <!-- ============================================================== -->
 <div class="row page-titles">
-    <div class="col-md-5 align-self-center">
-        <h4 class="text-themecolor">{{__('messages.purchase_invoice_payments')}}</h4>
-    </div>
-    <div class="col-md-7 align-self-center text-right">
-        <div class="d-flex justify-content-end align-items-center">
+    <div class="col-md-6 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
                 <li class="breadcrumb-item active">{{__('messages.purchase_invoice_payments')}}</li>
             </ol>
+    </div>
+    <div class="col-md-6 align-self-center text-right">
+        <div class="d-flex justify-content-end align-items-center">
             @if($purchase_invoice->status == '0' || $purchase_invoice->status == '1')
                 <a href="@if(auth()->user()->is_administrator){{route('administrator.purchase_invoice_payment.create',$purchase_invoice->id)}}@else javascript:void(0) @endif" class="btn btn-info d-none d-lg-block m-l-15"><i class="fa fa-plus-circle"></i> {{__('messages.new')}} {{__('messages.purchase_invoice')}}</a>
             @elseif($purchase_invoice->status == '2')
@@ -40,6 +39,8 @@
                     </div>
                     <div class="col-md-12">
                         <h3>{{__('messages.purchase_invoice')}} : <a href="@if(auth()->user()->is_administrator){{route('administrator.purchase_invoice.show',$purchase_invoice->id)}}@else javascript:void(0) @endif" class="btn-show-purchase-invoice text-primary font-bold" title="{{__('messages.show')}}">{{$purchase_invoice->series}}</a></span></h3>
+                        <h3>{{__('messages.supplier')}} : <a href="javascript:void(0)" class="text-primary">{{$purchase_invoice->supplier->fullname}}</a></span></h3>
+
                     </div>
                     <div class="col-md-12">
                         <div class="table-responsive">
@@ -48,9 +49,9 @@
                                     <tr>
                                         <th class="d-none">#</th>
                                         <th>{{__('messages.date')}}</th>
-                                        <th>{{__('messages.ttc_amount')}}</th>
                                         <th>{{__('messages.given_amount')}}</th>
                                         <th>{{__('messages.remaining_amount')}}</th>
+                                        <th>{{__('messages.way_of_payment')}}</th>
                                         <th>{{__('messages.date_creation')}}</th>
                                         <th>{{__('messages.action')}}</th>
                                     </tr>
@@ -60,9 +61,9 @@
                                         <tr>
                                             <td class="d-none">{{$value->id}}</td>
                                             <td>{{\Carbon\Carbon::parse($value->date)->format('d/m/Y')}}</td>
-                                            <td>{{$value->purchase_invoice->ttc_total_amount}} <b>MAD</b></td>
                                             <td>{{$value->given_amount}} <b>MAD</b></td>
                                             <td>{{$value->remaining_amount}} <b>MAD</b></td>
+                                            <td>{{$value->way_of_payment_name}}</td>
                                             <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                                             <td>
                                                 <a href="javascript:void(0)" class="btn-show-purchase-invoice-payment" data-toggle="modal" data-target="#div-show-old-purchase-invoice-payment" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.purchase_invoice_payment.show',$value->id)}}@else javascript:void(0) @endif" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>
