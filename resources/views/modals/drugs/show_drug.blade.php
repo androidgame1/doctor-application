@@ -10,7 +10,7 @@
                 <table id="table-show-old-drug" class="table browser m-0 no-border">
                 <tbody>
                     <tr class="tr-show">
-                        <td><b></b>{{__('messages.trade_name')}}</td>
+                        <td><b>{{__('messages.trade_name')}}</b></td>
                         <td class="text-right"><span class="text-gray" name="trade_name"></span></td>
                     </tr>
                     <tr class="tr-show">

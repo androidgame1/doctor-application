@@ -10,7 +10,7 @@
                 <table id="table-show-old-activity-payment" class="table browser m-0 no-border">
                 <tbody>
                     <tr class="tr-show">
-                        <td><b></b>{{__('messages.activity')}}</td>
+                        <td><b>{{__('messages.activity')}}</b></td>
                         <td class="text-right"><span class="text-primary" name="activity"></span></td>
                     </tr>
                     <tr class="tr-show">

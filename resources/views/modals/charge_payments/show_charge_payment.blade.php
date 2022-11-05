@@ -10,7 +10,7 @@
                 <table id="table-show-old-charge-payment" class="table browser m-0 no-border">
                 <tbody>
                     <tr class="tr-show">
-                        <td><b></b>{{__('messages.charge')}}</td>
+                        <td><b>{{__('messages.charge')}}</b></td>
                         <td class="text-right"><span class="text-primary" name="charge"></span></td>
                     </tr>
                     <tr class="tr-show">

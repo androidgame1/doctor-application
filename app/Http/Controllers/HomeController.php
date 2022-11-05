@@ -141,6 +141,7 @@ class HomeController extends Controller
             $activities = Activity::orderBy('id','desc')->where('administrator_id',$user->id)->get();
             $sale_invoices = Sale_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->get();
             $purchase_invoices = Purchase_invoice::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+            $delivery_orders = Delivery_order::orderBy('id','desc')->where('administrator_id',$user->id)->get();
             $charges = Charge::orderBy('id','desc')->where('administrator_id',$user->id);
             if($request->isMethod('post') && !is_null($request->start_date) && !is_null($request->end_date)){
                 $activities = Activity::orderBy('id','desc')->where('administrator_id',$user->id)
@@ -155,6 +156,10 @@ class HomeController extends Controller
                 ->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
                 ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")
                 ->get();
+                $delivery_orders = Delivery_order::orderBy('id','desc')->where('administrator_id',$user->id)
+                ->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
+                ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%")
+                ->get();
                 $charges = Charge::orderBy('id','desc')->where('administrator_id',$user->id)
                 ->whereDate('created_at','>=',Carbon::parse($request->start_date)->format('Y-m-d')."%")
                 ->whereDate('created_at','<=',Carbon::parse($request->end_date)->format('Y-m-d')."%");
@@ -162,22 +167,26 @@ class HomeController extends Controller
             $activities_canceled_payments = Helper::totalActivityPayments('canceled',$request->start_date,$request->end_date);
             $activities_activated_payments = Helper::totalActivityPayments('activated',$request->start_date,$request->end_date);
             $activities_paid_payments = Helper::totalActivityPayments('paid',$request->start_date,$request->end_date);
-            $activities_partiel_payments = Helper::totalActivityPayments('partiel',$request->start_date,$request->end_date);
             $activities_unpaid_payments = Helper::totalActivityPayments('unpaid',$request->start_date,$request->end_date);
             
             $sale_invoices_canceled_payments = Helper::totalSaleInvoicePayments('canceled',$request->start_date,$request->end_date);
             $sale_invoices_activated_payments = Helper::totalSaleInvoicePayments('activated',$request->start_date,$request->end_date);
             $sale_invoices_paid_payments = Helper::totalSaleInvoicePayments('paid',$request->start_date,$request->end_date);
-            $sale_invoices_partiel_payments = Helper::totalSaleInvoicePayments('partiel',$request->start_date,$request->end_date);
             $sale_invoices_unpaid_payments = Helper::totalSaleInvoicePayments('unpaid',$request->start_date,$request->end_date);
             
             $purchase_invoices_canceled_payments = Helper::totalPurchaseInvoicePayments('canceled',$request->start_date,$request->end_date);
             $purchase_invoices_activated_payments = Helper::totalPurchaseInvoicePayments('activated',$request->start_date,$request->end_date);
             $purchase_invoices_paid_payments = Helper::totalPurchaseInvoicePayments('paid',$request->start_date,$request->end_date);
-            $purchase_invoices_partiel_payments = Helper::totalPurchaseInvoicePayments('partiel',$request->start_date,$request->end_date);
             $purchase_invoices_unpaid_payments = Helper::totalPurchaseInvoicePayments('unpaid',$request->start_date,$request->end_date);
+
+            $delivery_orders_canceled_payments = Helper::totalDeliveryOrderPayments('canceled',$request->start_date,$request->end_date);
+            $delivery_orders_activated_payments = Helper::totalDeliveryOrderPayments('activated',$request->start_date,$request->end_date);
+            $delivery_orders_paid_payments = Helper::totalDeliveryOrderPayments('paid',$request->start_date,$request->end_date);
+            $delivery_orders_unpaid_payments = Helper::totalDeliveryOrderPayments('unpaid',$request->start_date,$request->end_date);
             
-            $charge_payments = $charges->sum('amount');
+            $charges_activated_payments = Helper::totalChargePayments('activated',$request->start_date,$request->end_date);
+            $charges_paid_payments = Helper::totalChargePayments('paid',$request->start_date,$request->end_date);
+            $charges_unpaid_payments = Helper::totalChargePayments('unpaid',$request->start_date,$request->end_date);
         }else{
             return view('error');
         }
@@ -186,21 +195,26 @@ class HomeController extends Controller
             'activities_canceled_payments',
             'activities_activated_payments',
             'activities_paid_payments',
-            'activities_partiel_payments',
             'activities_unpaid_payments',
             'sale_invoices',
             'sale_invoices_canceled_payments',
             'sale_invoices_activated_payments',
             'sale_invoices_paid_payments',
-            'sale_invoices_partiel_payments',
             'sale_invoices_unpaid_payments',
             'purchase_invoices',
             'purchase_invoices_canceled_payments',
             'purchase_invoices_activated_payments',
             'purchase_invoices_paid_payments',
-            'purchase_invoices_partiel_payments',
             'purchase_invoices_unpaid_payments',
-            'charge_payments',
+            'delivery_orders',
+            'delivery_orders_canceled_payments',
+            'delivery_orders_activated_payments',
+            'delivery_orders_paid_payments',
+            'delivery_orders_unpaid_payments',
+            'charges',
+            'charges_activated_payments',
+            'charges_paid_payments',
+            'charges_unpaid_payments',
         ));
         return $pdf->stream();
     }

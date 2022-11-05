@@ -24,10 +24,10 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-@include('includes.search_between_two_dates',['route'=>'administrator.sale_invoices.dates.filter'])
 @if(auth()->user()->id_superadministrator)
 
 @elseif(auth()->user()->is_administrator && (Route::current()->getName() == 'administrator.sale_invoices' || Route::current()->getName() == 'administrator.sale_invoices.dates.filter'))
+    @include('includes.search_between_two_dates',['route'=>route('administrator.sale_invoices.dates.filter')])    
     <div class="row">
         <div class="col-12">
             <div class="card-group">

@@ -4,6 +4,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('administrator.home');
     Route::post('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('administrator.home.filter');
     Route::post('/home/report',[App\Http\Controllers\HomeController::class,'report'])->name('administrator.home.report');
+    Route::get('/home/report',[App\Http\Controllers\HomeController::class,'report'])->name('administrator.home.report.get');
     // Routes user controller
     Route::get('/edit-password', [App\Http\Controllers\UserController::class, 'editPassword'])->name('administrator.password.edit');
     Route::put('/update-password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name('administrator.password.update');
@@ -121,6 +122,7 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/delivery_orders',[App\Http\Controllers\DeliveryOrderController::class,'index'])->name('administrator.delivery_orders');
     Route::post('/delivery_orders',[App\Http\Controllers\DeliveryOrderController::class,'index'])->name('administrator.delivery_orders.dates.filter');
     Route::get('/delivery_orders/{id}/purchase_order',[App\Http\Controllers\DeliveryOrderController::class,'index'])->name('administrator.delivery_orders.purchase_order');
+    Route::post('/delivery_orders/{id}/purchase_order',[App\Http\Controllers\DeliveryOrderController::class,'index'])->name('administrator.delivery_orders.purchase_order.dates.filter');
     Route::get('/delivery_orders/{status}/filter',[App\Http\Controllers\DeliveryOrderController::class,'filter'])->name('administrator.delivery_orders.filter');
     Route::get('/delivery_order/{id}/show',[App\Http\Controllers\DeliveryOrderController::class,'show'])->name('administrator.delivery_order.show');
     Route::get('/delivery_order/create',[App\Http\Controllers\DeliveryOrderController::class,'create'])->name('administrator.delivery_order.create');

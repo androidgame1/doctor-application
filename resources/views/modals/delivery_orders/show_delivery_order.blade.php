@@ -10,7 +10,7 @@
                 <table id="table-show-old-delivery-order" class="table browser m-0 no-border">
                 <tbody>
                     <tr class="tr-show">
-                        <td><b></b>{{__('messages.series')}}</td>
+                        <td><b>{{__('messages.series')}}</b></td>
                         <td class="text-right"><span class="text-primary" name="series"></span></td>
                     </tr>
                     <tr class="tr-show">

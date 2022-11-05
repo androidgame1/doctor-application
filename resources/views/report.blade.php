@@ -140,6 +140,48 @@
     @include('layouts.pdf_parcials.footer')
     <main>
         <div class="div-table">
+            <div class="div-delivery-orders">
+                <div class="div-title"><h3>{{__('messages.delivery_orders')}}</h3></div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.activated')}} : </b>{{$delivery_orders_activated_payments}} <b>MAD</b></p>
+                </div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.canceled')}} : </b>{{$delivery_orders_canceled_payments}} <b>MAD</b></p>
+                </div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.unpaid')}} : </b>{{$delivery_orders_unpaid_payments}} <b>MAD</b></p>
+                </div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.paid')}} : </b>{{$delivery_orders_paid_payments}} <b>MAD</b></p>
+                </div>
+            </div>
+            <div class="div-purchase-invoices">
+                <div class="div-title"><h3>{{__('messages.purchase_invoices')}}</h3></div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.activated')}} : </b>{{$purchase_invoices_activated_payments}} <b>MAD</b></p>
+                </div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.canceled')}} : </b>{{$purchase_invoices_canceled_payments}} <b>MAD</b></p>
+                </div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.unpaid')}} : </b>{{$purchase_invoices_unpaid_payments}} <b>MAD</b></p>
+                </div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.paid')}} : </b>{{$purchase_invoices_paid_payments}} <b>MAD</b></p>
+                </div>
+            </div>
+            <div class="div-charges">
+                <div class="div-title"><h3>{{__('messages.charges')}}</h3></div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.activated')}} : </b>{{$charges_activated_payments}} <b>MAD</b></p>
+                </div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.unpaid')}} : </b>{{$charges_unpaid_payments}} <b>MAD</b></p>
+                </div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.paid')}} : </b>{{$charges_paid_payments}} <b>MAD</b></p>
+                </div>
+            </div>
             <div class="div-activities">
                 <div class="div-title"><h3>{{__('messages.activities')}}</h3></div>
                 <div>
@@ -152,13 +194,10 @@
                     <p class="m-0"><b>{{__('messages.unpaid')}} : </b>{{$activities_unpaid_payments}} <b>MAD</b></p>
                 </div>
                 <div>
-                    <p class="m-0"><b>{{__('messages.partiel')}} : </b>{{$activities_partiel_payments}} <b>MAD</b></p>
-                </div>
-                <div>
                     <p class="m-0"><b>{{__('messages.paid')}} : </b>{{$activities_paid_payments}} <b>MAD</b></p>
                 </div>
             </div>
-            <div class="div-activities">
+            <div class="div-sale-invoices">
                 <div class="div-title"><h3>{{__('messages.sale_invoices')}}</h3></div>
                 <div>
                     <p class="m-0"><b>{{__('messages.activated')}} : </b>{{$sale_invoices_activated_payments}} <b>MAD</b></p>
@@ -170,37 +209,45 @@
                     <p class="m-0"><b>{{__('messages.unpaid')}} : </b>{{$sale_invoices_unpaid_payments}} <b>MAD</b></p>
                 </div>
                 <div>
-                    <p class="m-0"><b>{{__('messages.partiel')}} : </b>{{$sale_invoices_partiel_payments}} <b>MAD</b></p>
-                </div>
-                <div>
                     <p class="m-0"><b>{{__('messages.paid')}} : </b>{{$sale_invoices_paid_payments}} <b>MAD</b></p>
                 </div>
             </div>
-            <div class="div-activities">
-                <div class="div-title"><h3>{{__('messages.purchase_invoices')}}</h3></div>
+            <div class="div-purchase-total">
+                <div class="div-title"><h3>{{__('messages.purchase_total')}}</h3></div>
                 <div>
-                    <p class="m-0"><b>{{__('messages.activated')}} : </b>{{$purchase_invoices_activated_payments}} <b>MAD</b></p>
+                    <p class="m-0"><b>{{__('messages.activated')}} : </b>{{$delivery_orders_activated_payments + $purchase_invoices_activated_payments +$charges_activated_payments}} <b>MAD</b></p>
                 </div>
                 <div>
-                    <p class="m-0"><b>{{__('messages.canceled')}} : </b>{{$purchase_invoices_canceled_payments}} <b>MAD</b></p>
+                    <p class="m-0"><b>{{__('messages.canceled')}} : </b>{{$delivery_orders_canceled_payments + $purchase_invoices_canceled_payments}} <b>MAD</b></p>
                 </div>
                 <div>
-                    <p class="m-0"><b>{{__('messages.unpaid')}} : </b>{{$purchase_invoices_unpaid_payments}} <b>MAD</b></p>
+                    <p class="m-0"><b>{{__('messages.unpaid')}} : </b>{{$delivery_orders_unpaid_payments + $purchase_invoices_unpaid_payments + $charges_unpaid_payments}} <b>MAD</b></p>
                 </div>
                 <div>
-                    <p class="m-0"><b>{{__('messages.partiel')}} : </b>{{$purchase_invoices_partiel_payments}} <b>MAD</b></p>
-                </div>
-                <div>
-                    <p class="m-0"><b>{{__('messages.paid')}} : </b>{{$purchase_invoices_paid_payments}} <b>MAD</b></p>
+                    <p class="m-0"><b>{{__('messages.paid')}} : </b>{{$delivery_orders_paid_payments + $purchase_invoices_paid_payments + $charges_paid_payments}} <b>MAD</b></p>
                 </div>
             </div>
-            <div class="div-activities">
-                <div class="div-title"><h3>{{__('messages.charges')}}</h3></div>
+            <div class="div-sale-total">
+                <div class="div-title"><h3>{{__('messages.sale_total')}}</h3></div>
                 <div>
-                    <p class="m-0"><b>{{__('messages.activated')}} : </b>{{$charge_payments}} <b>MAD</b></p>
+                    <p class="m-0"><b>{{__('messages.activated')}} : </b>{{$activities_activated_payments + $sale_invoices_activated_payments}} <b>MAD</b></p>
+                </div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.canceled')}} : </b>{{$activities_canceled_payments + $sale_invoices_canceled_payments}} <b>MAD</b></p>
+                </div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.unpaid')}} : </b>{{$activities_unpaid_payments + $sale_invoices_unpaid_payments}} <b>MAD</b></p>
+                </div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.paid')}} : </b>{{$activities_paid_payments + $sale_invoices_paid_payments}} <b>MAD</b></p>
                 </div>
             </div>
-            
+            <div class="div-sale-total">
+                <div class="div-title"><h3>{{__('messages.earned_money')}}</h3></div>
+                <div>
+                    <p class="m-0"><b>{{__('messages.total')}} : </b>{{($activities_paid_payments + $sale_invoices_paid_payments) - ($delivery_orders_unpaid_payments + $purchase_invoices_unpaid_payments + $charges_unpaid_payments)}} <b>MAD</b></p>
+                </div>
+            </div>
         </div>  
     </main>
 </body>

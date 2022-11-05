@@ -23,6 +23,17 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
+                <div>
+                    <a href="#supplier_purchase_orders" class="btn btn-secondary">{{__('messages.purchase_orders')}}</a>
+                    <a href="#supplier_delivery_orders" class="btn btn-success">{{__('messages.delivery_orders')}}</a>
+                    <a href="#supplier_purchase_invoices" class="btn btn-danger">{{__('messages.purchase_invoices')}}</a>
+                </div>
+            </div>
+        </div>
+    </div>  
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
                 <table id="table-show-old-supplier" class="table browser m-0 no-border">
                     <tbody>
                         <tr class="tr-show">
@@ -54,8 +65,59 @@
             </div>
         </div>
     </div>
+    <div class="col-12" id="supplier_purchase_orders">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{{__('messages.purchase_orders')}}</h4>
+                    </div>
+                    <div class="col-md-12">
+                        @include('tables.purchase_orders',['purchase_orders'=>$supplier->purchase_orders,'suppliers'=>$suppliers])
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12" id="supplier_delivery_orders">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{{__('messages.delivery_orders')}}</h4>
+                    </div>
+                    <div class="col-md-12">
+                        @include('tables.delivery_orders',['delivery_orders'=>$supplier->delivery_orders,'total_amount'=>$total_amount_delivery_orders,'total_given_amount'=>$total_given_amount_delivery_orders,'total_remaining_amount'=>$total_remaining_amount_delivery_orders])
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-12" id="supplier_purchase_invoices">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h4>{{__('messages.purchase_invoices')}}</h4>
+                    </div>
+                    <div class="col-md-12">
+                        @include('tables.purchase_invoices',['purchase_invoices'=>$supplier->purchase_invoices,'total_amount'=>$total_amount_purchase_invoices,'total_given_amount'=>$total_given_amount_purchase_invoices,'total_remaining_amount'=>$total_remaining_amount_purchase_invoices])
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
+@include('modals.destroy')
+@include('modals.cancel')
 @endsection
 @section('javascript')
     @include('javascript.helper')
+    @include('javascript.datatable')
+
+    @include('javascript.destroy')
+    @include('javascript.cancel')
 @endsection

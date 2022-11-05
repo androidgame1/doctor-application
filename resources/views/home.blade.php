@@ -97,7 +97,7 @@
     </div>
 </div>
 @elseif(auth()->user()->is_administrator)
-    @include('includes.search_between_two_dates',['route'=>'administrator.home.filter'])
+    @include('includes.search_between_two_dates',['route'=>route('administrator.home.filter')])
     <div class="row">
         <div class="col-12">
             <div class="card-group">

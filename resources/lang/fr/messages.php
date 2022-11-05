@@ -168,6 +168,9 @@
         'show_delivery_order_payment' => 'Afficher le paiement du bon de livraison',
         'delete_delivery_order_payment' => 'Supprimer le paiement du bon de livraison',
         'report'=>'Rapport',
+        'purchase_total'=>'Total d\'achat',
+        'sale_total'=>'Total de vente',
+        'earned_money'=>'Argent gagné',
         //End title
         //Start fields
         'cin' => 'CIN',
@@ -217,6 +220,7 @@
         'total_remaining_amount' => 'Montant total restant',
         'logo'=>'Logo',
         'by'=>'par',
+        'total'=>'Total',
         'measruing_unit'=>'Unité de mesure',
         //End fields
         //Start buttons

@@ -10,7 +10,7 @@
                 <table id="table-show-old-act" class="table browser m-0 no-border">
                 <tbody>
                     <tr class="tr-show">
-                        <td><b></b>{{__('messages.name')}}</td>
+                        <td><b>{{__('messages.name')}}</b></td>
                         <td class="text-right"><span class="text-primary" name="name"></span></td>
                     </tr>
                     <tr class="tr-show">

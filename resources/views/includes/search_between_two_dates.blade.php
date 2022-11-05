@@ -2,7 +2,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <form method="post" id="form-filter-between-two-dates" action="@if(in_array(Route::current()->getName(),['administrator.charges.secretary','administrator.charges.secretary.dates.filter','administrator.appointments','administrator.appointments.dates.filter'])) {{route($route,$param1)}} @else {{route($route)}} @endif" enctype="multipart/form-data" class="needs-validation" novalidate>
+                <form method="post" id="form-filter-between-two-dates" action="@if(in_array(Route::current()->getName(),['administrator.charges.secretary','administrator.charges.secretary.dates.filter','administrator.appointments','administrator.appointments.dates.filter','administrator.delivery_orders.purchase_order.dates.filter'])) {{$route}} @else {{$route}} @endif" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @method('post')
                     @csrf
                     <div class="row">

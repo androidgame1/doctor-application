@@ -10,7 +10,7 @@
                 <table id="table-show-old-sale-invoice-payment" class="table browser m-0 no-border">
                 <tbody>
                     <tr class="tr-show">
-                        <td><b></b>{{__('messages.sale_invoice')}}</td>
+                        <td><b>{{__('messages.sale_invoice')}}</b></td>
                         <td class="text-right"><span class="text-primary" name="sale_invoice"></span></td>
                     </tr>
                     <tr class="tr-show">

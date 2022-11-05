@@ -28,9 +28,9 @@
 
 @elseif(auth()->user()->is_administrator && (in_array(Route::current()->getName(),['administrator.charges','administrator.charges.dates.filter','administrator.charges.secretary','administrator.charges.secretary.dates.filter']))  )
     @if(in_array(Route::current()->getName(),['administrator.charges','administrator.charges.dates.filter']))
-        @include('includes.search_between_two_dates',['route'=>'administrator.charges.dates.filter'])
+        @include('includes.search_between_two_dates',['route'=>route('administrator.charges.dates.filter')])
     @else
-        @include('includes.search_between_two_dates',['route'=>'administrator.charges.secretary.dates.filter','param1'=>$secretary->id])
+        @include('includes.search_between_two_dates',['route'=>route('administrator.charges.secretary.dates.filter',$secretary->id)])
     @endif
     <div class="row">
     <div class="col-12">

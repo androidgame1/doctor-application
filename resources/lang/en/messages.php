@@ -168,6 +168,9 @@
         'show_delivery_order_payment' => 'Show delivery order payment',
         'delete_delivery_order_payment' => 'Delete delivery order payment',
         'report'=>'Report',
+        'purchase_total'=>'Purchase total',
+        'sale_total'=>'Sale total',
+        'earned_money'=>'Earned money',
         //End title
         //Start fields
         'cin' => 'CIN',
@@ -217,6 +220,7 @@
         'total_remaining_amount' => 'Total remaining amount',
         'logo'=>'Logo',
         'by'=>'by',
+        'total'=>'Total',
         'measruing_unit'=>'Measruing unit',
         //End fields
         //Start buttons

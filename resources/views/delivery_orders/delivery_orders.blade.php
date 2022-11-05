@@ -25,10 +25,14 @@
 <!-- ============================================================== -->
 <!-- Start Page Content -->
 <!-- ============================================================== -->
-@include('includes.search_between_two_dates',['route'=>'administrator.delivery_orders.dates.filter'])
 @if(auth()->user()->id_superadministrator)
 
-@elseif(auth()->user()->is_administrator && (Route::current()->getName() == 'administrator.delivery_orders' || Route::current()->getName() == 'administrator.delivery_orders.dates.filter'))
+@elseif(auth()->user()->is_administrator && in_array(Route::current()->getName(),['administrator.delivery_orders','administrator.delivery_orders.dates.filter','administrator.delivery_orders.purchase_order','administrator.delivery_orders.purchase_order.dates.filter']))    
+    @if(in_array(Route::current()->getName(),['administrator.delivery_orders','administrator.delivery_orders.dates.filter']))
+        @include('includes.search_between_two_dates',['route'=>route('administrator.delivery_orders.dates.filter')])
+    @else
+        @include('includes.search_between_two_dates',['route'=>route('administrator.delivery_orders.purchase_order.dates.filter',$purchase_order->id)])
+    @endif    
     <div class="row">
         <div class="col-12">
             <div class="card-group">

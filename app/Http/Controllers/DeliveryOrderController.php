@@ -51,10 +51,10 @@ class DeliveryOrderController extends Controller
         $count_canceled_delivery_orders = $delivery_orders->filter(function($value){
             return $value->status == '3';
         })->count();
-        $canceled_payments = Helper::totalDeliveryOrderPayments('canceled',$request->start_date,$request->end_date);
-        $activated_payments = Helper::totalDeliveryOrderPayments('activated',$request->start_date,$request->end_date);
-        $paid_payments = Helper::totalDeliveryOrderPayments('paid',$request->start_date,$request->end_date);
-        $unpaid_payments = Helper::totalDeliveryOrderPayments('unpaid',$request->start_date,$request->end_date);
+        $canceled_payments = Helper::totalDeliveryOrderPayments('canceled',$purchase_order_id,$request->start_date,$request->end_date);
+        $activated_payments = Helper::totalDeliveryOrderPayments('activated',$purchase_order_id,$request->start_date,$request->end_date);
+        $paid_payments = Helper::totalDeliveryOrderPayments('paid',$purchase_order_id,$request->start_date,$request->end_date);
+        $unpaid_payments = Helper::totalDeliveryOrderPayments('unpaid',$purchase_order_id,$request->start_date,$request->end_date);
         $total_amount = $delivery_orders->where('status','<>','3')->sum('ttc_total_amount');
         $total_given_amount = Helper::givenAmountDeliveryOrderPayment(null,$purchase_order_id,null,$request->start_date,$request->end_date);
         $total_remaining_amount = Helper::remainingAmountDeliveryOrderPayment(null,$purchase_order_id,null,0,$request->start_date,$request->end_date);

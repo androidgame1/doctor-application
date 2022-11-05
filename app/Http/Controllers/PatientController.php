@@ -133,6 +133,7 @@ class PatientController extends Controller
             'total_amount_activities',
             'total_given_amount_activities',
             'total_remaining_amount_activities',
+            'sale_invoices',
             'total_amount_sale_invoices',
             'total_given_amount_sale_invoices',
             'total_remaining_amount_sale_invoices'

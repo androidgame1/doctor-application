@@ -6,6 +6,7 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Requests\SupplierRequest;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Helper;
 use Lang;
 
 class SupplierController extends Controller
@@ -64,11 +65,35 @@ class SupplierController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
         $user = Auth::user();
         $supplier = Supplier::where(['administrator_id'=>$user->id,'id'=>$id])->firstOrFail();
-        return view('suppliers.show_supplier',compact('supplier'));
+        $suppliers = Supplier::where(['administrator_id'=>$user->id])->get();
+        //start delivery order
+        $delivery_orders = $supplier->delivery_orders;
+        $total_amount_delivery_orders = $delivery_orders->where('status','<>','3')->sum('ttc_total_amount');
+        $total_given_amount_delivery_orders = Helper::givenAmountDeliveryOrderPayment(null,$supplier->id,$request->start_date,$request->end_date);
+        $total_remaining_amount_delivery_orders = Helper::remainingAmountDeliveryOrderPayment(null,$supplier->id,0,$request->start_date,$request->end_date);
+        //end delivery orders
+        //start sale_invoices
+        $purchase_invoices = $supplier->purchase_invoices;
+        $total_amount_purchase_invoices = $purchase_invoices->where('status','<>','3')->sum('ttc_total_amount');
+        $total_given_amount_purchase_invoices = Helper::givenAmountPurchaseInvoicePayment(null,$supplier->id,$request->start_date,$request->end_date);
+        $total_remaining_amount_purchase_invoices = Helper::remainingAmountPurchaseInvoicePayment(null,$supplier->id,0,$request->start_date,$request->end_date);
+        //end sale_invoices
+        return view('suppliers.show_supplier',compact(
+            'supplier',
+            'suppliers',
+            'delivery_orders',
+            'total_amount_delivery_orders',
+            'total_given_amount_delivery_orders',
+            'total_remaining_amount_delivery_orders',
+            'purchase_invoices',
+            'total_amount_purchase_invoices',
+            'total_given_amount_purchase_invoices',
+            'total_remaining_amount_purchase_invoices'
+        ));
     }
 
     /**

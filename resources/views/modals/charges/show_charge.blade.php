@@ -11,7 +11,7 @@
                 <tbody>
                     @if($secretary)
                         <tr class="tr-show">
-                            <td><b></b>{{__('messages.secretary')}}</td>
+                            <td><b>{{__('messages.secretary')}}</b></td>
                             <td class="text-right"><span class="text-primary" name="secretary">{{$secretary->fullname}}</span></td>
                         </tr>
                     @endif

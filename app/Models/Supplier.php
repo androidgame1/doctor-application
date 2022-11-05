@@ -28,4 +28,16 @@ class Supplier extends Model
     function administrator(){
         return $this->belongsTo(\App\Models\User::class,'administrator_id');
     }
+
+    function purchase_orders(){
+        return $this->hasMany(\App\Models\Purchase_order::class,'supplier_id');
+    }
+    
+    function delivery_orders(){
+        return $this->hasMany(\App\Models\Delivery_order::class,'supplier_id');
+    }
+    
+    function purchase_invoices(){
+        return $this->hasMany(\App\Models\Purchase_invoice::class,'supplier_id');
+    }
 }

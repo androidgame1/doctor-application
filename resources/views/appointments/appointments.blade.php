@@ -25,7 +25,7 @@
 <!-- Start Page Content -->
 <!-- ============================================================== -->
 @if(auth()->user()->is_administrator)
-@include('includes.search_between_two_dates',['route'=>'administrator.appointments.dates.filter','param1'=>'appointments']) 
+@include('includes.search_between_two_dates',['route'=>route('administrator.appointments.dates.filter','appointments')]) 
 <div class="row">
         <div class="col-12">
             <div class="card-group">

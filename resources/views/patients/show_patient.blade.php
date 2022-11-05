@@ -24,10 +24,10 @@
         <div class="card">
             <div class="card-body">
                 <div>
-                    <a href="#patient_appointments" class="btn btn-secondary btn-appointments-target">{{__('messages.appointments')}}</a>
-                    <a href="#patient_quotes" class="btn btn-success btn-quotes-target">{{__('messages.quotes')}}</a>
-                    <a href="#patient_activities" class="btn btn-danger btn-activities-target">{{__('messages.activities')}}</a>
-                    <a href="#patient_sale_invoices" class="btn btn-warning btn-sale-invoices-target">{{__('messages.sale_invoices')}}</a>
+                    <a href="#patient_appointments" class="btn btn-secondary">{{__('messages.appointments')}}</a>
+                    <a href="#patient_quotes" class="btn btn-success">{{__('messages.quotes')}}</a>
+                    <a href="#patient_activities" class="btn btn-danger">{{__('messages.activities')}}</a>
+                    <a href="#patient_sale_invoices" class="btn btn-warning">{{__('messages.sale_invoices')}}</a>
                 </div>
             </div>
         </div>

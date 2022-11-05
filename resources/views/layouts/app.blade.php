@@ -101,8 +101,13 @@
     <!-- Calendar JavaScript -->
     <script src="{{asset('assets/node_modules/calendar/jquery-ui.min.js')}}"></script>
     <script src="{{asset('assets/node_modules/moment/moment.js')}}"></script>
-    <script src="{{asset('assets/node_modules/calendar/dist/fullcalendar.min.js')}}"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.1.2/tinymce.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js'></script>
+    {{Session::get('lang_code')}}
+    @if(in_array(Session::get('lang_code'),['fr','']))
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.0/lang/fr.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/fr.min.js'></script>
+    @endif
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.1.2/tinymce.min.js"></script>
     <script src="{{asset('assets/node_modules/dropify/dist/js/dropify.min.js')}}"></script>
 
     <script>
@@ -113,7 +118,16 @@
             // menubar: false,
             // statusbar: false,
         });
-        $(".dropify").dropify()
+        @if(in_array(Session::get('lang_code'),['fr','']))
+            $(".dropify").dropify({
+                messages: {
+                    'default': 'Faites glisser et déposez un fichier ici ou cliquez sur',
+                    'replace': 'Glisser-déposer ou cliquer pour remplacer',
+                    'remove':  'Retirer',
+                    'error':   'Oups, quelque chose s\'est mal passé.'
+                }
+            })
+        @endif
         $('html, body').animate({
                 scrollTop: $(location.hash).offset().top - 85
         }, 500);
