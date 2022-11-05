@@ -7,7 +7,7 @@
                 <th>{{__('messages.patient')}}</th>
                 <th>{{__('messages.date')}}</th>
                 <th>{{__('messages.ttc_amount')}}</th>
-                <th>{{__('messages.status')}}</th>
+                <th>{{__('messages.payment_status')}}</th>
                 <th>{{__('messages.date_creation')}}</th>
                 <th>{{__('messages.action')}}</th>
             </tr>
@@ -20,7 +20,7 @@
                     <td>{{$value->patient->fullname}}</td>
                     <td>{{\Carbon\Carbon::parse($value->date)->format('d/m/Y')}}</td>
                     <td>{{$value->ttc_total_amount}} <b>MAD</b></td>
-                    <td>{!!$value->status_state!!}</td>
+                    <td>{!!$value->payment_status_state!!}</td>
                     <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                     <td>
                         <a href="@if(auth()->user()->is_administrator){{route('administrator.quote.show',$value->id)}}@else javascript:void(0) @endif" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>

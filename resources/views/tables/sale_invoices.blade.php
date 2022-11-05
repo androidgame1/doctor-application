@@ -9,7 +9,7 @@
                 <th>{{__('messages.ttc_amount')}}</th>
                 <th>{{__('messages.given_amount')}}</th>
                 <th>{{__('messages.remaining_amount')}}</th>
-                <th>{{__('messages.status')}}</th>
+                <th>{{__('messages.payment_status')}}</th>
                 <th>{{__('messages.date_creation')}}</th>
                 <th>{{__('messages.action')}}</th>
             </tr>
@@ -24,7 +24,7 @@
                     <td>{{$value->ttc_total_amount}} <b>MAD</b></td>
                     <td><span class="text-success font-bold">{{$value->total_given_amount}} <b>MAD</b></span></td>
                     <td><span class="text-danger font-bold">{{$value->total_remaining_amount}} <b>MAD</b></span></td>
-                    <td>{!!$value->status_state!!}</td>
+                    <td>{!!$value->payment_status_state!!}</td>
                     <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                     <td>
                         <a href="@if(auth()->user()->is_administrator){{route('administrator.sale_invoice.show',$value->id)}}@else javascript:void(0) @endif" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>

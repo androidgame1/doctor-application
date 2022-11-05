@@ -66,8 +66,8 @@
                             <td class="text-right"><span class="text-gray" name="city">{{$sale_invoice->remark}}</span></td>
                         </tr>
                         <tr class="tr-show">
-                            <td><b>{{__('messages.status')}}</b></td>
-                            <td class="text-right">{!!$sale_invoice->status_state!!}</td>
+                            <td><b>{{__('messages.payment_status')}}</b></td>
+                            <td class="text-right">{!!$sale_invoice->payment_status_state!!}</td>
                         </tr>
                     </tbody>
                 </table>

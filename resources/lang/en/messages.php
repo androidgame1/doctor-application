@@ -38,6 +38,7 @@
         'purchase_order' => 'Purchase order',
         'purchase_orders' => 'Purchase orders',
         'status' => 'Status',
+        'payment_status' => 'Payment status',
         'type_of_drug' => 'Type of drug',
         'types_of_drug' => 'Types of drug',
         'act' => 'Act',

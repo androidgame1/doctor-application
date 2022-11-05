@@ -7,7 +7,10 @@
     <div class="col-12 align-self-center">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a
-                        href="@if(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
+                        href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretray) {{route('secretary.home')}} @else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
+                </li>
+                <li class="breadcrumb-item"><a
+                        href="@if(auth()->user()->is_administrator){{route('administrator.patients')}}@elseif(auth()->user()->is_secretray) {{route('secretary.patients')}} @else javascript:void(0) @endif">{{__('messages.patients')}}</a>
                 </li>
                 <li class="breadcrumb-item active">{{__('messages.new_patient')}}</li>
             </ol>

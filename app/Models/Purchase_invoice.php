@@ -41,7 +41,7 @@ class Purchase_invoice extends Model
         return $this->hasMany(\App\Models\Purchase_invoice_line::class);
     }
 
-    function getStatusStateAttribute(){
+    function getPaymentStatusStateAttribute(){
         if($this->status == 0){
             return '<span class="badge bg-danger text-white font-bold">'.Lang::get("messages.unpaid").'</span>';
         }else if($this->status == 1){

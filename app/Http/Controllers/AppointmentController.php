@@ -48,7 +48,7 @@ class AppointmentController extends Controller
         foreach ($appointments as $value) {
             $value->secretary = $value->secretary;
             $value->patient = $value->patient;
-            $value->status_state = $value->status_state;
+            $value->payment_status_state = $value->payment_status_state;
             $value->status = $value->status;
         }
         
@@ -152,7 +152,7 @@ class AppointmentController extends Controller
         $data=["icon"=>"warning","appointment"=>array()];
         $appointment = Appointment::where(['administrator_id'=>$administrator_id,'id'=>$id])->firstOrFail();
         $appointment->patient = $appointment->patient;
-        $appointment->status_state = $appointment->status_state;
+        $appointment->payment_status_state = $appointment->payment_status_state;
         $data=["icon"=>"success","appointment"=>$appointment];
         return response()->json($data);
     }
@@ -177,7 +177,7 @@ class AppointmentController extends Controller
         $data=["icon"=>"warning","appointment"=>array()];
         $appointment = Appointment::where(['administrator_id'=>$administrator_id,'id'=>$id])->firstOrFail();
         $appointment->patient = $appointment->patient;
-        $appointment->status_state = $appointment->status_state;
+        $appointment->payment_status_state = $appointment->payment_status_state;
         $data=["icon"=>"success","appointment"=>$appointment];
         return response()->json($data);
     }

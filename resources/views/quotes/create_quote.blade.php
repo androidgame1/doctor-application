@@ -9,6 +9,9 @@
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
+                <li class="breadcrumb-item"><a
+                        href="@if(auth()->user()->is_administrator){{route('administrator.quotes')}}@else javascript:void(0) @endif">{{__('messages.quotes')}}</a>
+                </li>
                 <li class="breadcrumb-item active">{{__('messages.new_quote')}}</li>
             </ol>
     </div>

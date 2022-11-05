@@ -39,6 +39,7 @@
         'purchase_orders' => 'Bons de commande',
         'payments' => 'Paiements',
         'status' => 'Statuts',
+        'payment_status' => 'Statut de paiement',
         'type_of_drug' => 'Type de Médicament',
         'types_of_drug' => 'Types de Médicament',
         'act' => 'Acte',

@@ -41,7 +41,7 @@ class Appointment extends Model
         return $this->belongsTo(\App\Models\Patient::class,'patient_id');
     }
 
-    function getStatusStateAttribute(){
+    function getPaymentStatusStateAttribute(){
             return '<span class="badge text-white" style="background:'.$this->status->color.'">'.$this->status->name.'</span>';
     }
 }

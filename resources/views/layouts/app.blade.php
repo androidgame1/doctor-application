@@ -128,9 +128,13 @@
                 }
             })
         @endif
-        $('html, body').animate({
+        try{
+            $('html, body').animate({
                 scrollTop: $(location.hash).offset().top - 85
-        }, 500);
+            }, 500);
+        }catch(error){
+            console.log(error)
+        }
         $(document).on('click', 'a[href^="#"]', function (event) {
             event.preventDefault();
             $('html, body').animate({

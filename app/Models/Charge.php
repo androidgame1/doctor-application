@@ -33,7 +33,7 @@ class Charge extends Model
         return $this->belongsTo(\App\Models\User::class,'secretary_id');
     }
 
-    function getStatusStateAttribute(){
+    function getPaymentStatusStateAttribute(){
         if($this->status == 0){
             return '<span class="badge bg-danger text-white font-bold">'.Lang::get("messages.unpaid").'</span>';
         }else if($this->status == 1){

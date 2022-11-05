@@ -6,7 +6,7 @@
                 <th>{{__('messages.patient')}}</th>
                 <th>{{__('messages.start_date')}}</th>
                 <th>{{__('messages.end_date')}}</th>
-                <th>{{__('messages.status')}}</th>
+                <th>{{__('messages.payment_status')}}</th>
                 <th>{{__('messages.date_creation')}}</th>
                 <th>{{__('messages.action')}}</th>
             </tr>
@@ -18,7 +18,7 @@
                     <td>{{$value->patient->fullname}}</td>
                     <td>{{\Carbon\Carbon::parse($value->start_date)->format('d/m/Y H:i:s')}}</td>
                     <td>{{\Carbon\Carbon::parse($value->end_date)->format('d/m/Y H:i:s')}}</td>
-                    <td>{!!$value->status_state!!}</td>
+                    <td>{!!$value->payment_status_state!!}</td>
                     <td>{{\Carbon\Carbon::parse($value->created_at)->format('d/m/Y H:i:s')}}</td>
                     <td>
                         <a href="javascript:void(0)" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.appointment.show',$value->id)}}@elseif(auth()->user()->is_secretary){{route('secretary.appointment.show',$value->id)}}@else javascript:void(0) @endif" class="btn-show-appointment" data-toggle="modal" data-target="#div-show-old-appointment" title="{{__('messages.show')}}"> <i class="fa fa-eye text-info m-r-10 icon-datatable"></i> </a>

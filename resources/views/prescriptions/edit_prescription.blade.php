@@ -6,8 +6,11 @@
 <div class="row page-titles">
     <div class="col-12 align-self-center">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a
+            <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
+                </li>
+                <li class="breadcrumb-item"><a
+                        href="@if(auth()->user()->is_administrator){{route('administrator.prescriptions')}}@else javascript:void(0) @endif">{{__('messages.prescriptions')}}</a>
                 </li>
                 <li class="breadcrumb-item active">{{__('messages.edit_prescription')}}</li>
             </ol>

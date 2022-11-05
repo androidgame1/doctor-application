@@ -42,7 +42,7 @@ class Quote extends Model
         return $this->hasMany(\App\Models\Quote_line::class);
     }
 
-    function getStatusStateAttribute(){
+    function getPaymentStatusStateAttribute(){
         if($this->status == 0){
             return '<span class="badge bg-success text-white font-bold">'.Lang::get("messages.activated").'</span>';
         }else if($this->status == 1){

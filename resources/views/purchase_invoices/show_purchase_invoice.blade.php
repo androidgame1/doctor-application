@@ -9,6 +9,9 @@
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
+                <li class="breadcrumb-item"><a
+                        href="@if(auth()->user()->is_administrator){{route('administrator.purchase_invoices')}}@else javascript:void(0) @endif">{{__('messages.purchase_invoices')}}</a>
+                </li>
                 <li class="breadcrumb-item active">{{__('messages.purchase_invoice')}}</li>
             </ol>
     </div>
@@ -66,8 +69,8 @@
                             <td class="text-right"><span class="text-gray" name="city">{{$purchase_invoice->remark}}</span></td>
                         </tr>
                         <tr class="tr-show">
-                            <td><b>{{__('messages.status')}}</b></td>
-                            <td class="text-right"><span class="text-gray" name="city">{!!$purchase_invoice->status_state!!}</span></td>
+                            <td><b>{{__('messages.payment_status')}}</b></td>
+                            <td class="text-right"><span class="text-gray" name="city">{!!$purchase_invoice->payment_status_state!!}</span></td>
                         </tr>
                     </tbody>
                 </table>
