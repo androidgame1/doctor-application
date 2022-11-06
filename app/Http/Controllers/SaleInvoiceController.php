@@ -100,6 +100,9 @@ class SaleInvoiceController extends Controller
             'tva_total_amount'=>$request->tva_total_amount,
             'ttc_total_amount'=>$request->ttc_total_amount,
         ];
+        if($request->quote_id){
+            $data_sale_invoice['quote_id'] = $request->quote_id;    
+        }
         if($sale_invoice = Sale_invoice::create($data_sale_invoice)){
             $data_sale_invoice_lines=[];
             $index=0;

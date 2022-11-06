@@ -120,7 +120,7 @@ class DeliveryOrderController extends Controller
             'tva_total_amount'=>$request->tva_total_amount,
             'ttc_total_amount'=>$request->ttc_total_amount,
         ];
-        if($request->action == 'convert'){
+        if($request->purchase_order_id){
             $data_delivery_order['purchase_order_id'] = $request->purchase_order_id;    
         }
         if($delivery_order = Delivery_order::create($data_delivery_order)){

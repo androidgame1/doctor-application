@@ -245,6 +245,8 @@
         'add' => 'Add',
         'reset' => 'Reset',
         'pdf' => 'PDF',
+        'convert_to_activity' => 'Convert to activity',
+        'convert_to_sale_invoice' => 'Convert to sale invoice',
         //End buttons
         //Start sentences
         'total_administrators' => 'Total administrators',

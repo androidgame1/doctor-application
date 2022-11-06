@@ -47,6 +47,10 @@ class Delivery_order extends Model
         return $this->hasMany(\App\Models\Delivery_order_payment::class);
     }
 
+    function purchase_order(){
+        return $this->belongsTo(\App\Models\Purchase_order::class);
+    }
+
     function getPaymentStatusStateAttribute(){
         if($this->status == 0){
             return '<span class="badge bg-danger text-white font-bold">'.Lang::get("messages.unpaid").'</span>';

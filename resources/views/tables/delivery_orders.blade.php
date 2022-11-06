@@ -18,7 +18,7 @@
             @foreach($delivery_orders as $value)
                 <tr>
                 <td class="d-none">{{$value->id}}</td>
-                    <td><a href="javascript:void(0)" class="btn-show-delivery-order" data-toggle="modal" data-target="#div-show-old-delivery_order" data-url-show="@if(auth()->user()->is_administrator){{route('administrator.delivery_order.show',$value->id)}}@else javascript:void(0) @endif"  title="{{__('messages.show')}}">{{$value->series}}</a></td>
+                    <td><a href="javascript:void(0)" class="btn-show-delivery-order">{{$value->series}}{{$value->purchase_order ? '=>('.$value->purchase_order->series.')' : ''}}</a></td>
                     <td>{{$value->supplier->fullname}}</td>
                     <td>{{\Carbon\Carbon::parse($value->date)->format('d/m/Y')}}</td>
                     <td>{{$value->ttc_total_amount}} <b>MAD</b></td>

@@ -33,6 +33,10 @@
                             <td class="text-right"><a href = "@if(auth()->user()->is_administrator) {{route('administrator.delivery_order.show',$delivery_order->id)}} @else javascript:void(0) @endif" class="text-primary" name="cin">{{$delivery_order->series}}</a></td>
                         </tr>
                         <tr class="tr-show">
+                            <td><b>{{__('messages.purchase_order')}}</b></td>
+                            <td class="text-right"><a href = "javascript:void(0)" class="text-primary" name="cin">{{$delivery_order->purchase_order->series ?? ''}}</a></td>
+                        </tr>
+                        <tr class="tr-show">
                             <td><b>{{__('messages.supplier')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="fullname">{{$delivery_order->supplier->fullname}}</span></td>
                         </tr>

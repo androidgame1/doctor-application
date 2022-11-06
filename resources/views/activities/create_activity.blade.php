@@ -29,6 +29,10 @@
                 <form method="post" id="form-create-new-activity" action="@if(auth()->user()->is_administrator){{route('administrator.activity.store')}} @else javascript:void(0) @endif" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @method('post')
                     @csrf
+                    {{--<!-- <input type="hidden" name="action" id="action" value="{{Route::current()->getName() == 'administrator.quote.convert_qt_to_act' ? 'convert' : 'store'}}">
+                    @if(Route::current()->getName() == 'administrator.quote.convert_qt_to_act')
+                        <input type="hidden" name="quote_id" id="quote_id" value="{{$quote->id}}">
+                    @endif -->--}}
                     <div class="row">
                         <div class="col-md-12">
                             @include('messages.messages')

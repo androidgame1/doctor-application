@@ -20,6 +20,7 @@ class Activity extends Model
         'series',
         'administrator_id',
         'patient_id',
+        'quote_id',
         'date',
         'remark',
         'reduction_total_amount',
@@ -43,6 +44,10 @@ class Activity extends Model
 
     function activity_payments(){
         return $this->hasMany(\App\Models\Activity_payment::class);
+    }
+    
+    function quotes(){
+        return $this->belongsTo(\App\Models\Quote::class);
     }
 
     function getPaymentStatusStateAttribute(){

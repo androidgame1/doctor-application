@@ -64,6 +64,12 @@
                             <td><b>{{__('messages.payment_status')}}</b></td>
                             <td class="text-right"><span class="text-gray" name="city">{!!$quote->payment_status_state!!}</span></td>
                         </tr>
+                        {{--<!-- <tr class="tr-show">
+                            <td colspan="2" class="text-center" name="edit-status" >
+                                <a href="@if(auth()->user()->is_administrator){{route('administrator.quote.convert_qt_to_act',$quote->id)}} @else javascript:void(0) @endif" class="btn btn-success"><i class="fa fa-file"></i> {{__('messages.convert_to_activity')}}</a>
+                                <a href="@if(auth()->user()->is_administrator){{route('administrator.quote.convert_qt_to_sl_inv',$quote->id)}} @else javascript:void(0) @endif" class="btn btn-warning"><i class="fa fa-file"></i> {{__('messages.convert_to_sale_invoice')}}</a>
+                            </td>
+                        </tr> -->--}}
                     </tbody>
                 </table>
             </div>

@@ -245,6 +245,8 @@
         'add' => 'Ajouter',
         'reset' => 'Réinitialiser',
         'pdf' => 'PDF',
+        'convert_to_activity' => 'Convertir en activité',
+        'convert_to_sale_invoice' => 'Convertir en facture de vente',
         //End buttons
         //Start sentences
         'total_administrators' => 'Total d\'administrateurs',

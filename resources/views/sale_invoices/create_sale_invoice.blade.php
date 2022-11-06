@@ -9,6 +9,9 @@
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
+                <li class="breadcrumb-item"><a
+                        href="@if(auth()->user()->is_administrator){{route('administrator.sale_invoices')}}@else javascript:void(0) @endif">{{__('messages.sale_invoices')}}</a>
+                </li>
                 <li class="breadcrumb-item active">{{__('messages.new_sale_invoice')}}</li>
             </ol>
     </div>
@@ -26,6 +29,10 @@
                 <form method="post" id="form-create-new-sale-invoice" action="@if(auth()->user()->is_administrator){{route('administrator.sale_invoice.store')}} @else javascript:void(0) @endif" enctype="multipart/form-data" class="needs-validation" novalidate>
                     @method('post')
                     @csrf
+                    {{--<!-- <input type="hidden" name="action" id="action" value="{{Route::current()->getName() == 'administrator.quote.convert_qt_to_act' ? 'convert' : 'store'}}">
+                    @if(Route::current()->getName() == 'administrator.quote.convert_qt_to_act')
+                        <input type="hidden" name="quote_id" id="quote_id" value="{{$quote->id}}">
+                    @endif -->--}}
                     <div class="row">
                         <div class="col-md-12">
                             @include('messages.messages')

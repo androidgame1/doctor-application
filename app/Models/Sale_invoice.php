@@ -20,6 +20,7 @@ class Sale_invoice extends Model
         'series',
         'administrator_id',
         'patient_id',
+        'quote_id',
         'date',
         'remark',
         'reduction_total_amount',
@@ -39,6 +40,10 @@ class Sale_invoice extends Model
 
     function sale_invoice_lines(){
         return $this->hasMany(\App\Models\Sale_invoice_line::class);
+    }
+    
+    function quotes(){
+        return $this->belongsTo(\App\Models\Quote::class);
     }
 
     function getPaymentStatusStateAttribute(){

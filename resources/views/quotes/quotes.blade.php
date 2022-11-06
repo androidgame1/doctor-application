@@ -32,7 +32,7 @@
         <div class="col-12">
             <div class="card-group">
                 <div class="card">
-                    <a href="{{route('administrator.quotes.filter','0')}}">
+                    <a href="javascript:void(0)">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -57,7 +57,7 @@
                 </div>
                 <!-- Column -->
                 <div class="card">
-                    <a href="{{route('administrator.quotes.filter','1')}}">
+                    <a href="javascript:void(0)">
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-md-12">

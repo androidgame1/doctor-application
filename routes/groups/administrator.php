@@ -110,6 +110,8 @@ Route::group(['prefix'=>'administrator','middleware'=>['prevent.back.history','i
     Route::get('/quote/{id}/cancel',[App\Http\Controllers\QuoteController::class,'cancel'])->name('administrator.quote.cancel');
     Route::get('/quote/{id}/duplicate',[App\Http\Controllers\QuoteController::class,'duplicate'])->name('administrator.quote.duplicate');
     Route::get('/quote/{id}/pdf',[App\Http\Controllers\QuoteController::class,'pdf'])->name('administrator.quote.pdf');
+    Route::get('/quote-to-activity/{id}/convert',[App\Http\Controllers\QuoteController::class,'convert_qt_to_act'])->name('administrator.quote.convert_qt_to_act');
+    Route::get('/quote-to-sale-invoice/{id}/convert',[App\Http\Controllers\QuoteController::class,'convert_qt_to_sl_inv'])->name('administrator.quote.convert_qt_to_sl_inv');
     //routes activity_payment controller
     Route::get('/activity_payments/{activity_id}',[App\Http\Controllers\ActivityPaymentController::class,'index'])->name('administrator.activity_payments');
     Route::get('/activity_payment/{id}/show',[App\Http\Controllers\ActivityPaymentController::class,'show'])->name('administrator.activity_payment.show');

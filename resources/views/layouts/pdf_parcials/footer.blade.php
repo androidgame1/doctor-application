@@ -1,14 +1,6 @@
 <footer class="footer">
-    <div class="div-administrator-information">
-        <table width="100%">
-            <tbody>
-                <tr>
-                    <td><span><b>{{__('messages.address')}} :</b> {{auth()->user()->address}}</span></td>
-                    <td><span><b>{{__('messages.email')}} :</b> {{auth()->user()->email}}</span></td>
-                    <td><span><b>{{__('messages.phone')}} :</b> {{auth()->user()->phone}}</span></td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="div-administrator-information text-center">
+            <span>{{__('messages.address')}} : {{auth()->user()->address}}</span> | <span>{{__('messages.email')}} : {{auth()->user()->email}}</span> | <span>{{__('messages.phone')}} : {{auth()->user()->phone}}</span>
     </div>
     <br>
     <div class="div-footer-number-page">

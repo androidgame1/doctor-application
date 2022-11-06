@@ -263,4 +263,32 @@ class QuoteController extends Controller
         $pdf = Pdf::loadView('quotes.pdf_quote', compact('quote'));
         return $pdf->stream();
     }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    // public function convert_qt_to_act($quote_id)
+    // {
+    //     $user = Auth::user();
+    //     $series = Helper::seriesActivity();
+    //     $quote = Quote::where(['administrator_id'=>$user->id,'id'=>$quote_id])->firstOrFail();
+    //     $patients = Patient::where('administrator_id',$user->id)->get();
+    //     $designations = Act::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+    //     return view('activities.create_activity',compact('patients','designations','quote','series'));
+    // }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    // public function convert_qt_to_sl_inv($quote_id)
+    // {
+    //     $user = Auth::user();
+    //     $series = Helper::seriesSaleInvoice();
+    //     $quote = Quote::where(['administrator_id'=>$user->id,'id'=>$quote_id])->firstOrFail();
+    //     $patients = Patient::where('administrator_id',$user->id)->get();
+    //     $designations = Act::orderBy('id','desc')->where('administrator_id',$user->id)->get();
+    //     return view('sale_invoices.create_sale_invoice',compact('patients','designations','quote','series'));
+    // }
 }

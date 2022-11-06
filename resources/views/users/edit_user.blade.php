@@ -9,6 +9,9 @@
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_superadministrator){{route('superadministrator.home')}}@elseif(auth()->user()->is_administrator){{route('administrator.home')}}@elseif(auth()->user()->is_secretary){{route('secretary.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
+                <li class="breadcrumb-item"><a
+                        href="@if(auth()->user()->is_superadministrator){{route('superadministrator.users',$role)}}@elseif(auth()->user()->is_administrator){{route('administrator.users',$role)}}@else javascript:void(0) @endif">@if($role=="administrator") {{__('messages.administrators')}} @elseif($role == "secretary") {{__('messages.secretaries')}} @endif</a>
+                </li>
                 <li class="breadcrumb-item active">@if($role=="administrator") {{__('messages.edit_administrator')}} @elseif($role == "secretary") {{__('messages.edit_secretary')}} @endif</li>
             </ol>
     </div>

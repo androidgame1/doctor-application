@@ -88,6 +88,9 @@ class ActivityController extends Controller
             'tva_total_amount'=>$request->tva_total_amount,
             'ttc_total_amount'=>$request->ttc_total_amount,
         ];
+        if($request->quote_id){
+            $data_activity['quote_id'] = $request->quote_id;    
+        }
         if($activity = Activity::create($data_activity)){
             $data_activity_lines=[];
             $index=0;
