@@ -19,14 +19,14 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.name')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('name')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('name')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.name')}}" name="name" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.color')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('color')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('color')?'no-valid':''}}"
                                     type="color" placeholder="{{__('messages.color')}}" name="color" required>
                             </div>
                         </div>

@@ -36,7 +36,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.patient')}}<span class="text-danger"> * </span></label>
-                                <select class="form-control {{$errors->has('patient_id')?'form-control-danger':''}}"
+                                <select class="form-control {{$errors->has('patient_id')?'no-valid':''}}"
                                     type="text" name="patient_id" required>
                                     <option value="" selected>{{__('messages.select')}}</option>
                                     @foreach($patients as $value)
@@ -48,21 +48,21 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.series')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('series')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('series')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.series')}}" value="{{$series}}" name="series" readonly required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.date')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('date')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('date')?'no-valid':''}}"
                                     type="date" placeholder="{{__('messages.date')}}" name="date" value="{{\Carbon\Carbon::parse($sale_invoice->date)->format('Y-m-d')}}" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.remark')}}<span class="text-danger d-none"> * </span></label>
-                                <textarea rows="4" class="form-control {{$errors->has('remark')?'form-control-danger':''}}" placeholder="{{__('messages.remark')}}" name="remark">{{$sale_invoice->remark}}</textarea>
+                                <textarea rows="4" class="form-control {{$errors->has('remark')?'no-valid':''}}" placeholder="{{__('messages.remark')}}" name="remark">{{$sale_invoice->remark}}</textarea>
                             </div>
                         </div>
                         <div class="col-md-12">

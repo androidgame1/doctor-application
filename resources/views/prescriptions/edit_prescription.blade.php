@@ -36,7 +36,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.patient')}}<span class="text-danger"> * </span></label>
-                                <select class="form-control {{$errors->has('patient_id')?'form-control-danger':''}}"
+                                <select class="form-control {{$errors->has('patient_id')?'no-valid':''}}"
                                     type="text" name="patient_id" required>
                                     <option value="" selected>{{__('messages.select')}}</option>
                                     @foreach($patients as $value)
@@ -48,7 +48,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.date')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('date')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('date')?'no-valid':''}}"
                                     type="date" placeholder="{{__('messages.date')}}" name="date" value="{{\Carbon\Carbon::parse($prescription->date)->format('Y-m-d')}}" required>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.note')}}<span class="text-danger"> * </span></label>
-                                <textarea name="note" class="form-control {{$errors->has('note')?'form-control-danger':''}} note-editor" id="note" required>{!!$prescription->note!!}</textarea>
+                                <textarea name="note" class="form-control {{$errors->has('note')?'no-valid':''}} note-editor" id="note" required>{!!$prescription->note!!}</textarea>
                             </div>
                         </div>
               

@@ -37,56 +37,56 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.cin')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('cin')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('cin')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.cin')}}" name="cin" value="{{$user->cin}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.fullname')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('fullname')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('fullname')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.fullname')}}" name="fullname" value="{{$user->fullname}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.email')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('email')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('email')?'no-valid':''}}"
                                     type="email" placeholder="{{__('messages.email')}}" name="email" value="{{$user->email}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.address')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('address')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('address')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.address')}}" name="address" value="{{$user->address}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.phone')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('phone')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('phone')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.phone')}}" name="phone" value="{{$user->phone}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.city')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('city')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('city')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.city')}}" name="city" value="{{$user->city}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.password')}}<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('password')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('password')?'no-valid':''}}"
                                     type="password" placeholder="{{__('messages.password')}}" name="password">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.confirm_password')}}<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('confirm_password')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('confirm_password')?'no-valid':''}}"
                                     type="password" placeholder="{{__('messages.confirm_password')}}" name="confirm_password">
                             </div>
                         </div>

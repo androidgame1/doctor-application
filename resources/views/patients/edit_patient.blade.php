@@ -36,56 +36,56 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.cin')}}<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('cin')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('cin')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.cin')}}" name="cin" value="{{$patient->cin}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.fullname')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('fullname')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('fullname')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.fullname')}}" name="fullname" value="{{$patient->fullname}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.email')}}<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('email')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('email')?'no-valid':''}}"
                                     type="email" placeholder="{{__('messages.email')}}" name="email"  value="{{$patient->email}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.address')}}<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('address')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('address')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.address')}}" name="address" value="{{$patient->address}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.phone')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('phone')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('phone')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.phone')}}" name="phone" value="{{$patient->phone}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.city')}}<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('city')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('city')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.city')}}" name="city" value="{{$patient->city}}" >
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.birthday')}}<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('birthday')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('birthday')?'no-valid':''}}"
                                     type="date" placeholder="yyyy-mm-dd" name="birthday" value="{{\Carbon\Carbon::parse($patient->birthday)->format('Y-m-d')}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.gender')}}<span class="text-danger d-none"> * </span></label>
-                                <select class="form-control {{$errors->has('gender')?'form-control-danger':''}}" name="gender">
+                                <select class="form-control {{$errors->has('gender')?'no-valid':''}}" name="gender">
                                     <option value="">{{__('messages.select')}}</option>
                                     <option value="0" {{$patient->gender == '0' ? 'selected' : ''}}>Male</option>
                                     <option value="1" {{$patient->gender == '1' ? 'selected' : ''}}>Female</option>
@@ -95,7 +95,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.blood_group')}}<span class="text-danger d-none"> * </span></label>
-                                <select class="form-control {{$errors->has('blood_group')?'form-control-danger':''}}" name="blood_group" >
+                                <select class="form-control {{$errors->has('blood_group')?'no-valid':''}}" name="blood_group" >
                                     <option value="">{{__('messages.select')}}</option>
                                     <option value="A+" {{$patient->blood_group == 'A+' ? 'selected' : ''}}>A+</option>
                                     <option value="A-" {{$patient->blood_group == 'A-' ? 'selected' : ''}}>A-</option>
@@ -111,14 +111,14 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.weight')}}<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('weight')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('weight')?'no-valid':''}}"
                                     type="number" min="0" step="0.01" placeholder="{{__('messages.weight')}}" name="weight" value="{{$patient->weight}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.height')}}<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('height')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('height')?'no-valid':''}}"
                                     type="number" min="0" step="0.01" placeholder="{{__('messages.height')}}" name="height" value="{{$patient->height}}">
                             </div>
                         </div>

@@ -19,17 +19,17 @@
                         <div class="form-group ">
                             <label class="label-group">{{__('messages.email')}}<span class="text-danger"> * </span></label>
                             <div class="col-xs-12">
-                                <input class="form-control {{$errors->has('email')?'form-control-danger':''}}" value="{{ $email ?? old('email') }}" type="email" placeholder="{{__('messages.email')}}" name="email" required> </div>
+                                <input class="form-control {{$errors->has('email')?'no-valid':''}}" value="{{ $email ?? old('email') }}" type="email" placeholder="{{__('messages.email')}}" name="email" required> </div>
                         </div>
                         <div class="form-group">
                             <label class="label-group">{{__('messages.new_password')}}<span class="text-danger"> * </span></label>
                             <div class="col-xs-12">
-                                <input class="form-control {{$errors->has('new_password')?'form-control-danger':''}}" type="password" placeholder="{{__('messages.new_password')}}" name="new_password" required> </div>
+                                <input class="form-control {{$errors->has('new_password')?'no-valid':''}}" type="password" placeholder="{{__('messages.new_password')}}" name="new_password" required> </div>
                         </div>
                         <div class="form-group">
                             <label class="label-group">{{__('messages.confirm_password')}}<span class="text-danger"> * </span></label>
                             <div class="col-xs-12">
-                                <input class="form-control {{$errors->has('confirm_password')?'form-control-danger':''}}" type="password" placeholder="{{__('messages.confirm_password')}}" name="confirm_password" required> </div>
+                                <input class="form-control {{$errors->has('confirm_password')?'no-valid':''}}" type="password" placeholder="{{__('messages.confirm_password')}}" name="confirm_password" required> </div>
                         </div>
                         <div class="form-group text-center m-t-20">
                             <div class="col-xs-12">

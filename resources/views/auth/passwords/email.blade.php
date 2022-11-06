@@ -18,7 +18,7 @@
                         <div class="form-group ">
                             <label class="label-group">{{__('messages.email')}}<span class="text-danger"> * </span></label>
                             <div class="col-xs-12">
-                                <input class="form-control {{$errors->has('email')?'form-control-danger':''}}" type="email" placeholder="{{__('messages.email')}}" name="email" required> </div>
+                                <input class="form-control {{$errors->has('email')?'no-valid':''}}" type="email" placeholder="{{__('messages.email')}}" name="email" required> </div>
                         </div>
                         <div class="form-group text-center m-t-20">
                             <div class="col-xs-12">

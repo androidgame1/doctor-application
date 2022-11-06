@@ -12,33 +12,33 @@ $(document).on('click','.btn-add-row',function(){
     $("#table-lines tbody").append(
         `<tr class="line">`+
             `<td>`+
-                `<input placeholder="{{__('messages.designation')}}" type="text" list="datalist-designations[]" name="designation[]" class="form-control calculate-row {{$errors->has('designation')?'form-control-danger':''}} designation mb-3" required>`+
+                `<input placeholder="{{__('messages.designation')}}" type="text" list="datalist-designations[]" name="designation[]" class="form-control calculate-row {{$errors->has('designation')?'no-valid':''}} designation mb-3" required>`+
                 `<datalist id="datalist-designations[]" class="datalist-designations">`+
                     `@foreach($designations as $value)`+
                         `<option value="{{$value->name}}" data-id="{{$value->id}}" data-name="{{$value->name}}" data-amount="{{$value->amount}}" data-description="{{$value->description}}">{{$value->name}}</option>`+
                     `@endforeach`+
                 `</datalist>`+
-                `<textarea placeholder="{{__('messages.description')}}" name="description[]"  class="form-control calculate-row {{$errors->has('description')?'form-control-danger':''}} description" rows="4"></textarea>`+
+                `<textarea placeholder="{{__('messages.description')}}" name="description[]"  class="form-control calculate-row {{$errors->has('description')?'no-valid':''}} description" rows="4"></textarea>`+
             `</td>`+
             `<td>`+
-                `<input placeholder="0" min="1" value="1" type="number" name="quantity[]" class="form-control calculate-row {{$errors->has('quantity')?'form-control-danger':''}} quantity" required>`+
+                `<input placeholder="0" min="1" value="1" type="number" name="quantity[]" class="form-control calculate-row {{$errors->has('quantity')?'no-valid':''}} quantity" required>`+
             `</td>`+
             `<td>`+
-                `<input placeholder="0" min="1" value="0" type="number" name="unit_price[]" class="form-control calculate-row {{$errors->has('unit_price')?'form-control-danger':''}} unit_price" required>`+
+                `<input placeholder="0" min="1" value="0" type="number" name="unit_price[]" class="form-control calculate-row {{$errors->has('unit_price')?'no-valid':''}} unit_price" required>`+
             `</td>`+
                 `<td>`+
-                    `<input placeholder="0" min="0" value="0" max="100" type="number" name="tva[]" class="form-control calculate-row {{$errors->has('tva')?'form-control-danger':''}} tva mb-3">`+
-                    `<input placeholder="0" min="0" value="0" type="number" name="tva_amount[]" readonly class="form-control calculate-row {{$errors->has('tva_amount')?'form-control-danger':''}} tva_amount" required>`+
+                    `<input placeholder="0" min="0" value="0" max="100" type="number" name="tva[]" class="form-control calculate-row {{$errors->has('tva')?'no-valid':''}} tva mb-3">`+
+                    `<input placeholder="0" min="0" value="0" type="number" name="tva_amount[]" readonly class="form-control calculate-row {{$errors->has('tva_amount')?'no-valid':''}} tva_amount" required>`+
                 `</td>`+
             `<td>`+
-                `<input placeholder="0" min="0" value="0" max="100" type="number" name="reduction[]" class="form-control calculate-row {{$errors->has('reduction')?'form-control-danger':''}} reduction mb-3" required>`+
-                `<input placeholder="0" min="0" value="0" type="number" name="reduction_amount[]" readonly class="form-control calculate-row {{$errors->has('reduction_amount')?'form-control-danger':''}} reduction_amount"  required>`+
+                `<input placeholder="0" min="0" value="0" max="100" type="number" name="reduction[]" class="form-control calculate-row {{$errors->has('reduction')?'no-valid':''}} reduction mb-3" required>`+
+                `<input placeholder="0" min="0" value="0" type="number" name="reduction_amount[]" readonly class="form-control calculate-row {{$errors->has('reduction_amount')?'no-valid':''}} reduction_amount"  required>`+
             `</td>`+
             `<td>`+
-                `<input placeholder="0" min="1" value="0" type="number" name="ht_amount[]" class="form-control calculate-row {{$errors->has('ht_amount')?'form-control-danger':''}} ht_amount" readonly required>`+
+                `<input placeholder="0" min="1" value="0" type="number" name="ht_amount[]" class="form-control calculate-row {{$errors->has('ht_amount')?'no-valid':''}} ht_amount" readonly required>`+
             `</td>`+
                 `<td>`+
-                    ` <input placeholder="0" min="1" value="0" type="number" name="ttc_amount[]" class="form-control calculate-row {{$errors->has('ttc_amount')?'form-control-danger':''}} ttc_amount" readonly required>`+
+                    ` <input placeholder="0" min="1" value="0" type="number" name="ttc_amount[]" class="form-control calculate-row {{$errors->has('ttc_amount')?'no-valid':''}} ttc_amount" readonly required>`+
                 `</td>`+
             `<td>`+
                 ` <a href="javascript:void(0)" class="btn `+class_btn_delete+` btn-delete-row"><i class="fa fa-trash"></i></a>`+

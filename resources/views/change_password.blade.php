@@ -35,14 +35,14 @@
                         <div class="col-md-12 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.old_password')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('old_password')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('old_password')?'no-valid':''}}"
                                     type="password" placeholder="{{__('messages.old_password')}}" name="old_password" required>
                             </div>
                         </div>
                         <div class="col-md-12 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.new_password')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('new_password')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('new_password')?'no-valid':''}}"
                                     type="password" placeholder="{{__('messages.new_password')}}" name="new_password" required>
                             </div>
                         </div>
@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.confirm_password')}}<span class="text-danger"> * </span></label>
                                 <input
-                                    class="form-control {{$errors->has('confirm_password')?'form-control-danger':''}}"
+                                    class="form-control {{$errors->has('confirm_password')?'no-valid':''}}"
                                     type="password" placeholder="{{__('messages.confirm_password')}}" name="confirm_password" required>
                             </div>
                         </div>

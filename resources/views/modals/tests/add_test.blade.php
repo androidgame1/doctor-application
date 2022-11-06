@@ -15,7 +15,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.test')}}<span class="text-danger"> * </span></label>
-                                <select class="form-control {{$errors->has('test')?'form-control-danger':''}}"
+                                <select class="form-control {{$errors->has('test')?'no-valid':''}}"
                                     type="text" name="test" required>
                                     <option value="" selected>{{__('messages.select')}}</option>
                                     @foreach($tests as $value)
@@ -27,7 +27,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.description')}}<span class="text-danger d-none"> * </span></label>
-                                <textarea rows="4" class="form-control {{$errors->has('description')?'form-control-danger':''}}"
+                                <textarea rows="4" class="form-control {{$errors->has('description')?'no-valid':''}}"
                              placeholder="{{__('messages.description')}}" name="description"></textarea>
                             </div>
                         </div>

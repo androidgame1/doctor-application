@@ -19,7 +19,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.patient')}}<span class="text-danger"> * </span></label>
-                                <select name="patient_id" id="patient_id" class="form-control {{$errors->has('patient_id')?'form-control-danger':''}}" required>
+                                <select name="patient_id" id="patient_id" class="form-control {{$errors->has('patient_id')?'no-valid':''}}" required>
                                     <option value="">Select</option>
                                     @foreach($patients as $value)
                                         <option value="{{$value->id}}">{{$value->fullname}}</option>
@@ -30,7 +30,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.status')}}<span class="text-danger"> * </span></label>
-                                <select name="status_id" id="status_id" class="form-control {{$errors->has('status_id')?'form-control-danger':''}}" required>
+                                <select name="status_id" id="status_id" class="form-control {{$errors->has('status_id')?'no-valid':''}}" required>
                                     <option value="">Select</option>
                                     @foreach($status as $value)
                                         <option value="{{$value->id}}">{{$value->name}}</option>
@@ -43,19 +43,19 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.start_date')}}<span class="text-danger"> * </span></label>
-                                <input type="datetime-local" class="form-control {{$errors->has('start_date')?'form-control-danger':''}}" placeholder="{{__('messages.start_date')}}" name="start_date" @if(Route::current()->getName() == 'administrator.calendar' || Route::current()->getName() == 'secretary.calendar') readonly @endif required/>
+                                <input type="datetime-local" class="form-control {{$errors->has('start_date')?'no-valid':''}}" placeholder="{{__('messages.start_date')}}" name="start_date" @if(Route::current()->getName() == 'administrator.calendar' || Route::current()->getName() == 'secretary.calendar') readonly @endif required/>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.end_date')}}<span class="text-danger"> * </span></label>
-                                <input type="datetime-local" class="form-control {{$errors->has('end_date')?'form-control-danger':''}}" placeholder="{{__('messages.end_date')}}" name="end_date" @if(Route::current()->getName() == 'administrator.calendar' || Route::current()->getName() == 'secretary.calendar') readonly @endif required/>
+                                <input type="datetime-local" class="form-control {{$errors->has('end_date')?'no-valid':''}}" placeholder="{{__('messages.end_date')}}" name="end_date" @if(Route::current()->getName() == 'administrator.calendar' || Route::current()->getName() == 'secretary.calendar') readonly @endif required/>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.remark')}}<span class="text-danger d-none"> * </span></label>
-                                <textarea rows="4" class="form-control {{$errors->has('remark')?'form-control-danger':''}}" placeholder="{{__('messages.remark')}}" name="remark"></textarea>
+                                <textarea rows="4" class="form-control {{$errors->has('remark')?'no-valid':''}}" placeholder="{{__('messages.remark')}}" name="remark"></textarea>
                             </div>
                         </div>
                     </div>

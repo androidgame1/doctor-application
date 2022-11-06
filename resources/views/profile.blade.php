@@ -41,7 +41,7 @@
                                         <span class="fa fa-upload btn-upload-file" onclick="upload('#file-profile')"></span>
                                         <span class="fa fa-trash btn-cancel-file" onclick="cancelImage('.img-user','.img-path-profile')"></span>
                                 </div>
-                                <input class="form-control {{$errors->has('image')?'form-control-danger':''}} d-none"
+                                <input class="form-control {{$errors->has('image')?'no-valid':''}} d-none"
                                     type="file" accept="image/*" name="image" id="file-profile" onchange="choseFile(this,'.img-user')">
                                 <input type="hidden" name="image_path" class="img-path-profile" value="{{auth()->user()->image}}">
                                 </div>
@@ -49,7 +49,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.fullname')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('fullname')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('fullname')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.fullname')}}" name="fullname"
                                     value="{{auth()->user()->fullname}}" required>
                             </div>
@@ -57,7 +57,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.email')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('email')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('email')?'no-valid':''}}"
                                     type="email" placeholder="{{__('messages.email')}}" name="email" value="{{auth()->user()->email}}"
                                     required>
                             </div>
@@ -65,7 +65,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.address')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('address')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('address')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.address')}}" name="address" value="{{auth()->user()->address}}"
                                     required>
                             </div>
@@ -73,7 +73,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.phone')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('phone')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('phone')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.phone')}}" name="phone" value="{{auth()->user()->phone}}"
                                     required>
                             </div>
@@ -81,7 +81,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.city')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('city')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('city')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.city')}}" name="city" value="{{auth()->user()->city}}"
                                     required>
                             </div>
@@ -90,14 +90,14 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="label-group">{{__('messages.logo')}}<span class="text-danger d-none"> * </span></label>
-                                    <input type="file" class="form-control dropify {{$errors->has('logo')?'form-control-danger':''}}"  data-default-file="{{auth()->user()->logo ? asset(auth()->user()->logo) : ''}}" placeholder="{{__('messages.logo')}}" name="logo">
+                                    <input type="file" class="form-control dropify {{$errors->has('logo')?'no-valid':''}}"  data-default-file="{{auth()->user()->logo ? asset(auth()->user()->logo) : ''}}" placeholder="{{__('messages.logo')}}" name="logo">
                                 </div>
                             </div>
                         @endif
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.ice')}}<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('ice')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('ice')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.ice')}}" name="ice" value="{{auth()->user()->ice}}"
                                     >
                             </div>
@@ -105,7 +105,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.rc')}}<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('rc')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('rc')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.rc')}}" name="rc" value="{{auth()->user()->rc}}"
                                     >
                             </div>
@@ -113,7 +113,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.if')}}<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('if')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('if')?'no-valid':''}}"
                                     type="text" placeholder="{{__('messages.if')}}" name="if" value="{{auth()->user()->if}}"
                                     >
                             </div>

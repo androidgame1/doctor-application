@@ -15,7 +15,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group" data-field="type">{{__('messages.type')}}<span class="text-danger"> * </span></label>
-                                <select class="form-control {{$errors->has('type')?'form-control-danger':''}}"
+                                <select class="form-control {{$errors->has('type')?'no-valid':''}}"
                                     type="text" name="type" id="select-type-of-drug" required>
                                     <option value="" selected>{{__('messages.select')}}</option>
                                     @foreach($type_drugs as $value)
@@ -27,7 +27,7 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.drug')}}<span class="text-danger"> * </span></label>
-                                <select class="form-control {{$errors->has('drug')?'form-control-danger':''}}"
+                                <select class="form-control {{$errors->has('drug')?'no-valid':''}}"
                                     type="text" name="drug" required>
                                     <option value="" selected>{{__('messages.select')}}</option>
                                     @foreach($drugs as $value)
@@ -39,28 +39,28 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group" data-field="quantity">{{__('messages.quantity')}} <span name="quantity"></span><span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('quantity')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('quantity')?'no-valid':''}}"
                                     type="number" min="1" placeholder="{{__('messages.quantity')}}" name="quantity">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.dose')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('dose')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('dose')?'no-valid':''}}"
                                     type="number" min="1" placeholder="{{__('messages.dose')}}" name="dose">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.duration')}} ({{__('messages.day')}})<span class="text-danger d-none"> * </span></label>
-                                <input class="form-control {{$errors->has('duration')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('duration')?'no-valid':''}}"
                                     type="number" min="1" placeholder="{{__('messages.duration')}}" name="duration">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.description')}}<span class="text-danger d-none"> * </span></label>
-                                <textarea rows="4" class="form-control {{$errors->has('description')?'form-control-danger':''}}"
+                                <textarea rows="4" class="form-control {{$errors->has('description')?'no-valid':''}}"
                              placeholder="{{__('messages.description')}}" name="description"></textarea>
                             </div>
                         </div>

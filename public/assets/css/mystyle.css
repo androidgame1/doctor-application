@@ -165,3 +165,9 @@ b, strong {
     line-height: 1.2;
     color: inherit;
 }
+.is-valid{
+    border-color: #00c292 !important;
+}
+.no-valid{
+    border-color: #e46a76 !important;
+}

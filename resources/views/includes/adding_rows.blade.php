@@ -35,34 +35,34 @@
                         @foreach($lines as $line)
                         <tr class="line">
                             <td>
-                                <input placeholder="{{__('messages.designation')}}" value="{{$line->designation}}" type="text" list="datalist-designation[]" name="designation[]" class="form-control calculate-row {{$errors->has('designation')?'form-control-danger':''}} designation mb-3" required>
+                                <input placeholder="{{__('messages.designation')}}" value="{{$line->designation}}" type="text" list="datalist-designation[]" name="designation[]" class="form-control calculate-row {{$errors->has('designation')?'no-valid':''}} designation mb-3" required>
                                 <datalist id="datalist-designations[]" class="datalist-designations">
                                     @foreach($designations as $value)
                                         <option value="{{$value->name}}" data-id="{{$value->id}}" data-name="{{$value->name}}" data-amount="{{$value->amount}}" data-description="{{$value->description}}">{{$value->name}}</option>
                                     @endforeach
                                 </datalist>
-                                <textarea placeholder="{{__('messages.description')}}" name="description[]"  class="form-control calculate-row {{$errors->has('description')?'form-control-danger':''}} description" rows="4" >{{$line->description}}</textarea>
+                                <textarea placeholder="{{__('messages.description')}}" name="description[]"  class="form-control calculate-row {{$errors->has('description')?'no-valid':''}} description" rows="4" >{{$line->description}}</textarea>
                             </td>
                             <td>
-                                <input placeholder="0" min="1" value="{{$line->quantity}}" type="number" name="quantity[]" class="form-control calculate-row {{$errors->has('quantity')?'form-control-danger':''}} quantity" required>
+                                <input placeholder="0" min="1" value="{{$line->quantity}}" type="number" name="quantity[]" class="form-control calculate-row {{$errors->has('quantity')?'no-valid':''}} quantity" required>
                             </td>
                             <td>
-                                <input placeholder="0" min="1" value="{{$line->unit_price}}" type="number" name="unit_price[]" class="form-control calculate-row {{$errors->has('unit_price')?'form-control-danger':''}} unit_price" required>
+                                <input placeholder="0" min="1" value="{{$line->unit_price}}" type="number" name="unit_price[]" class="form-control calculate-row {{$errors->has('unit_price')?'no-valid':''}} unit_price" required>
                             </td>
                             <td>
-                                <input placeholder="0" min="0" value="{{$line->tva}}" max="100" type="number" name="tva[]" class="form-control calculate-row {{$errors->has('tva')?'form-control-danger':''}} tva mb-3">
-                                <input placeholder="0" min="0" value="{{$line->tva_amount}}" type="number" name="tva_amount[]" class="form-control calculate-row {{$errors->has('tva_amount')?'form-control-danger':''}} tva_amount" readonly required>
+                                <input placeholder="0" min="0" value="{{$line->tva}}" max="100" type="number" name="tva[]" class="form-control calculate-row {{$errors->has('tva')?'no-valid':''}} tva mb-3">
+                                <input placeholder="0" min="0" value="{{$line->tva_amount}}" type="number" name="tva_amount[]" class="form-control calculate-row {{$errors->has('tva_amount')?'no-valid':''}} tva_amount" readonly required>
                             
                             </td>
                             <td>
-                                <input placeholder="0" min="0" value="{{$line->reduction}}" max="100" type="number" name="reduction[]" class="form-control calculate-row {{$errors->has('reduction')?'form-control-danger':''}} reduction mb-3" required>
-                                <input placeholder="0" min="0" value="{{$line->reduction_amount}}" type="number" name="reduction_amount[]" class="form-control calculate-row {{$errors->has('reduction_amount')?'form-control-danger':''}} reduction_amount" readonly required>
+                                <input placeholder="0" min="0" value="{{$line->reduction}}" max="100" type="number" name="reduction[]" class="form-control calculate-row {{$errors->has('reduction')?'no-valid':''}} reduction mb-3" required>
+                                <input placeholder="0" min="0" value="{{$line->reduction_amount}}" type="number" name="reduction_amount[]" class="form-control calculate-row {{$errors->has('reduction_amount')?'no-valid':''}} reduction_amount" readonly required>
                             </td>
                             <td>
-                                <input placeholder="0" min="1" value="{{$line->ht_amount}}" type="number" name="ht_amount[]" class="form-control calculate-row {{$errors->has('ht_amount')?'form-control-danger':''}} ht_amount" readonly required>
+                                <input placeholder="0" min="1" value="{{$line->ht_amount}}" type="number" name="ht_amount[]" class="form-control calculate-row {{$errors->has('ht_amount')?'no-valid':''}} ht_amount" readonly required>
                             </td>
                             <td>
-                                <input placeholder="0" min="1" value="{{$line->ttc_amount}}" type="number" name="ttc_amount[]" class="form-control calculate-row {{$errors->has('ttc_amount')?'form-control-danger':''}} ttc_amount" readonly required>
+                                <input placeholder="0" min="1" value="{{$line->ttc_amount}}" type="number" name="ttc_amount[]" class="form-control calculate-row {{$errors->has('ttc_amount')?'no-valid':''}} ttc_amount" readonly required>
                             </td>
                             <td>
                                 <a href="javascript:void(0)" class="btn {{$index <= 0 ? 'btn-secondary' : 'btn-danger btn-delete-row'}}"><i class="fa fa-trash"></i></a>

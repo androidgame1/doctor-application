@@ -16,12 +16,12 @@
                         <div class="form-group ">
                             <label class="label-group">{{__('messages.email')}}<span class="text-danger"> * </span></label>
                             <div class="col-xs-12">
-                                <input class="form-control {{$errors->has('email')?'form-control-danger':''}}" type="email" value="{{Cookie::get('email')?Cookie::get('email'):old('email')}}" placeholder="{{__('messages.email')}}" name="email" required> </div>
+                                <input class="form-control {{$errors->has('email')?'no-valid':''}}" type="email" value="{{Cookie::get('email')?Cookie::get('email'):old('email')}}" placeholder="{{__('messages.email')}}" name="email" required> </div>
                         </div>
                         <div class="form-group">
                             <label class="label-group">{{__('messages.password')}}<span class="text-danger"> * </span></label>
                             <div class="col-xs-12">
-                                <input class="form-control {{$errors->has('password')?'form-control-danger':''}}" type="password" value="{{Cookie::get('password')?Cookie::get('password'):old('password')}}" placeholder="{{__('messages.password')}}" name="password" required> </div>
+                                <input class="form-control {{$errors->has('password')?'no-valid':''}}" type="password" value="{{Cookie::get('password')?Cookie::get('password'):old('password')}}" placeholder="{{__('messages.password')}}" name="password" required> </div>
                         </div>
                         <div class="form-group row">
                             <div class="col-md-12">

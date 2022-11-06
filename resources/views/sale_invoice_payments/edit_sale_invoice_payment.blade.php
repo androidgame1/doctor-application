@@ -35,14 +35,14 @@
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.date')}}<span class="text-danger"> * </span></label>
-                                <input class="form-control {{$errors->has('date')?'form-control-danger':''}}"
+                                <input class="form-control {{$errors->has('date')?'no-valid':''}}"
                                     type="date" placeholder="{{__('messages.date')}}" name="date" value="{{\Carbon\Carbon::parse($sale_invoice_payment->date)->format('Y-m-d')}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.way_of_payment')}}<span class="text-danger"> * </span></label>
-                                <select class="form-control {{$errors->has('way_of_payment')?'form-control-danger':''}}"
+                                <select class="form-control {{$errors->has('way_of_payment')?'no-valid':''}}"
                                     type="text" name="way_of_payment" required>
                                     <option value="" selected>{{__('messages.select')}}</option>
                                     <option value="cash" {{$sale_invoice_payment->way_of_payment == 'cash' ? 'selected' : ''}}>{{__('messages.cash')}}</option>
@@ -56,19 +56,19 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.amount')}}<span class="text-danger"> * </span></label>
-                                <input type="number" value="{{$sale_invoice_payment->given_amount}}" min="0.1" max="{{$sale_invoice_payment->remainig_amount_plus_edited_given_amount}}" step="0.01" class="form-control {{$errors->has('given_amount')?'form-control-danger':''}}" placeholder="{{__('messages.given_amount')}}" name="given_amount" required>
+                                <input type="number" value="{{$sale_invoice_payment->given_amount}}" min="0.1" max="{{$sale_invoice_payment->remainig_amount_plus_edited_given_amount}}" step="0.01" class="form-control {{$errors->has('given_amount')?'no-valid':''}}" placeholder="{{__('messages.given_amount')}}" name="given_amount" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.justification')}}<span class="text-danger d-none"> * </span></label>
-                                <input type="file" class="form-control dropify {{$errors->has('justification')?'form-control-danger':''}}" data-default-file="{{$sale_invoice_payment->justification ? asset($sale_invoice_payment->justification) : ''}}" placeholder="{{__('messages.justification')}}" name="justification">
+                                <input type="file" class="form-control dropify {{$errors->has('justification')?'no-valid':''}}" data-default-file="{{$sale_invoice_payment->justification ? asset($sale_invoice_payment->justification) : ''}}" placeholder="{{__('messages.justification')}}" name="justification">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.remark')}}<span class="text-danger d-none"> * </span></label>
-                                <textarea rows="5" class="form-control {{$errors->has('remark')?'form-control-danger':''}}" placeholder="{{__('messages.remark')}}" name="remark">{{$sale_invoice_payment->remark}}</textarea>
+                                <textarea rows="5" class="form-control {{$errors->has('remark')?'no-valid':''}}" placeholder="{{__('messages.remark')}}" name="remark">{{$sale_invoice_payment->remark}}</textarea>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
