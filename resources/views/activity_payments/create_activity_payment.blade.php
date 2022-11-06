@@ -48,11 +48,11 @@
                                 <select class="form-control {{$errors->has('way_of_payment')?'form-control-danger':''}}"
                                     type="text" name="way_of_payment" required>
                                     <option value="" selected>{{__('messages.select')}}</option>
-                                    <option value="cash">{{__('messages.cash')}}</option>
-                                    <option value="check">{{__('messages.check')}}</option>
-                                    <option value="credit_card">{{__('messages.credit_card')}}</option>
-                                    <option value="debit_card">{{__('messages.debit_card')}}</option>
-                                    <option value="others">{{__('messages.others')}}</option>
+                                    <option value="cash" {{old('way_of_payment') == 'cash' ? 'selected' : ''}}>{{__('messages.cash')}}</option>
+                                    <option value="check" {{old('way_of_payment') == 'check' ? 'selected' : ''}}>{{__('messages.check')}}</option>
+                                    <option value="credit_card" {{old('way_of_payment') == 'credit_card' ? 'selected' : ''}}>{{__('messages.credit_card')}}</option>
+                                    <option value="debit_card" {{old('way_of_payment') == 'debit_card' ? 'selected' : ''}}>{{__('messages.debit_card')}}</option>
+                                    <option value="others" {{old('way_of_payment') == 'others' ? 'selected' : ''}}>{{__('messages.others')}}</option>
                                 </select>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.remark')}}<span class="text-danger d-none"> * </span></label>
-                                <textarea rows="5" class="form-control {{$errors->has('remark')?'form-control-danger':''}}" placeholder="{{__('messages.remark')}}" name="remark"></textarea>
+                                <textarea rows="5" class="form-control {{$errors->has('remark')?'form-control-danger':''}}" placeholder="{{__('messages.remark')}}" name="remark">{{old('remark')}}</textarea>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">

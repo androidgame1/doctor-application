@@ -13,6 +13,9 @@
                     @method('post')
                     @csrf
                     <div class="row">
+                        <div class="col-md-12">
+                            @include('messages.messages')
+                        </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.name')}}<span class="text-danger"> * </span></label>

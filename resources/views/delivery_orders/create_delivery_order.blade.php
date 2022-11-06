@@ -59,7 +59,7 @@
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.series')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('series')?'form-control-danger':''}}"
-                                    type="text" placeholder="{{__('messages.series')}}" value="" name="series" required>
+                                    type="text" placeholder="{{__('messages.series')}}" value="{{old('series')}}" name="series" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
@@ -78,7 +78,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.remark')}}<span class="text-danger d-none"> * </span></label>
-                                <textarea rows="5" class="form-control {{$errors->has('remark')?'form-control-danger':''}}" placeholder="{{__('messages.remark')}}" name="remark"></textarea>
+                                <textarea rows="5" class="form-control {{$errors->has('remark')?'form-control-danger':''}}" placeholder="{{__('messages.remark')}}" name="remark">{{old('remark')}}</textarea>
                             </div>
                         </div>
                         <div class="col-md-12">

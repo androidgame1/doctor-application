@@ -10,6 +10,9 @@
                 <form id="form-add-new-test" action="" enctype="multipart/form-data" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-md-12">
+                            @include('messages.messages')
+                        </div>
+                        <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.test')}}<span class="text-danger"> * </span></label>
                                 <select class="form-control {{$errors->has('test')?'form-control-danger':''}}"

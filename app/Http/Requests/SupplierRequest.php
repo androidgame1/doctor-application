@@ -35,7 +35,7 @@ class SupplierRequest extends FormRequest
                     'phone' => 'required',
                 ];
                 if($this->cin){
-                    $rules['email'] = 'unique:suppliers';
+                    $rules['cin'] = 'unique:suppliers';
                 }
                 if($this->email){
                     $rules['email'] = 'email|unique:suppliers';

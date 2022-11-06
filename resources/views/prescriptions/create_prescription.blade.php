@@ -40,7 +40,7 @@
                                     type="text" name="patient_id" required>
                                     <option value="" selected>{{__('messages.select')}}</option>
                                     @foreach($patients as $value)
-                                        <option value="{{$value->id}}">{{$value->fullname}}</option>
+                                        <option value="{{$value->id}}" {{old('patient_id') == $value->id ? 'selected' : ''}}>{{$value->fullname}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -67,7 +67,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.note')}}<span class="text-danger"> * </span></label>
-                                <textarea name="note" class="form-control {{$errors->has('note')?'form-control-danger':''}} note-editor" id="note" required></textarea>
+                                <textarea name="note" class="form-control {{$errors->has('note')?'form-control-danger':''}} note-editor" id="note" required>{{old('note')}}</textarea>
                             </div>
                         </div>
               

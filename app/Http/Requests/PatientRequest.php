@@ -37,7 +37,7 @@ class PatientRequest extends FormRequest
                     'height' => 'numeric',
                 ];
                 if($this->cin){
-                    $rules['email'] = 'unique:patients';
+                    $rules['cin'] = 'unique:patients';
                 }
                 if($this->email){
                     $rules['email'] = 'email|unique:patients';

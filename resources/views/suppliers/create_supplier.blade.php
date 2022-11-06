@@ -30,46 +30,49 @@
                     @method('post')
                     @csrf
                     <div class="row">
+                        <div class="col-md-12">
+                            @include('messages.messages')
+                        </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.cin')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('cin')?'form-control-danger':''}}"
-                                    type="text" placeholder="{{__('messages.cin')}}" name="cin">
+                                    type="text" placeholder="{{__('messages.cin')}}" name="cin" value="{{old('cin')}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.fullname')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('fullname')?'form-control-danger':''}}"
-                                    type="text" placeholder="{{__('messages.fullname')}}" name="fullname" required>
+                                    type="text" placeholder="{{__('messages.fullname')}}" name="fullname" value="{{old('fullname')}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.email')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('email')?'form-control-danger':''}}"
-                                    type="email" placeholder="{{__('messages.email')}}" name="email">
+                                    type="email" placeholder="{{__('messages.email')}}" name="email" value="{{old('email')}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.address')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('address')?'form-control-danger':''}}"
-                                    type="text" placeholder="{{__('messages.address')}}" name="address">
+                                    type="text" placeholder="{{__('messages.address')}}" name="address" value="{{old('address')}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.phone')}}<span class="text-danger"> * </span></label>
                                 <input class="form-control {{$errors->has('phone')?'form-control-danger':''}}"
-                                    type="text" placeholder="{{__('messages.phone')}}" name="phone" required>
+                                    type="text" placeholder="{{__('messages.phone')}}" name="phone" value="{{old('phone')}}" required>
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.city')}}<span class="text-danger d-none"> * </span></label>
                                 <input class="form-control {{$errors->has('city')?'form-control-danger':''}}"
-                                    type="text" placeholder="{{__('messages.city')}}" name="city">
+                                    type="text" placeholder="{{__('messages.city')}}" name="city" value="{{old('city')}}">
                             </div>
                         </div>
                         <div class="col-md-6 col-12">
