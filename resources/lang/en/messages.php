@@ -223,6 +223,9 @@
         'by'=>'by',
         'total'=>'Total',
         'measruing_unit'=>'Measruing unit',
+        'ice'=>'ICE',
+        'rc'=>'RC',
+        'if'=>'IF',
         //End fields
         //Start buttons
         'create' => 'Create',
@@ -307,9 +310,11 @@
         'unpaid' => 'Unpaid',
         'partiel' => 'Partiel',
         'cash' => 'Cash',
+        'check' => 'Check',
         'payments' => 'Payments',
         'credit_card' => 'Credit card',
         'debit_card' => 'Debit card',
+        'others' => 'Others',
         'payment_completed' => 'Payment completed',
         'invoiced_to' => 'Invoiced to',
         'prescription_to' => 'Prescription to',

@@ -9,6 +9,9 @@
                 <li class="breadcrumb-item"><a
                         href="@if(auth()->user()->is_administrator){{route('administrator.home')}}@else javascript:void(0) @endif">{{__('messages.dashboard')}}</a>
                 </li>
+                <li class="breadcrumb-item"><a
+                        href="@if(auth()->user()->is_administrator){{route('administrator.delivery_order_payments',$delivery_order->id)}}@else javascript:void(0) @endif">{{__('messages.delivery_order_payments')}}</a>
+                </li>
                 <li class="breadcrumb-item active">{{__('messages.edit_delivery_order_payment')}}</li>
             </ol>
     </div>
@@ -31,6 +34,7 @@
                         <div class="col-md-12">
                             @include('messages.messages')
                         </div>
+                        @include('delivery_order_payments.payment_to')
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.date')}}<span class="text-danger"> * </span></label>
@@ -45,8 +49,10 @@
                                     type="text" name="way_of_payment" required>
                                     <option value="" selected>{{__('messages.select')}}</option>
                                     <option value="cash" {{$delivery_order_payment->way_of_payment == 'cash' ? 'selected' : ''}}>{{__('messages.cash')}}</option>
+                                    <option value="check" {{$delivery_order_payment->way_of_payment == 'check' ? 'selected' : ''}}>{{__('messages.check')}}</option>
                                     <option value="credit_card" {{$delivery_order_payment->way_of_payment == 'credit_card' ? 'selected' : ''}}>{{__('messages.credit_card')}}</option>
                                     <option value="debit_card" {{$delivery_order_payment->way_of_payment == 'debit_card' ? 'selected' : ''}}>{{__('messages.debit_card')}}</option>
+                                    <option value="others" {{$delivery_order_payment->way_of_payment == 'others' ? 'selected' : ''}}>{{__('messages.others')}}</option>
                                 </select>
                             </div>
                         </div>

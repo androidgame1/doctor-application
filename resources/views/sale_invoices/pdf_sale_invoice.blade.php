@@ -34,7 +34,7 @@
         }
         .div-header-title{
             width:100%;
-            background:#ffc90a;
+            background:#e5b407;
             text-align:right;
             height:40px;
             padding:0;
@@ -54,7 +54,7 @@
             padding:0px 20px;
         }
         .span-series{
-            color:#ffc90a;
+            color:#e5b407;
         }
         .footer{
             position:fixed;
@@ -62,7 +62,7 @@
             bottom:0;
             left:0;
             padding:20px;
-            background:#ffc90a;
+            background:#e5b407;
             color:white;
         }
         .div-footer-number-page{

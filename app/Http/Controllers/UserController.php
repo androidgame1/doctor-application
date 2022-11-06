@@ -471,7 +471,10 @@ class UserController extends Controller
                 'address'=>$request->address,
                 'phone'=>$request->phone,
                 'city'=>$request->city,
-                'logo'=>$request->logo
+                'logo'=>$request->logo,
+                'ice'=>$request->ice,
+                'rc'=>$request->rc,
+                'if'=>$request->if
             ])){
                 toastr()->success(Lang::get('messages.the_profile_has_updated_by_success'));
             }else{

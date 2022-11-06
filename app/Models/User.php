@@ -31,6 +31,9 @@ class User extends Authenticatable
         'role',
         'logo',
         'password',
+        'ice',
+        'rc',
+        'if',
         'isvalidate'
     ];
 

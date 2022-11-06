@@ -94,6 +94,30 @@
                                 </div>
                             </div>
                         @endif
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="label-group">{{__('messages.ice')}}<span class="text-danger d-none"> * </span></label>
+                                <input class="form-control {{$errors->has('ice')?'form-control-danger':''}}"
+                                    type="text" placeholder="{{__('messages.ice')}}" name="ice" value="{{auth()->user()->ice}}"
+                                    >
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="label-group">{{__('messages.rc')}}<span class="text-danger d-none"> * </span></label>
+                                <input class="form-control {{$errors->has('rc')?'form-control-danger':''}}"
+                                    type="text" placeholder="{{__('messages.rc')}}" name="rc" value="{{auth()->user()->rc}}"
+                                    >
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-12">
+                            <div class="form-group">
+                                <label class="label-group">{{__('messages.if')}}<span class="text-danger d-none"> * </span></label>
+                                <input class="form-control {{$errors->has('if')?'form-control-danger':''}}"
+                                    type="text" placeholder="{{__('messages.if')}}" name="if" value="{{auth()->user()->if}}"
+                                    >
+                            </div>
+                        </div>
                         <div class="col-md-12 col-12">
                             <div class="form-group">
                                 <button type="submit" class="btn btn-info"><i class="fa fa-edit"></i> {{__('messages.modify')}}</button>

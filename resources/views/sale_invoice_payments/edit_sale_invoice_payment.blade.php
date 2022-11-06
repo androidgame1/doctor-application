@@ -31,6 +31,7 @@
                         <div class="col-md-12">
                             @include('messages.messages')
                         </div>
+                        @include('sale_invoice_payments.payment_to')
                         <div class="col-md-6 col-12">
                             <div class="form-group">
                                 <label class="label-group">{{__('messages.date')}}<span class="text-danger"> * </span></label>
@@ -45,8 +46,10 @@
                                     type="text" name="way_of_payment" required>
                                     <option value="" selected>{{__('messages.select')}}</option>
                                     <option value="cash" {{$sale_invoice_payment->way_of_payment == 'cash' ? 'selected' : ''}}>{{__('messages.cash')}}</option>
+                                    <option value="check" {{$sale_invoice_payment->way_of_payment == 'check' ? 'selected' : ''}}>{{__('messages.check')}}</option>
                                     <option value="credit_card" {{$sale_invoice_payment->way_of_payment == 'credit_card' ? 'selected' : ''}}>{{__('messages.credit_card')}}</option>
                                     <option value="debit_card" {{$sale_invoice_payment->way_of_payment == 'debit_card' ? 'selected' : ''}}>{{__('messages.debit_card')}}</option>
+                                    <option value="others" {{$sale_invoice_payment->way_of_payment == 'others' ? 'selected' : ''}}>{{__('messages.others')}}</option>
                                 </select>
                             </div>
                         </div>
